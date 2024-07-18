@@ -1,0 +1,65 @@
+﻿{
+  "checkoutBySavedPaymentMethod": {
+    "route": {
+      "description": "Completes the shopping experience using a saved payment for payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SavedPayment": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "savedPaymentMethodCheckoutInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "savedPaymentId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          },
+          "security": {
+            "isYourSavedPaymentMethod": {
+              "$ref": "../../Common/security.json#/isYourSavedPaymentMethod"
+            }
+          }
+        }
+       }
+      },
+      "outputEntityDefinition": {
+        "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+        "name": "CartCheckoutOutput"
+      },
+      "businessLogic": {
+        "ensureActiveCart": {
+          "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateOrder": {
+          "$ref": "checkoutBusinessLogic.json#/validateOrder"
+        },
+        "addSavedPaymentMethodInfo": {
+          "$ref": "checkoutBusinessLogic.json#/addSavedPaymentMethodInfo"
+        },
+        "completeOrder": {
+          "$ref": "checkoutBusinessLogic.json#/completeOrder"
+        },
+        "sendOrderConfirmationEmailCheckout": {
+          "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+        },
+        "returnTheOrder": {
+          "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+        }
+      }
+    }
+}

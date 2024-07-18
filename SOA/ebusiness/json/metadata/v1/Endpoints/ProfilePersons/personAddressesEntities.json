@@ -1,0 +1,163 @@
+﻿{
+  "personProfileAddressInput": {
+    "$ref": "personAddressesEntities.json#/personAddressInput",
+    "fields": {
+      "addressName": {
+        "sourceField": null
+      },
+      "line1": {
+        "sourceField": null
+      },
+      "line2": {
+        "sourceField": null
+      },
+      "stateProvince": {
+        "sourceField": null
+      },
+      "postalCode": {
+        "sourceField": null
+      }
+    }
+  },
+  "personProfileAddressOutput": {
+    "$ref": "personAddressesEntities.json#/personAddressOutput",
+    "fields": {
+      "isPreferredBillingAddress": {
+        "type": "boolean",
+        "description": "The value indicate if profile address is preferred billing address"
+      },
+      "isPreferredShippingAddress": {
+        "type": "boolean",
+        "description": "The value indicate if profile address is preferred shipping address"
+      },
+      "isPreferredMailingAddress": {
+        "type": "boolean",
+        "description": "The value indicate if profile address is preferred mailing address"
+      }
+    }
+  },
+  "personProfilePreferredAddressInput": {
+    "fields": {
+      "addressName": {
+        "type": "string",
+        "description": "The address name of profile address used to GET address",
+        "input": {
+          "httpMethods": [ "PATCH" ],
+          "source": "path",
+          "requiredHttpMethods": [ "PATCH" ]
+        }
+      }
+    }
+  },
+  "personAddressPostInput": {
+    "$ref": "personAddressesEntities.json#/personAddressInput",
+    "fields": {
+      "addressName": {
+        "input": {
+          "httpMethods": [ "POST" ],
+          "source": "body"
+        }
+      }
+    }
+  },
+  "personAddressInput": {
+    "fields": {
+      "addressName": {
+        "type": "string",
+        "description": "The address name of person address used to GET,PATCH and DELETE",
+        "sourceField": "name",
+        "input": {
+          "httpMethods": [ "GET", "PATCH", "DELETE" ],
+          "source": "path"
+        }
+      },
+      "line1": {
+        "type": "string",
+        "sourceField": "addressLine1",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "line2": {
+        "type": "string",
+        "sourceField": "addressLine2",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "city": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "stateProvince": {
+        "type": "string",
+        "sourceField": "State",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "postalCode": {
+        "type": "string",
+        "sourceField": "ZipCode",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "country": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "personAddressOutput": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "The id of this address"
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of this address"
+      },
+      "line1": {
+        "type": "string",
+        "sourceField": "addressLine1",
+        "description": "The addressLine1 of this address"
+      },
+      "line2": {
+        "type": "string",
+        "sourceField": "addressLine2",
+        "description": "The addressLine2 of this address"
+      },
+      "city": {
+        "type": "string",
+        "description": "The city of this address"
+      },
+      "stateProvince": {
+        "type": "string",
+        "sourceField": "state",
+        "description": "The state province of this address"
+      },
+      "postalCode": {
+        "type": "string",
+        "sourceField": "zipcode",
+        "description": "The postal code of this address"
+      },
+      "country": {
+        "type": "string",
+        "description": "The country of this address"
+      }
+    }
+  }
+}

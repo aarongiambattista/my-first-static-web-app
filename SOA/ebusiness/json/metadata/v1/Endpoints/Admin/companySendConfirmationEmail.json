@@ -1,0 +1,37 @@
+{
+  "sendConfirmationEmailAdmin": {                     //send confirmation email after order is placed successfully
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrder"
+    },
+    "route": {
+      "httpMethod": "POST",
+      "description":  "Sends confirmation email of successfully placed order to mentioned email ID(s).",
+      "segments": {
+        "SendConfirmationEmail": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminSendConfirmationEmailInput",
+      "fields": {
+        "addresses": {
+          "type": "string",
+          "input": {
+            "isCollection": true,
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "sendOrderConfirmationEmail": {
+        "$ref": "companyBusinessLogic.json#/sendOrderConfirmationEmail"
+      }
+    }
+  }
+}

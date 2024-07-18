@@ -1,0 +1,33 @@
+﻿<div data-bind="visible: carouselVisible">
+    <div>
+        <h4 class="eb-additional-detail">You may also be interested in... </h4>
+    </div>
+    <div id="relatedProductsCarousel" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-inner" data-bind="foreach: relatedProductsBlock">
+            <div class="carousel-item" data-bind="css: {'active': $index()==0}">
+                <ul class="related-products-ul" data-bind="foreach: $data">
+                    <li class="related-products-li">
+                        <div class="thumbnail">
+                            <img class="related-products-img" data-bind="imageSrc: { src: imagePath }" alt="" />
+                        </div>
+                        <div class="related-product-name">
+                            <a data-bind="text: displayName, attr: { href: detailsPageURL, title: name }"></a>
+                        </div>
+                        <div class="related-product-description">
+                            <span data-bind="text: description"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev a-prev" data-bs-target="#relatedProductsCarousel" role="button" data-bs-slide="prev" data-bind="visible: carouselPrevButtonVisible, click:countCarouselPrevClick">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next a-next" data-bs-target="#relatedProductsCarousel" role="button" data-bs-slide="next" data-bind="visible: carouselNextButtonVisible, click:countCarouselNextClick">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

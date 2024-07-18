@@ -1,0 +1,31 @@
+{
+  "getAdminShoppingCart": {
+    "parent": {
+      "name": "getAdminCartCompany"//getAdminCompany
+    },
+    "route": {
+      "description": "Retrieves top level information about the cart contents.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/shoppingCartOutput",
+      "name": "ShoppingCartOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+
+  }
+}

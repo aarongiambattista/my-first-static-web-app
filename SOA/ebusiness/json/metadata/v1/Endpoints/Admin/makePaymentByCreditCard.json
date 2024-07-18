@@ -1,0 +1,237 @@
+﻿{
+  "makeCompanyPaymentByCreditCard": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrder"
+    },
+    "route": {
+      "description": "Make payment of the unpaid orders using a credit card.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "makeCompanyPaymentCreditCardInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationMonth": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationYear": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        },
+        "paymentAmount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyorderHistoryEntities.json#/companyOrderOutput",
+      "name": "makeCompanyPaymentCreditCardOutput"
+    },
+    "businessLogic": {
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createCompanyPaymentRecord"
+      },
+      "addPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addPaymentLinesRecord"
+      },
+      "retrievePaymentTypeIdByCardNumber": {
+        "$ref": "../../Common/commonPayments.json#/retrievePaymentTypeIdByCardNumber",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "CardNumber": "@request.cardNumber",
+            "SaveForFutureUse": "@request.saveForFutureUse"
+          }
+        }
+      },
+      "getPaymentExpirationDate": {
+        "$ref": "../../Common/commonPayments.json#/getExpirationDate",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "ExpirationMonth": "@request.expirationMonth",
+            "ExpirationYear": "@request.expirationYear"
+          }
+        }
+      },
+      "addCreditCardPaymentInfo": {
+        "$ref": "../../Common/commonPayments.json#/addCreditCardPaymentInfo",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdByCardNumber.outputPaymentTypeID",
+            "CardNumber": "@request.cardNumber",
+            "CVV": "@request.cvv",
+            "ExpirationDate": "@parent.getPaymentExpirationDate.outputPaymentExpirationDate",
+            "SaveForFutureUse": "@request.saveForFutureUse",
+            "SaveToTypes": "Company"
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addCreditCardPaymentInfo.outputPaymentObject"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companySingleOrderRetrieval"
+      }
+    }
+  },
+
+  "makeCompanyPaymentByCreditCardForBulkPayments": {
+    "parent": {
+      "name": "getCompanyOrderHistory"
+    },
+    "route": {
+      "description": "Make Bulk Payment using Credit Card",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "BulkOrder": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "companyBulkMakepaymentByCreditCardInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/payByCreditCardBulkInput"
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyorderHistoryEntities.json#/companyOrderOutput",
+      "name": "companyBulkMakePaymentByCreditCardOutput"
+    },
+    "businessLogic": {
+      "ValidateBulkIsYourCompanyOrders": {
+        "$ref": "../../Common/commonPayments.json#/validateCompanyBulkOrderIds",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "bulkObjectPropertyName": "companyBulkMakepaymentByCreditCardInputObject",
+            "DataObjectName": "spValidateCompanyOrderIds",
+            "companyId": "@request.Id"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForTokenizer": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Hosted iFrame Tokenizer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createCompanyPaymentRecord"
+      },
+      "addBulkPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To SubType GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "subTypeName": "PaymentLines",
+            "bulkObjectPropertyName": "companyBulkMakepaymentByCreditCardInputObject",
+            "inputFieldsToIgnore": "CCAccountNumber,CCExpireDate,cvv,saveForFutureUse,saveToTypes"
+          }
+        }
+      },
+      "addPaymentTypeOnPaymentObject": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/addPaymentTypeOnPayment",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentGE": "@parent.addBulkPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForTokenizer.outputPaymentTypeId"
+          }
+        }
+      },
+      //Adding CC info on Payments GE
+      "addBulkPaymentInfoOnPaymentsGE": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "bulkObjectPropertyName": "companyBulkMakepaymentByCreditCardInputObject",
+            "inputFieldsToIgnore": "orderId,paymentAmount,saveForFutureUse,saveToTypes"
+          }
+        }
+      }, 
+      //Adding SaveFoFuture info on Payments GE
+      "addSaveForFutureCollectionOnPaymentsGE": {
+        "$ref": "../../Common/commonPayments.json#/addSaveFoFutureCollectionOnPaymentsGE",
+        "processFlowProperties": {
+          "processFlowName": "Add SaveForFuture Collection Objects on Payment Object",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "bulkObjectPropertyName": "companyBulkMakepaymentByCreditCardInputObject"
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addSaveForFutureCollectionOnPaymentsGE.outputPaymentObject"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companySingleOrderRetrieval"
+      }
+    }
+  }
+}

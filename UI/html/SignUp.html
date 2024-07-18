@@ -1,0 +1,55 @@
+<div class="signup">
+    <h4 data-bind="visible: showAlreadyRegistered">You already have an account.</h4>
+    <form class="ebusiness-form" data-bind="visible: showSignup">
+        <div class="alert alert-danger text-left apex-user-UI-user-signupFailure" data-bind="visible: showError">
+            <strong data-bind="text: errorMessage"></strong>
+
+        </div>
+        <h3>Sign up to continue</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption">First Name</label>
+                    <input class="form-control" placeholder="" type="text" required data-bind="value: firstName , valueUpdate:'afterkeydown' , event: { focus: hideErrorMessage }" autofocus>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="caption">Last Name</label>
+                    <input class="form-control" placeholder="" type="text" required data-bind="value: lastName , valueUpdate:'afterkeydown' , event: { focus: hideErrorMessage }">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="caption">Your email address </label>
+            <input class="form-control" placeholder="" autocomplete="off" type="email" required data-bind="value: email , event: { focus: hideErrorMessage }">
+        </div>
+
+        <div class="form-group">
+            <label class="caption">Password</label>
+            <input class="form-control" placeholder="" autocomplete="off"  type="password" required data-bind="value: pwd , valueUpdate:'afterkeydown' , event: { focus: hideErrorMessage }">
+        </div>
+        <div class="form-group">
+            <label class="caption">Confirm Password</label>
+            <input class="form-control" placeholder="" type="password" required data-bind="value: cfmPwd , event: { focus: hideErrorMessage }">
+        </div>
+
+        <div class="form-group text-right">
+            <button class="btn btn-primary" data-bind="click: clickSignMeUp">Sign Up</button>
+        </div>
+
+        <div class="a-section a-spacing-base">
+            <div class="a-divider a-divider-break"><h5>Already have an e-Business Account?</h5></div>
+            <span id="auth-create-account-link" class="a-button a-button-span12">
+                <span class="a-button-inner">
+                    <a class="btn btn-block btn-secondary" href="#" data-bind="click:loginPage">Login to your e-Business account</a>
+                </span>
+            </span>
+        </div>
+
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </form>
+</div>

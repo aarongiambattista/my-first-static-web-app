@@ -1,0 +1,115 @@
+﻿{
+  "adminAddSubscriptionGeneralProduct": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Adds a subscription general product to the cart.",
+      "httpMethod": "POST",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminCartsEntityDefinitions.json#/subscriptionCartItemOutput",
+      "name": "adminAddSubscriptionGeneralProductOutput"
+    },
+    "inputEntityDefinition": {
+      "name": "adminAddSubscriptionGeneralProductInput",
+      "isCollection": true,
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST"
+            ]
+          }
+        },
+        "subscriberId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST"
+            ]
+          } 
+        },
+        "autoRenew": {
+          "type": "bool",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "ValidateBulkIsYourCompanyPersons": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateCompanyPersonIds",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "bulkObjectPropertyName": "adminAddSubscriptionGeneralProductInputObject",
+            "DataObjectName": "spValidateCompanyPersonIds",
+            "companyId": "@request.Id",
+            "individualPropertyName": "subscriberId"
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      //Bulk Logic here
+      "addSubscriptionGeneralProduct": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Bulk: Add Subscription General Product",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": null,
+            "bulkObjectPropertyName": "adminAddSubscriptionGeneralProductInputObject",
+            "companyId": "@request.id",
+            "orderGe": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "verifiers": [
+              "IsSubscriptionProduct",
+              "IsNotFundraisingProduct",
+              "IsWebEnabled"
+            ]
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getAllOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/getAllOrderLines",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+﻿<div class="ebusiness-main-container row">
+    <div class="ebusiness-ui-address col-lg-8">
+        <div class="ebusiness-card-details">
+            <div class="row">
+                <h3 class="ebusiness-dynamic-address-title col-md-6 ">Choose your payment method</h3>
+                <div class="ebusiness-checkout-step-wrapper col-md-6">
+                    <div class="stepsText activeSteps">
+                        <a class="stepsBg" data-bind="click:backToAddress">1 </a>
+                        Address
+                    </div>
+                    <div class="stepsText activeSteps">
+                        <a class="stepsBg" data-bind="click:backToReviewOrder">2</a>
+                        Review
+                    </div>
+                    <div class="stepsText activeSteps">
+                        <a class="stepsBg">3</a>
+                        Payment
+                    </div>
+                    <div class="stepsText">
+                        <a class="stepsBg">4</a>
+                        Confirmation
+                    </div>
+                </div>
+            </div>
+            <div class="ebClear">
+                <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showError, text: errorMessage"></div>
+            </div>
+            <div class="ebusiness-profile-card-savedCards"></div>
+        </div>
+    </div>
+    <!--This div belong to payment summary data-->
+    <div class="ebusiness-ui-payment-summary col-lg-4"></div>
+    <div class="loaderwrapper" data-bind="visible: showLoader">
+        <div class="ebloader"></div>
+    </div>
+</div>

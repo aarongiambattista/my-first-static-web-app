@@ -1,0 +1,77 @@
+﻿{
+  "properties": {
+    "name": {
+      "description": "The name of the object.  When this output definition is not a collection, this is the .NET type name that will be generated.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Public facing documentation on this output type.",
+      "type": "string"
+    },
+    "isCollection": {
+      "description": "When set to true, this output type definition is a collection of another type.  The 'existingType' property must also be set.",
+      "type": "boolean"
+    },
+    "fieldDefinitions": {
+      "description": "The collection of fields that make up this Input Entity Definition record",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the field.",
+            "type": "string"
+          },
+          "description": {
+            "description": "Descriptive text that further tells us how this field can be used.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the field.",
+            "type": "string"
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "fieldDefinitions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "The name of the field.",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Descriptive text that further tells us how this field can be used.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of the field.",
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "type"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "description",
+          "name",
+          "type"
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "isCollection"
+  ]
+}

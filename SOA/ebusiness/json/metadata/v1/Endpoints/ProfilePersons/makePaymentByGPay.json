@@ -1,0 +1,102 @@
+{
+  "makePaymentByGPay": {
+    "parent": {
+      "name": "getPersonOrderHistory"
+    },
+    "route": {
+      "description": "Make payment of the unpaid orders using GPay",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GPay": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "makePaymentByGPayInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/payByDigitalWalletInput"
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "../ProfilePersons/orderHistoryEntities.json#/personOrderOutput",
+      "name": "makePaymentGPayOutput"
+    },
+    "businessLogic": {
+      "ValidateBulkIsYourOrders": {
+        "$ref": "../../Common/commonPayments.json#/validatePersonBulkOrderIds",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "bulkObjectPropertyName": "makePaymentByGPayInputObject",
+            "DataObjectName": "spValidatePersonOrderIds",
+            "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForDigitalWallet": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Google Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createPaymentRecord"
+      },
+      "addBulkPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To SubType GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "subTypeName": "PaymentLines",
+            "bulkObjectPropertyName": "makePaymentByGPayInputObject",
+            "inputFieldsToIgnore": "CCAccountNumber"
+          }
+        }
+      },
+      "addPaymentTypeOnPaymentObject": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/addPaymentTypeOnPayment",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentGE": "@parent.addBulkPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForDigitalWallet.outputPaymentTypeId"
+          }
+        }
+      },
+
+      //Adding GPay info on Payments GE
+      "addBulkPaymentInfoOnPaymentsGE": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "bulkObjectPropertyName": "makePaymentByGPayInputObject",
+            "inputFieldsToIgnore": "orderId,paymentAmount"
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addBulkPaymentInfoOnPaymentsGE.outputPaymentsGE"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  }
+}

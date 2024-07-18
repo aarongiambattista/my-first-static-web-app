@@ -1,0 +1,68 @@
+﻿{
+  "getCompanyOrderHistorySingleOrderSingleItemAsSubscriptionItem": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrderSingleItem"
+    },
+    "route": {
+      "description": "Gets the common properties of single subscription orderline from the person's orders.",
+      "httpMethod": "GET",
+      "segments": {
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "name": "GetSingleSubscriptionOrderItemOutput",
+      "$ref": "companyOrderHistoryEntities.json#/companyCartSubscriptionItemsOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/singleOrderGERetrieval"
+      },
+      "getSingleOrderLine": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "OrderLines",
+            "clientPocoFieldName": "itemId"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "subscriptionGeneralProductValidation": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsSubscriptionProduct"
+            ]
+          }
+        }
+      },
+      "getSingleOrderLineOutput": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "OrderLines",
+            "clientPocoFieldName": "itemId"
+          }
+        }
+      }
+    }
+  }
+}

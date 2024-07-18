@@ -1,0 +1,85 @@
+﻿<div class="">
+    <div class="secondary tab-content k-content k-state-active">
+        <div class="apex-ftp">
+            <div class="eBiz-boundcontrol-personTopics">
+
+                <div class="card expandable is-expanded">
+                    <header class="header">
+                        <div class="title" data-bind="click: toggleShowSelectedInterests">Selected Interests</div>
+                        <!--<div class="expander">
+                            <button class="btn-sm icon expand"></button>
+                        </div>-->
+                    </header>
+                    <div class="card-content no-interests">
+                        <div class="add-interests-message" data-bind="visible: !selectedInterests().length">
+                            <img class="smiley-frown" src="../images/icons/smiley-frown.svg">
+                            <span>Looks like you haven’t selected any Topics of Interest yet…</span>
+                        </div>
+                        <div class="tag-group" data-bind="visible: showSelectedInterests">
+                            <div class="ebusiness-profile-section" data-bind="foreach: selectedInterests">
+                                <div class="tag-wrapper" data-bind="css: { tagSavedCode: savedCode() && savedOnServer(), newInterest: unSavedCode() && !savedOnServer() }">
+                                    <span class="a-single-topic-code tag ebusiness-profile-selected-interest" data-bind="text:name()"></span>
+                                    <span class="remove-tag" data-bind="click: removeInterest">X</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="section-header">
+                    <span class="title">Select Topics of Interest</span>
+                </div>
+
+                <div class="section-wrapper toolbar">
+                    <div class="column search">
+                        <input type="text" class="search-input pf-input form-control" placeholder="Search..." data-bind="textInput: search, event: { focus : showTopicSuccess(0) && showTopicError(0) }">
+                        <button class="btn-sm icon" data-bind="event: { click: discardSearch }">
+                            <img src="../images/icons/icon_close-blue_24px.svg" data-pin-nopin="true">
+                        </button>
+                    </div>
+                    <div class="column">
+                        <div class="pull-right">
+                            <a class="action select-all" data-bind="click: selectAll">Select All</a> | <a class="action clear-all" data-bind="click: clearAll">Clear All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toi section-wrapper k-widget k-treeview">
+                    <div class="NoRecords text-center">
+                        <span data-bind="visible: !resultRecords().filteredRecords().length">No records found.</span>
+                    </div>
+                    <ul class="k-group k-treeview-lines" role="tree" data-bind="foreach: resultRecords().filteredRecords()">
+                        <li class="k-item k-first" aria-selected="false">
+                            <div class="k-top">
+                                <a class="pull-right isCollapseOpen collapsed" data-bs-toggle="collapse" data-bind="attr: { href: '#' + topicCode().name() } , visible: children().length">
+                                </a>
+                                <label class="k-checkbox-wrapper" role="presentation">
+                                    <input type="checkbox" tabindex="-1" class="k-checkbox" data-bind="checked:topicCode().isChecked , css: { ebIntermediateChk: topicCode().checkParent() && !topicCode().isChecked()}">
+                                    <span class="k-in" data-bind="text: topicCode().name()"></span>
+                                </label>
+
+                            </div>
+                            <ul class="k-group collapse" role="group" style="overflow: visible;" data-bind="foreach: children() , attr: { id: topicCode().name() }, css: { in: openChildList() && children().length ,autoHeight: heightApplied() }">
+                                <li class="k-item" aria-selected="false">
+                                    <div class="k-top">
+                                        <label class="k-checkbox-wrapper" role="presentation">
+                                            <input type="checkbox" tabindex="-1" class="k-checkbox" data-bind="checked:isChecked"><span class="k-checkbox-label"></span>
+                                            <span class="k-in" data-bind="text: name()"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ebClear">
+            <div class="alert alert-success col-md-8" data-bind="visible: showTopicSuccess, text: topicSuccessMessage"></div>
+            <div class="alert alert-danger ebusiness-service-failure-message col-md-8" data-bind="visible: showTopicError, text: topicErrorMessage"></div>
+            <div class="apex-boundcontrols-savebutton  pull-right  col-md-3">
+                <button class="save btn btn-primary pull-right" data-bind="click: saveChanges">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>

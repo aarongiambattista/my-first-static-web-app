@@ -1,0 +1,64 @@
+﻿{
+  "adminCheckoutBySavedPaymentMethod": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the shopping experience using a saved payment for admin payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SavedPayment": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminSavedPaymentMethodCheckoutInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "savedPaymentId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          },
+          "security": {
+            "isYourSavedPaymentMethod": {
+              "$ref": "../../../Common/security.json#/isYourCompanySavedPaymentMethod"
+            }
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "AdminCartCheckoutOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "addSavedPaymentMethodInfo": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addSavedPaymentMethodInfo"
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

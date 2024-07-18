@@ -1,0 +1,68 @@
+﻿{
+  "adminCheckoutByPurchaseOrder": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the shopping experience using a purchase order for payment.  The shopper must have the required credit approval limits.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "PurchaseOrder": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminPurchaseOrderCheckoutInput",
+      "fields": {
+        "purchaseOrderNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "adminCartPurchaseOrderCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForPurchaseOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Purchase Order",
+            "IsWebEnabled": false
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "addPurchaseOrderPaymentInformation": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addPurchaseOrderPaymentInformation"
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

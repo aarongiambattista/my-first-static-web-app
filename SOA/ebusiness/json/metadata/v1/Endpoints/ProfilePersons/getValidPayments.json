@@ -1,0 +1,58 @@
+﻿{
+  "getValidPayments": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get valid payment types for a person",
+      "httpMethod": "GET",
+      "segments": {
+        "ValidPayments": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetValidPaymentTypesOutput",
+      "fields": {
+        "name": {
+          "type": "string"
+        },
+        "PaymentType": {
+          "type": "string"
+        },
+        "IsRemote": {
+          "type": "boolean"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "getPaymentsTypesRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0ValidPaymentTypes"
+          }
+        }
+      },
+      "getValidPaymentTypesRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Validate Payment Types",
+          "processFlowParameters": {
+            "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+            "InputPaymentTypes": "@parent.getPaymentsTypesRetrieval.outputDataObjectTable",
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

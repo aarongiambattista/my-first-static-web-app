@@ -1,0 +1,101 @@
+{
+  "updateSingleGeneralProductItem": {
+    "route": {
+      "description": "Updates the properties of a single general product item in the cart.  If the item specified is not a general product this call will error.",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "id": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "GeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "updateSingleGeneralProductItemInput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET",
+              "PATCH"
+            ],
+            "source": "path",
+            "requiredHttpMethods": [
+              "GET",
+              "PATCH"
+            ]
+          }
+        },
+        "quantity": {
+          "type": "int",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "PATCH"
+            ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "UpdateSingleGeneralProductItemOutput",
+      "$ref": "entityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "getSingleOrderLine": {
+        "$ref": "shoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.output"
+          }
+        }
+      },
+      "validateOrderLine": {
+        "$ref": "shoppingBusinessLogic.json#/validateOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderLineGE": "@parent.getSingleOrderLine.outputGE"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "shoppingBusinessLogic.json#/saveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnUpdatedOrderLine"
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+﻿{
+  "profilePersonsPhonesRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0ProfilePersonsPhones",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+
+  "personEmbeddedPhoneFieldNameRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Embedded Phone ID Field Name",
+      "processFlowParameters": {
+        "embeddedPhoneFieldName": "@Request.name"
+      }
+    }
+  },
+  "setPreferredPhone": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Set Preferred Phone",
+      "processflowparameters": {
+        "geobject": null,
+        "preferredphonename": null
+      }
+    }
+  },
+  "removeInTablePhone": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "removeInTablePhone",
+      "processFlowParameters": {
+        "GEObject": null,
+        "FieldName": null
+      }
+    }
+  },
+  "personsPhoneRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonsPhones",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "getPhoneRequestNameFieldValue": {
+    "$ref": "../../Common/businessLogic.json#/inputContextValueRetriever",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "InputContextObject": "@Request",
+        "PropertyName": "name"
+      }
+    }
+  },
+  "personPhoneSubTypeRetriever": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Subtype GE Object",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null,
+        "fieldName": null,
+        "fieldValue": null
+      }
+    }
+  },
+
+  "validateDuplicatePhoneName": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Check For Duplicate Person Phone Name",
+      "processFlowParameters": {
+        "Name": "",
+        "PersonId": -1,
+        "DataObjectName": "speBusiness6_0IsPhoneNameUniqueForPerson"
+      }
+    }
+  },
+  "validatePhonePayload": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Phone Payload",
+      "processFlowParameters": {
+        "requestPoco": "@request.objectValue"
+      }
+    }
+  }
+  
+}

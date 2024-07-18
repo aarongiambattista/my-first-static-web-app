@@ -1,0 +1,74 @@
+{
+  "checkoutByGPay": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the shopping experience using GPay for admin payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GPay": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminGPayCheckoutInput",
+      "fields": {
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+      "outputEntityDefinition": {
+        "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+        "name": "adminCartCheckoutOutput"
+      },
+    "businessLogic": {
+      "retrievePaymentTypeIdForDigitalWallet": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Google Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "addGPayPaymentInfo": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addDigitalWalletPaymentInfo"
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+    }
+  }

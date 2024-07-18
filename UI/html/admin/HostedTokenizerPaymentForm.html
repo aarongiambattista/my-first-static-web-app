@@ -1,0 +1,189 @@
+﻿<script language="JavaScript">
+    var tokenData;
+    var saveForFutureUse = false;
+    var saveToTypes = "Person";
+
+    window.addEventListener('message', function (event) {
+
+        var eventJSONData = JSONTryParse(event.data);
+
+        if (eventJSONData != null) {
+
+            tokenData = JSON.parse(event.data);
+            var mytoken = document.getElementById('mytoken');
+            mytoken.value = tokenData.message;
+
+            if (tokenData.errorMessage != undefined) {
+                if (tokenData.errorMessage == "") {
+                    document.querySelector("#tokenizerErrorMessage").innerHTML = "";
+                    if (tokenData.message != "") {
+                        document.querySelector("#tokenizerContinueButton").disabled = false;
+                    }
+                    else {
+                        document.querySelector("#tokenizerContinueButton").disabled = true;
+                    }
+                }
+                else {
+                    document.querySelector("#tokenizerErrorMessage").innerHTML = tokenData.errorMessage;
+                    document.querySelector("#tokenizerContinueButton").disabled = true;
+                }
+
+            }
+            else {
+                document.querySelector("#tokenizerErrorMessage").innerHTML = "";
+                document.querySelector("#tokenizerContinueButton").disabled = true;
+
+            }
+        }
+
+    }, false);
+
+    function sendToken() {
+        tokenData.saveForFutureUse = saveForFutureUse;
+        tokenData.saveToTypes = saveToTypes;
+        window.parent.postMessage(tokenData, "*");
+    };
+
+    function saveForFutureUseClick(element) {
+        if (element.checked) {
+            document.querySelector("#tokenizerSaveToTypesDiv").hidden = false;
+            saveForFutureUse = true;
+            saveToTypesClick(document.querySelector("#tokenizerSaveToTypes")[0].value);
+        }
+        else {
+            document.querySelector("#tokenizerSaveToTypesDiv").hidden = true;
+            document.querySelector("#tokenizerSaveToTypes").selectedIndex = 0;
+            saveForFutureUse = false;       
+            saveToTypes = "Person";         
+        }
+    }
+
+    function saveToTypesClick(value) {
+        saveToTypes = value;
+    }
+
+    function closeForm() {
+        window.parent.postMessage("close", "*");
+    }
+
+    function JSONTryParse(str) {
+        try {
+            return JSON.parse(str);
+        } catch (e) {
+            return null;
+        }
+    }
+
+</script>
+<style>
+    .tokenizer_payment_screen {
+        font-size: 14px;
+        font-family: Roboto, arial, sans-serif;
+    }
+
+        .tokenizer_payment_screen .tokenizer_btn[disabled] {
+            cursor: default;
+            opacity: 0.5;
+        }
+
+        .tokenizer_payment_screen .tokenizer_btn {
+            min-width: 70px;
+            margin-top: 0.5em;
+            padding: 9px 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: #0070d2;
+            font-size: 14px;
+            font-family: Roboto, arial, sans-serif;
+            color: #fff;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+            .tokenizer_payment_screen .tokenizer_btn.tokenizer_cancel {
+                background: #fff;
+                color: #018ED5;
+                border: #018ED5 solid 1px;
+            }
+
+                .tokenizer_payment_screen .tokenizer_btn.tokenizer_cancel:hover {
+                    background: #0070d2;
+                    color: #fff;
+                    border: #018ED5 solid 1px;
+                }
+
+    .tokenizer_error_block {
+        margin-bottom: 10px;
+    }
+
+        .tokenizer_error_block span {
+            color: #ff0000;
+        }
+
+    #tokenizerSaveForFutureDiv {
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: 15px;
+    }
+
+        #tokenizerSaveForFutureDiv input {
+            vertical-align: -2px;
+            cursor: pointer;
+        }
+
+        #tokenizerSaveForFutureDiv select {
+            border-width: 1px;
+            border-style: solid;
+            border-color: #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.65em;
+            background: #ffffff;
+            font-family: Roboto, arial, sans-serif;
+            height: 32px;
+            text-indent: 0.33em;
+            min-width: 100px;
+        }
+
+    .tokenizer_field_wrapper {
+        margin: 10px;
+    }
+</style>
+<div style="visibility:visible;" id="body" class="tokenizer_payment_screen">
+    <form name="order" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <iframe id="tokenframe" name="tokenframe" frameborder="0" scrolling="no" width="600" height="200" src="https://fts-uat.cardconnect.com/itoke/ajax-tokenizer.html?useexpiry=true&usecvv=true&enhancedresponse=true&invalidcreditcardevent=true&css=select%2Cinput%7Bborder-width%3A%201px%3B%20border-style%3Asolid%3Bborder-color%3A%23ccc%3Bborder-radius%3A4px%3Bfont-size%3A14px%3Bfont-weight%3A%20400%3Bline-height%3A%201.65em%3Bbackground%3A%20%23FFF%3Bfont-family%3A%20Roboto%2C%20arial%2C%20sans-serif%3Bfont-color%3A%23304457%3Bheight%3A32px%3Btext-indent%3A0.33em%3Bmin-width%3A70px%3B%7D%23ccexpiryyear%7Bmargin-left%3A%2010px!important%3B%7Dlabel%7Bfont-family%3A%20Roboto%2C%20arial%2C%20sans-serif%3Bfont-size%3A14px%3B%20font-weight%3A500%3B%20font-color%3A%23304457%3Bmargin-top%3A12px%3B%20margin-bottom%3A5px%3Bmargin-top%3A10px%3Bdisplay%3Ablock%3B%7Dbr%7Bdisplay%3A%20none%3B%7D.error%7Bcolor%3Ared%3Bborder-color%3Ared%3B%7D"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tokenizer_field_wrapper">
+            <div class="tokenizer_error_block">
+                <span id="tokenizerErrorMessage"></span>
+            </div>
+            <div id="tokenizerSaveForFutureDiv">
+                <input type="checkbox" id="tokenizerSaveForFutureUse" value=true onchange="javascript: saveForFutureUseClick(this);">
+                <label for="tokenizerSaveForFutureUse"> Save For Future Use</label>
+                <span id="tokenizerSaveToTypesDiv" hidden>
+                    <span> to </span>
+                    <select id="tokenizerSaveToTypes" onChange="saveToTypesClick(this.options[this.selectedIndex].value)">
+                        <option value="Person">Person</option>
+                        <option value="Company">Company</option>
+                    </select>
+                </span>
+            </div>
+
+            <div>
+                <input type="hidden" name="mytoken" id="mytoken">
+                <input class="tokenizer_btn tokenizer_continue" type="button" id="tokenizerContinueButton" value="Continue" disabled onclick="javascript: sendToken();">
+                <input class="tokenizer_btn tokenizer_cancel" type="button" id="tokenizerCancelButton" value="Cancel" onclick="javascript: closeForm();">
+            </div>
+        </div>
+    </form>
+
+
+</div>

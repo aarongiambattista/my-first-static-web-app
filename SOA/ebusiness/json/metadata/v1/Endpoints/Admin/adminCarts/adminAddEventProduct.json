@@ -1,0 +1,83 @@
+﻿{
+  "adminAddEventProduct": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Adds a event product to the company cart.",
+      "httpMethod": "POST",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "long"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetEventCartItemsOutput",
+      "isCollection": true,
+      "$ref": "adminCartsEntityDefinitions.json#/eventCartItemOutput"
+    },
+    "inputEntityDefinition": {
+      "name": "adminAddEventProductInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "isCollection": true,
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST"
+            ]
+          }
+        },
+        "attendeeId": {
+          "type": "long",
+          "security": {
+            "isYourCompanyPerson": {
+              "$ref": "../../../Common/adminSecurity.json#/isYourCompanyPerson"
+            }
+          },
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST",
+              "PATCH"
+            ]
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "eventProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/bulkEventProductValidation"
+      },
+      //validate attendeeId component
+      //"attendeeValidation": {
+      //  "$ref": "../../../Common/adminSecurity.json#/isYourCompanyPerson"
+      //},
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "addEventProduct": {
+        "$ref": "adminShoppingBusinessLogic.json#/addEventProduct"
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnNewOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnEventOrderLines"
+      }
+    }
+  }
+}

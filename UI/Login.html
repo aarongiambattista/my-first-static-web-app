@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <script src="js/3rdParty/jquery-3.6.4.min.js"></script>
+
+    <script src="js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="js/3rdParty/knockout.validation.min.js"></script>
+    <script src="js/configuration/ebConfig.js"></script>
+    <script src="js/UserContext.js"></script>
+    <script src="js/Login.js"></script>
+    <script src="js/HeaderMenu.js"></script>
+    <script src="js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div id="login1"></div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load. 
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                //load footer control
+                var footerOptions = footerOptions || {};
+                footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                eb_Footer.render(footerOptions).done(function () {
+                    //load header control
+                    var headerOptions = headerOptions || {};
+                    headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                    headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                    headerOptions.userContext = eb_UserContext.live;
+                    headerOptions.activePage = "Login";
+
+                    eb_HeaderMenu.render(headerOptions).done(function () {
+                        eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                        ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                        if (eb_UserContext.live.isUserLoggedIn() <= 0) {
+                            var loginOptions = loginOptions || {};
+                            loginOptions.domElement = eBusinessJQObject('#login1')[0];
+                            loginOptions.templatePath = eb_Config.SitePath + "html/Login.html";
+                            loginOptions.UserContext = eb_UserContext.live;
+
+                            eb_Config.config(loginOptions, eb_Login);
+                            eb_Login.render(loginOptions).done(function () {
+                                eb_Login.live = new eb_Login.loginModel(undefined, loginOptions.domElement, eb_UserContext.live);
+                                ko.applyBindings(eb_Login.live, loginOptions.domElement);/*Apply KO bindings, fire up the control*/
+                                eBusinessJQObject(".eb-userName").focus();/*Set default focus on username as Firefox doest support Autofcus.*/
+                            });
+                        }
+                        else {
+                            eb_UserContext.live.Logout().done(function () {
+                            }).fail(function (data, msg, jhr) {
+                                console.error(msg);
+                            });
+                        }
+                    });
+                }).fail(function (data, msg, jhr) {
+                    console.error('Failed to render footer control...');
+                });
+            }).fail(function (data, msg, jhr) {
+                console.error(msg);
+            });
+        });
+    </script>
+</body>
+</html>

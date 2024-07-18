@@ -1,0 +1,12 @@
+﻿{
+  "properties": {
+    "enablePaging": {
+      "description": "Determines if this end point supports paging",
+      "type": "boolean"
+    },
+    "filter": {
+      "description": "The filename for the filter definition on this end point",
+      "type": "string"
+    }
+  } 
+}

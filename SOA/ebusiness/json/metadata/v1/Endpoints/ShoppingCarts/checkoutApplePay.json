@@ -1,0 +1,75 @@
+{
+  "checkoutByApplePay": {
+    "route": {
+      "description": "Completes the shopping experience using a Apple Pay for payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ApplePay": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "checkoutApplePayInput",
+      "fields": {
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForDigitalWallet": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Apple Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "addApplePayPaymentInfo": {
+        "$ref": "checkoutBusinessLogic.json#/addDigitalWalletPaymentInfo"
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

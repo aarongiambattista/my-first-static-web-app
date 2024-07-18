@@ -1,0 +1,147 @@
+﻿{
+  "createRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute GE Action",
+      "processFlowParameters": {
+        "GE": "@parent.output",
+        "action": "create"
+      }
+    }
+  },
+  "singleRecordRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": "Companies",
+        "action": "get"
+      }
+    }
+  },
+  "singleOrderMeetDetailRecordRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": "OrderMeetingDetail",
+        "action": "get",
+        "clientPocoFieldName": "orderMeetDetailId"
+      }
+    }
+  },
+  "recordListRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "GE List Retriever",
+      "processFlowParameters": {
+        "entityName": "Companies"
+      }
+    }
+  },
+  "listRetriever": {
+    "executionType": "recordIdList",
+    "recordIdListProperties": {
+      "itemProcessor": {
+        "$ref": "#/singleRecordRetrieval"
+      },
+      "listRetriever": {
+        "retrieverType": "entityBaseView",
+        "entityName": "Companies"
+      }
+    }
+  },
+  "newGERetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": "Companies",
+        "action": "create"
+      }
+    }
+  },
+  "newPersonGERetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": "Persons",
+        "action": "create"
+      }
+    }
+  },
+  "singleRecordDelete": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute GE Action",
+      "processFlowParameters": {
+        "GE": "@parent.output",
+        "action": "delete"
+      }
+    }
+  },
+  "singleSubTypeUpdate": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Process SubType GE Operations",
+      "processFlowParameters": {
+        "GEObject": "@parent.output",
+        "action": "save"
+      }
+    }
+  },
+  "singleSubTypeDelete": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Process SubType GE Operations",
+      "processFlowParameters": {
+        "GEObject": "@parent.output",
+        "action": "delete"
+      }
+    }
+  },
+  "sendOrderConfirmationEmail": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "e-Business Send Order Confirmation Email",
+      "processFlowParameters": {
+        "MessageSystemName": "Dot Net SMTP Client",
+        "MessageSourceName": "Orders",
+        "MessageTemplateName": "e-Business Order Confirmation Email Template",
+        "OrderID": "@Request.orderId",
+        "EmailAddressList": "@Request.addresses"
+      }
+    }
+  },
+  "singlePersonsRecordRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": "Persons",
+        "action": "get"
+      }
+    }
+  },
+  "personEmbeddedPhoneFieldNameRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Embedded Phone ID Field Name",
+      "processFlowParameters": {
+        "embeddedPhoneFieldName": "@Request.name"
+      }
+    }
+  },
+  "profilePersonsPhonesRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness7_0ProfilePhonesFromCompanyDirectory",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  }
+
+}

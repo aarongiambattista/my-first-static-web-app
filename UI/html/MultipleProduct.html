@@ -1,0 +1,32 @@
+﻿<div class="ebusiness-product-widget-top-rated ebusiness-product-widget-Vertical eBusiness-productDetails-wrapper">
+    <h3 class="ebusiness-product-widget-header-title">Top Rated Products</h3>
+</div>
+<div class="ebusiness-featured-product-horizontal item ebusiness-loading-overlay-box">
+    <div class="ebClear">
+        <ul data-bind="foreach: multipleProduct" class="light-slider ebusiness-product-widget content-slider">
+            <li>
+                <div class="ebusiness-product-wrapper-product-widget">
+                    <div class="ebusiness-product-wrap  ebClear">
+
+                        <div class="ebusiness-product-list-image-wrapper"><img class="ebusiness-product-widget-image" data-bind="attr:{src: webImage}"></div>
+                        <div class="ebusiness-product-list-description ebusiness-product-widget-description">
+
+                            <a class="ebusiness-product-widget-details" data-bind="text: name">
+                                <p class="ebusiness-product-list-name ebusiness-product-widget-name"></p>
+                            </a>
+
+                            <div class="ebusiness-product-list-price-control">
+                                <span class="ebusiness-product-price ebusiness-widget-default-price ebusiness-product-price-member"></span>
+                                <span class="ebusiness-product-price ebusiness-widget-retail-price" data-bind="text: retailPrice"></span>
+                                <span class="ebusiness-product-price ebusiness-widget-retail-price1" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="ebusiness-product-add-to-cart-button-widget"> <button class="btn btn-primary" data-bind="click: $parent.productCartUpdate">ADD TO CART</button> </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

@@ -1,0 +1,75 @@
+﻿<div class="ebusiness-payment-address-fields">
+    <div class="ebusiness-page-admin-heading"><span data-bind="text: companyName"></span> </div>
+    <div class="row">
+        <h3 class="ebusiness-dynamic-address-title col-md-4 ">Review your order</h3>
+        <div class="ebusiness-checkout-step-wrapper col-md-8">
+            <div class="stepsText activeSteps">
+                <a class="stepsBg" data-bind="click: backToAddress">1 </a>
+                Address
+            </div>
+            <div class="stepsText activeSteps">
+                <a class="stepsBg">2</a>
+                Review
+            </div>
+            <div class="stepsText">
+                <a class="stepsBg">3</a>
+                Payment
+            </div>
+            <div class="stepsText">
+                <a class="stepsBg">4</a>
+                Confirmation
+            </div>
+        </div>
+    </div>
+    <div class="ebClear" data-bind="event: { mouseout: function(){reviewShowError()(0); } }">
+        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible:reviewShowError() , text: reviewErrorMessage()"></div>
+    </div>
+    <div class="ebusiness-payment-address-listing">
+
+        <!--Billing Address div Start here-->
+        <div class="ebusiness-payment-address-listing-row billing row">
+            <div class="col-sm-3"> <span class="titleTypeOfAddress">Billing Address </span> </div>
+            <div class="col-sm-7">
+                <p class="addLines">
+                    <span data-bind="text:billingLine1"> </span>
+                    <span data-bind="text:billingLine2"> </span>
+                    <span data-bind="text:billingCity"> </span>
+                    <span data-bind="text:billingStateProvince"> </span>
+                    <span data-bind="text:billingPostalCode"> </span>
+                </p>
+                <p class="addCountry" data-bind="text:billingCountryCode"></p>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary btnChangeShipping" data-bind="click:changeBillingAddress">Change</button>
+            </div>
+        </div>
+        <!--Billing Address div end here-->
+        <!--Shipping Address div Start here-->
+        <div class="ebusiness-payment-address-listing-row shipping row" data-bind="visible:billingSameAsShippingCheck">
+            <div class="col-sm-3"> <span class="titleTypeOfAddress">Shipping Address </span> </div>
+            <div class="col-sm-7">
+                <p class="addLines">
+                    <span data-bind="text:shippingLine1"> </span>
+                    <span data-bind="text:shippingLine2"> </span>
+                    <span data-bind="text:shippingCity"> </span>
+                    <span data-bind="text:shippingStateProvince"> </span>
+                    <span data-bind="text:shippingPostalCode"> </span>
+                </p>
+                <p class="addCountry" data-bind="text:shippingCountryCode"></p>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary btnChangeShipping" data-bind="click:changeShippingAddress">Change</button>
+            </div>
+        </div>
+        <!--Shipping Address div end here-->
+
+        <div class="ebusiness-payment-address-listing-row billingShippingSame row" data-bind="visible:billingSameAsShipping">
+            <div class="col-sm-3"> <span class="titleTypeOfAddress">Shipping Address </span> </div>
+            <!--If Shipping is same as billing-->
+            <div class="col-sm-7"> Same as billing address</div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary btnChangeBillingShippingSame" data-bind="click:changeShippingAddress">Change</button>
+            </div>
+        </div>
+    </div>
+</div>

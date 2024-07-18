@@ -1,0 +1,36 @@
+﻿{
+  "getAllEventOrderHistory": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrderAllItems"
+    },
+    "route": {
+      "description": "Gets the common properties of all event orderlines from the person's orders.",
+      "httpMethod": "GET",
+      "segments": {
+        "EventProduct": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetAllEventOrderHistoryOutput",
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/eventCartItemOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/singleOrderGERetrieval"
+      },
+      "getEventOrderLines": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/getAllEventsRecords",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      }
+    }
+  }
+}

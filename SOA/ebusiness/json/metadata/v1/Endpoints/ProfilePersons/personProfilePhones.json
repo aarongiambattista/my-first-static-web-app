@@ -1,0 +1,522 @@
+﻿{
+  "getProfilePersonPhones": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get Profile Person All Phones",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "personPhonesEntities.json#/personProfilePhoneOutput",
+      "name": "GetProfilePersonPhones"
+    },
+    "businessLogic": {
+      "personsAllPhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/profilePersonsPhonesRetrieval"
+      }
+    }
+  },
+
+  "getProfilePersonSinglePhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get Profile Person phone by phone Name",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetPhoneInput",
+      "$ref": "personPhonesEntities.json#/personPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personProfilePhoneOutput",
+      "name": "PersonProfilePhone"
+    },
+    "businessLogic": {
+      "personSinglePhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/profilePersonsPhonesRetrieval"
+      }
+    }
+  },
+
+  "updateProfilePersonPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Phone",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "PatchPhoneInput",
+      "$ref": "personPhonesEntities.json#/personPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personProfilePhoneOutput",
+      "name": "PersonProfilePhone"
+    },
+    "businessLogic": {
+      "validatePhonePayload": {
+        "$ref": "personPhonesBusinessLogic.json#/validatePhonePayload"
+      },
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "id"
+          }
+        }
+      },
+      "personEmbeddedPhoneFieldNameRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personEmbeddedPhoneFieldNameRetrieval"
+      },
+      "getProfilePersonPhoneGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "embeddedObjectIDFieldName": "@parent.personEmbeddedPhoneFieldNameRetrieval.outputEmbeddedPhoneIDFieldName"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getProfilePersonPhoneGE.outputGE",
+            "inputFieldsToIgnore": "name"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "personSinglePhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/profilePersonsPhonesRetrieval"
+      }
+    }
+  },
+
+  "makePreferredPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Phone To Preferred Phone",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        },
+        "MakePreferredPhone": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "preferredPhoneInput",
+      "$ref": "personPhonesEntities.json#/personProfilePreferredPhoneInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "setPreferredPhone": {
+        "$ref": "personPhonesBusinessLogic.json#/setPreferredPhone",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "PreferredPhoneName": "@Request.name"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+
+  "deleteProfilePersonPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Delete Profile Person Phone",
+      "httpMethod": "DELETE",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeletePhoneInput",
+      "$ref": "personPhonesEntities.json#/personPhoneInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "personEmbeddedPhoneFieldNameRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personEmbeddedPhoneFieldNameRetrieval"
+      },
+      "removeInTablePhone": {
+        "$ref": "personPhonesBusinessLogic.json#/removeInTablePhone",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "FieldName": "@parent.personEmbeddedPhoneFieldNameRetrieval.outputEmbeddedPhoneIDFieldName"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.removeInTablePhone.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+
+  //person phones
+  "getAllPersonPhones": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get PersonPhones All Phones",
+      "httpMethod": "GET",
+      "segments": {
+        "PersonPhones": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "personPhonesEntities.json#/personPhoneOutput",
+      "name": "GetAllPersonPhonesOutput"
+    },
+    "businessLogic": {
+      "personsPhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personsPhoneRetrieval"
+      }
+    }
+  },
+  "getSinglePersonPhones": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get PersonPhones single phone by name",
+      "httpMethod": "GET",
+      "segments": {
+        "PersonPhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "getSinglePersonPhonesInput",
+      "$ref": "personPhonesEntities.json#/personPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personPhoneOutput",
+      "name": "PersonPhoneOutput"
+    },
+    "businessLogic": {
+      "personsPhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personsPhoneRetrieval"
+      }
+    }
+  },
+
+  "updateSinglePersonPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update a PersonPhone",
+      "httpMethod": "PATCH",
+      "segments": {
+        "PersonPhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personPhoneInput",
+      "name": "UpdatePersonPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personPhoneOutput",
+      "name": "PersonPhoneOutput"
+    },
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getPhoneRequestNameFieldValue": {
+        "$ref": "personPhonesBusinessLogic.json#/getPhoneRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "InputContextObject": "@Request",
+            "PropertyName": "name"
+          }
+        }
+      },
+      "getPersonPhoneSubtypeGE": {
+        "$ref": "personPhonesBusinessLogic.json#/personPhoneSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "subTypeName": "PersonPhone",
+            "fieldName": "name",
+            "fieldValue": "@parent.getPhoneRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getPersonPhoneSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getPersonPhoneSubtypeEmbeddedPhoneGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getPersonPhoneSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "PhoneID"
+          }
+        }
+      },    
+      "updatePersonPhoneSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getPersonPhoneSubtypeGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "personsPhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personsPhoneRetrieval"
+      }
+    }
+  },
+
+  "deleteSinglePersonPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Delete a Person Address",
+      "httpMethod": "DELETE",
+      "segments": {
+        "PersonPhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteSinglePersonPhoneInput",
+      "$ref": "personPhonesEntities.json#/personPhoneInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getPhoneRequestNameFieldValue": {
+        "$ref": "personPhonesBusinessLogic.json#/getPhoneRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@Request",
+            "PropertyName": "name"
+          }
+        }
+      },
+      "getPersonPhoneSubtypeGE": {
+        "$ref": "personPhonesBusinessLogic.json#/personPhoneSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "subTypeName": "PersonPhone",
+            "fieldName": "name",
+            "fieldValue": "@parent.getPhoneRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "deleteSingleSubTypeRecord": {
+        "$ref": "personBusinessLogic.json#/singleSubTypeDelete"
+      }
+    }
+  },
+
+  "createSinglePersonPhone": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create New PersonPhone",
+      "httpMethod": "POST",
+      "segments": {
+        "PersonPhones": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personPhonePostInput",
+      "name": "CreatePersonPhoneInputPOST"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personPhonesEntities.json#/personPhoneOutput",
+      "name": "PersonPhoneOutput"
+    },
+    "businessLogic": {
+      "validateDuplicatePhoneName": {
+        "$ref": "personPhonesBusinessLogic.json#/validateDuplicatePhoneName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "Name": "@request.name",
+            "PersonId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      },
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getNewPersonPhoneSubtypeGE": {
+        "$ref": "personPhonesBusinessLogic.json#/personPhoneSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "subTypeName": "PersonPhone",
+            "fieldName": "id",
+            "fieldValue": "-1"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getNewPersonPhoneSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getPersonPhoneSubtypeEmbeddedAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getNewPersonPhoneSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "PhoneID"
+          }
+        }
+      },
+      "createNewPersonPhoneSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getNewPersonPhoneSubtypeGE.outputGE",
+            "action": "create"
+          }
+        }
+      },
+      "personsPhoneRetrieval": {
+        "$ref": "personPhonesBusinessLogic.json#/personsPhoneRetrieval"
+      }
+    }
+  }
+
+}

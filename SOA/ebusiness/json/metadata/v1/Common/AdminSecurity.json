@@ -1,0 +1,71 @@
+﻿{
+  "AllowCompanyAdministrator": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "fnIsCompanyAdminForPerson",
+      "functionParameters": {
+        "RequestedPersonId": "@request.personId",
+        "AuthenticatedPersonId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+      }
+    }
+  },
+  "IsWebUserCompanyAdministrator": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0IsUserCompanyAdministrator",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+      }
+    }
+  },
+  "IsPersonCompanyAdministratorForCompany": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spIsPersonCompanyAdministratorForCompany ",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@CompanyID": "@request.id"
+      }
+    }
+  },
+  "isYourCompanyOrder": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0CanPersonAccessCompanyOrder",
+      "functionParameters": {
+        "@CompanyID": "@request.id",
+        "@OrderID": "@request.orderId"
+      }
+    }
+  },
+  "isYourCompanyPerson": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_4DoesPersonBelongToCompany",
+      "functionParameters": {
+        "@CompanyID": "@request.id",
+        "@PersonID": "@request.attendeeId"
+      }
+    }
+  },
+  "adminCanShipToAddress": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0AdminCanShipToAddress",
+      "functionParameters": {
+        "@CompanyID": "@request.id",
+        "@AddressID": "@request.shippingAddressId"
+      }
+    }
+  },
+  "adminCanBillToAddress": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0AdminCanShipToAddress",
+      "functionParameters": {
+        "@CompanyID": "@request.id",
+        "@AddressID": "@request.billingAddressId"
+      }
+    }
+  }
+}

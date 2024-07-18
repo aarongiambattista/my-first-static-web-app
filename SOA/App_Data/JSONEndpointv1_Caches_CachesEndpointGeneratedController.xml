@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Caches_CachesEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Caches_CachesEndpoint.v1_Caches_CachesEndpointController.ClearStandardCaches(Aptify.Services.Generated.v1_Caches_CachesEndpoint.v1_Caches_CachesEndpointController.ClearStandardCachesInput)">
+            <summary>
+            Clears standard Caches
+            </summary>
+        </member>
+    </members>
+</doc>

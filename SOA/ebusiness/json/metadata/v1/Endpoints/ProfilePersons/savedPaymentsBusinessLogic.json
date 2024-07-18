@@ -1,0 +1,106 @@
+﻿{
+  "singleSavedPaymentSubtypeGERetrival": {
+    "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "GEObject": "@parent.output",
+        "subTypeName": "PersonSavedPaymentMethods",
+        "action": "get",
+        "clientPocoFieldName": "savedPaymentId",
+        "subTypeFieldName": "Id"
+      }
+    }
+  },
+  "savedPaymentRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonsSavedPaymentMethods"
+      }
+    }
+  },
+  "savedPaymentRetrievalForACH": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonsACHSavedPaymentMethods"
+      }
+    }
+  },
+  "validateSavedPaymentMethod": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Saved Payment Methods",
+      "processFlowParameters": {
+        "SavedPaymentMethods": null
+      }
+    }
+  },
+  "retrievePaymentTypeIdByCardNumber": {
+    "$ref": "../../Common/commonPayments.json#/retrievePaymentTypeIdByCardNumber",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "CardNumber": "@request.creditCardNumber",
+        "SaveForFutureUse": true
+      }
+    }
+  },
+  "getCardExpirationDate": {
+    "$ref": "../../Common/commonPayments.json#/getExpirationDate",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "ExpirationMonth": "@request.expirationMonth",
+        "ExpirationYear": "@request.expirationYear"
+      }
+    }
+  },
+  "prepareSavedPaymentMethodForOutput": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Prepare Saved Payment Method for Output",
+      "processFlowParameters": {
+        "spmGEObject": null
+      }
+    }
+  },
+  "mapInputToSavedPaymentMethodGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Map Input to Saved Payment Method GE",
+      "processFlowParameters": {
+        "spmGEObject": null,
+        "action": null,
+        "paymentTypeId": -1,
+        "expirationDate": null,
+        "cardNumber": "",
+        "cvv": ""
+      }
+    }
+  },
+  "mapACHInputToSavedPaymentMethodGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Map ACH Input to Saved Payment Method GE",
+      "processFlowParameters": {
+        "spmGEObject": null,
+        "action": null,
+        "paymentTypeId": -1,
+        "accountNumber": null,
+        "accountName": null,
+        "bank": null,
+        "aba": null
+      }
+    }
+  },
+  "singlePersonGERetrieval": {
+    "$ref": "../../Common/businessLogic.json#/singleGERetrieval",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "entityName": "Persons",
+        "action": "get"
+      }
+    }
+  }
+}

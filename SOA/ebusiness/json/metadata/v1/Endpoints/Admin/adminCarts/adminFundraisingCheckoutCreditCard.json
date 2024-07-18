@@ -1,0 +1,170 @@
+﻿{
+  "fundraisingCheckoutByCreditCard": {
+    "route": {
+      "description": "Completes fundraising checkout using a credit card.",
+      "httpMethod": "POST",
+      "segments": {
+        "Fundraising": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "fundraisingCreditCardInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "amount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationMonth": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationYear": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "fundraisingCreditCardOutput"
+    },
+    "businessLogic": {
+      "sharedProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/sharedProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1"
+          }
+        }
+      },
+      "fundraisingProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1",
+            "verifiers": [
+              "IsFundraisingProduct"
+            ]
+          }
+        }
+      },
+      "retrievePaymentTypeIdByCardNumber": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByCardNumber"
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateAndUpdateCartForFundRaising": {
+        "$ref": "adminFundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+      },
+      "ensureActiveCartForFundraising": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "updateFundraisingCart": {
+        "$ref": "adminFundraisingBusinessLogic.json#/restoreSavedCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "FundraisingCartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE",
+            "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+            "Status": "Fundraising_Temporary"
+          }
+        }
+      },
+      "addFundraisingProduct": {
+        "$ref": "adminFundraisingBusinessLogic.json#/addFundraisingProduct",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "ProductId": "@request.productId",
+            "Amount": "@request.amount",
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "validateOrderForCoupon": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "getPaymentExpirationDate": {
+        "$ref": "adminCheckoutBusinessLogic.json#/getPaymentExpirationDate"
+      },
+      "addCreditCardPaymentInfo": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addCreditCardPaymentInfo",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "CartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE"
+          }
+        }
+      },
+      //"sendOrderConfirmationEmailCheckout": {
+      //  "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      //},
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

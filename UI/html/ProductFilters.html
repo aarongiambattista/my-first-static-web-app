@@ -1,0 +1,48 @@
+<div class="ebusiness-filter-control-wrapper">
+    <div class="ebusiness-filter-control-details">
+        <div class="ebusiness-filter-control-header ebClear">
+            Filter Your Results
+            <strong class="ebusiness-filter-control-view-close pull-right" data-bind="click:removeViewClose">X</strong>
+        </div>
+        <div class="ebusiness-filter-view-content">
+            <div class="ebusiness-filter-details-panel">
+
+                <div class="ebusiness-filter-sorting-generic">
+                    <div class="ebusiness-filter-section-title">Sorting</div>
+
+                    <ul role="menu">
+                        <li>
+                            <input type="radio" id="sort_1" name="radioGroupSort" value="1">
+                            <label for="sort_1">Price Low to High</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="sort_2" name="radioGroupSort" value="2">
+                            <label for="sort_2">Price High to Low</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="sort_3" name="radioGroupSort" value="3">
+                            <label for="sort_3">New Arrivals</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="sort_4" name="radioGroupSort" value="4">
+                            <label for="sort_4">Average Rating / Popular Products</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="sort_5" name="radioGroupSort" value="5">
+                            <label for="sort_5">Featured Products</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ebusiness-filter-section-generic">
+                    <div class="ebusiness-filter-section-title">Filters</div>
+                    <div class="ebusiness-filter-options"><div class="ebusiness-filter-btn-group-category dropdown open"><button type="button" class="dropdown-toggle ebusiness-filter-category-section" data-bs-toggle="dropdown" aria-expanded="true"> <span data-bind="label">Category</span>&nbsp;<span class="ebIcon ebIcon-chevron-down arrow-down"></span> </button><ul role="menu" class="dropdown-menu"><li><input type="radio" id="ProductType" name="ProductType" value="-1"> <label for="ProductType">All</label></li><li><input type="radio" id="ProductType" name="ProductType" value="7"> <label for="ProductType">Books (2)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="17"> <label for="ProductType">Chairs (3)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="16"> <label for="ProductType">Desks (2)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="14"> <label for="ProductType">Hats (3)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="6"> <label for="ProductType">Magazines and Journals (4)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="1"> <label for="ProductType">Memberships (5)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="11"> <label for="ProductType">Mugs and Glasses (3)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="9902"> <label for="ProductType">Other (1)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="12"> <label for="ProductType">Shirts (4)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="8"> <label for="ProductType">Standards (4)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="13"> <label for="ProductType">Sweaters and Sweatshirts (3)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="18"> <label for="ProductType">Tables (4)</label></li><li><input type="radio" id="ProductType" name="ProductType" value="9903"> <label for="ProductType">Vouchers (1)</label></li></ul><div></div></div><div class="ebusiness-filter-btn-group-category dropdown"><button type="button" class="dropdown-toggle ebusiness-filter-category-section" data-bs-toggle="dropdown" aria-expanded="false"> <span data-bind="label">Ratings</span>&nbsp;<span class="ebIcon ebIcon-chevron-down arrow-down"></span> </button><ul role="menu" class="dropdown-menu"><li><input type="radio" id="AverageRating" name="AverageRating" value="-1"> <label for="AverageRating">All</label></li><li><input type="radio" id="AverageRating" name="AverageRating" value="1"> <label for="AverageRating">1 Star (0)</label></li><li><input type="radio" id="AverageRating" name="AverageRating" value="2"> <label for="AverageRating">2 Stars &amp; up (0)</label></li><li><input type="radio" id="AverageRating" name="AverageRating" value="3"> <label for="AverageRating">3 Stars &amp; up (0)</label></li><li><input type="radio" id="AverageRating" name="AverageRating" value="4"> <label for="AverageRating">4 Stars &amp; up (0)</label></li><li><input type="radio" id="AverageRating" name="AverageRating" value="5"> <label for="AverageRating">5 Stars - Top rated (0)</label></li></ul><div></div></div></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="ebusiness-filter-footer-panel text-right">
+            <button class="btn btn-primary ebusiness-filter-action-apply-filter">Apply Filter</button>
+            <button class="btn btn-link ebusiness-filter-action-cancel-filter" onclick="removeViewClose()">Cancel</button>
+        </div>
+    </div>
+    </div>

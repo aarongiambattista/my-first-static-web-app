@@ -1,0 +1,49 @@
+﻿{
+  "getAllShipmentTypes": {
+    "route": {
+      "description": "Gets all the shipment types available.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ShipmentTypes": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "name": "ShipmentTypeOutput",
+      "isCollection": true,
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "id of the shipment type"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the shipment type"
+        }
+      }
+    },
+    "businessLogic": {
+      "allShipmentTypesRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0ShipmentTypes"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

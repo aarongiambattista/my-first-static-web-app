@@ -1,0 +1,66 @@
+{
+  "getSingleGeneralProductItem": {
+    "route": {
+      "description": "Gets all properties of a single general product item in the cart.  If the item requested is not a general product this call will error.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "id": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "GeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "getSingleGeneralProductItemInput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET",
+              "PATCH"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetSingleGeneralProductItemOutput",
+      "$ref": "entityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSingleOrderLine": {
+        "$ref": "shoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

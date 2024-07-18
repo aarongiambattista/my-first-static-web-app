@@ -1,0 +1,207 @@
+﻿{
+  "makepaymentByACH": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrder"
+    },
+    "route": {
+      "description": "Make payment of the unpaid orders using ACH.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "makepaymentACHInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "fields": {
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        },
+        "paymentAmount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ProfilePersons/orderHistoryEntities.json#/personOrderOutput",
+      "name": "makepaymentACHOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer"
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createPaymentRecord"
+      },
+      "addPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addPaymentLinesRecord"
+      },
+      "addACHInfo": {
+        "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addACHPaymentInformationOnPaymentsGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba",
+            "TransactionNumber": "ebiz payment",
+            "SaveForFutureUse": "@request.saveForFutureUse",
+            "SaveToTypes": "Person"
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addACHInfo.outputPaymentsGE"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  },
+  "makePaymentByACHTokenizerForBulkPayments": {
+    "parent": {
+      "name": "getPersonOrderHistory"
+    },
+    "route": {
+      "description": "Make Bulk Payment using ACH Tokenizer",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "BulkOrder": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACHTokenizer": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "bulkMakepaymentByACHTokenizerInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/payByACHTokenizerBulkInput"
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "../ProfilePersons/orderHistoryEntities.json#/personOrderOutput",
+      "name": "makeBulkPaymentCreditCardOutput"
+    },
+    "businessLogic": {
+      "ValidateBulkIsYourOrders": {
+        "$ref": "../../Common/commonPayments.json#/validatePersonBulkOrderIds",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "bulkObjectPropertyName": "bulkMakepaymentByACHTokenizerInputObject",
+            "DataObjectName": "spValidatePersonOrderIds",
+            "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer"
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createPaymentRecord"
+      },
+      "addBulkPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To SubType GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "subTypeName": "PaymentLines",
+            "bulkObjectPropertyName": "bulkMakepaymentByACHTokenizerInputObject",
+            "inputFieldsToIgnore": "AccountNumber,AccountName,Bank,CheckNumber,saveForFutureUse,saveToTypes"
+          }
+        }
+      },
+      "addPaymentTypeOnPaymentObject": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/addPaymentTypeOnPayment",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentGE": "@parent.addBulkPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId"
+          }
+        }
+      },
+
+      //Adding ACH info on Payments GE
+      "addBulkPaymentInfoOnPaymentsGE": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "bulkObjectPropertyName": "bulkMakepaymentByACHTokenizerInputObject",
+            "inputFieldsToIgnore": "orderId,paymentAmount,saveForFutureUse,saveToTypes"
+          }
+        }
+      },
+      //Adding SaveFoFuture info on Payments GE
+      "addSaveForFutureCollectionOnPaymentsGE": {
+        "$ref": "../../Common/commonPayments.json#/addSaveFoFutureCollectionOnPaymentsGE",
+        "processFlowProperties": {
+          "processFlowName": "Add SaveForFuture Collection Objects on Payment Object",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "bulkObjectPropertyName": "bulkMakepaymentByACHTokenizerInputObject"
+           
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addSaveForFutureCollectionOnPaymentsGE.outputPaymentObject"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  }
+}

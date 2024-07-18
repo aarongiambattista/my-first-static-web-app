@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Products_ProductEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.GetAllProducts(System.String)">
+            <summary>
+            Retrieves the entire product catalog.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.GetSingleProduct(System.Int64)">
+            <summary>
+            Retrieves the details for a single item in the product catalog.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.GetAllAssemblyProducts(System.Int64,System.String)">
+            <summary>
+            Retrieves the list of sub products underneath the current product. Typically, it is used to get the sub products of a Kit or a Group product.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.GetRelatedProducts(System.String,System.String)">
+            <summary>
+            Retrieves the details for a single item in the product catalog.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.parentProductId">
+            <summary>
+            If a product is part of a group this will be the id of the top level group product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.description">
+            <summary>
+            A plain text description of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.webDescription">
+            <summary>
+            A short rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.webLongDescription">
+            <summary>
+            A long rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.productType">
+            <summary>
+            A type of product this is.  This informs the client which end point should be used when adding the product to the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.quantityAvailable">
+            <summary>
+            How many of the current product are available.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.isSubscription">
+            <summary>
+            Indicates if the product is subscription product. When adding subscription product to the cart, the quantity must be 1
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.ISBN">
+            <summary>
+            If a product is type of publication then this field represent unique number for that product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.datepublished">
+            <summary>
+            If a product is type of publication then this field represent the date when the product is being published.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.AllProducts.assemblyType">
+            <summary>
+            This field represents the AssemblyType/KitType of the product. Products that have a value here include sub products that are automatically added to the order.  An assemblyType of 'Group' means the sub products are added as individual line items to the cart, and those line items can be removed independently of one another.  Group products do not have a top level line item added to the cart that represents the product groupings.  An assemblyType of 'Kit' means a line item is added to the cart for the top level product, and the sub product line items are tied directly to that top level product.  Sub products in a kit can only be removed by removing that top level line item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.parentProductId">
+            <summary>
+            If a product is part of a group this will be the id of the top level group product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.description">
+            <summary>
+            A plain text description of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.webDescription">
+            <summary>
+            A short rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.webLongDescription">
+            <summary>
+            A long rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.productType">
+            <summary>
+            A type of product this is.  This informs the client which end point should be used when adding the product to the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.quantityAvailable">
+            <summary>
+            How many of the current product are available.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.isSubscription">
+            <summary>
+            Indicates if the product is subscription product. When adding subscription product to the cart, the quantity must be 1
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.ISBN">
+            <summary>
+            If a product is type of publication then this field represent unique number for that product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.datepublished">
+            <summary>
+            If a product is type of publication then this field represent the date when the product is being published.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SingleProduct.assemblyType">
+            <summary>
+            This field represents the AssemblyType/KitType of the product. Products that have a value here include sub products that are automatically added to the order.  An assemblyType of 'Group' means the sub products are added as individual line items to the cart, and those line items can be removed independently of one another.  Group products do not have a top level line item added to the cart that represents the product groupings.  An assemblyType of 'Kit' means a line item is added to the cart for the top level product, and the sub product line items are tied directly to that top level product.  Sub products in a kit can only be removed by removing that top level line item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.quantity">
+            <summary>
+            Quantity of this product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.description">
+            <summary>
+            A plain text description of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.webDescription">
+            <summary>
+            A short rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.webLongDescription">
+            <summary>
+            A long rich text description of the product with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.productType">
+            <summary>
+            A type of product this is.  This informs the client which end point should be used when adding the product to the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.ISBN">
+            <summary>
+            If a product is type of publication then this field represent unique number for that product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.datepublished">
+            <summary>
+            If a product is type of publication then this field represent the date when the product is being published.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Products_ProductEndpoint.v1_Products_ProductEndpointController.SubProductsOutput.assemblyType">
+            <summary>
+            This field represents the AssemblyType/KitType of the product. Products that have a value here include sub products that are automatically added to the order.  An assemblyType of 'Group' means the sub products are added as individual line items to the cart, and those line items can be removed independently of one another.  Group products do not have a top level line item added to the cart that represents the product groupings.  An assemblyType of 'Kit' means a line item is added to the cart for the top level product, and the sub product line items are tied directly to that top level product.  Sub products in a kit can only be removed by removing that top level line item.
+            </summary>
+        </member>
+    </members>
+</doc>

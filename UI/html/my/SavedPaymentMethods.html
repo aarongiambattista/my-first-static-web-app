@@ -1,0 +1,296 @@
+﻿<div class="paymentMethods">
+    <div class="savedPayments" data-bind="visible: showSavedPaymentMethods">
+        <h3>Saved Credit Cards</h3>
+        <div class="ebusiness-savedCards-list-ctrl">
+            <div class="alert alert-success" data-bind="visible: showCardSuccess, text: cardSuccessMessage"></div>
+            <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showCardErrorOnTop, text: cardErrorMessageOnTop"></div>
+
+            <!--Credit Cards SPM-->
+            <div data-bind="foreach: savedCreditCards" class="row">
+                <div class="col-md-4 cards-column">
+                    <div class="ebClear rowSavedCards">
+                        <div class="card-type cardName" data-bind="text: cardName">Visa  </div>
+                        <div class="row ebClear">
+                            <div class="col-sm-6"><span class="ebusiness-text-label-field" data-bind="visible: validCreditCard()">Ending In</span> <span class="ebusiness-text-value-filed cardLastDigits" data-bind="text:cardLastDigits, visible: validCreditCard()">1111</span></div>
+                            <div class="col-sm-6"><span class="ebusiness-text-label-field" data-bind="visible: validCreditCard()">Expire On</span> <span class="ebusiness-text-value-filed cardExpiryDate" data-bind="text:expirationMonthYear, visible: validCreditCard()">12/2020</span></div>
+                            <div class="col-sm-6"><span class="ebusiness-text-label-field" data-bind="visible: !validCreditCard()">Account Number</span> <span class="ebusiness-text-value-filed" data-bind="visible: !validCreditCard(), text:partialNumber">98*****11</span></div>
+                        </div>
+                        <div>
+                            <div class="btnEditDelete" data-bind="visible: $parent.showInSaveCard">
+                                <a class="ebusiness-payment-edit-card-info scpEditCardDialog cursor-pointer" data-bs-toggle="modal" data-bs-target=".editCard" data-bind="click: $parent.showEditDialog, visible: validCreditCard()">
+                                    Edit
+                                </a>
+                                <a class="ebusiness-payment-edit-card-info scpEditCardDialog cursor-pointer" data-bs-toggle="modal" data-bs-target=".editACHCard" data-bind="click: $parent.showEditDialog, visible: !validCreditCard()">
+                                    Edit
+                                </a>
+                                <a class="delete-card-info scpRemoveCardDialog cursor-pointer" data-bs-toggle="modal" data-bs-target=".deleteCard" data-bind="click: $parent.deleteCardDialog">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Edit ACH Card Record Model Dialog-->
+            <div class="modal fade editACHCard" role="dialog" data-bind="">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"> <span class="heading-primary">Edit card info</span> </div>
+                        <div class="modal-body">
+                            <div class="new-card-details">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showEndDateError, text: errorEndDateMessage"></div>
+                                        <div class="form-group">
+                                            <label class="caption">Account Number</label>
+                                            <input type="text" placeholder="Account Number" class="form-control" data-bind="value:ACHAccountNumberEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="caption">Routing Number</label>
+                                            <input type="text" placeholder="Routing Number" class="form-control" data-bind="value:ACHRoutingNumberEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="caption">Account Holder's Name</label>
+                                            <input type="text" placeholder="Account Holder's Name" class="form-control" data-bind="value:ACHAccountNameEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="caption">Bank Name</label>
+                                            <input type="text" placeholder="Bank Name" class="form-control" data-bind="value:ACHBankNameEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary scpEditCard" data-bs-dismiss="modal" data-bind="click: editACHCard, disable : showEndDateError">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Edit Credit Card Record Model Dialog-->
+            <div class="modal fade editCard" role="dialog" data-bind="">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header"> <span class="heading-primary">Edit card info</span> </div>
+                        <div class="modal-body">
+                            <div class="new-card-details">
+                                <div class="row-card row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showEndDateError, text: errorEndDateMessage"></div>
+                                        <div class="form-group">
+                                            <label class="caption">Card Number</label>
+                                            <input type="text" class="form-control scpCardNumber" placeholder="Card Number" readonly="" disabled="" data-bind="value:cardNumberModal">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-card ebClear row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Exp. Month</label>
+                                            <select class="form-control scpExpirationMonth" data-bind="options: expirationMonthOptionsModal, value: selectedExpirationMonthModal, event:{ change: checkValidMonthYear}"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Exp. Year</label>
+                                            <select class="form-control scpExpirationYear" data-bind="options: expirationYearOptionsModal, value: selectedExpirationYearModal, event:{ change: checkValidMonthYear}"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary scpEditCard" data-bs-dismiss="modal" data-bind="click: editCard, disable : showEndDateError">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Delete Card Record Model Dialog-->
+            <div class="modal fade deleteCard" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="heading-primary"> Delete card info</span>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this card?
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button class="btn btn-primary scpRemoveCard" data-bs-dismiss="modal" data-bind="click: removeCard">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="eb-add-card" data-bind="visible: showCreditCards">
+        <h3>Add a Card</h3>
+        <div class="new-card-details frmCompleteOrder">
+            <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showCardError, text: cardErrorMessage"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row ebClear">
+                        <div class="form-group col-sm-8">
+                            <label class="caption">Card Number</label>
+                            <input type="text" autofocus name="txtCCAccountNumber" class="form-control txtCCAccountNumber" placeholder="Card Number" maxlength="20" data-bind="value:cardNumber , hasFocus: showCardSuccess(0) && showCardError(0) && showEndDateError(0) && showCardErrorOnTop(0), valueUpdate: 'afterkeydown' ">
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <label class="caption">CVV</label>
+                            <input type="password" name="txtCCSecurityNumber" class="form-control txtCCSecurityNumber" placeholder="CVV" maxlength="4" data-bind="value:CVV, hasFocus: showCardSuccess(0) && showCardError(0) && showEndDateError(0), valueUpdate: 'afterkeydown' ">
+                        </div>
+                    </div>
+
+                    <div class="row ebClear">
+                        <div class="col-sm-6 exp-month">
+                            <div class="form-group">
+                                <label class="caption">Exp. Month</label>
+                                <select class="form-control txtCCExpireMonth" name="txtCCExpireMonth" data-bind="options: expirationMonthOptions, value: selectedExpirationMonth, optionCaption:'Month',  hasFocus: showCardSuccess(0) && showCardError(0) && showEndDateError(0), valueUpdate: 'afterkeydown' "></select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Exp. Year</label>
+                                <select class="form-control txtCCExpireYear" name="txtCCExpireYear" data-bind="options: expirationYearOptions, value: selectedExpirationYear, optionCaption:'Year',  hasFocus: showCardSuccess(0) && showCardError(0) && showEndDateError(0), valueUpdate: 'afterkeydown' "></select>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="errorExpDate error" style="display:none">Your Card is Expired</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <input class="pull-right btn btn-primary btnCompleteOrder" type="button" value="Add Card" data-bind="click: addRecord, enable: cardNumber().length > 0 &&  CVV().length > 0 && selectedExpirationMonth() != 'Month' && selectedExpirationYear() != 'Year'">
+                        </div>
+                    </div>
+                </div>
+                <div class="ebAcptCards col-md-6">
+                    <div class="heading-AcceptedCard">Accepted Cards</div>
+                    <div class="ebusiness-form-control-row ebusiness-card-image-resize">
+                        <ul class="ebusiness-apply-cardresize cards list-unstyled">
+                            <li><span class="ebusiness-savedCards-image-resize card visa" title="Visa">Visa</span></li>
+                            <li><span class="ebusiness-savedCards-image-resize card master" title="Mastercard">Mastercard</span></li>
+                            <li><span class="ebusiness-savedCards-image-resize card amex" title="American Express">American Express</span></li>
+                            <li><span class="ebusiness-savedCards-image-resize card discover" title="Discover">Discover</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ACH control-->
+    <div class="eb-add-card" data-bind="visible: showACHCards">
+        <h3>Add Bank Account (ACH) </h3>
+        <p class="eb-msg-ach">
+            Note: Please enter numbers with no spaces or dash
+        </p>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="caption">Account Number</label>
+                    <input type="text" placeholder="Account Number" class="form-control" data-bind="value:ACHAccountNumber, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="caption">Routing Number</label>
+                    <input type="text" placeholder="Routing Number" class="form-control" data-bind="value:ACHRoutingNumber, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="caption">Account Holder's Name</label>
+                    <input type="text" placeholder="Account Holder's Name" class="form-control" data-bind="value:ACHAccountName, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label class="caption">Bank Name</label>
+                    <input type="text" placeholder="Bank Name" class="form-control" data-bind="value:ACHBankName, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <input class="pull-right btn btn-primary btnCompleteOrder" type="button" data-bind="value: 'Add ACH', click: createACHSavedPaymentRecord , enable: ACHAccountNumber().length && ACHAccountName().length && ACHBankName().length && ACHRoutingNumber().length">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blue Pay Section -->
+    <div class="eb-add-card" data-bind="visible: showHostedPaymentPanel">
+        <h3>Hosted</h3>
+        <div class="new-card-details frmCompleteOrder">
+            <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showCardError, text: cardErrorMessage"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-12">
+                        <input class="btn btn-primary btnCompleteOrder" type="button" value="Add Card" data-bind="click: addBluepayHPPRecord">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Loading indicator -->
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+
+    <!-- iFrame Tokenizer Section -->
+    <div class="eb-add-card" data-bind="visible: showTokenizerPaymentPanel">
+        <h3>Hosted Tokenizer</h3>
+        <div class="new-card-details frmCompleteOrder">
+            <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showCardError, text: cardErrorMessage"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-12">
+                        <input class="btn btn-primary btnCompleteOrder" type="button" value="Add Card" data-bind="click: addiFrameTokenizerRecord">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blue Pay Dialog -->
+<div id="eb-BluePay" role="dialog" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                <h4>Make a Payment</h4>
+                <iframe class="eb-BluePay" data-bind="attr:{src:bluePayURL}"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- iFrame Tokenizer Dialog -->
+<div id="eb-iFrame-Tokenizer" role="dialog" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

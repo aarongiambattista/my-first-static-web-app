@@ -1,0 +1,15 @@
+{
+  "adminGetSingleSubtypeRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get SubType GE Object",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null,
+        "action": "get",
+        "clientPocoFieldName": "cartSequenceId",
+        "subTypeFieldName": "sequence"
+      }
+    }
+  }
+}

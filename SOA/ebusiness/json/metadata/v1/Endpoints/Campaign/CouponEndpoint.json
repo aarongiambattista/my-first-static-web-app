@@ -1,0 +1,69 @@
+﻿{
+  "endpoints": {
+    //This endpoint gets the Campaign/Coupon Code based on the Campaign/Coupon Id provided
+    //If we expect special characters in the CouponName, it is advisable to change the route 
+    //to pass the CouponName as body parameter
+    "getSingleCoupon": {
+      "route": {
+        "description": "Gets the Coupon Code based on the Coupon Name",
+        "httpMethod": "GET",
+        "segments": {
+          "Coupon": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "CouponName": {
+            "isLiteral": false,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "#/entityDefinitions/couponInput",
+        "name": "CouponInput"
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/couponOutput",
+        "name": "CouponOutput"
+      },
+      "businessLogic": {
+        "singleCouponRetrieval": {
+          "$ref": "#/businessLogic/singleCouponRetrieval"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "couponInput": {
+      "fields": {
+        "CouponName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "requiredHttpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "couponOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        }
+      }
+    }
+  },
+  "businessLogic": {
+    "singleCouponRetrieval": {
+      "executionType": "processFlow",
+      "processFlowProperties": {
+        "processFlowName": "Execute Data Object",
+        "processFlowParameters": {
+          // This database object takes care of Retrieving the Coupon code Id. 
+          "DataObjectName": "spGeteBusiness6_0CouponCodeID"
+        }
+      }
+    }
+  }
+}

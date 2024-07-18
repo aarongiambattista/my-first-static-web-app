@@ -1,0 +1,623 @@
+﻿{
+  "createSingleSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create new Credit Card Type Saved Payment Method for the Person",
+      "httpMethod": "POST",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentInput",
+      "name": "CreateSavedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "SavedPaymentOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdByCardNumber": {
+        "$ref": "savedPaymentsBusinessLogic.json#/retrievePaymentTypeIdByCardNumber"
+      },
+      "getCardExpirationDate": {
+        "$ref": "savedPaymentsBusinessLogic.json#/getCardExpirationDate"
+      },
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleNewSubTypeRecordRetrival": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "create"
+          }
+        }
+      },
+      "mapInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create",
+            "paymentTypeId": "@parent.retrievePaymentTypeIdByCardNumber.outputPaymentTypeID",
+            "expirationDate": "@parent.getCardExpirationDate.outputPaymentExpirationDate",
+            "cardNumber": "@request.creditCardNumber",
+            "cvv": "@request.cvv"
+          }
+        }
+      },
+      "createNewSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create"
+          }
+        }
+      },
+      "prepareSavedPaymentMethodForOutput": {
+        "$ref": "savedPaymentsBusinessLogic.json#/prepareSavedPaymentMethodForOutput",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.createNewSavedPaymentRecord.outputGE"
+          }
+        }
+      }
+    }
+  },
+  "getSingleSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get a Credit Card Type Saved Payment Method of the person",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleSavedPaymentInput",
+      "$ref": "savedPaymentsEntities.json#/savedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "SavedPaymentOutput"
+    },
+    "businessLogic": {
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrieval"
+      },
+      "validateSavedPaymentMethod": {
+        "$ref": "savedPaymentsBusinessLogic.json#/validateSavedPaymentMethod",
+        "processFlowProperties": {
+          "processFlowName": "Validate Saved Payment Methods",
+          "processFlowParameters": {
+            "SavedPaymentMethods": "@parent.singleSubTypeRetrival.outputDataObjectTable"
+          }
+        }
+      }
+    }
+  },
+  "updateSingleSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Credit Card Type Saved Payment Method of the person",
+      "httpMethod": "PATCH",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentInput",
+      "name": "UpdateSavedPaymentMethodInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "savedPaymentOutput"
+    },
+    "businessLogic": {
+      "getCardExpirationDate": {
+        "$ref": "savedPaymentsBusinessLogic.json#/getCardExpirationDate"
+      },
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singleSavedPaymentSubtypeGERetrival",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "get",
+            "clientPocoFieldName": "savedPaymentId",
+            "subTypeFieldName": "Id"
+          }
+        }
+      },
+      "mapInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleSubTypeRetrival.outputGE",
+            "action": "update",
+            "expirationDate": "@parent.getCardExpirationDate.outputPaymentExpirationDate"
+          }
+        }
+      },
+      "updateSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleSubTypeRetrival.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "prepareSavedPaymentMethodForOutput": {
+        "$ref": "savedPaymentsBusinessLogic.json#/prepareSavedPaymentMethodForOutput",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleSubTypeRetrival.outputGE"
+          }
+        }
+      }
+    }
+  },
+  "deleteSingleSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Delete a Saved Payment Method of the Person",
+      "httpMethod": "DELETE",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteSingleSavedPaymentInput",
+      "$ref": "savedPaymentsEntities.json#/savedPaymentInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singleSavedPaymentSubtypeGERetrival",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "get",
+            "clientPocoFieldName": "savedPaymentId",
+            "subTypeFieldName": "Id"
+          }
+        }
+      },
+      "deleteSavedPaymentMethod": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleSubTypeRetrival.outputGE",
+            "action": "delete"
+          }
+        }
+      }
+    }
+  },
+  "getAllSavedPaymentMethods": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get all Credit Card Type Saved Payment Methods of the person",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "getAllSavedPaymentMethodsOutput"
+    },
+    "businessLogic": {
+      "savedPaymentRetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrieval"
+      }
+    }
+  },
+
+  "createSingleACHSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create new ACH Type Saved Payment Method for the Person",
+      "httpMethod": "POST",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "name": "CreateACHSavedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "ACHSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleNewSubTypeRecordRetrival": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "create"
+          }
+        }
+      },
+      "mapACHInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapACHInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create",
+            "paymentTypeId": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "accountNumber": "@request.accountNumber",
+            "accountName": "@request.accountName",
+            "bank": "@request.bank",
+            "aba": "@request.aba",
+            "transactionNumber": "ebiz payment"
+          }
+        }
+      },
+      "createNewSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create"
+          }
+        }
+      },
+      "getSavedPaymentIdFromGE": {
+        "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.createNewSavedPaymentRecord.outputGE",
+            "FieldName": "ID"
+          }
+        }
+      },
+      "getSavedPaymentMethodsByID": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Get Saved Payment Method By ID",
+          "processFlowParameters": {
+            "savedPaymentID": "@parent.getSavedPaymentIdFromGE.outputFieldValue",
+            "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      }
+    }
+  },
+  "createSingeACHTokenizerSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create new ACH Tokenizer Type Saved Payment Method for the Person",
+      "httpMethod": "POST",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACHTokenizer": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHTokenizerInput",
+      "name": "CreateACHTokenizerSavedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "ACHSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleNewSubTypeRecordRetrival": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "create"
+          }
+        }
+      },
+      "mapACHInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapACHInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create",
+            "paymentTypeId": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "accountNumber": "@request.accountNumber",
+            "accountName": "@request.accountName",
+            "bank": "@request.bank",
+            "aba": "@request.aba",
+            "transactionNumber": "ebiz payment"
+          }
+        }
+      },
+      "createNewSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create"
+          }
+        }
+      },
+      "getSavedPaymentIdFromGE": {
+        "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.createNewSavedPaymentRecord.outputGE",
+            "FieldName": "ID"
+          }
+        }
+      },
+      "getSavedPaymentMethodsByID": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Get Saved Payment Method By ID",
+          "processFlowParameters": {
+            "savedPaymentID": "@parent.getSavedPaymentIdFromGE.outputFieldValue",
+            "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      }
+    }
+  },
+  "getSingleACHSavedPaymentMethod": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get a ACH Type Saved Payment Method of the person",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "name": "GetSingleACHSavedPaymentMethodInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "ACHSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrievalForACH"
+      },
+      "validateSavedPaymentMethod": {
+        "$ref": "savedPaymentsBusinessLogic.json#/validateSavedPaymentMethod",
+        "processFlowProperties": {
+          "processFlowName": "Validate Saved Payment Methods",
+          "processFlowParameters": {
+            "SavedPaymentMethods": "@parent.singleSubTypeRetrival.outputDataObjectTable"
+          }
+        }
+      }
+    }
+  },
+  "getAllACHSavedPaymentMethods": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get all ACH Type Saved Payment Methods of the person",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "getAllACHSavedPaymentMethodsOutput"
+    },
+    "businessLogic": {
+      "savedPaymentRetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrievalForACH"
+      }
+    }
+  },
+
+  "updateSingleSavedPaymentMethodACH": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update ACH Saved Payment Method of the person",
+      "httpMethod": "PATCH",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "name": "UpdateSavedPaymentMethodInputACH"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "ACHSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singleSavedPaymentSubtypeGERetrival",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "get",
+            "clientPocoFieldName": "savedPaymentId",
+            "subTypeFieldName": "Id"
+          }
+        }
+      },
+      "mapInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapACHInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleSubTypeRetrival.outputGE",
+            "action": "update",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba"
+          }
+        }
+      },
+      "updateSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleSubTypeRetrival.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "prepareSavedPaymentMethodForOutput": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrievalForACH"
+      }
+    }
+  }
+}

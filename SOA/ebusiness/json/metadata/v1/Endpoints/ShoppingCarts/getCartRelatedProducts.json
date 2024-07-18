@@ -1,0 +1,55 @@
+﻿{
+  "getCartRelatedProducts": {
+    "route": {
+      "description": "Gets the related products of all items in the cart.  A cart item may have additional detail depending on its product type.  Those details can be retrieved through the URL specified by the additionalDetails output field.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "RelatedProducts": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetRelatedProductsOutput",
+      "$ref": "../Products/ProductEndpoint.json#/entityDefinitions/RelatedProductsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getAllOrderLines": {
+        "$ref": "shoppingBusinessLogic.json#/getAllOrderLines",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      },
+      "getCartAllRelatedProducts": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "GetCartAllRelatedProductsList",
+          "processFlowParameters": {
+            "OrderLines": "@parent.getAllOrderLines.outputGEList",
+            "DataObjectName": "spGeteBusiness6_RelatedProducts"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

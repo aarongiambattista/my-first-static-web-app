@@ -1,0 +1,104 @@
+﻿{
+  "endpoints": {
+    "getAllFundraisingProducts": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "FundRaisingProducts": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves all the fundraising products."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "fundraisingProductsOutput",
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/ProductsOutput",
+        "fields": {
+          "defaultFundraisingPrice": {
+            "type": "decimal"
+          },
+          "fundraisingPrices": {
+            "type": "string"
+          }
+        }
+      },
+      "businessLogic": {
+        "allFundRaisingProductsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0FundraisingProducts",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getSingleFundRaisingProduct": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "FundRaisingProducts": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "productId": {
+            "isLiteral": false,
+            "type": "long"
+          }
+        },
+        "description": "Retrieves the details for a single fundraising product."
+      },
+      "inputEntityDefinition": {
+        "name": "GetSingleFundraisingProductInput",
+        "fields": {
+          "productId": {
+            "type": "long",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "path"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "name": "SingleFundraisingProduct",
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/ProductsOutput",
+        "fields": {
+          "defaultFundraisingPrice": {
+            "type": "decimal"
+          },
+          "fundraisingPrices": {
+            "type": "string"
+          }
+        }
+      },
+      "businessLogic": {
+        "singleFundraisingProductRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0FundraisingProducts",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  }
+}

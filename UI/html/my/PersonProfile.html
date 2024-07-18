@@ -1,0 +1,356 @@
+﻿   <!--<div class="ebwhiteBg">-->
+<div class="ebusiness-main-container">
+    <div class="ebusiness-tabs-my-border-bottom">
+        <ul class="ebusiness-tabs-my-profile-page">
+            <li class="ebusiness-user-profile-profile-icon ebusiness-profile-tab-style active-maintab"><a href="#" title="Profile"><img src="./images/icons/icon_profile-32px.svg"><span class="eb-menu-label"> Profile</span></a> </li>
+            <!--  <li class="ebusiness-user-profile-company-icon ebusiness-profile-tab-style"><a href="#"><img src="./images/icon_company-32px.svg"></a></li>-->
+            <li class="ebusiness-user-profile-orders-icon ebusiness-profile-tab-style"><a href="my/OrderHistory.html" title="Order History"><img src="./images/icons/icon_order-history-32px.svg"> <span class="eb-menu-label">Order History</span></a></li>
+            <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="my/MakeMyPayment.html" title=" Pay Off Orders"> <img src="./images/icons/icon_make-payment-24px.svg"><span class="eb-menu-label">  Pay Off Orders</span></a></li>
+            <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="my/SavedPaymentMethods.html" title="Saved Payments"> <img src="./images/icons/icon_saved_cards_32px.png"><span class="eb-menu-label"> Saved Payments</span></a></li>
+            <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style"><a href="my/TopicOfInterest.html" title="Topics of Interest"> <img src="./images/icons/icon_topic-of-interest-32px.png"> <span class="eb-menu-label">Topics Of Interest</span></a></li>
+            <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style"><a href="my/MyDownloads.html" title="My Downloads"> <img src="./images/icons/icon-download-32px.svg"> <span class="eb-menu-label">My Downloads</span></a></li>
+            <!--  <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style"><a href="#"> <img src="./images/icon_downloads-32px.svg"></a></li>-->
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ebusiness-page-title ebusiness-user-profile-page-title" data-bind="text: firstLast">Profile Person</div>
+            <div class="card-content ebwhiteBg " data-bind="visible: showMain">
+                <div class="ebusiness-profile-main-info row">
+                    <div class="profileDetails col-md-12">
+                        <div class="ebusiness-profile-section row">
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Prefix</label>
+                                    <select class="form-control" placeholder="Prefix" data-bind="options: prefixOptions, value:selectedPrefix, optionsCaption: 'Prefix'"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">First Name</label>
+                                    <input type="text" name="ebusiness-profile-set-height" class="form-control" data-bind="value: firstName" placeholder="First Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Last Name</label>
+                                    <input type="text" class="form-control" data-bind="value: lastName" placeholder="Last Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Suffix</label>
+                                    <select class="form-control" placeholder="Suffix" data-bind="options: suffixOptions, value:selectedSuffix, optionsCaption: 'Suffix'"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ebusiness-profile-section row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Title</label>
+                                    <input type="text" class="form-control" data-bind="textInput: title" placeholder="Title" />
+                                </div>
+                            </div>
+                            <!--<div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Company</label>
+                                    <input type="text" class="form-control" data-bind="textInput: search" list="companyList" placeholder="Company" autocomplete="off" />
+                                    search result
+                                    <datalist id="companyList" data-bind="foreach:searchResult, visible: recordFound">
+                                        <option data-bind="text: companyList" style="cursor: pointer"></option>
+                                    </datalist>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ebwhiteBg " data-bind="visible: showMain">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Phone Type</label>
+                            <select class="form-control" data-bind="options: phoneTypeOptions, , value:selectedPhoneType, optionsText:function(item) { return item.phoneName }"></select>
+                        </div>
+                    </div>
+                    <div data-bind="with :selectedPhoneType" class="eb-PhoneControl col-md-8 row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Country Code</label>
+                                <!--Drop Down will be used once, we will get the counrty code data-->
+                                <!--<select class="form-control" data-bind="options: countriesCode, value: countryCode"></select>-->
+                                <input type="text" class="form-control ebCountryCode" placeholder="Country Code" data-bind="numeric: countryCode, textInput: countryCode" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Area Code</label>
+                                <input type="text" class="form-control ebAreaCode" placeholder="Area Code" data-bind="numeric: countryCode, textInput: areaCode" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Phone</label>
+                                <input type="text" class="form-control" placeholder="Phone" data-bind="numeric: phone, textInput: phone,event:{focus: hideErrorMessage}" maxlength="15" />
+                                <span class="validationMessage" data-bind="visible:phoneRequired">Phone is required.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Extension</label>
+                                <input class="form-control" type="text" placeholder="Extension" data-bind="numeric: phoneExtension, textInput: phoneExtension" maxlength="10" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Email Type</label>
+                            <select class="form-control" data-bind="options: emailTypeOptions, optionsText:'selectedEmailType', value:selectedEmailType"></select>
+                        </div>
+                    </div>
+                    <div data-bind="with :selectedEmailType" class="col-md-8 col-sm-6 ">
+                        <div class="form-group">
+                            <label class="caption">Email Address</label>
+                            <input class="form-control" data-bind="textInput: email" type="email" placeholder="Email Address" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Address Type</label>
+                            <select class="form-control" data-bind="options: addressTypeOptions, optionsText:'name', value: selectedAddress, event: { change: addressChanged(selectedAddress) }"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 eb-verify-button">
+                        <label class="eb-prefAddChkbox"><input type="checkbox" data-bind="checked:preMailingAddress, click: preMailingAddressClick"/>  Preferred Address</label>
+                        <button class="btn-secondary" data-bind="click:verifyAddressDialog">Verify Address</button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="alert alert-danger" data-bind="visible: showAddressError, text: erroraddressMessage"></div>
+                        <div class="alert alert-success" data-bind="visible: showAddressSuccess, text: successAddressMessage"></div>
+                        <div class="alert alert-danger" data-bind="visible: showPrefferedError"><span data-bind="text:selectedAddress().name()"></span> <span data-bind="text: errorPrefferedMsg"></span></div>
+                    </div>
+                </div>
+                <div class="ebusiness-profile-section row" data-bind="with: selectedAddress">
+
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Address Line 1</label>
+                            <input type="text" class="form-control" data-bind="textInput: line1" placeholder="Address Line 1" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Address Line 2</label>
+                            <input type="text" class="form-control" data-bind="textInput: line2" placeholder="Address Line 2" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">City</label>
+                            <input type="text" class="form-control" data-bind="textInput: city" placeholder="City" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Zip</label>
+                            <input type="text" class="form-control" data-bind="textInput: postalCode" placeholder="Zip" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Country</label>
+                            <select class="form-control" data-bind="options: addressCountryCodeOptions, optionsValue:'country', value:country, optionsText:function(item) {return item.country},event: { change: selectionChanged }, optionsCaption:'Country'"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">State/Province</label>
+                            <select class="form-control" data-bind="options: addressStateProvinceOptions, optionsValue:'state', value:stateProvince, optionsText:function(item) {return item.state}, optionsCaption:'State/Province'"></select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ebwhiteBg " data-bind="visible: showMain">
+                <div class="ebusiness-profile-card-userInfo"></div>
+                <div class="ebProfHeader ebClear" data-bind="click: toggleShowCommunication">
+                    <span>Communication Preference</span>
+                    <span class="pull-right isCollapseClosed" data-bind="css: { expanded: parentCommunicVisible()}"></span>
+                </div>
+                <div class="ebProBody row" data-bind="visible: showCommunication" style="display: none;">
+                    <div class="col-md-12">
+                        <label> Exclude from </label>
+                        <div>
+                            <input type="checkbox" data-bind="checked: optsOutOfMailCommunication" />
+                            <label>Mail</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" data-bind="checked: optsOutOfFaxCommunication" />
+                            <label>Fax</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" data-bind="checked: optsOutOfEmailCommunication" />
+                            <label>Email</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" data-bind="checked: excludeFromMembershipDirectory" />
+                            <label>Directory</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ebwhiteBg" data-bind="visible: showMain">
+                <div class="ebProfHeader ebClear" data-bind="click: toggleShowMembership">
+                    <span>Membership</span>
+                    <span class="pull-right isCollapseClosed" data-bind="css: { expanded: parentMembershipVisible()}"></span>
+                </div>
+                <div class="ebProBody" data-bind="visible: showMembership">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Member Type</label>
+                                <input type="text" class="form-control" data-bind="textInput: memberType" placeholder="Member Type" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Member Status</label>
+                                <input type="text" class="form-control" data-bind="textInput: memberStatus" placeholder="Member Status" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Join Date</label>
+                                <input type="text" class="form-control" data-bind="textInput: joinDate" placeholder="Join Date" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Dues Paid Through</label>
+                                <input type="text" class="form-control" data-bind="textInput: duesPaidThrough" placeholder="Dues Paid Through" disabled />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ebwhiteBg" data-bind="visible: showMain">
+                <div class="ebProfHeader ebClear" data-bind="click: toggleShowDemographics">
+                    <span>Demographics</span>
+                    <span class="pull-right isCollapseClosed" data-bind="css: { expanded: parentDemoGraphicVisible }"></span>
+                </div>
+                <div class="ebProBody" data-bind="visible: showDemographics">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Primary Function</label>
+                                <input type="text" class="form-control" data-bind="textInput: primaryFunction" placeholder="Primary Function" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">US Congress</label>
+                                <input type="text" class="form-control" data-bind="textInput: congressionalInfo" placeholder="US Congress" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Birthday</label>
+                                <input type="text" class="form-control" data-bind="textInput: birthday" placeholder="mm/dd/yyyy" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Gender</label>
+                                <select class="form-control" data-bind="options: genderOptions, value:selectedGender"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" data-bind="visible: showMain">
+                <div class="col-md-8 alert alert-danger" data-bind="visible: showError, text: errorMessage"></div>
+                <div class="col-md-8 alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+                <div class="col-md-12 apex-boundcontrols-savebutton pull-right">
+                    <button class="save btn btn-primary pull-right" data-bind="click: updateProfileChanges">Save Changes</button>
+                </div>
+            </div>
+
+            <div class="row ebwhiteBg hide" data-bind="visible: showSettings">
+                <div class="ebProfHeader ebClear" data-bind="click: toggleShowLogin">
+                    <span>Login</span>
+                    <span class="pull-right isCollapseOpen"></span>
+                </div>
+                <div class="ebProBody" data-bind="visible: showLogin">
+                    <div class="ebClear col-md-4">
+                        <div class="form-group">
+                            <label class="caption">User Name</label>
+                            <input type="text" class="form-control" data-bind="textInput: userName" placeholder="User Name" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label class="caption">Password</label>
+                            <input type="text" class="form-control" data-bind="textInput: password" placeholder="Password" disabled />
+                        </div>
+                        <a href="ChangePassword.html" class="pull-right btn btn-primary">Change Password</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" data-bind="visible: showSettings">
+                <div class="col-md-8 alert alert-danger" data-bind="visible: showError, text: errorMessage"></div>
+                <div class="col-md-8 alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+                <div class="col-md-12 apex-boundcontrols-savebutton pull-right">
+                    <button class="save btn btn-primary pull-right" data-bind="click: updateProfileChanges">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" id="modal-verify-address">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-verify-address">
+                        <h3>Please verify your address details</h3>
+                        <p>Address entered by you may be incorrect or incomplete. Please review our recommendation and choose from the option below.</p>
+                        <div class="row" data-bind="foreach: enteredAndSuggestedAddressRecord">
+                            <div class="col-md-6 eb-entered-add">
+                                <h4>Entered address</h4>
+                                <label data-bind="text: eline1, css: { correction: eline1 != sline1 }"></label><br>
+                                <label data-bind="text: eline2, css: { correction: eline2 != sline2 }"></label><br>
+                                <label data-bind="text:ecity, css: { correction: ecity != scity }"></label><br>
+                                <label data-bind="text:epostalCode, css: { correction: epostalCode != spostalCode }"></label>
+                                <label data-bind="text:ecountry, css: { correction: ecountry != scountry }"></label><br>
+                                <label data-bind="text:estateProvince, css: { correction: estateProvince != sstateProvince }"></label><br>
+                                <button class="btn btn-secondary btn-block eb-btn-entered" data-bs-dismiss="modal">Use address as entered</button>
+                            </div>
+                            <div class="col-md-6 eb-suggested-add">
+                                <h4>Suggested address</h4>
+                                <label data-bind="text: sline1, css: { correction: eline1 != sline1 }"></label><br>
+                                <label data-bind="text: sline2, css: { correction: eline2 != sline2 }"></label><br>
+                                <label data-bind="text:sstateProvince, css: { correction: estateProvince != sstateProvince }"></label><br>
+                                <label data-bind="text:scity, css: { correction: ecity != scity }"></label><br>
+                                <label data-bind="text:scountry, css: { correction: ecountry != scountry }"></label><br>
+                                <label data-bind="text:spostalCode, css: { correction: epostalCode != spostalCode }"></label>
+                                <button class="btn btn-primary btn-block eb-btn-suggested" data-bs-dismiss="modal" data-bind="click:suggestedAddressClick">Use suggested address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

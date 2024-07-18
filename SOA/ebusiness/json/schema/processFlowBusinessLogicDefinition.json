@@ -1,0 +1,22 @@
+﻿{
+  "properties": {
+    "executionType": {
+      "enum": [ "processFlow" ]
+    },
+    "processFlowProperties": {
+      "type": "object",
+      "properties": {
+        "processFlowName": {
+          "description": "The name of the process flow to execute",
+          "type": "string"
+        },
+        "processFlowParameters": {
+          "description": "Any static input properties that should be passed to the process flow",
+          "type": "object"
+        }
+      },
+      "required" :  ["processFlowName"] 
+    }
+  },
+  "required": [ "executionType", "processFlowProperties" ] 
+}

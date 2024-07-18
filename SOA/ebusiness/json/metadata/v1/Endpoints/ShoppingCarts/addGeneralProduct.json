@@ -1,0 +1,99 @@
+{
+  "addGeneralProduct": {
+    "route": {
+      "description": "Adds a general product to the cart.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GeneralProduct": {
+          "isLiteral": true,
+          "type": "long"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "AddGeneralProductOutput",
+      "$ref": "entityDefinitions.json#/cartItemsOutput"
+    },
+    "inputEntityDefinition": {
+      "name": "AddGeneralProductInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST"
+            ]
+          }
+        },
+        "quantity": {
+          "type": "int",
+          "input": {
+            "httpMethods": [
+              "POST",
+              "PATCH"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST",
+              "PATCH"
+            ]
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "sharedProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/sharedProductValidation"
+      },
+      "generalProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "verifiers": [
+              "IsNotSubscriptionProduct",
+              "IsNotFundraisingProduct"
+            ]
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "addProduct": {
+        "$ref": "shoppingBusinessLogic.json#/addProduct",
+        "processFlowProperties": {
+          "processFlowName": "Add Product",
+          "processFlowParameters": {
+            "productId": "@request.productId",
+            "quantity": "@request.quantity",
+            "orderGe": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "shoppingBusinessLogic.json#/saveCart"
+      },
+      "returnNewOrderLines": {
+        "$ref": "shoppingBusinessLogic.json#/returnNewOrderLines"
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

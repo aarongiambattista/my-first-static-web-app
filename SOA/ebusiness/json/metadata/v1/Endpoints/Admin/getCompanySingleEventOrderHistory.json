@@ -1,0 +1,68 @@
+﻿{
+  "getSingleEventOrderHistory": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrderSingleItem"
+    },
+    "route": {
+      "description": "Gets the common properties of single event orderline from the company's orders.",
+      "httpMethod": "GET",
+      "segments": {
+        "EventProduct": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "name": "GetSingleEventOrderItemOutput",
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/eventCartItemOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/singleOrderGERetrieval"
+      },
+      "getSingleOrderLine": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "OrderLines",
+            "clientPocoFieldName": "itemId"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "meetingProductValidation": {
+        "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/meetingProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsMeetingProduct"
+            ]
+          }
+        }
+      },
+      "getSingleOrderLineOutput": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "OrderLines",
+            "clientPocoFieldName": "itemId"
+          }
+        }
+      }
+    }
+  }
+}

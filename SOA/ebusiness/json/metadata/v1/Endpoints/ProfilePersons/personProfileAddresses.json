@@ -1,0 +1,644 @@
+﻿{
+  "getProfilePersonAllAddresses": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get Profile Person All Addresses",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "personAddressesEntities.json#/personProfileAddressOutput",
+      "name": "GetProfilePersonAllAddressesOutput"
+    },
+    "businessLogic": {
+      "personsAllAddressRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/profilePersonsAddressRetrieval"
+      }
+    }
+  },
+  "getProfilePersonSingleAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get Profile Person address by address Name",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetAddressInput",
+      "$ref": "personAddressesEntities.json#/personProfileAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personProfileAddressOutput",
+      "name": "PersonProfileAddress"
+    },
+    "businessLogic": {
+      "personSingleAddressRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/profilePersonsAddressRetrieval"
+      }
+    }
+  },
+  "updateProfilePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Address",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "PatchAddressInput",
+      "$ref": "personAddressesEntities.json#/personProfileAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personProfileAddressOutput",
+      "name": "PersonProfileAddress"
+    },
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "id"
+          }
+        }
+      },
+      "personEmbeddedAddressFieldNameRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/personEmbeddedAddressFieldNameRetrieval"
+      },
+      "getProfilePersonAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "embeddedObjectIDFieldName": "@parent.personEmbeddedAddressFieldNameRetrieval.outputEmbeddedAddressIDFieldName"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getProfilePersonAddressGE.outputGE",
+            "inputFieldsToIgnore": "addressName"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "personAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonAddressGE.outputGE"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "personSingleAddressRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/profilePersonsAddressRetrieval"
+      }
+    }
+  },
+  "makePreferredBillingAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Billing Preferred Address",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        },
+        "MakePreferredBilling": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "preferredAddressInputforBilling",
+      "$ref": "personAddressesEntities.json#/personProfilePreferredAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "setPreferredAddress": {
+        "$ref": "personAddressesBusinessLogic.json#/setPreferredAddress",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "PreferredAddressName": "@Request.addressName",
+            "PreferredAddressOption": "MakePreferredBilling"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+  "makePreferredShippingAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Shipping Preferred Address",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        },
+        "MakePreferredShipping": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "preferredAddressInputforShipping",
+      "$ref": "personAddressesEntities.json#/personProfilePreferredAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "setPreferredAddress": {
+        "$ref": "personAddressesBusinessLogic.json#/setPreferredAddress",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "PreferredAddressName": "@Request.addressName",
+            "PreferredAddressOption": "MakePreferredShipping"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+  "makePreferredMailingAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update Profile Person Mailing Preferred Address",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        },
+        "makePreferredMailing": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "preferredAddressInputforMailing",
+      "$ref": "personAddressesEntities.json#/personProfilePreferredAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "setPreferredAddress": {
+        "$ref": "personAddressesBusinessLogic.json#/setPreferredAddress",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "PreferredAddressName": "@Request.addressName",
+            "PreferredAddressOption": "makePreferredMailing"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+  "deleteProfilePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Delete Profile Person Address",
+      "httpMethod": "DELETE",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteAddressInput",
+      "$ref": "personAddressesEntities.json#/personProfileAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfilePersonGE": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "Id"
+          }
+        }
+      },
+      "personEmbeddedAddressFieldNameRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/personEmbeddedAddressFieldNameRetrieval"
+      },
+      "removeInTableAddress": {
+        "$ref": "personAddressesBusinessLogic.json#/removeInTableAddress",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfilePersonGE.outputGE",
+            "FieldName": "@parent.personEmbeddedAddressFieldNameRetrieval.outputEmbeddedAddressIDFieldName"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.removeInTableAddress.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+  // Person Address Subtype related
+
+  "getAllPersonAddresses": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get PersonAddress All Addresses",
+      "httpMethod": "GET",
+      "segments": {
+        "PersonAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "personAddressesEntities.json#/personAddressOutput",
+      "name": "GetAllPersonAddressesOutput"
+    },
+    "businessLogic": {
+      "personsAddressRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/personsAddressRetrieval"
+      }
+    }
+  },
+  "getSinglePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Get PersonAddress single address by name",
+      "httpMethod": "GET",
+      "segments": {
+        "PersonAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "getSinglePersonAddressInput",
+      "$ref": "personAddressesEntities.json#/personAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personAddressOutput",
+      "name": "PersonAddressOutput"
+    },
+    "businessLogic": {
+      "personsAddressRetrieval": {
+        "$ref": "personAddressesBusinessLogic.json#/personsAddressRetrieval"
+      }
+    }
+  },
+  "createSinglePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create New PersonAddress",
+      "httpMethod": "POST",
+      "segments": {
+        "PersonAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personAddressPostInput",
+      "name": "CreatePersonAddressInputPOST"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personAddressOutput",
+      "name": "PersonAddressOutput"
+    },
+    "businessLogic": {
+      "validateDuplicateAddressName": {
+        "$ref": "personAddressesBusinessLogic.json#/validateDuplicateAddressName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "AddressName": "@request.addressName",
+            "PersonId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+          }
+        }
+      },
+      "singleRecordRetrieval": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getNewPersonAddressSubtypeGE": {
+        "$ref": "personAddressesBusinessLogic.json#/personAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "PersonAddress",
+            "fieldName": "id",
+            "fieldValue": "-1"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getNewPersonAddressSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getPersonAddressSubtypeEmbeddedAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getNewPersonAddressSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "AddressID"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "personAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getPersonAddressSubtypeEmbeddedAddressGE.outputGE"
+          }
+        }
+      },
+      "createNewPersonAddressSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getNewPersonAddressSubtypeGE.outputGE",
+            "action": "create"
+          }
+        }
+      }
+    }
+  },
+  "updateSinglePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Update a PersonAddress",
+      "httpMethod": "PATCH",
+      "segments": {
+        "PersonAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personAddressInput",
+      "name": "UpdatePersonAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "personAddressesEntities.json#/personAddressOutput",
+      "name": "PersonAddressOutput"
+    },
+    "businessLogic": {
+      "singleRecordRetrieval": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getAddressRequestNameFieldValue": {
+        "$ref": "personAddressesBusinessLogic.json#/getAddressRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "InputContextObject": "@Request",
+            "PropertyName": "AddressName"
+          }
+        }
+      },
+      "getPersonAddressSubtypeGE": {
+        "$ref": "personAddressesBusinessLogic.json#/personAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "PersonAddress",
+            "fieldName": "name",
+            "fieldValue": "@parent.getAddressRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getPersonAddressSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getPersonAddressSubtypeEmbeddedAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getPersonAddressSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "AddressID"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "personAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getPersonAddressSubtypeEmbeddedAddressGE.outputGE"
+          }
+        }
+      },
+      "updatePersonAddressSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getPersonAddressSubtypeGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+  "deleteSinglePersonAddress": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Delete a Person Address",
+      "httpMethod": "DELETE",
+      "segments": {
+        "PersonAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteSinglePersonAddressInput",
+      "$ref": "personAddressesEntities.json#/personAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "singleRecordRetrieval": {
+        "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getAddressRequestNameFieldValue": {
+        "$ref": "personAddressesBusinessLogic.json#/getAddressRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@Request",
+            "PropertyName": "AddressName"
+          }
+        }
+      },
+      "getPersonAddressSubtypeGE": {
+        "$ref": "personAddressesBusinessLogic.json#/personAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "PersonAddress",
+            "fieldName": "name",
+            "fieldValue": "@parent.getAddressRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "deleteSingleSubTypeRecord": {
+        "$ref": "personBusinessLogic.json#/singleSubTypeDelete"
+      }
+    }
+  }
+}

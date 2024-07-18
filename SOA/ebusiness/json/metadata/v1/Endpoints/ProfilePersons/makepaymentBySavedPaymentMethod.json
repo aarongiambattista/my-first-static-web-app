@@ -1,0 +1,83 @@
+﻿{
+  "makepaymentBySavedPaymentMethod": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrder"
+    },
+    "route": {
+      "description": "Make payment of the unpaid orders using a saved payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SavedPayment": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "makepaymentSavedPaymentMethodInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "savedPaymentId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          },
+          "security": {
+            "isYourSavedPaymentMethod": {
+              "$ref": "../../Common/security.json#/isYourSavedPaymentMethod"
+            }
+          }
+        },
+        "paymentAmount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ProfilePersons/orderHistoryEntities.json#/personOrderOutput",
+      "name": "makepaymentSavedPaymentMethodOutput"
+    },
+    "businessLogic": {
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createPaymentRecord"
+      },
+      "addPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addPaymentLinesRecord"
+      },
+      "addSavedPaymentMethodInfoToPaymentObject": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Add Saved Payment Method Information to Payments GE",
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addPaymentLinesRecord.outputPaymentsGE",
+            "SavedPaymentId": "@request.savedPaymentId",
+            "CVV": "@request.cvv",
+            "orderId": "@request.orderId"
+          }
+        }
+      },
+      "savePaymentObject": {
+        "$ref": "../../Common/commonPayments.json#/savePaymentObject",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentsGE": "@parent.addSavedPaymentMethodInfoToPaymentObject.outputPaymentObject"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  }
+}

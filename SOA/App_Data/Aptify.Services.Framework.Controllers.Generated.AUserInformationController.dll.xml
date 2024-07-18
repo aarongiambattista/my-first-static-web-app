@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aptify.Services.Framework.Controllers.Generated.AUserInformationController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Framework.Controllers.Generated.AUserInformationController.AptifyGeneratedEntryMethod_UserInformation_Default">
+            <summary>
+            Gets basic information about the current logged-in user.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

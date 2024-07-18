@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Review Order</title>
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <!--Solved icons issue-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+
+    <!--Required for Bootstrap icons. -->
+    <script src="../js/3rdParty/knockout.validation.min.js"></script>
+
+    <script src="../js/configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/admin/ShoppingCart.js"></script>
+    <script src="../js/admin/PaymentSummary.js"></script>
+    <script src="../js/admin/ViewCart.js"></script>
+    <script src="../js/admin/ReviewOrder.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/admin/Dashboard.js"></script>
+    <script src="../js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div class="ebusiness-main-container row">
+            <div class="col-lg-8">
+                <div id="ReviewOrder">
+                </div>
+                <h5>Purchased Items</h5>
+                <hr />
+                <div id="viewCart">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div id="paymentSummary">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        try {
+            eBusinessJQObject(document).ready(function () {
+                //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load.
+                eb_Config.retrieveCSRFTokens();
+
+                eb_UserContext.getContextData(true).done(function (userData) {
+                    eb_UserContext.live = new eb_UserContext.model(userData);
+
+                    if (eb_UserContext.live.isUserLoggedIn()) {
+                        if (eb_UserContext.live.checkCompanyAdminInUserContext()) {
+                            /*Get shopping cart items for shopping cart count and companies data.*/
+                            //eBusinessJQObject.when(eb_CompanyAdmin.getCompaniesData()).done(function (companyData) {
+
+
+                                eBusinessJQObject.when(eb_adminShoppingCart.getShoppingCart(),
+                                    eb_adminShoppingCart.viewCartItems()).done(function (result, cartItems) {
+
+                                        eBusinessJQObject.when(eb_adminShoppingCart.viewSubscriptionCartItems(cartItems),
+                                            eb_adminShoppingCart.getEventProductItems(cartItems)).done(function (subscriptionAllItems, eventAllItems) {
+
+
+                                                var cartOptions = {};
+                                                cartOptions.shoppingCartData = result;
+                                                cartOptions.cartItems = cartItems;
+                                                cartOptions.userContext = eb_UserContext.live;
+                                                eb_adminShoppingCart.live = new eb_adminShoppingCart.shoppingCartModel(cartOptions);
+
+                                                var reviewOrderOptions = {};
+                                                reviewOrderOptions.domElement = eBusinessJQObject('#ReviewOrder')[0];
+                                                reviewOrderOptions.templatePath = eb_Config.SitePath + "html/admin/ReviewOrder.html";
+                                                eb_Config.config(reviewOrderOptions, eb_adminReviewOrder);
+
+                                                //load footer control
+                                                var footerOptions = footerOptions || {};
+                                                footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                                                footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                                                eb_Footer.render(footerOptions).done(function () {
+                                                    //load header control
+                                                    var headerOptions = headerOptions || {};
+                                                    headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                                    headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                                    headerOptions.userContext = eb_UserContext.live;
+                                                    headerOptions.sitePath = eb_Config.SitePath;//need to test this
+                                                    headerOptions.shoppingCart = eb_adminShoppingCart.live;
+                                                    headerOptions.cartText = "My Company Cart";
+                                                    headerOptions.viewCartURL = eb_HeaderMenu.SitePath + "admin/" + eb_HeaderMenu.pages["ViewCart"];
+                                                    eb_HeaderMenu.viewCartURL = eb_Config.SitePath + "admin/ViewCart.html";
+
+                                                    eb_HeaderMenu.render(headerOptions).done(function () {
+                                                        eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                                        ko.cleanNode(headerOptions.domElement);
+                                                        ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                                        var options = {}
+                                                        options.domElement = eBusinessJQObject('#viewCart')[0];
+                                                        options.templatePath = eb_Config.SitePath + "html/admin/ViewCart.html";
+                                                        eb_Config.config(options, eb_adminViewCart);
+                                                        options.shoppingCart = eb_adminShoppingCart.live;
+                                                        options.eventAllItems = eventAllItems;
+                                                        options.subscriptionAllItems = subscriptionAllItems;
+
+                                                        eb_adminViewCart.render(options).done(function () {
+                                                            /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                            eb_adminViewCart.live = new eb_adminViewCart.model(options);
+                                                            eb_adminViewCart.live.cartTitleMessageVisible(0);
+                                                            /*Apply KO bindings, fire up the control*/
+                                                            ko.applyBindings(eb_adminViewCart.live, eb_adminViewCart.live.domElement);
+
+                                                            /*Load PaymentSummary after done of ViewCart as ViewCart object is passed to Payment Summary, which maybe undefined in case ViewCart done hasn't completed*/
+                                                            var paymentSummaryDetails = {}
+                                                            paymentSummaryDetails.domElement = eBusinessJQObject('#paymentSummary')[0];
+                                                            paymentSummaryDetails.templatePath = eb_Config.SitePath + "html/admin/PaymentSummary.html";
+                                                            paymentSummaryDetails.userContext = eb_UserContext.live;
+                                                            paymentSummaryDetails.shoppingCart = eb_adminShoppingCart.live;
+                                                            paymentSummaryDetails.data = undefined;
+
+                                                            eb_Config.config(paymentSummaryDetails, eb_adminPaymentSummaryDetails);
+                                                            eb_adminPaymentSummaryDetails.render(paymentSummaryDetails).done(function () {
+                                                                /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                                eb_adminPaymentSummaryDetails.live = new eb_adminPaymentSummaryDetails.model(paymentSummaryDetails);
+                                                                eb_adminPaymentSummaryDetails.live.hidePaymentDetails(0);
+                                                                eb_adminPaymentSummaryDetails.live.proceedToPaymentVisible(1);
+                                                                eb_adminPaymentSummaryDetails.viewCartObject(eb_adminViewCart.live);
+
+                                                                /*Apply KO bindings, fire up the control*/
+                                                                ko.applyBindings(eb_adminPaymentSummaryDetails.live, eb_adminPaymentSummaryDetails.live.domElement);
+
+
+                                                                //Render Review Order Control
+                                                                reviewOrderOptions.shoppingCart = eb_adminShoppingCart.live;
+                                                                reviewOrderOptions.showPaymentError = eb_adminPaymentSummaryDetails.live.showError;
+                                                                reviewOrderOptions.paymentErrorMessage = eb_adminPaymentSummaryDetails.live.errorMessage;
+                                                                reviewOrderOptions.companyName = eb_UserContext.live.CompanyName();
+                                                                eb_adminReviewOrder.render(reviewOrderOptions).done(function () {
+                                                                    eb_adminReviewOrder.live = new eb_adminReviewOrder.model(reviewOrderOptions);
+                                                                    ko.cleanNode(eb_adminReviewOrder.live.domElement);
+                                                                    ko.applyBindings(eb_adminReviewOrder.live, eb_adminReviewOrder.live.domElement);
+                                                                }).fail(function (data, msg, jhr) {
+                                                                    console.error("Failed to get render review Order.");
+                                                                });
+                                                            }).fail(function (data, msg, jhr) {
+                                                                console.error("Failed to payment Summary Details.");
+                                                            });
+                                                        });
+                                                    }).fail(function (data, msg, jhr) {
+                                                        console.error("Failed to render header control.");
+                                                    });
+                                                }).fail(function (data, msg, jhr) {
+                                                    console.error('Failed to render footer control...');
+                                                });
+                                            }).fail(function (data, msg, jhr) {
+                                                console.error("Failed to get subscription and event items.");
+                                                eb_Config.getErrorMessageForControl(data.responseJSON, eb_adminViewCart);
+                                            });
+                                    });
+
+                            //}).fail(function (data, msg, jhr) {
+                            //    console.error('Failed to get data on admin dashboard page...');
+                            //    eb_Config.getErrorMessageForControl(data.responseJSON, eb_CompanyAdmin);
+                            //});
+
+                        } else {
+                            window.location.assign(eb_Config.companyAdminDashboardURL);
+                        }
+                    }
+                    else {
+                        window.location.assign(eb_Config.loginPageURL);
+                    }
+                }).fail(function (data, msg, jhr) {
+                    console.error("Failed to get user information.");
+                });
+
+                //eb_UserContext.getContextData(true).done(function (userData) {
+                //    eb_UserContext.live = new eb_UserContext.model(userData);
+
+                //    if (eb_UserContext.live.isUserLoggedIn()) {
+                //        eBusinessJQObject.when(eb_adminShoppingCart.getShoppingCart(),
+                //            eb_adminShoppingCart.viewCartItems()).done(function (result, cartItems) {
+                //                eBusinessJQObject.when(eb_adminShoppingCart.viewSubscriptionCartItems(cartItems),
+                //                    eb_adminShoppingCart.getEventProductItems(cartItems)).done(function (subscriptionAllItems, eventAllItems) {
+
+                //                        var cartOptions = {};
+                //                        cartOptions.shoppingCartData = result;
+                //                        cartOptions.cartItems = cartItems;
+                //                        eb_adminShoppingCart.live = new eb_adminShoppingCart.shoppingCartModel(cartOptions);
+
+                //                        var options = {};
+                //                        options.domElement = eBusinessJQObject('#ReviewOrder')[0];
+                //                        options.templatePath = eb_Config.SitePath + "html/ReviewOrder.html";
+                //                        eb_Config.config(options, eb_adminReviewOrder);
+
+
+                //                        var viewOptions = {};
+                //                        viewOptions.domElement = eBusinessJQObject('#viewCart')[0];
+                //                        viewOptions.templatePath = eb_Config.SitePath + "html/ViewCart.html";
+                //                        viewOptions.shoppingCart = eb_adminShoppingCart.live;
+                //                        viewOptions.subscriptionAllItems = subscriptionAllItems;
+                //                        viewOptions.eventAllItems = eventAllItems;
+
+                //                        //load header control
+                //                        var headerOptions = headerOptions || {};
+                //                        headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                //                        headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                //                        headerOptions.userContext = eb_UserContext.live;
+                //                        headerOptions.shoppingCart = eb_adminShoppingCart.live;
+                //                        eb_HeaderMenu.render(headerOptions).done(function () {
+                //                            eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                //                            ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+
+                //                            eb_Config.config(viewOptions, eb_adminViewCart);
+                //                            eb_adminViewCart.render(viewOptions).done(function () {
+                //                                /*Page's live instance of the model. Handy for troubleshooting.*/
+                //                                eb_adminViewCart.live = new eb_adminViewCart.model(viewOptions);
+                //                                eb_adminViewCart.live.cartTitleMessageVisible(0);
+                //                                /*Apply KO bindings, fire up the control*/
+                //                                ko.applyBindings(eb_adminViewCart.live, eb_adminViewCart.live.domElement);
+
+                //                                /*Load PaymentSummary after done of ViewCart as ViewCart object is passed to Payment Summary, which maybe undefined in case ViewCart done hasn't completed*/
+                //                                var paymentSummaryDetails = {}
+                //                                paymentSummaryDetails.domElement = eBusinessJQObject('#paymentSummary')[0];
+                //                                paymentSummaryDetails.templatePath = eb_Config.SitePath + "../admin/html/PaymentSummary.html";
+
+                //                                paymentSummaryDetails.shoppingCart = eb_adminShoppingCart.live;
+                //                                paymentSummaryDetails.data = undefined;
+
+                //                                eb_Config.config(paymentSummaryDetails, eb_adminPaymentSummaryDetails);
+                //                                eb_adminPaymentSummaryDetails.render(paymentSummaryDetails).done(function () {
+                //                                    /*Page's live instance of the model. Handy for troubleshooting.*/
+                //                                    eb_adminPaymentSummaryDetails.live = new eb_adminPaymentSummaryDetails.model(paymentSummaryDetails);
+                //                                    eb_adminPaymentSummaryDetails.live.hidePaymentDetails(0);
+                //                                    eb_adminPaymentSummaryDetails.live.proceedToPaymentVisible(1);
+                //                                    eb_adminPaymentSummaryDetails.viewCartObject(eb_adminViewCart.live);
+                //                                    /*Apply KO bindings, fire up the control*/
+                //                                    ko.applyBindings(eb_adminPaymentSummaryDetails.live, eb_adminPaymentSummaryDetails.live.domElement);
+
+
+                //                                    options.shoppingCart = eb_adminShoppingCart.live;
+                //                                    options.showPaymentError = eb_adminPaymentSummaryDetails.live.showError;
+                //                                    options.paymentErrorMessage = eb_adminPaymentSummaryDetails.live.errorMessage;
+                //                                    eb_adminReviewOrder.render(options).done(function () {
+                //                                        eb_adminReviewOrder.live = new eb_adminReviewOrder.model(options);
+                //                                        ko.applyBindings(eb_adminReviewOrder.live, eb_adminReviewOrder.live.domElement);
+                //                                    }).fail(function (data, msg, jhr) {
+                //                                        console.error("Failed to get render review Order.");
+                //                                    });
+
+                //                                }).fail(function (data, msg, jhr) {
+                //                                    console.error("Failed to get render payment summary.");
+                //                                });
+                //                            }).fail(function (data, msg, jhr) {
+                //                                console.error("Failed to  render header control.");
+                //                            });
+                //                        }).fail(function (data, msg, jhr) {
+                //                            console.error("Failed to  render view cart.");
+                //                        });
+
+                //                    }).fail(function (data, msg, jhr) {
+                //                        console.error("Failed to get viewSubscriptionCartItems.");
+                //                        eb_Config.getErrorMessageForControl(data.responseJSON, eb_adminReviewOrder);
+                //                    });
+                //            }).fail(function (data, msg, jhr) {
+                //                console.error("Failed to get getShoppingCart.");
+                //            });
+                //    } else {
+                //        window.location.assign(eb_Config.loginPageURL);
+                //    }
+                //});
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    </script>
+</body>
+</html>

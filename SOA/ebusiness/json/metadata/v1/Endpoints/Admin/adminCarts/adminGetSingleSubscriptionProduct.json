@@ -1,0 +1,89 @@
+﻿{
+  "adminGetSingleSubscriptionProduct": {
+    "parent": {
+      "name": "getAdminCartCompany"
+    },
+    "route": {
+      "description": "Gets all properties of a single subscription product item in the cart.",
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminGetSingleSubscriptionProductItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/subscriptionCartItemOutput",
+      "name": "adminGetSingleSubscriptionProductItemOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE",
+            "inputFieldsToIgnore": "cartSequenceId"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "subscriptionGeneralProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsSubscriptionProduct"
+            ]
+          }
+        }
+      },
+      "getSingleOrderLineOutput": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "validateOrderLine": {
+    "$ref": "../../../Common/businessLogic.json#/validateOrderLine",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "OrderLineGE": null
+      }
+    }
+  },
+  "addEventProduct": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Event Product",
+      "processFlowParameters": {
+        "productId": "@request.productId",
+        "attendeeId": "@request.attendeeId",
+        "orderGe": "@parent.ensureActiveCart.outputCurrentOrderGE"
+      }
+    }
+  },
+  "deleteCart": {
+    "$ref": "../../../Common/businessLogic.json#/executeGEAction",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "action": "delete",
+        "GE": "@parent.ensureActiveCart.outputCurrentCartGE"
+      }
+    }
+  },
+  "deleteSingleOrderLine": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Remove Order Line",
+      "processFlowParameters": {
+        "OrderGe": "@parent.returnTheOrder.outputOrderGE",
+        "OrderLineGE": "@parent.getSingleOrderLine.outputGE"
+      }
+    }
+  },
+  "deleteEventOrderLine": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Remove Event Product",
+      "processFlowParameters": {
+        "OrderGe": "@parent.returnTheOrder.outputOrderGE",
+        "OrderLineGE": "@parent.getSingleOrderLine.outputGE"
+      }
+    }
+  },
+  "ensureActiveCart": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "CompAdmin Ensure Active Cart Exists",
+      "processFlowParameters": {
+        "currentUserIdentifierType": "@ShoppingCartUserIdentifier.identifierType",
+        "currentUserIdentifierValue": "@ShoppingCartUserIdentifier.identifierValue",
+        "serviceApplicationName": "@AuthenticatedAttributes.ServiceApplicationName",
+        "companyID": "@request.id"
+      }
+    }
+  },
+  "retrieveCart": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Shopping Cart Retriever",
+      "processFlowParameters": {
+        "currentUserIdentifierType": null,
+        "currentUserIdentifierValue": null,
+        "serviceApplicationName": null,
+        "cartStatus": null
+      }
+    }
+  },
+  "validateEmptyShoppingCart": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Empty Shopping Cart",
+      "processFlowParameters": {
+        "OrderGE": null
+      }
+    }
+  },
+  "generalProductValidation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Cart Product Validation",
+      "processFlowParameters": {
+        "productId": "@request.productId",
+        "quantity": "@request.quantity",
+        "verifiers": [
+          "IsGeneralProduct"
+        ]
+      }
+    }
+  },
+  "meetingProductValidation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Cart Product Validation",
+      "processFlowParameters": {
+        "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+        "quantity": 1,
+        "verifiers": null
+      }
+    }
+  },
+  "fundraisingProductValidation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Cart Product Validation",
+      "processFlowParameters": {
+        "productId": "@request.productId",
+        "quantity": 1,
+        "verifiers": [
+          "IsNotFundraisingProduct"
+        ]
+      }
+    }
+  },
+  "getAllOrderLines": {
+    "$ref": "../../../Common/businessLogic.json#/getAllSubtypeRecords",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "subTypeName": "OrderLines"
+      }
+    }
+  },
+  "getSingleOrderLine": {
+    //"$ref": "../../../Common/businessLogic.json#/getSingleSubtypeRecord",
+    "$ref": "../../../Common/adminBusinessLogic.json#/adminGetSingleSubtypeRecord",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "subTypeName": "OrderLines"
+      }
+    }
+  },
+  "returnNewOrderLines": {
+    "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.addProduct.outputCreatedOrderLines",
+        "outputPropertyName": "outputCreatedOrderLines"
+      }
+    }
+  },
+  "returnEventOrderLines": {
+    "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.addEventProduct.outputEventOrderLine",
+        "outputPropertyName": "outputEventOrderLine"
+      }
+    }
+  },
+  "returnRemovedEventOrderLines": {
+    "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.deleteEventOrderLine.outputRemovedEventOrderLine",
+        "outputPropertyName": "outputRemovedEventOrderLine"
+      }
+    }
+  },
+  "returnTheOrder": {
+    "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "outputPropertyName": "outputOrderGE"
+      }
+    }
+  },
+  "returnUpdatedOrderLine": {
+    "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.getSingleOrderLine.outputGE",
+        "outputPropertyName": "outputUpdatedOrderLine"
+      }
+    }
+  },
+  "saveCart": {
+    "$ref": "../../../Common/businessLogic.json#/executeGEAction",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "action": "save",
+        "GE": "@parent.ensureActiveCart.outputCurrentCartGE"
+      }
+    }
+  },
+  "sharedProductValidation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Cart Product Validation",
+      "processFlowParameters": {
+        "productId": "@request.productId",
+        "quantity": "@request.quantity",
+        "verifiers": [
+          "IsWebEnabled"
+        ]
+      }
+    }
+  },
+  "bulkEventProductValidation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Bulk Event Products Validation",
+      "processFlowParameters": {
+        "ProductIdArray": "@request.productId",
+        "quantity": 1,
+        "verifiers": [
+          "IsWebEnabled",
+          "IsNotFundraisingProduct"
+        ]
+      }
+    }
+  },
+  "getAllSubscriptionRecords": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Subscription OrderLines",
+      "processFlowParameters": {
+        "GEObject": null
+      }
+    }
+  },
+  "getAllEventsRecords": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Event OrderLines",
+      "processFlowParameters": {
+        "GEObject": null
+      }
+    }
+  },
+  "getPropertyValueFromGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "GE Property Value Retriever",
+      "processFlowParameters": {
+        "GEObject": null,
+        "FieldName": null
+      }
+    }
+  }
+}

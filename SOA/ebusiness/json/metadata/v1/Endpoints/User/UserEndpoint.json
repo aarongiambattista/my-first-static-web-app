@@ -1,0 +1,157 @@
+﻿{
+  "endpoints": {
+    "UserRegistration": {
+      "route": {
+        "description": "Register a Web User",
+        "httpMethod": "POST",
+        "segments": {
+          "User": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Register": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "#/entityDefinitions/UserRegisterInput",
+        "name": "UserRegisterInput"
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/UserRegisterOutput",
+        "name": "UserRegisterOutput"
+      },
+      "businessLogic": {
+        "validateWebUserEmailRequirement": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Validate Email Requirements",
+            "processFlowParameters": {
+              "email": "@request.email"
+            }
+          }
+        },
+        "validateWebUserPasswordRequirement": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Validate Password Requirements",
+            "processFlowParameters": {
+              "password": "@request.password",
+              "authenticationMethod": "eBusinessWebUser"
+            }
+          }
+        },
+        "validateAndGetNewPersonRecord": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Registration: Create Person",
+            "processFlowParameters": {
+              "Email": "@request.Email",
+              "FirstName": "@request.FirstName",
+              "LastName": "@request.LastName",
+              "DatabaseObject": "speBusiness6_0IsPersonExists"
+            }
+          }
+        },
+        "saveNewPersonRecord": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GE": "@parent.validateAndGetNewPersonRecord.outputGE",
+              "action": "create"
+            }
+          }
+        },
+        "validateAndGetNewWebUserRecord": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Registration: Create Web User",
+            "processFlowParameters": {
+              "UserID": "@request.Email",
+              "PersonGE": "@parent.validateAndGetNewPersonRecord.outputGE",
+              "Password": "@request.password",
+              "DatabaseObject": "spGeteBusiness6_0WebUserInfoByUserId"
+            }
+          }
+        },
+        "saveNewWebUserRecord": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GE": "@parent.validateAndGetNewWebUserRecord.outputGE",
+              "action": "create"
+            }
+          }
+        },
+        "returnTheWebUser": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.validateAndGetNewWebUserRecord.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "UserRegisterInput": {
+      "fields": {
+        "firstName": {
+          "type": "string",
+          "description": "The First Name for the User.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The Last Name for the User.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "email": {
+          "type": "string",
+          "description": "The UserId/Email for the User.",
+          "sourceField": "email1",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "password": {
+          "type": "string",
+          "description": "The password for the User.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+
+      }
+    },
+    "UserRegisterOutput": {
+      "fields": {
+        "UserID": {
+          "type": "string",
+          "description": "The Id of registered user"
+        }
+      }
+    }
+  }
+}

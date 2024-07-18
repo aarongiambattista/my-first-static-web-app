@@ -1,0 +1,155 @@
+
+<div class="productCatalogModal">
+    <div class="ebusiness-filter-control row">
+        <div class="col-sm-3"><h3>Product Catalog</h3></div>
+        <div class="col-sm-9 ebusiness-view-switcher">
+            <span> <input name="txteventsListSearch" data-bind="textInput :search, hasFocus:showError(0) && showSuccess(0)" type="text" placeholder="Search" class="form-control required ebusiness-clientside-generic-search-animated"></span>
+            <span class="devider">| </span>
+            <span class="fa-icon ebIcon-list ebusiness-view-switcher-btn ebusiness-icon-top-menu" data-bind="click: toggleCatalogList" title="List/Grid View"></span>
+            <span class="d-inline d-sm-inline d-md-none" data-bind="click:toggleFilterControl"><a class="fa-icon" title="Sort/Filter"><img src="images/icons/fontawesome/filter.svg" /></a></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-4">
+        <div id="filterSort" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+            <div class="ebusiness-filter-details-panel">
+
+                <div class="ebusiness-sorting">
+                    <div class="ebusiness-filter-section-title ebusiness-filter-options">Sort By</div>
+                    <ul role="menu">
+                        <li>
+                            <label class="cat-name">
+                                <input type="radio" name="radioGroupSort" value="hightolow" data-bind="checked: priceFilter">Price High to Low
+                            </label>
+                        </li>
+                        <li>
+                            <label class="cat-name">
+                                <input type="radio" name="radioGroupSort" value="lowtohigh" data-bind="checked: priceFilter">Price Low to High
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="ebusiness-filter">
+                    <div class="ebusiness-filter-section-title">Filter By</div>
+                    <div class="ebusiness-filter-options">
+
+                        <ul role="menu">
+                            <li>
+                                <label>
+                                    <input type="radio" id="ProductType" name="ProductType" value="All" data-bind="checked: catergoryFilter">
+                                    <span class="cat-name">
+                                        <span>All</span>
+                                        (<span data-bind="text:products.length "></span>)
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                        <ul role="menu" data-bind="foreach: categoryCollection">
+                            <li>
+                                <label>
+                                    <input type="radio" id="ProductType" name="ProductType" data-bind="value:name ,checked: $parent.catergoryFilter">
+                                    <span class="cat-name">
+                                        <span data-bind="text:name"></span>
+                                        (<span data-bind="text:$data.records().length "></span>)
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-9 col-md-8 ebClear">
+        <div class="NoRecords text-center">
+            <span data-bind="visible: !pager().currentPageRecords().length">No records found.</span>
+        </div>
+        <div class="alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+        <div class="alert alert-danger ebusiness-service-failure-message row" data-bind="visible: showError, text: errorMessage"></div>
+        <div class="col-md-12">
+            <span data-bind="visible: pager().currentPageRecords().length">
+                Showing:
+                <span data-bind="text:catergoryFilter"></span>
+                <span data-bind="visible:priceFilter().length , if:priceFilter() == 'hightolow'">
+                    <span data-bind="text:' / Price High to Low'"></span>
+                </span>
+                <span data-bind="visible:priceFilter().length , if:priceFilter() == 'lowtohigh'">
+                    <span data-bind="text:' / Price Low to High'"></span>
+                </span>
+            </span>
+        </div>
+        <div class="ebusiness-product-list">
+            <div class="row" data-bind="foreach: pager().currentPageRecords()">
+                <div class="ebusiness-product-list-item col-md-12 col-sm-6 col-lg-6">
+                    <div class="ebusiness-product-wrap">
+                        <div class="ebusiness-product-list-image-wrapper">
+                            <img class="cursor-pointer ebusiness-product-list-image" data-bind="imageSrc: { src: webImage },  click : productNameDetails">
+                        </div>
+                        <div class="ebusiness-product-list-description">
+                            <p class="ebusiness-product-list-name" data-bind="value: name, click : productNameDetails">
+                                <a class="ebusiness-product-list-product-name" tabindex="2" data-bind="text: name"></a>
+                            </p>
+
+                            <p class="ebusiness-product-web-description more" data-bind="html: description"></p>
+                            <strong class="ebusiness-product-view-cart-price" data-bind="text:showCurrencySymbol"></strong><span class="ebusiness-product-price" data-bind="html: showPriceOrText"></span>
+                        </div>
+
+                        <div class="ebusiness-add-to-cart-buttons">
+                            <span class="ebusiness-out-of-stock-text pull-left" data-bind="visible: outOfStock">Out Of Stock</span>
+                            <button data-bind="click: addToCart, disable: disableAddToCartButton, css: eb_productCatalog.shoppingCart.styleClass" class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination-->
+        <div class="text-center">
+            <div class="ebusiness-productCatalog-pagination">
+
+                <div class="Pager productCatlogPager">
+                    <ul>
+                        <li class="goToFirst btn btn-default" title="First" data-bind="css: { disabledPagination: pager().currentPageIndex() <= 0}">
+                            <a href="#" data-bind="click: pager().currentPageIndex() > 0 && pager().moveFirst">
+                                <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() <= 0}"><img src="images/icons/fontawesome/angle-double-left.svg" /></span>
+                            </a>
+                        </li>
+                        <li class="goPrevious  btn btn-default" title="Previous" data-bind="css: { disabledPagination: pager().currentPageIndex() <= 0}">
+                            <a href="#" data-bind="click: pager().currentPageIndex() > 0 && pager().movePrevious">
+                                <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() <= 0}"><img src="images/icons/fontawesome/angle-left.svg" /></span>
+
+                            </a>
+                        </li>
+                        <li class="goTonext btn btn-default" title="Next" data-bind="css: { disabledPagination: pager().currentPageIndex() >= pager().maxPageIndex()}">
+                            <a href="#" data-bind="click: pager().currentPageIndex() < pager().maxPageIndex() && pager().moveNext">
+                                <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() >= pager().maxPageIndex()}"><img src="images/icons/fontawesome/angle-right.svg" /></span>
+                            </a>
+                        </li>
+                        <li class="goToLast  btn btn-default" title="Last" data-bind="css: { disabledPagination: pager().currentPageIndex() >= pager().maxPageIndex()}">
+                            <a href="#" data-bind="click: pager().currentPageIndex() < pager().maxPageIndex() && pager().moveLast">
+                                <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() >= pager().maxPageIndex()}"><img src="images/icons/fontawesome/angle-double-right.svg" /></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="pageCount">
+                            Page <span data-bind="text: pager().currentPageIndex() + 1">
+                            </span> of <span data-bind="text:pager().maxPageIndex() + 1"></span>
+                        </li>
+                        <li class="recordCount">
+                            [<span data-bind="text: pager().recordCount">
+                            </span> Record(s)]
+                        </li>
+                        <li class="pageSize">
+                            <select class="form-control" data-bind="options: pager().pageSizeOptions, value: pager().currentPageSize, event: { change: pager().onPageSizeChange }"></select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="CartUpdateMsg">Cart Updated..</div>
+    </div>
+    </div>

@@ -1,0 +1,669 @@
+﻿{
+  "endpoints": {
+
+    "getPersonCompanies": { //maybe get admin companies??
+      "route": {
+        "description": "Fetches the list of companies which the person can admin",
+        "httpMethod": "GET",
+        "segments": {
+          "admin": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "companies": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "GetCompaniesOutput",
+        "fields": {
+          "id": {
+            "type": "long"
+          },
+          "name": {
+            "type": "string",
+            "sourceField": "companyName"
+          },
+          "Description": {
+            "type": "string",
+            "sourceField": "comments"
+          }
+        }
+      },
+      "businessLogic": {
+        "getCompanies": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGetPersonAllCompanies",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      }
+    },
+
+    "getAdminCompany": { //TODO: write description of routes, as well other descriptions, create an issue for Regression sprint
+      "route": {
+        "description": "Gets the company details of the passed in company Id, secured by a security Fn",
+        "httpMethod": "GET",
+        "segments": {
+          "admin": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "company": { //TODO: should be "companies" rather
+            "isLiteral": true,
+            "type": "string"
+          },
+          "id": {
+            "isLiteral": false,
+            "type": "long",
+            "security": {
+              "canAdminCompany": {
+                "$ref": "../../Common/adminSecurity.json#/IsPersonCompanyAdministratorForCompany"
+              }
+            }
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "getAdminCompanyInput",
+        "fields": {
+          "id": {
+            "type": "long",
+            "description": "The id of the company to admin",
+            "input": {
+              "source": "path",
+              "httpMethods": [
+                "GET",
+                "POST",
+                "PATCH"
+              ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/companiesOutput",
+        "name": "CompaniesOutput"
+      },
+      "businessLogic": {
+        "singleGERetrieval": {
+          "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+        }
+      }
+    },
+
+    "updatePersonCompany": {
+      "parent": {
+        "name": "getAdminCompany"
+      },
+      "route": {
+        "description": "Updated the details of company whose ID is passed in URL",
+        "httpMethod": "PATCH",
+        "segments": {
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "#/entityDefinitions/companiesInput",
+        "name": "UpdateCompanyInput"
+      },
+      "outputEntityDefinition": {
+        "name": "CompanyPatchOutput",
+        "fields": {
+          "id": {
+            "type": "long"
+          },
+          "name": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "mainEmail": {
+            "type": "string"
+          },
+          "JobsEmail": {
+            "type": "string"
+          },
+          "InfoEmail": {
+            "type": "string"
+          }
+        }
+      },
+      "businessLogic": {
+        "singleGERetrieval": {
+          "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+        },
+        "applyClientInput": {
+          "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "geObjectToMap": "@parent.singleGERetrieval.outputGE"
+            }
+          }
+        },
+        "updateRecord": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute GE Action",
+            "processFlowParameters": {
+              "GE": "@parent.singleGERetrieval.outputGE",
+              "action": "save"
+            }
+          }
+        },
+        "returnTheCompany": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.singleGERetrieval.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      }
+    },
+
+    "getAllCompanyAddresses": {
+      "$ref": "companyProfileAddresses.json#/getAllCompanyAddresses"
+    },
+    "createSingleCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/createSingleCompanyAddress"
+    },
+    "deleteSingleCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/deleteSingleCompanyAddress"
+    },
+    "deleteProfileCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/deleteProfileCompanyAddress"
+    },
+    "getSingleCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/getSingleCompanyAddress"
+    },
+    "getProfileCompanyAllAddresses": {
+      "$ref": "companyProfileAddresses.json#/getProfileCompanyAllAddresses"
+    },
+    "getProfileCompanySingleAddress": {
+      "$ref": "companyProfileAddresses.json#/getProfileCompanySingleAddress"
+    },
+    "updateProfileCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/updateProfileCompanyAddress"
+    },
+    "updateSingleCompanyAddress": {
+      "$ref": "companyProfileAddresses.json#/updateSingleCompanyAddress"
+    },
+    "getProfileCompanyAllPhones": {
+      "$ref": "companyProfilePhones.json#/getProfileCompanyPhones"
+    },
+    "getProfileCompanySinglePhoneByName": {
+      "$ref": "companyProfilePhones.json#/getProfileCompanySinglePhone"
+    },
+    "getCompanyAllPhones": {
+      "$ref": "companyProfilePhones.json#/getAllCompanyPhones"
+    },
+    "getCompanySinglePhoneByName": {
+      "$ref": "companyProfilePhones.json#/getSingleCompanyPhones"
+    },
+    "updateProfileCompanyPhone": {
+      "$ref": "companyProfilePhones.json#/updateProfileCompanyPhone"
+    },
+    "updateSingleCompanyPhone": {
+      "$ref": "companyProfilePhones.json#/updateSingleCompanyPhone"
+    },
+    "getCompanyOrderHistorySingleOrder": {
+      "$ref": "companyOrderHistory.json#/getCompanyOrderHistorySingleOrder"
+    },
+    "getCompanyOrderHistory": {
+      "$ref": "companyOrderHistory.json#/getCompanyOrderHistory"
+    },
+    "getCompanyOrderHistorySingleOrderSingleItem": {
+      "$ref": "companyOrderHistory.json#/getCompanyOrderHistorySingleOrderSingleItem"
+    },
+    "getCompanyOrderHistorySingleOrderAllItems": {
+      "$ref": "companyOrderHistory.json#/getCompanyOrderHistorySingleOrderAllItems"
+    },
+    "getCompanyOrderHistorySingleOrderAllItemsAsSubscriptionItems": {
+      "$ref": "getCompanyAllSubscriptionOrderHistory.json#/getCompanyOrderHistorySingleOrderAllItemsAsSubscriptionItems"
+    },
+    "getCompanyOrderHistorySingleOrderSingleItemAsSubscriptionItem": {
+      "$ref": "getCompanySingleSubscriptionOrderHistory.json#/getCompanyOrderHistorySingleOrderSingleItemAsSubscriptionItem"
+    },
+    "getCompanySingleEventOrderHistory": {
+      "$ref": "getCompanySingleEventOrderHistory.json#/getSingleEventOrderHistory"
+    },
+    "getCompanyAllEventOrderHistory": {
+      "$ref": "getCompanyAllEventOrderHistory.json#/getAllEventOrderHistory"
+    },
+    "getCompanyOutstandingOrderHistory": {
+      "$ref": "getOutstandingOrderHistory.json#/getCompanyOutstandingOrderHistory"
+    },
+    "makeCompanyPaymentByCreditCard": {
+      "$ref": "makepaymentByCreditCard.json#/makeCompanyPaymentByCreditCard"
+    },
+    "makepaymentByACH": {
+      "$ref": "makepaymentByACH.json#/makeCompanyPaymentByACH"
+    },
+    "makeCompanyPaymentByACHTokenizerForBulkPayments": {
+      "$ref": "makepaymentByACH.json#/makeCompanyPaymentByACHTokenizerForBulkPayments"
+    },
+    "makepaymentBySavedPaymentMethod": {
+      "$ref": "makepaymentBySavedPaymentMethod.json#/makeCompanyPaymentBySavedPaymentMethod"
+    },
+    "makeCompanyPaymentByGPay": {
+      "$ref": "makePaymentByGPay.json#/makeCompanyPaymentByGPay"
+    },
+    "makeCompanyPaymentByApplePay": {
+      "$ref": "makePaymentByApplePay.json#/makeCompanyPaymentByApplePay"
+    },
+    "getValidPayments": {
+      "$ref": "getValidPayments.json#/getValidPayments"
+    },
+    "getRemoteRequestDataForMakePayment": {
+      "$ref": "makepaymentByRemote.json#/getCompanyRemoteRequestDataForMakePayment"
+    },
+    "getRemoteRequestDataForBulkPayments": {
+      "$ref": "makepaymentByRemote.json#/getCompanyRemoteRequestDataForBulkPayments"
+    },
+    "postRemoteRequestDataForMakePayment": {
+      "$ref": "makepaymentByRemote.json#/processCompanyRemotePaymentResponseForMakePayment"
+    },
+    "processRemotePaymentResponseForBulkPayments": {
+      "$ref": "makepaymentByRemote.json#/processCompanyRemotePaymentResponseForBulkPayments"
+    },
+
+    "getSingleSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/getCompanySingleSavedPaymentMethod"
+    },
+    "getAllSavedPaymentMethods": {
+      "$ref": "savedPayments.json#/getAllSavedPaymentMethods"
+    },
+    "getSingleACHSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/getSingleACHSavedPaymentMethod"
+    },
+    "getAllACHSavedPaymentMethods": {
+      "$ref": "savedPayments.json#/getAllACHSavedPaymentMethods"
+    },
+    "getCompanyDirectory": {
+      "$ref": "companyDirectory.json#/getCompanyDirectory"
+    },
+    "addMemberToCompany": {
+      "$ref": "companyDirectory.json#/addMemberToCompany"
+    },
+    "deleteMemberFromCompany": {
+      "$ref": "companyDirectory.json#/removeMemberFromCompany"
+    },
+    "updateMemberFromCompany": {
+      "$ref": "companyDirectory.json#/updateMemberFromCompany"
+    },
+    "updateMemberProfilePhoneFromCompany": {
+      "$ref": "companyDirectory.json#/updateMemberProfilePhoneFromCompany"
+    },
+    "getUpcomingAdminEventsDetails": {
+      "$ref": "events.json#/getUpcomingAdminEventsDetails"
+    },
+    "getPastAdminEventsDetails": {
+      "$ref": "events.json#/getPastAdminEventsDetails"
+    },
+    "getAdminEventRegisteredDetails": {
+      "$ref": "events.json#/getAdminEventRegisteredDetails"
+    },
+    "getAdminEventWaitlistingDetails": {
+      "$ref": "events.json#/getAdminEventWaitlistingDetails"
+    },
+    "getAdminEvenAllDetails": {
+      "$ref": "events.json#/getAdminEventAllRegistrationDetails"
+    },
+    "getAdminBadgeDetails": {
+      "$ref": "events.json#/getAdminBadgeDetails"
+    },
+    "updateAdminBadgeDetails": {
+      "$ref": "events.json#/updateAdminBadgeDetails"
+    },
+    "getSingleAdminEvent": {
+      "$ref": "events.json#/getSingleAdminEvent"
+    },
+    "getSingleAdminSessionEvent": {
+      "$ref": "events.json#/getSingleAdminSessionEvent"
+    },
+    "getSingleAdminEventSpeaker": {
+      "$ref": "events.json#/getSingleAdminEventSpeaker"
+    },
+    "createAdminEventAttendee": {
+      "$ref": "events.json#/createAdminEventAttendee"
+    },
+    "getAdminEventAttendeeSearch": {
+      "$ref": "events.json#/getAdminEventAttendeeSearch"
+    },
+    "sendConfirmationEmailAdmin": {
+      "$ref": "companySendConfirmationEmail.json#/sendConfirmationEmailAdmin"
+    },
+    "getCompanyNonMembers": {
+      "$ref": "membership.json#/getCompanyNonMembers"
+    },
+    "getMembershipProducts": {
+      "$ref": "membership.json#/getMembershipProducts"
+    },
+    "getSingleMemberFromCompanyDirectory": {
+      "$ref": "companyDirectory.json#/getSingleMemberFromCompanyDirectory"
+    },
+    "makeCompanyPaymentByCreditCardForBulkPayments": {
+      "$ref": "makePaymentByCreditCard.json#/makeCompanyPaymentByCreditCardForBulkPayments"
+    }
+  },
+  "entityDefinitions": {
+
+    "companiesOutput": {
+
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "companyName": {
+          "type": "string",
+          "sourceField": "Name"
+        },
+        "memberType": {
+          "type": "string"
+        },
+        "memberStatus": {
+          "type": "long",
+          "sourceField": "Status"
+        },
+        "memberStatusName": {
+          "type": "string",
+          "sourceField": "StatusName"
+        },
+        "startDate": {
+          "type": "date",
+          "sourceField": "JoinDate"
+        },
+        "endDate": {
+          "type": "date",
+          "sourceField": "TerminationDate"
+        },
+        "primaryFunctionId": {
+          "type": "long"
+        },
+        "primaryFunction": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "sourceField": "FormattedPhone"
+        },
+        "MainCountryCode": {
+          "type": "string"
+        },
+        "MainAreaCode": {
+          "type": "string"
+        },
+        "MainFaxCountryCode": {
+          "type": "string"
+        },
+        "MainFaxAreaCode": {
+          "type": "string"
+        },
+        "FaxPhone": {
+          "type": "string",
+          "sourceField": "MainFaxNumber"
+        },
+        "website": {
+          "type": "string"
+        },
+        "MainEmail": {
+          "type": "string",
+          "sourceField": "MainEmail"
+        },
+        "JobsEmail": {
+          "type": "string"
+        },
+        "InfoEmail": {
+          "type": "string"
+        },
+        "billingAddress": {
+          "type": "string"
+        },
+        "BillingAddressLine1": {
+          "type": "string"
+        },
+        "BillingAddressLine2": {
+          "type": "string"
+        },
+        "BillingAddressLine3": {
+          "type": "string"
+        },
+        "BillingAddressLine4": {
+          "type": "string"
+        },
+        "BillingCity": {
+          "type": "string"
+        },
+        "BillingState": {
+          "type": "string"
+        },
+        "BillingCounty": {
+          "type": "string"
+        },
+        "BillingCountry": {
+          "type": "string"
+        },
+        "BillingCountryCodeID": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string",
+          "sourceField": "comments"
+        }
+      }
+    },
+    "companiesInput": {
+      "fields": {
+        "MainEmail": {
+          "type": "string",
+          "sourceField": "MainEmail",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "JobsEmail": {
+          "type": "string",
+          "sourceField": "JobsEmail",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "InfoEmail": {
+          "type": "string",
+          "sourceField": "InfoEmail",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "Website": {
+          "type": "string",
+          "sourceField": "Website",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "DirectoryMemberInput": {
+      "fields": {
+        "memberId": {
+          "type": "long",
+          "description": "The person ID",
+          "sourceField": "id",
+          "input": {
+            "httpMethods": [ "GET", "PATCH" ],
+            "source": "path"
+          }
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The person firstName",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The person lastName",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "The person title",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "primaryEmail": {
+          "type": "string",
+          "description": "The person primaryEmail",
+          "sourceField": "email1",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "DirectoryMemberOutput": {
+      "fields": {
+        "firstName": {
+          "type": "string",
+          "description": "The person firstName"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The person lastName"
+        },
+        "title": {
+          "type": "string",
+          "description": "The person title"
+        },
+        "primaryEmail": {
+          "type": "string",
+          "description": "The person primaryEmail",
+          "sourceField": "email1"
+        }
+      }
+    },
+    "personPhoneInput": {
+      "fields": {
+        "memberId": {
+          "type": "long",
+          "sourceField": "id",
+          "input": {
+            "httpMethods": [ "GET", "PATCH" ],
+            "source": "path"
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "The phone name of person phone used to GET,PATCH and DELETE",
+          "input": {
+            "httpMethods": [ "GET", "PATCH", "DELETE" ],
+            "source": "path"
+          }
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The countryCode of person phone used to GET,PATCH and DELETE",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "areaCode": {
+          "type": "string",
+          "description": "The areaCode of person phone used to GET,PATCH and DELETE",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone of person phone used to GET,PATCH and DELETE",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+
+        "phoneExtension": {
+          "type": "string",
+          "description": "The phoneExtension of person phone used to GET,PATCH and DELETE",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+
+    "personPhoneOutput": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "The id of this phone"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of this phone"
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The country code of this phone"
+        },
+        "areaCode": {
+          "type": "string",
+          "description": "The area code of this phone"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone"
+        },
+        "formattedPhone": {
+          "type": "string",
+          "description": "The formatted value of this phone"
+        },
+        "phoneExtension": {
+          "type": "string",
+          "description": "The extension of this phone"
+        }
+      }
+    },
+
+    "personProfilePhoneOutput": {
+      "$ref": "#/entityDefinitions/personPhoneOutput",
+      "fields": {
+        "isPreferredPhone": {
+          "type": "boolean",
+          "description": "The value indicate if profile phone is preferred phone"
+        }
+      }
+    }
+  }
+
+}

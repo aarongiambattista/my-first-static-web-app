@@ -1,0 +1,2607 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aptify.Services.Framework</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Framework.APIStartup.MetadataRouteConfiguration.AddStaticRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            All of these controllers need to be converted to metadata entries.  When this has been finished we should go into TokenValidationHandler 
+            and remove the part where we create a default StandardTokenValidator when there is no ControllerConfiguration for the current request.  
+            We should NOT be adding new static routes to the application going forward.  
+            </summary>
+            <param name="routes"></param>
+        </member>
+        <member name="T:Aptify.Services.Framework.UnityConfig">
+            <summary>
+            Specifies the Unity configuration for the main container.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.UnityConfig.Container">
+            <summary>
+            Configured Unity Container.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.UnityConfig.RegisterTypes(Unity.IUnityContainer)">
+            <summary>
+            Registers the type mappings with the Unity container.
+            </summary>
+            <param name="container">The unity container to configure.</param>
+            <remarks>
+            There is no need to register concrete types such as controllers or
+            API controllers (unless you want to change the defaults), as Unity
+            allows resolving a concrete type even if it was not previously
+            registered.
+            </remarks>
+        </member>
+        <member name="T:Aptify.Services.Framework.UnityMvcActivator">
+            <summary>
+            Provides the bootstrapping for integrating Unity with ASP.NET MVC.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.UnityMvcActivator.Start">
+            <summary>
+            Integrates Unity when the application starts.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.UnityMvcActivator.Shutdown">
+            <summary>
+            Disposes the Unity container when the application is shut down.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.UnityWebApiActivator">
+            <summary>
+            Provides the bootstrapping for integrating Unity with WebApi when it is hosted in ASP.NET.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.UnityWebApiActivator.Start">
+            <summary>
+            Integrates Unity when the application starts.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.UnityWebApiActivator.Shutdown">
+            <summary>
+            Disposes the Unity container when the application is shut down.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:Aptify.Services.Framework.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,Aptify.Services.Framework.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,Aptify.Services.Framework.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Aptify.Services.Framework.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.#ctor(Aptify.Services.Framework.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,Aptify.Services.Framework.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:Aptify.Services.Framework.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aptify.Services.Framework.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator">
+            <summary>
+            Simulate the action selection and record the decision making process.
+            
+            This class is basically a copy of default IHttpActionSelector implementation (DefaultActionSelector) private members,
+            and methods where we have included logging.
+            The private members of the DefaultActionSelector are copied here, so we can access them.
+            
+            Some help internal help classes are also copied to assist the process,
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.Simulate(System.Web.Http.Controllers.HttpControllerContext)">
+            <summary>
+            Simulating the action selecting process. It mimics the ASP.NET Web API internal logic
+            </summary>
+            <param name="controllerContext">The controller context.</param>
+            <returns>A structure contains the log of selecting process</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.FindActionsForVerb(System.Net.Http.HttpMethod)">
+            <summary>
+            This is a copy of the private ApiControllerActionSelector.FindActionsForVerb. It doesn't use the cache
+            but copies the contents of the FindActionsForVerbWorker method.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.FindActionUsingRouteAndQueryParameters(System.Web.Http.Controllers.HttpControllerContext,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.ReflectedHttpActionDescriptor},System.Boolean)">
+            <summary>
+            This is an exact copy from ApiControllerActionSelector.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.IsValidActionMethod(System.Reflection.MethodInfo)">
+            <summary>
+            This is an exact copy from ApiControllerActionSelector.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.IsSubset(System.String[],System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            This is an exact copy from ApiControllerActionSelector.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.ActionSelectSimulator.RunSelectionFilters(System.Web.Http.Controllers.HttpControllerContext,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.HttpActionDescriptor})">
+            <summary>
+            Replace the private method from ApiControllerActionSelector.
+            
+            The IActionMethodSelector interface used in the method is internal so we must make a copy. 
+            CacheAttrsIActionMethodSelector is also internal.
+            The default implementation of IActionMethodSelector finds methods marked with the NonActionAttribute, so the
+            code below is converted to directly filter out methods with that attribute.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Components.DictionaryExtensions">
+            <summary>
+            An exact copy of the TryGetValue method from  DictionaryExtensions.cs.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.DictionaryExtensions.TryGetValue``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,``0@)">
+            <summary>
+            Gets the value of <typeparamref name="T"/> associated with the specified key or <c>default</c> value if
+            either the key is not present or the value is not of type <typeparamref name="T"/>. 
+            </summary>
+            <typeparam name="T">The type of the value associated with the specified key.</typeparam>
+            <param name="dictionary">The <see cref="T:System.Collections.Generic.IDictionary`2"/> instance where <c>TValue</c> is <c>object</c>.</param>
+            <param name="key">The key whose value to get.</param>
+            <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.</param>
+            <returns><c>true</c> if key was found, value is non-null, and value is of type <typeparamref name="T"/>; otherwise false.</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Components.HttpParameterBindingExtensions">
+            <summary>
+            A copy of HttpParameterBindingExtensions.cs with one change. HttpParameterBindingExtensions.WillReadUri calls the internal
+            interface IUriValueProvderFactory, so that code is also in this method.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Components.TypeHelper">
+            <summary>
+            A static class that provides various <see cref="T:System.Type"/> related helpers.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Components.TypeHelper.OfType``1(System.Object[])">
+            <summary>
+            Fast implementation to get the subset of a given type.
+            </summary>
+            <typeparam name="T">type to search for</typeparam>
+            <returns>subset of objects that can be assigned to T</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.InspectActionInvoker">
+            <summary>
+            Hijacks the original invoker. It examines the header before 
+            executing the action. If the inspect header exists, returns the inspection data in a 200 response.
+            If the inspection header does not exist, the delegate calls the default InvokeActionAsync method.
+            
+            The inspection data saved in the request property are collected when the request is passed
+            along the stack.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.InspectActionSelector">
+             <summary>
+             This class replaces ApiControllerActionSelector (it's hooked up in RouteDebuggerConfig.cs). 
+             It uses  _innerSelector to call into ApiControllerActionSelector methods and it calls ActionSelectSimulator methods.
+             Private members of ApiControllerActionSelector cannot be called with a delegate, so a copy of the private members of
+             ApiControllerActionSelector are contained in the class ActionSelectSimulator.
+            
+             See http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-and-action-selection for more info.   
+             
+              The SelectAction method examines the request header. If an inspection header is found, it runs the 
+              action selection simulator, saves the inspection data in the request property, then uses the delegate
+              to run the ApiControllerActionSelector.SelectAction method.
+             </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.InspectControllerSelector">
+            <summary>
+            This class replaces the DefaultHttpControllerSelector (see RouteDebuggerConfig.cs).  
+            It uses _innerSelector to call into DefaultHttpControllerSelector methods.
+            See http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-and-action-selection for more info.
+            
+            The SelectController method examines the request header. If an inspection header is found:
+                1. Saves all candidate controllers in inspection data.
+                2. Marks the selected controller.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.InspectHandler">
+            <summary>
+            Inspect handler saves route inspect data and handler error.
+            
+            If a request has inspect header, the handler will save all routes and route data to inspect data.
+            
+            If the return response is not 200. That may cause by 500 or 404, handler extract Inspect data from
+            request property and set back the the response. The original response status is saved to the inspect 
+            data and actual return response is always 200.
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo">
+            <summary>
+            Representing one action selection
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo.FoundByActionName">
+            <summary>
+            Is this action selected based on its action name?
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo.FoundByActionNameWithRightVerb">
+            <summary>
+            Is this action selected based on its action name and its supported http verb?
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo.FoundByVerb">
+            <summary>
+            Is this action selected based on its supported http verb?
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo.FoundWithRightParam">
+            <summary>
+            Do this action's parameters match the ones in query string?
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo.FoundWithSelectorsRun">
+            <summary>
+            Is this action finally selected by selection attribute?
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionLog">
+            <summary>
+            Logs information collected when ActionSelectSimulator.Simulate is called. 
+            ActionSelectSimulator.Simulate replaces DefaultActionSelector.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionLog.MarkSelected(System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.HttpActionDescriptor},System.Action{Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo})">
+            <summary>
+            Looks for related ActionSelectionInfo instances based on given action
+            descriptors. Invoke given marking functor on each of them.
+            
+            This method is used in action simulator when a selection decision is 
+            made in every stage, the selected action will be passed in along with
+            a marking functor. The marking functor usually set a particular boolean
+            property on related ActionSelectionInfo instance to mark that this action
+            is selected in particular stage.
+            </summary>
+            <param name="actions">The actions to be marked.</param>
+            <param name="marking">The functor picking the bool property of an action to be set to true.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionLog.MarkOthersSelected(System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.HttpActionDescriptor},System.Action{Aptify.Services.Framework.Areas.RouteDebugger.Models.ActionSelectionInfo})">
+            <summary>
+            Counterpart of function MarkSelected, instead of marking selected action
+            this method mark unselected action.
+            </summary>
+            <param name="actions">the actions NOT to be marked</param>
+            <param name="marking">the functor picking the bool property of an action to be set to true.</param>
+        </member>
+        <member name="T:Aptify.Services.Framework.Areas.RouteDebugger.Models.HttpParameterDescriptorInfo">
+            <summary>
+            Represents the parameters.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.RequestHelper.IsInspectRequest(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Returns true if this request is a inspect request. 
+            
+            For sake of security only inspect request from local will be accepted.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Areas.RouteDebugger.RequestHelper.IsFromLocal(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Returns true if this request is from local
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.AddressValidationController.validateAddress(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Unless an unexpected error occurs, this service will always return a successful HTTP status code.  The returned json structure
+            will have the details on the validation results.  All parameters are query parameters.  
+            </summary>
+            <param name="RecordID">The ID of the record.</param>
+            <param name="Line1">The Address line number 1 of the record to validate.</param>
+            <param name="Line2">The Address line number 2 of the record to validate.</param>
+            <param name="Line3">The Address line number 3 of the record to validate.</param>
+            <param name="Line4">The Address line number 4 of the record to validate.</param>
+            <param name="City">The name of City of the record to validate.</param>
+            <param name="County">The name of County of the record to validate.</param>
+            <param name="StateProvince">The name of StateProvince of the record to validate.</param>
+            <param name="PostalCode">Postal code of the record to validate.</param>
+            <param name="CountryCodeID">The Country Code ID of the record to validate.</param>
+            <returns>It's return response object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.AddressValidationController.validateOrderAddress(System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Unless an unexpected error occurs, this service will always return a successful HTTP status code. The returned json structure
+            will have the details on the validation results.  All parameters are query parameters.  
+            </summary>
+            <param name="field_BillToID">BillToID of the Order</param>
+            <param name="field_BillToCompanyID">BillToCompanyID of the Order</param>
+            <param name="field_ShipToID">ShipToID of the Order</param>
+            <param name="field_ShipToCompanyID">ShipToCompanyID of the Order</param>
+            <returns>It's return response object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.AttachmentUploadController.uploadFile">
+            <summary>
+            This services is used to uploads one or more files.The files are specified in the Request.
+            </summary>
+            <returns>JSON structure indicating success or failure (via http status code) for each guid.  
+            This service will always return a successful HTTP status code even if all file uploads fail 
+            (provided the request is well-formed).
+            </returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.SavedPaymentsController.getSavedPayments(System.Int64,System.Int64)">
+             <summary>
+             Unless an unexpected error occurs, this service will always return a successful HTTP status code.  The returned json structure
+             will have the details on the validation results.  All parameters are query parameters.  
+             </summary>
+            <param name="BillToID"></param>
+            <param name="BillTOCompanyID"></param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.EntityBatchCreateUpdateController.ProcessPostRequest(System.String)">
+            <summary>
+            This endpoint is for batching multiple create update and delete entity requests into a single transaction.  The resource in this scenario is the batch request itself, since we need
+            to safeguard against batches being replayed inadvertently.  Each batch is identified by a GUID, which is the resource identifier.  Batches can only be created, never deleted.  If a 
+            batch is resubmitted this service will respond with a 409 response code indicating a conflict.  
+            </summary>
+            <param name="sBatchGuid">The batch GUID to create.</param>
+            <returns>
+            Typically this service will always return a 200 response code, unless the batch is being replayed.  A 200 response code indicates that the batch was successfully created.  It does not
+            mean that the batch was successfully applied.  Callers must look at the JSON response to determine which portions of the batch were successful.
+            </returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ExcelWorksheetController.CreateExcelWorksheet">
+            <summary>
+            This method is used to create excel worksheet.It reads all the required properties and also export the data to excel.  
+            </summary>
+            <returns>This return's response object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ExtenderMethodController.invokeMethod(System.String,System.String)">
+            <summary>
+            Invokes a method on an instance of a class.
+            </summary>
+            <param name="sClassName">The fully qualified name of the class.</param>
+            <param name="sMethodName">The method to invoke.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.FormTemplatePartDynamicDataController.GetData(System.Int64,System.String)">
+            <summary>
+            This method is used to get the Form template Part dynamic data using fom template part ID and Input property as parameters.  
+            </summary>
+            <param name="lftpId">It's fom template part ID.</param>
+            <param name="sInputProperty">The form template part input property.</param>
+            <returns>This return's response object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.FormTemplatePartDynamicDataController.GetDynamicInputProperty(System.Int64,System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            This method is used to get dynamic input property.  
+            </summary>
+            <param name="ftpId">Form template part ID.</param>
+            <param name="inputProperty">The form template part input property.</param>
+            <param name="fieldValues">The name value collection.</param>
+            <returns>This return's Data Table.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.GetRecordFromTemplateController.Get(System.String,System.Int64)">
+            <summary>
+            Returns the JSON representation for the record specified.  Returns 404 if the record cannot be found.  
+            </summary>
+            <param name="sEntityIdentifier">The entity name or entity id.</param>
+            <param name="lTemplateID">The record id for the record being requested.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.EntityHierarchyDataController.Get(System.String,System.Int64)">
+            <summary>
+            This method is used to retrieves the entity hierarchy data using EntityName and record ID as parameters.  
+            </summary>
+            <param name="sEntityName">The Name of the Entity.</param>
+            /// <param name="lRecordId">The IDs of the requested records.</param>
+            <returns>This return's response object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.FileDownloadController.Get(System.String,System.Int64,System.String)">
+            <summary>
+            Downloads data for a specific entity record as an attachment. The file name to download
+            the attachment as can be specified in the FileName query parameter.
+            </summary>
+            <param name="sEntityName">The entity type</param>
+            <param name="lRecordId">The specific entity record id</param>
+            <param name="sType">The type of data requested</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LocalizationController.Get(System.String,System.String,System.Int64)">
+            <summary>
+            This method is used to returns the specific culture string being requested. All parameters are query string parameters to avoid issues with special characters in the URI.
+            </summary>
+            <param name="cultureStringName">The Name of a Culture String record in Aptify. If baseString is provided, this parameter is optional.</param>
+            <param name="baseString">The BaseString of a Culture String record in Aptify. If cultureStringName is provided, this parameter is optional.</param>
+            <param name="cultureId">Optional when cultureStringName is provided. If not provided, defaults to the Culture ID associated with the current User.</param>
+            <returns>It's return response object with result.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.OrderValidationController.GetOrderInformation(Aptify.Services.Framework.General.AptifyGenericHelper.OrderData)">
+            <summary>
+            Given Order and OrderLine information, returns a JSON object with price and inventory information.
+            </summary>
+            <param name="oOrderData">
+            An object consisting of an orderGE, orderLine (0-based index), and orderID.
+            Only one of orderGE and orderID needs to be provided. If both are provided, the ID of the orderGE will be used.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ProductPriceController.GetPriceInformation(Aptify.Services.Framework.General.AptifyGenericHelper.OrderData)">
+            <summary>
+            Given Order and OrderLine information, returns a JSON object with price and inventory information.
+            </summary>
+            <param name="oPriceData">
+            An object consisting of an orderGE, orderLine (0-based index), and orderID.
+            Only one of orderGE and orderID needs to be provided. If both are provided, the ID of the orderGE will be used.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.RecordNameController.getRecordName(Aptify.Services.Framework.Controllers.RecordNameController.EntityNameRecordList)">
+            <summary>
+            Given a list of Entity / RecordID pairs, returns a list of that list with the addition of RecordNames.
+            </summary>
+            <param name="list">A list of Entity (name) / RecordID pairs.</param>
+            <returns>A list of Entity (name) / RecordID / RecordName triplets.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.RecordNameController.getRecordID(System.String,System.String)">
+            <summary>
+            Given an Entity Name and a Record Name, returns the Entity Name, Record Name, and Record ID. 
+            If an error occurs while determining the record ID, the error message is returned as the record ID, 
+            so do not automatically assume the record ID is an integer.
+            </summary>
+            <param name="sEntityName">The Name of an Entity.</param>
+            <param name="RecordName">The Name (contents of the field marked IsNameField) of a record of that Entity.</param>
+            <returns>The Entity Name, Record Name, and Record ID. 
+            Record ID may contain an error message instead of an integer.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.RecordNameController.getRecordName(System.String,System.Int64)">
+            <summary>
+            Given an Entity Name and a Record ID, returns the Entity Name, Record ID, and Record Name. 
+            The Name will be the contents of whatever field on the Entity is marked IsNameField.
+            </summary>
+            <param name="sEntityName">The Name of an Entity.</param>
+            <param name="RecordID">The ID of a record of that Entity.</param>
+            <returns>
+            The Entity Name, Record ID, and Record Name. 
+            The Name will be the contents of whatever field on the Entity is marked IsNameField.
+            </returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Controllers.RelevancyController">
+            <summary>
+            Controller for Relevancy Engine service.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.RelevancyController.GetStatus">
+            <summary>
+            Returns a message if the service is active.
+            </summary>
+            <returns>A message.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.RelevancyController.GetRelationship(System.String)">
+            <summary>
+            Passes relevancy requests down into the framework layer where they're processed.
+            </summary>
+            <param name="devMode">
+            Has the value "dev" if the framework layer should run in dev mode.
+            Dev mode may be slower, but will return error messages with
+            much more information. It should be used during development and then turned off.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.SpaceLinksController.getLinkLookup(System.String)">
+            <summary>
+            THIS ENDPOINT HAS BEEN DEPRECATED AND MAY BE REMOVED IN A FUTURE RELEASE. It relies on deprecated entities and should not be used. 
+            All valid link text should be parseable client-side by Aptify.framework.utility.parser.parseSoftLinks().
+            
+            Given space link text, returns a JSON snippet with the entity and recordId of the record being linked to.
+            </summary>
+            <param name="sLinkText">The Name of a Space Link or the text of a soft link.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Controllers.UrlMetadataController">
+            <summary>
+            Retrieves opengraph and other metadata information about an external web page.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.UrlMetadataController.Get">
+            <summary>
+            Retrieves the metadata for the external page.  Required query parameters are:
+            
+                ContentUrl - the URL to the external content
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.EntityDependenciesController.Get(System.String,System.String,System.String)">
+             <summary>
+            This method is used to retrieves the entity dependencies Count using EntityName and record list and function as parameters. 
+             </summary>
+             <param name="sEntityName">The Name of the Entity.</param>
+             <param name="sRecordIDList">The IDs of the requested records. Can be a single record ID or a comma delimited list.</param>
+             <param name="Function">Optional query parameter that describes the type of function that should be applied to the results. Supported functions are count and dependency (defaults to dependency). For count, you will receive the count of the number of dependencies for each record.</param>
+             <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.WizardController.executeWizard(System.Int64,Aptify.Services.Framework.Utilities.Wizards.WizardProcessorInput)">
+            <summary>
+            Executes part of a wizard based on the wizard input given.  HTTP error codes will be returned if there is a problem with the input.  Otherwise
+            a successful result will be returned with a json structure that gives further detail as to what happend with wizard execution. 
+            </summary>
+            <param name="lWizardId">ID of the Wizard</param>
+            <param name="wizardInput">A WizardProcessorInput object</param>
+            <returns></returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Controllers.LegacyGetRecordController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LegacyGetRecordController.Get(System.String,System.String)">
+            <summary>
+            This method is used to Get the Given Entity data including subtype information.
+            </summary>
+            <param name="name">Aptify Entity Name</param>
+            <param name="extrainfo">URL containing nested subtype information</param>
+            <returns>It's return Entity data.</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Controllers.LegacyCreateUpdateDeleteRecordController">
+            <summary>
+            Perform Add, Update and Delete operation on the given entity
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LegacyCreateUpdateDeleteRecordController.AddData(Aptify.Services.Framework.BasicCreateReadUpdateDelete.GenericEntity,System.Int32)">
+            <summary>
+            Creates a new record to the specified Entity with the given data. 
+            </summary>
+            <param name="entity">Generic Entity Object as structured data, containing Entity Name and data as GenericEntityData collection in key value format. </param>
+            <param name="id">Option value need to pass any integer value, this value is not related to the data</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LegacyCreateUpdateDeleteRecordController.UpdateData(Aptify.Services.Framework.BasicCreateReadUpdateDelete.GenericEntity,System.Int32)">
+            <summary>
+            Updates a record with the given Generic Entity data.
+            </summary>
+            <param name="entity"> GenericEntity as data which contain Entity Name and data as GenericEntityData  collection in key value format. </param>
+            <param name="id">Option value need to pass any integer value, this value is not related to the data</param>
+            <returns>True or False (True indicates Update Data or Flase indicates Failed to Update Data.)</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LegacyCreateUpdateDeleteRecordController.DeleteData(Aptify.Services.Framework.BasicCreateReadUpdateDelete.GenericEntity,System.Int32)">
+            <summary>
+            This method will Delete the entity record from  the the given GenericEntity, Only need to Pass the Entity ID, Name and Token ID.
+            </summary>
+            <param name="entity">GenericEntity as data which contain Entity Name and data as GenericEntityData collection in key value format. </param>
+            <param name="id">Option value need to pass any integer value, this value is not related to the data</param>
+            <returns>True or False (True indicates Delete Data or False indicates Failed to Delete Data.)</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.LegacyCreateUpdateDeleteRecordController.SaveData(Newtonsoft.Json.Linq.JToken,System.Int32)">
+            <summary>
+            <para>
+            This method will save/update data for given entity record. For creating new record for the entity need to pass the ID as -1 along with the required field value.
+            To Update record provide actaul record ID along with the required field value, The given Json data to the Aptify entity along with respective sub type data.        
+            </para>
+            </summary>
+            <param name="data">Json data to be save along with Entity Name and ID, if have Sub type then its should be under SubType Tag along with Name as root.</param>
+            <param name="id">Option value need to pass any integer value, this value is not related to the data</param>
+            <returns>Json Data of the newly created/updated entity in deep loading format.</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Controllers.ItemRatingsServiceController">
+            <summary>
+            This API used to Including rating features in Entities
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ItemRatingsServiceController.GetItemRating(Aptify.Services.Framework.Models.ItemRatingInput,System.Int32)">
+            <summary>
+            This web method with get the item rating information.
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <param name="id">option value need to pass ay inter value, this value is not related to the data</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ItemRatingsServiceController.SubmitItemRating(Aptify.Services.Framework.Models.ItemRatingInput,System.Int32)">
+            <summary>
+            This web method will save the item rating information.
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <param name="id">option value need to pass ay inter value, this value is not related to the data</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ItemRatingsServiceController.RemoveItemRating(Aptify.Services.Framework.Models.ItemRatingInput,System.Int32)">
+            <summary>
+            This Web method will remove the item rating information.
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <param name="id"> option value need to pass ay inter value, this value is not related to the data</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Controllers.ItemRatingsServiceController.SubmitItemRatingReview(Aptify.Services.Framework.Models.ItemRatingAndReviewInput,System.Int32)">
+            <summary>
+            This web method will save the item rating and review information.
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <param name="id">option value need to pass ay inter value, this value is not related to the data</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Extensions.HttpRequestMessageExtensions">
+            <summary>
+            Extends the HttpRequestMessage collection
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Extensions.HttpRequestMessageExtensions.GetQueryStrings(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Returns a dictionary of QueryStrings that's easier to work with 
+            than GetQueryNameValuePairs KevValuePairs collection.
+            
+            If you need to pull a few single values use GetQueryString instead.
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Extensions.HttpRequestMessageExtensions.GetQueryString(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+            Returns an individual querystring value
+            </summary>
+            <param name="request"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Extensions.HttpRequestMessageExtensions.GetHeader(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+            Returns an individual HTTP Header value
+            </summary>
+            <param name="request"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Extensions.HttpRequestMessageExtensions.GetCookie(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+            Retrieves an individual cookie from the cookies collection
+            </summary>
+            <param name="request"></param>
+            <param name="cookieName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Extensions.ObjectExtensions.ToJSON(System.Object)">
+            <summary>
+            It's returns a JSON-compatible string value using JSON.NET's JsonConvert class.
+            </summary>
+            <param name="obj">Object</param>
+            <returns>It's returns Json string.</returns>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.ClearCache.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.ClearCache.lblResponseStatus">
+            <summary>
+            lblResponseStatus control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.ClearCache.lstViewCache">
+            <summary>
+            lstViewCache control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.ClearCache.btnClearSelectedCaches">
+            <summary>
+            btnClearSelectedCaches control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.AptifyRefreshCache.ObjectRefreshLog(System.String)">
+            <summary>
+            Write the instance refreshed message to the page for the given class name.
+            </summary>
+            <param name="className"></param>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.AptifyRefreshCache.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.AptifyRefreshCache.Button2">
+            <summary>
+            Button2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.AptifyRefreshCache.TxtResult">
+            <summary>
+            TxtResult control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.CrystalReportView.Page_Unload(System.Object,System.EventArgs)">
+            <summary>
+            Here we are disposing CrystalReportViewer object.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.CrystalReportView.Head1">
+            <summary>
+            Head1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.CrystalReportView.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.CrystalReportView.ScriptManager1">
+            <summary>
+            ScriptManager1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.CrystalReportView.VnextWebAccessReport">
+            <summary>
+            VnextWebAccessReport control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.DSNManager.RemoveDSN(System.String,System.String)">
+            <summary>
+            Removes a DSN entry
+            </summary>
+            <param name="dsnName">Name of the DSN to remove.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.DSNManager.DSNExists(System.String)">
+            <summary>
+             Checks the registry to see if a DSN exists with the specified name
+            </summary>
+            <param name="dsnName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.forms.SSRSReportViewer">
+            <summary>
+            Created Class for SSRS Report Viewer
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.SSRSReportViewer.SetQueryStringParameters">
+            <summary>
+            Get all the parameters from the query string
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.SSRSReportViewer.GetReportPath">
+            <summary>
+            Get the SSRS Report name with Server path
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.SSRSReportViewer.Page_Unload(System.Object,System.EventArgs)">
+            <summary>
+            Here we are disposing SSRReportViewer object.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Aptify.Services.Framework.forms.SSRSReportViewer.rptSSRReportViewer_Unload(System.Object,System.EventArgs)">
+            <summary>
+            Here we are disposing oReportPreview object.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.SSRSReportViewer.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.SSRSReportViewer.ScriptManager1">
+            <summary>
+            ScriptManager1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.forms.SSRSReportViewer.rptSSRReportViewer">
+            <summary>
+            rptSSRReportViewer control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.ApplicationContext(Aptify.Framework.DataServices.UserCredentials)">
+            <summary>
+            Get the AptifyApplication object from the given <see cref="T:Aptify.Framework.DataServices.UserCredentials"/> object.
+            </summary>
+            <param name="uc"><see cref="T:Aptify.Framework.DataServices.UserCredentials"/> object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.GetInlineJson(System.String)">
+            <summary>
+            This method will return the inlinecount into the json format
+            </summary>
+            <param name="json">Pass the json</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.UserContext">
+            <summary>
+            Get the <see cref="T:Aptify.Framework.DataServices.UserCredentials"/> object by reading the <see cref="!:Web.config"/> file
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.DataActionContext(Aptify.Framework.DataServices.UserCredentials)">
+            <summary>
+            Get the <see cref="T:Aptify.Framework.DataServices.DataAction"/> object from the given <see cref="T:Aptify.Framework.DataServices.UserCredentials"/> object.
+            </summary>
+            <param name="uc"><see cref="T:Aptify.Framework.DataServices.UserCredentials"/> object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.GetArgFromRequest(System.Web.HttpRequest,System.String,System.String)">
+            <summary>
+            Get the type arg values if have any in the given URL, the value can be identified by the ? only after the type name
+            and will be in PromptData= [Views value in |{Pipe separated format} ]
+            </summary>
+            <param name="request"></param>
+            <param name="serviceName"></param>
+            <param name="argumentName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.GetNameFromRequest(System.Web.HttpRequest,System.String)">
+            <summary>
+            Get the Database Object name from the service request Uri
+            </summary>
+            <param name="request"></param>
+            <param name="serviceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.Helper.MarkUpData(System.String)">
+            <summary>
+            Markup the given data, remove un wanted constant from the data i.e. \n, \r, etc..
+            </summary>
+            <param name="data">data to be markup</param>
+            <returns>return data as string</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.General.CustomODataParser">
+            <summary>
+            Class used to Parse Odata syntax from the current URL and set the respective Properties according to it.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.CustomODataParser.Filter">
+            <summary>
+            Get the OData $Filter values if have any
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.CustomODataParser.OrderBy">
+            <summary>
+            Get the OData $OrderBy values if have any
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.CustomODataParser.Top">
+            <summary>
+            Get the OData $Top values if have any
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.CustomODataParser.Skip">
+            <summary>
+            Get the OData $Skip values if have any
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.CustomODataParser.Select">
+            <summary>
+            Get the OData $Select values if have any
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.CustomODataParser.#ctor">
+            <summary>
+            Default Constructor, it will parse the URL and set the Properties according to it
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.CustomODataParser.ParseFilter(System.String)">
+            <summary>
+            Parse the $filter value and return the data
+            </summary>
+            <param name="filter">Odata $filter</param>
+            <returns>return proper text of the $filter values</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.General.HttpHandlerBase">
+            <summary>
+            Base Aptify HTTP Handler Class which provides an implementation for files and returning them via HTTP to the browser. This class implements the IHTTPHandler
+            interface and is designed to be sub-classed for each object type such as repository objects, attachments, etc. In turn, those classes are designed to be sub-classes
+            from pages that are included in a site.
+            In addition, sub-classes can be created for various file types and these sub-classes for different file types
+            can be created from this class to address specific required handler methods.
+            This class and its sub-classes are designed to be called from classes
+            that implement the <see cref="T:System.Web.IHttpHandler">System.Web.IHttpHandler</see> class. From IHttpHandler,
+            call one of the <see cref="M:Aptify.Services.Framework.General.HttpHandlerBase.ProcessFileRequest(System.Web.HttpContext,System.String)">ProcessFileRequest</see> method to handle the processing work.
+            In addition, this class uses optional "pre-processors" to handle file changes or file conversions
+            before each file type is used. For ICON files, a pre-processor is built in
+            that automatically converts ICON files into PNG files that will work properly on
+            all internet browsers. Sub-Classes can extend/override the base functionality specified here.
+            Note: The base class sets the ASP.NET Caching policy to cache the content of each request for a period of 99,999 seconds since
+            these are static items.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.HttpHandlerBase.UserCredentials">
+            <summary>
+            If calling the ProcessRequest method from the IHttpHandler interface, this
+            UserCredentials property must be set BEFORE the ProcessRequest method is called
+            </summary>
+            <value></value>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType">
+            <summary>
+            List of file types that are supported by the Handler Pre-Processing
+            within the ProcessFileRequest() method
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.Unknown">
+            <summary>
+            All file types other than those specified are considered unknown and no pre-processing
+            takes place.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImageGIF">
+            <summary>
+            GIF Image Files (Graphic Interchange Format, MIME: image/gif). PreProcessGIF() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImageBMP">
+            <summary>
+            BMP Image Files (Bitmap, MIME: image/bmp). PreProcessBMP() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImageJPEG">
+            <summary>
+            JPEG Image Files (Joint Picture Experts Group, MIME: image/jpeg). PreProcessJPG() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImagePNG">
+            <summary>
+            PNG Image Files (W3C Portable Network Graphics, MIME: image/png). PreProcessPNG() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImageICON">
+            <summary>
+            Windows Icon Image Files( MIME: image/icon). PreProcessICO() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.TextPlain">
+            <summary>
+            Plain Text Files (MIME: text/plain). PreProcessTXT() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.TextHTML">
+            <summary>
+            HTML Text Files (MIME: text/html). PreProcessHTM() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.TextXML">
+            <summary>
+            XML Text Files (MIME: text/xml). PreProcessXML() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.MSWord">
+            <summary>
+            Microsoft Word Files. PreProcessDOC() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.MSExcel">
+            <summary>
+            Microsoft Excel Files. PreProcessXLS() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.AdobePDF">
+            <summary>
+            Adobe Acrobat Files. PreProcessPDF() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType.ImageTIFF">
+            <summary>
+            Tag Image File Format. PreProcessTIF() is called before file is sent.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:Aptify.Services.Framework.General.HttpHandlerBase.ImagesFolder">
+            <summary>
+            Folder used to stored processed images
+            </summary>
+            <value></value>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessGIF(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            
+            <param name="LocalFile"></param>
+            <param name="NewFileType">If the file was converted, gives the new file type.</param>
+            <param name="ImageWidth">Defaults to 0.</param>
+            <param name="ImageHeight">Defaults to 0.</param>
+            <param name="RetainFormat">Defaults to false.</param>
+            
+            <returns>The new file name.</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessBMP(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessJPG(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessPNG(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessICO(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted. NewFileType in the base implementation of this method
+            will be ImagePNG since Icons are converted to PNG files before they are sent across.
+            The temporary file is saved to the System.Windows.Forms.Application.LocalUserAppDataPath
+            directory with the same file name as LocalFile, with .PNG added to it. Also, if the loca
+            temp file already exists with the specified name, it is not deleted, instead, that file
+            name is simply returned.
+            
+            NOTE: Set Retain Format to override the above logic and retrieve the file in native ICO format
+            </summary>
+            <param name="LocalFile"></param>
+            <param name="RetainFormat">If set to TRUE, native icon format is returned, otherwise PNG format is returned as stated in member description</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.ProcessImageSize(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            This method will process the given image file and create a new file that is
+            sized based on the ImageWidth and ImageHeight parameters. This method ignores
+            ImageWidth and/or ImageHeight if they are set to zero. Additionally, this method
+            only processes the image sizing if the Image in its standard form is NOT the same
+            size as the requested image. Image formats are saved with the same file name
+            as the ImageFile path/file parameter, but with a prefix of WIDTH_HEIGHT. For example,
+            if the ImageFile property was "DemoIcon.gif" and the Width and height were 16 each, the
+            output file would be 16_16_DemoIcon.gif and it would be placed in the same directory
+            as the ImageFile path location. If the file already exists that matches the file name
+            specified then it is simply returned rather than recreated.
+            </summary>
+            <param name="ImageFile"></param>
+            <param name="ImageWidth"></param>
+            <param name="ImageHeight"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessTXT(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessHTM(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessXML(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessDOC(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessXLS(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessPDF(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessTIF(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Takes in a file for the source file and returns a new file name, if necessary as the 
+            return parameter as well as the OUT Parameter, NewFileType to specify a new file type
+            if the file was converted.
+            </summary>
+            <param name="LocalFile"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.MapFileTypeToMIMEType(Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType)">
+            <summary>
+            This method returns the MIME Content Type associated with each HandlerFileType.
+            </summary>
+            <param name="FileType"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.MapFileExtensionToType(System.String)">
+            <summary>
+            This method will return the handler file type associated with the specified file extension
+            </summary>
+            <param name="FileExtension"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.ProcessFileRequest(System.Web.HttpContext,System.String)">
+            <summary>
+            This utility method can be used to process a file to be sent back out via the HttpContext provided.
+            The method utilizes the context.Response object and the WriteFile method
+            contained therein to handle this process. In addition, based on the file type(extension),
+            the appropriate MIME file type encoding is placed in the HTTP response.
+            Also, based on the File Type, an overridable PreProcess method will be called. <see cref="T:Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType">See the HandlerFileType</see> enum
+            below for MIME encoding and PreProcess method names for each file extension
+            type specified.
+            </summary>
+            <param name="context"></param>
+            <param name="LocalFilePath"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.ProcessFileRequest(System.Web.HttpContext,System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            This utility method can be used to process a file to be sent back out via the HttpContext provided.
+            The method utilizes the context.Response object and the WriteFile method
+            contained therein to handle this process. In addition, based on the file type(extension),
+            the appropriate MIME file type encoding is placed in the HTTP response.
+            Also, based on the File Type, an overridable PreProcess method will be called. See the table
+            below for MIME encoding and PreProcess method names for each file extension
+            type specified.
+            </summary>
+            <param name="context"></param>
+            <param name="LocalFilePath"></param>
+            <param name="FileType">IN/OUT: This parameter specifies the file type of the file, and the outbound value will contain the file type actually sent in those cases where a file format change occured</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.GetPathAndMimeTypeForFile(System.Web.HttpContext,System.String,System.Int32,System.Int32,System.Boolean,System.String@,System.String@)">
+            <summary>
+            Helper method to get the file path and mime type of the resource requested.  This allows the caller to be responsible for how content is delivered to the client.
+            </summary>
+            <param name="context"></param>
+            <param name="LocalFilePath"></param>
+            <param name="ImageWidth"></param>
+            <param name="ImageHeight"></param>
+            <param name="RetainFormat"></param>
+            <param name="OutputFilePath">The path to the resource requested</param>
+            <param name="OutputFileMimeType">The mime type of the resource requested</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.ProcessFileRequest(System.Web.HttpContext,System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            This utility method can be used to process a file to be sent back out via the HttpContext provided.
+            The method utilizes the context.Response object and the WriteFile method
+            contained therein to handle this process. In addition, based on the file type(extension),
+            the appropriate MIME file type encoding is placed in the HTTP response.
+            Also, based on the File Type, an overridable PreProcess method will be called. See the table
+            below for MIME encoding and PreProcess method names for each file extension
+            type specified.
+            </summary>
+            <param name="context"></param>
+            <param name="LocalFilePath"></param>
+            <param name="RetainFormat">IN: This parameter is used to signify if the original file format for the file type will be retained. If set to False, the logic will sometimes map files to a standard file format, for example ICO files are automatically converted to PNG, unless this paramater is set to TRUE</param>
+            <param name="FileType">IN/OUT: This parameter specifies the file type of the file, and the outbound value will contain the file type actually sent in those cases where a file format change occured</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.HttpHandlerBase.PreProcessFile(System.String,Aptify.Services.Framework.General.HttpHandlerBase.HandlerFileType@,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            This method will handle pre-processing of the file specified by calling
+            the associated PreProcessAAA() method based on the File Type, where AAA
+            is the abbreviated 3 letter file type as specified in the HandlerFileType
+            enumeration.
+            </summary>
+            <param name="LocalFilePath"></param>
+            <param name="FileType"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:Aptify.Services.Framework.General.RepositoryHandler">
+            <summary>
+            This class is derived from the HttpHandlerBase class and implements functionality
+            for retrieving Aptify Object Repository objects.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRequest(Aptify.Services.Framework.General.Respository)">
+            <summary>
+            This is the base implementation of ProcessRequest() for the IHttpHandler interface. 
+            The method assumes that one of two GET URL parameters will exist on the request, 
+            either ObjectID or ObjectName. If both are provided, ObjectID takes precedence. 
+            </summary>
+            
+            <param name="dataContext"></param>
+            
+            <remarks>
+            If a method other than URL based GET parameters is being used to identify the resource, 
+            do not call this method, instead call the ProcessRepositoryRequest() or ProcessFileRequest() 
+            methods in this class.
+            
+            This class takes in optional GET parameters ImageWidth and ImageHeight (in pixels) that it can process
+            if provided.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRequest(Aptify.Services.Framework.General.Respository,System.Boolean)">
+            <summary>
+            This is the base implementation of ProcessRequest() for the IHttpHandler interface. 
+            The method assumes that one of two GET URL parameters will exist on the request, 
+            either ObjectID or ObjectName. If both are provided, ObjectID takes precedence. 
+            </summary>
+            
+            <param name="dataContext"></param>
+            <param name="bCache"></param>
+            
+            <remarks>
+            If a method other than URL based GET parameters is being used to identify the resource, 
+            do not call this method, instead call the ProcessRepositoryRequest() or ProcessFileRequest() 
+            methods in this class.
+            
+            This class takes in optional GET parameters ImageWidth and ImageHeight (in pixels) that it can process
+            if provided.
+            </remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRepositoryRequest(Aptify.Framework.DataServices.UserCredentials,System.Web.HttpContext,System.Int64,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            This method will retrieve the local file for a given repository object
+            by its ID and then write the contents of the file to the context.Response
+            object.
+            </summary>
+            <param name="UserCredentials"></param>
+            <param name="context"></param>
+            <param name="RepositoryObjectID">Aptify Object Repository Object's Record ID</param>
+            <param name="ImageWidth">Defaults to 0.</param>
+            <param name="ImageHeight">Defaults to 0.</param>
+            <param name="RetainFormat">
+                Specifies if the original file format for the file type will be retained. If set to False, 
+                files may be mapped to a standard file format. For example, ICO files are automatically converted to PNG. 
+                If set to True, this mapping will not happen.
+            </param>
+            <param name="bCache">Defaults to false.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRepositoryRequest(Aptify.Framework.DataServices.UserCredentials,System.Web.HttpContext,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            This method will retrieve the local file for a given repository object
+            by its Name and then write the contents of the file to the context.Response
+            object.
+            </summary>
+            <param name="UserCredentials"></param>
+            <param name="context"></param>
+            <param name="RepositoryObjectName">The Repository Object's name, in PackageName.ObjectName syntax.</param>
+            <param name="ImageWidth">Defaults to 0.</param>
+            <param name="ImageHeight">Defaults to 0.</param>
+            <param name="RetainFormat">
+                Specifies if the original file format for the file type will be retained. If set to False, 
+                files may be mapped to a standard file format. For example, ICO files are automatically converted to PNG. 
+                If set to True, this mapping will not happen.
+            </param>
+            <param name="bCache">Defaults to false.</param>
+            <param name="ApplyCacheSettings">Defaults to false.</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.GetFilePathAndMimeType(System.Web.HttpContext,System.Int64,System.Int32,System.Int32,System.Boolean,System.String@,System.String@)">
+            <summary>
+            Gets the file path and mime type for the object id requested
+            </summary>
+            <param name="context"></param>
+            <param name="lObjectId"></param>
+            <param name="ImageWidth"></param>
+            <param name="ImageHeight"></param>
+            <param name="RetainFormat"></param>
+            <param name="OutputFilePath">The path to the file</param>
+            <param name="OutputFileMimeType">The mime type of the file</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.GetFilePathAndMimeType(System.Web.HttpContext,System.String,System.Int32,System.Int32,System.Boolean,System.String@,System.String@)">
+            <summary>
+            Gets the file path and mime type for the object name requested
+            </summary>
+            <param name="context"></param>
+            <param name="sObjectName"></param>
+            <param name="ImageWidth"></param>
+            <param name="ImageHeight"></param>
+            <param name="RetainFormat"></param>
+            <param name="OutputFilePath">The path to the file</param>
+            <param name="OutputFileMimeType">The mime type of the file</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRepositoryRequest(Aptify.Framework.DataServices.UserCredentials,System.Web.HttpContext,System.Int64,System.String@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            This method will retrieve the local file for a given repository object
+            by its ID and then write the contents of the file to the context.Response
+            object. This overload will also return the local file path associated with
+            the repository object ID in the LocalFilePath OUT parameter.
+            </summary>
+            <param name="context"></param>
+            <param name="RepositoryObjectID"></param>
+            <param name="LocalFilePath"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.RepositoryHandler.ProcessRepositoryRequest(Aptify.Framework.DataServices.UserCredentials,System.Web.HttpContext,System.String,System.String@,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            This method will retrieve the local file for a given repository object
+            by its Package.Object and then write the contents of the file to the context.Response
+            object. This overload will also return the local file path associated with
+            the repository object ID in the LocalFilePath OUT parameter.
+            </summary>
+            <param name="context"></param>
+            <param name="RepositoryObjectName">Object Repository PackageName.ObjectName syntax</param>
+            <param name="LocalFilePath"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.GetParameter(System.Uri,System.String,System.Int32,System.String)">
+            <summary>
+            This method returns the query parameter at the given index of the URL (after the base service name).
+            If there is no parameter with that index, it will return the specified defaultValue.
+            </summary>
+            <param name="URL">Full URL including the base service name and the query string.</param>
+            <param name="baseServiceName">The base service name.</param>
+            <param name="index">The index of the desired query parameter (0-indexed).</param>
+            <param name="defaultValue">The value to return if there is no parameter at the given index.  Defaults to null.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.GetParameters(System.Uri,System.String)">
+            <summary>
+            This method will return an array of parameters that are passed in. The input parameter URL is a URI object and the ServiceName 
+            should be the name of the service end point as expected in the URL. GetParamaters will return everything to the RIGHT of the ServiceName
+            </summary>
+            <param name="URL"></param>
+            <param name="BaseServiceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.GetValuefromQueryString(System.String)">
+            <summary>
+            Returns a query parameter from the current HttpRequest or the empty string if it is not set
+            </summary>
+            <param name="querystringKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.GetNameFromRequest(System.Web.HttpRequest,System.String)">
+            <summary>
+            Get the Database Object name from the service request Uri
+            </summary>
+            <param name="request"></param>
+            <param name="serviceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.GetArgFromRequest(System.Web.HttpRequest,System.String)">
+            <summary>
+            Get the type arg values if have any in the given RUL, the value can be identified by the ? only after the type name
+            and will be in PromptData= [Views value in |{Pipe separated format} ]
+            
+            CWT - appears to be a basic query parameter parser, but from the logic it looks like we could potentially have the 
+            arguments in the URL itself, which seems odd.  
+            
+            </summary>
+            <param name="request"></param>
+            <param name="argumentName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.General.URLParameterParser.getRecordParameters(System.Web.HttpRequest)">
+            <summary>
+            Returns all query parameters that start with 'e|' in a dictionary with their value, and the 'e|' removed from the key
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Exception_Handling.CustomException.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            This method is used to execute on getting any exception and raise the exception to the client.
+            </summary>
+            <param name="actionExecutedContext">It's an Action executed context object</param>
+        </member>
+        <member name="T:Aptify.Services.Framework.Handlers.HttpsTransportHandler">
+            <summary>
+            Enforces HTTPS transport layer for all services.  By default this behavior is enabled.  Supports the following web.config attributes:
+            
+            Aptify.Framework.Security.RequireHttps - set to 'false' or '0' to disable https for all services
+            Aptify.Framework.Security.RequireHttpsExecptionFilter - set to a regular expression pattern that will match against the local path
+            portion of the inbound url.  If the regex filter matches the https requirement will be ignored for that request.  The security
+            provided by the application hosting container will still apply regardless of these settings.  
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Handlers.HttpsTransportHandler.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Handlers.InboundRequestBlockHandler.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Aptify.Services.Framework.Handlers.PrettyPrintFilterAttribute.prettyPrintConstant">
+            <summary>
+            Constant for the query string key word
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Handlers.PrettyPrintFilterAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            Interceptor that parses the query string and pretty prints 
+            </summary>
+            <param name="actionExecutedContext"></param>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.OnConnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,Microsoft.AspNet.SignalR.Hubs.IHubCallerConnectionContext{System.Object})">
+             <summary>
+            This method will called whenever any user is connected.
+             </summary>
+             <param name="context">context</param>
+             <param name="Clients">Clients</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.SendMessageToClient(System.String,System.String,System.String,System.String)" -->
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.OnSendMessageToServer(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,SignalMessage)">
+             <summary>
+            This method will called when message send to server.
+             </summary>
+             <param name="context">context</param>
+             <param name="message">detail of message.</param>
+        </member>
+        <member name="F:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.MessagePreviewAbsoluteMaxRows">
+            <summary>
+            Absolute maximum # of rows to be returned in BuildMessageForPreview
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.MessagePreviewDefaultMaxRows">
+            <summary>
+            Default maximum # of rows to be returned in BuildMessageForPreview
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.BuildMessageForPreview(SignalMessage)">
+            <summary>
+            This method will get the message engine and get it to build a message preview for us
+            </summary>
+            <param name="message">message</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.OnDisconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is disconnected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.BulkMessagingSignalHubPlugIn.OnReconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is re-connected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.EntityRecordChangesSignalHubPlugIn.EntityRecordChangeMessage.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Filter">Format - ENTITY</param>
+            <param name="MessageText">Format - Entity Name|[ADD|DELETE|UPDATE]|RecordID|NameFieldValue</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.EntityRecordChangesSignalHubPlugIn.OnConnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,Microsoft.AspNet.SignalR.Hubs.IHubCallerConnectionContext{System.Object})">
+             <summary>
+            This method will called whenever any user is connected.
+             </summary>
+             <param name="context">context</param>
+             <param name="Clients">Clients</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.EntityRecordChangesSignalHubPlugIn.OnDisconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is disconnected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.EntityRecordChangesSignalHubPlugIn.OnReconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is reconnected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.EntityRecordChangesSignalHubPlugIn.OnSendMessageToServer(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,SignalMessage)">
+             <summary>
+            This method will called when message send to server.
+             </summary>
+             <param name="context">context</param>
+             <param name="message">detail of message.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.SpaceSignalHubPlugIn.OnConnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,Microsoft.AspNet.SignalR.Hubs.IHubCallerConnectionContext{System.Object})">
+             <summary>
+            This method will called whenever any user is connected.
+             </summary>
+             <param name="context">context</param>
+             <param name="Clients">Clients</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.SpaceSignalHubPlugIn.SendSpaceNotification(System.String,System.Int32)">
+             <summary>
+            This method is used to call send space notification.
+             </summary>
+             <param name="connectionId"> The connection ID.</param>
+             <param name="notificationCount"> The count of notification.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.SpaceSignalHubPlugIn.OnSendMessageToServer(Microsoft.AspNet.SignalR.Hubs.HubCallerContext,SignalMessage)">
+             <summary>
+            This method will called when message send to server.
+             </summary>
+             <param name="context">context</param>
+             <param name="message">detail of message.</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.SpaceSignalHubPlugIn.OnDisconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is disconnected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.HubsPlugIn.SpaceSignalHubPlugIn.OnReconnected(Microsoft.AspNet.SignalR.Hubs.HubCallerContext)">
+             <summary>
+            This method will called whenever any user is re-connected.
+             </summary>
+             <param name="context">context</param>
+             <returns>It returns Task object.</returns>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateDashboardMetadata.Head1">
+            <summary>
+            Head1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateDashboardMetadata.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateDashboardMetadata.btnGen">
+            <summary>
+            btnGen control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateDashboardMetadata.lblStatus">
+            <summary>
+            lblStatus control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateDashboardMetadata.lblOutput">
+            <summary>
+            lblOutput control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.frmOnlyGen">
+            <summary>
+            frmOnlyGen control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.chkGenerateFormTemplateStaticData">
+            <summary>
+            chkGenerateFormTemplateStaticData control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.chkGenerateUIPartMetadataItems">
+            <summary>
+            chkGenerateUIPartMetadataItems control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.chkGenerateWizardFormTemplates">
+            <summary>
+            chkGenerateWizardFormTemplates control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.chkGenerateViews">
+            <summary>
+            chkGenerateViews control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.ListBox1">
+            <summary>
+            ListBox1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.Button1">
+            <summary>
+            Button1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.lblStatus">
+            <summary>
+            lblStatus control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateEntityMetadata.lstboxStatus">
+            <summary>
+            lstboxStatus control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.Head1">
+            <summary>
+            Head1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.TextBox1">
+            <summary>
+            TextBox1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.Button1">
+            <summary>
+            Button1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.Button2">
+            <summary>
+            Button2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.Button3">
+            <summary>
+            Button3 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.lblError">
+            <summary>
+            lblError control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.divCSS">
+            <summary>
+            divCSS control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.txtCSS">
+            <summary>
+            txtCSS control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.txtHTML">
+            <summary>
+            txtHTML control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.txtJSON">
+            <summary>
+            txtJSON control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateFormTemplateUIParts.divHTML">
+            <summary>
+            divHTML control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateUIPartMetaDataItems.Head1">
+            <summary>
+            Head1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateUIPartMetaDataItems.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateUIPartMetaDataItems.btnGen">
+            <summary>
+            btnGen control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateUIPartMetaDataItems.lblStatus">
+            <summary>
+            lblStatus control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateUIPartMetaDataItems.lblOutput">
+            <summary>
+            lblOutput control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateViewMetadata.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateViewMetadata.frmOnlyGen">
+            <summary>
+            frmOnlyGen control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateViewMetadata.DropDownList1">
+            <summary>
+            DropDownList1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateViewMetadata.Button1">
+            <summary>
+            Button1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Aptify.Services.Framework.Metadata.GenerateViewMetadata.CheckBox1">
+            <summary>
+            CheckBox1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.IEnityView">
+            <summary>
+            Expose the methods and properties for Legacy Entity View service (LegacyGetRecord)
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.Get(System.String,System.String)">
+            <summary>
+            Get the Given Entity data including subtype information
+            </summary>
+            <param name="name">Aptify Entity name</param>
+            <param name="extrainfo">URL containing nested subtype information</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.GetIdName(System.String,System.String@,System.String@)">
+            <summary>
+            Get the Entity Name and Entity ID from the given URL segment
+            <example>[EntityName](EntityID)</example>
+            </summary>
+            <param name="segment">URL segment</param>
+            <param name="id">return the entity ID from the given segment</param>
+            <param name="name">return the entity name from the given segment</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.ParseExtrInfo(System.String,System.Collections.Generic.Dictionary{System.String,System.String}@)">
+            <summary>
+            Get the Entity Name and Entity ID from the given URL segment and set it to the given dictionary object
+            <example>[Service]/[EntityName](EntityID)/[SubTypeName](SubTypeID)/[SubTypeName](SubTypeID)...</example>
+            </summary>
+            <param name="segment">URL segment</param>
+            <param name="SubTypes">return  dictionary object with all Subtype data with respective id</param>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.ParseSubTypes(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Parse the Subtype Collection according to the given Parent Entity ID and Name.
+            </summary>
+            <param name="parentEntityName">parent entity name</param>
+            <param name="parentRecordID">parent entity id</param>
+            <param name="SubTypes">Subtype collection containing subtype information along with respective id</param>
+            <returns>return a sql query with Parent Entity and subtype information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.GetSubTypeLinkFieldParameter(System.String,System.String)">
+            <summary>
+            Get the given subtype link field parameter for given subtype according to its given parent id
+            </summary>
+            <param name="subEntityName">subtype entity name</param>
+            <param name="parentRecordID">subtype parent entity record id</param>
+            <returns>parameter string</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.SubTypeLinks">
+            <summary>
+            Get the subtype link fields
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.GetEntitySubTypeQueryForService(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Get the sql query to get the given entity data according to the given base view including subtype fields with respective service URL
+            </summary>
+            <param name="recordID">entity record id to filter entity data else set it as blank</param>
+            <param name="entityID">entity id to get the data</param>
+            <param name="BaseView">entity base view name to execute</param>
+            <param name="ServiceURL">service base URL which will append to the subtypes data for provide URL to view subtype data.</param>
+            <param name="sOrderby">Odata Order by statements for appending subtype query.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.EntityView.GetEntityID(System.String)">
+            <summary>
+            Get the given entity ID
+            </summary>
+            <param name="entityName">entity name</param>
+            <returns>entity id</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.ItemRatingsService.GetItemRating(Aptify.Services.Framework.Models.ItemRatingInput)">
+            <summary>
+            This web method with get the item rating information
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information.</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.ItemRatingsService.SubmitItemRating(Aptify.Services.Framework.Models.ItemRatingInput)">
+            <summary>
+            This web method will save the item rating information
+            </summary>
+            <param name="inputObjArgs">Item rating input arguments</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.ItemRatingsService.RemoveItemRating(Aptify.Services.Framework.Models.ItemRatingInput)">
+            <summary>
+            This Web method will remove the item rating information
+            </summary>
+            <param name="inputObjArgs">item rating input arguments</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="M:Aptify.Services.Framework.Models.ItemRatingsService.SubmitItemRatingAndReview(Aptify.Services.Framework.Models.ItemRatingAndReviewInput)">
+            <summary>
+            This web method will save the item rating and review information
+            </summary>
+            <param name="inputObjArgs">Item rating and review input arguments</param>
+            <returns>Returns the response object of the type ItemRatingSerciceInformation that contains ratings information</returns>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.ItemRatingInput">
+            <summary>
+            Class holds Item Rating Input data
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.ItemRatingServiceInformation">
+            <summary>
+            Class holds Item Rating details with Error Information if have any
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.ItemRatingAndReviewServiceInformation">
+            <summary>
+            Class holds Item Rating and Reviews details with Error Information if have any
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.ItemRatingAndReviewInput">
+            <summary>
+            Class holds Item Rating and review Input data
+            </summary>
+        </member>
+        <member name="T:Aptify.Services.Framework.Models.ErrorInfo">
+            <summary>
+            Class holds Error information 
+            </summary>
+        </member>
+        <member name="M:SpaceNotification.AddNotificationUser(Aptify.Framework.Application.AptifyApplication,System.Int32)">
+            <summary>
+            This method is used to add notification users in list.
+            </summary>
+            <param name="app">It's aptify application object.</param>
+            <param name="personId">The ID of person.</param>
+        </member>
+        <member name="M:SpaceNotification.RemoveNotificationUser(System.Int32)">
+            <summary>
+            This method is used to remove notification users using it's person ID.
+            </summary>
+            <param name="personId">The ID of person.</param>
+        </member>
+        <member name="M:SpaceNotification.getNotifyUsersList(Aptify.Framework.Application.AptifyApplication)">
+            <summary>
+            This method is used to get notify users list.
+            </summary>
+            <param name="app">It's aptify application object.</param>
+            <returns>It return notify users list</returns>
+        </member>
+        <member name="M:GenericHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Writes out the UI Part requested
+            URL Parameters Supported:
+            * UIPartID - Requests a specific UI Part, by UI Part ID - returns the text of that part only
+            * FormTemplateID - Requests all of the UI Parts for a given Form Template returns the aggregated text of all of the UI Parts
+                           for the specified Form Template ID, in the order of the Sequence field of the FormTemplateUIParts Sub-Type
+            * PartType - This is a filter that is used if the FormTemplateID is passed in. If the Type is provided, then it is used to filter down the list of UI 
+                         parts.
+            </summary>
+            <param name="context"></param>
+            <remarks></remarks>
+        </member>
+        <member name="F:GenericHandler.static_ServiceApplication_s_bCheckedForConfigurationAttribute">
+            <summary>
+            Returns the Name of the Service Application that is currently running.  
+            This is used by services, like AptifyDataObjects, to determine the running Service Application, where it can be used to filter the Service Data Objects that are permitted to run based on Service Application.
+            By default, this is defined in the configuration file appsettings attribute, Aptify.Services.General.ApplicationName.  If not found or empty, HTML5 Web will be used.
+            </summary>
+            <value></value>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:SignalRChat.Startup.OnAuthenticationFailed(Microsoft.Owin.Security.Notifications.AuthenticationFailedNotification{Microsoft.IdentityModel.Protocols.OpenIdConnect.OpenIdConnectMessage,Microsoft.Owin.Security.OpenIdConnect.OpenIdConnectAuthenticationOptions})">
+            <summary>
+            Handle failed authentication requests by redirecting the user to the home page with an error in the query string
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

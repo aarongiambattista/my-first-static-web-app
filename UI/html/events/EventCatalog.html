@@ -1,0 +1,123 @@
+﻿<div class="eventCatalogModal">
+    <div class="ebusiness-filter-control row">
+        <div class="col-sm-4"><h3>Upcoming Events</h3></div>
+        <div class="col-sm-8 ebusiness-view-switcher">
+            <span> <input name="txteventsListSearch" data-bind="textInput :search" type="text" placeholder="Search" class="ebClient-search-event form-control"></span>
+            <span class="devider">| </span> <a href="EventCalendar.html" class="btn btn-primary calendar-view" title="Calendar View"> <span class="fa-icon"><img src="../images/icons/fontawesome/calendar-alt-white.svg" /> </span>  Calendar View</a>
+            <span class="d-inline d-sm-inline d-md-none" data-bind="click:toggleFilterControl"><a class="fa-icon" title="Sort/Filter"><img src="../images/icons/fontawesome/filter.svg" /></a></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-4">
+        <div id="filterSort" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+            <div class="my-events" data-bind="visible:doShowMyEvents">
+                <!-- Hide the My events field if the User is not logged in. -->
+                <input type="checkbox" name="radioGroupSort" value="All" data-bind="checked:myEvents">
+                My Events
+            </div>
+            <div class="ebusiness-filter-details-panel">
+                <div class="ebusiness-filter">
+                    <div class="ebusiness-filter-section-title">Filter by</div>
+                    <div class="ebusiness-filter-options">
+                        <ul role="menu">
+                            <li>
+                                <label>
+                                    <input type="radio" id="ProductType" name="ProductType" value="All" data-bind="checked: catergoryFilter">
+                                    <span class="cat-name">
+                                        <span>All</span>
+                                        (<span data-bind="text:events().length "></span>)
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                        <ul role="menu" data-bind="foreach: categoryCollection">
+                            <li>
+                                <label>
+                                    <input type="radio" id="ProductType" name="ProductType" data-bind="value:name ,checked: $parent.catergoryFilter">
+                                    <span class="cat-name">
+                                        <span data-bind="text:name"></span>
+                                        (<span data-bind="text:$data.records().length "></span>)
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9 col-md-8">
+        <span data-bind="visible: pager().currentPageRecords().length">
+            Showing:
+            <span data-bind="visible:myEvents()">
+                <span data-bind="text:'My Events / '"></span>
+            </span>
+            <span data-bind="text:catergoryFilter"></span>
+        </span>
+        <div class="NoRecords text-center">
+            <span data-bind="visible: !pager().currentPageRecords().length && !noMyEvents()">No records found.</span>
+        </div>
+        <div class="NoRecords text-center">
+            <span data-bind="visible: !pager().currentPageRecords().length && myEvents() && noMyEvents()">You are not registered for any meeting yet.</span>
+        </div>
+
+        <div class="ebClear ebusiness-listing-wrapper" data-bind="foreach: pager().currentPageRecords()">
+            <div class="row ebusiness-events-card-listing">
+                <div class="ebusiness-events-card-image col-sm-3"><img class="ebusiness-product-list-image" data-bind="imageSrc: { src: webImage},  click : eventNameDetails"></div>
+                <div class="ebusiness-events-card-details col-sm-9">
+                    <div class="ebusiness-events-card-details-title"><a data-bind="text: name, click : eventNameDetails"></a></div>
+                    <div class="ebusiness-events-card-details-desc" data-bind="html: webDescription">
+                    </div>
+                    <div class="ebusiness-events-card-details-location"><span class="fa-icon"><img src="../images/icons/fontawesome/map-marker-alt.svg" /></span> <span data-bind="text: venue"></span> </div>
+                    <div class="ebusiness-events-see-details row">
+                    <div class="ebusiness-events-card-details-date-time col-md-8"><span class="fa-icon"><img src="../images/icons/fontawesome/calendar-alt-blue.svg" /></span> <span data-bind="text: startDate"></span></div>
+                    <div class="col-md-4 text-right eb-events-see-details"><a data-bind="click : eventNameDetails">See Details</a></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="text-center">
+        <div class="ebusiness-productCatalog-pagination">
+            <div class="Pager">
+                <ul>
+                    <li class="goToFirst btn btn-default" title="First" data-bind="css: { disabledPagination: pager().currentPageIndex() <= 0}">
+                        <a href="#" data-bind="click: pager().currentPageIndex() > 0 && pager().moveFirst">
+                            <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() <= 0}"><img src="../images/icons/fontawesome/angle-double-left.svg" /></span>
+                        </a>
+                    </li>
+                    <li class="goPrevious  btn btn-default" title="Previous" data-bind="css: { disabledPagination: pager().currentPageIndex() <= 0}">
+                        <a href="#" data-bind="click: pager().currentPageIndex() > 0 && pager().movePrevious">
+                            <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() <= 0}"><img src="../images/icons/fontawesome/angle-left.svg" /></span>
+                        </a>
+                    </li>
+                    <li class="goTonext btn btn-default" title="Next" data-bind="css: { disabledPagination: pager().currentPageIndex() >= pager().maxPageIndex()}">
+                        <a href="#" data-bind="click: pager().currentPageIndex() < pager().maxPageIndex() && pager().moveNext">
+                            <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() >= pager().maxPageIndex()}"><img src="../images/icons/fontawesome/angle-right.svg" /></span>
+                        </a>
+                    </li>
+                    <li class="goToLast  btn btn-default" title="Last" data-bind="css: { disabledPagination: pager().currentPageIndex() >= pager().maxPageIndex()}">
+                        <a href="#" data-bind="click: pager().currentPageIndex() < pager().maxPageIndex() && pager().moveLast">
+                            <span class="fa-icon" data-bind="css: { disabledPaginationArrow: pager().currentPageIndex() >= pager().maxPageIndex()}"><img src="../images/icons/fontawesome/angle-double-right.svg" /></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="pageCount">
+                        Page <span data-bind="text: pager().currentPageIndex() + 1">
+                        </span> of <span data-bind="text:pager().maxPageIndex() + 1"></span>
+                    </li>
+                    <li class="recordCount">
+                        [<span data-bind="text: pager().recordCount">
+                        </span> Record(s)]
+                    </li>
+                    <li class="pageSize">
+                        <select class="form-control" data-bind="options: pager().pageSizeOptions, value: pager().currentPageSize, event: { change: pager().onPageSizeChange }"></select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+

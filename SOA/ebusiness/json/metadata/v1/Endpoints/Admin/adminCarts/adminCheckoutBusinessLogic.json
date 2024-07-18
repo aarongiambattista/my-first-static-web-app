@@ -1,0 +1,232 @@
+﻿{
+  "retrievePaymentTypeIdByPaymentTypeName": {
+    "$ref": "../../../Common/commonPayments.json#/retrievePaymentTypeIdByPaymentTypeName"
+  },
+  "addPurchaseOrderPaymentInformation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Purchase Order Payment Information",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "PaymentTypeID": "@parent.retrievePaymentTypeIdForPurchaseOrder.outputPaymentTypeId",
+        "PurchaseOrderNumber": "@request.purchaseOrderNumber"
+      }
+    }
+  },
+  "completeOrder": {
+    "$ref": "../../../Common/businessLogic.json#/completeOrder",
+    "processFlowProperties": {
+      "processFlowName": "Complete Order",
+      "processFlowParameters": {
+        "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE"
+      }
+    }
+  },
+  "retrievePaymentTypeIdByCardNumber": {
+    "$ref": "../../../Common/commonPayments.json#/retrievePaymentTypeIdByCardNumber",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "CardNumber": "@request.cardNumber",
+        "SaveForFutureUse": "@request.saveForFutureUse"
+      }
+    }
+  },
+  "getPaymentExpirationDate": {
+    "$ref": "../../../Common/commonPayments.json#/getExpirationDate",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "ExpirationMonth": "@request.expirationMonth",
+        "ExpirationYear": "@request.expirationYear"
+      }
+    }
+  },
+  "addCreditCardPaymentInfo": {
+    //"$ref": "../../../Common/commonPayments.json#/addCreditCardInfoOnOrderGE",
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Comp Admin: Add Credit Card Payment Information",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "PaymentTypeID": "@parent.retrievePaymentTypeIdByCardNumber.outputPaymentTypeID",
+        "CardNumber": "@request.cardNumber",
+        "CVV": "@request.cvv",
+        "ExpirationDate": "@parent.getPaymentExpirationDate.outputPaymentExpirationDate",
+        "SaveForFutureUse": "@request.saveForFutureUse",
+        "SaveToTypes": "Company"
+      }
+    }
+  },
+  "addDigitalWalletPaymentInfo": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Comp Admin: Add Digital Wallet Payment Information",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "PaymentTypeID": "@parent.retrievePaymentTypeIdForDigitalWallet.outputPaymentTypeID",
+        "CardNumber": "@request.cardNumber",
+        "SaveForFutureUse": "@request.saveForFutureUse"
+      }
+    }
+  },
+  "CompanyValidateOrder": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Company Admin Validate Order GE",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "CompanyId": "@request.id"
+      }
+    }
+  },
+  "validateOrder": {
+    "$ref": "../../../Common/businessLogic.json#/validateOrder",
+    "processFlowProperties": {
+      "processFlowName": "Validate Order GE",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE"
+      }
+    }
+  },
+  "validateOrderBalance": {
+    "$ref": "../../../Common/businessLogic.json#/validateOrderBalance",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE"
+      }
+    }
+  },
+  "sendOrderConfirmationEmailAfterCheckout": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "e-Business Order Confirmation Mail After Checkout",
+      "processFlowParameters": {
+        "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+        "FieldNameForMailRecipient": "BillToId",
+        "MessageTemplateName": "e-Business Order Confirmation Email Template"
+      }
+    }
+  },
+  "addSavedPaymentMethodInfo": {
+    //"$ref": "../../../Common/commonPayments.json#/addSavedPaymentMethodInfo",
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Comp Admin: Add Saved Payment Method Information to Order GE",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "SavedPaymentId": "@request.savedPaymentId",
+        "CVV": "@request.cvv"
+      }
+    }
+  },
+  "retrievePaymentTypeIdForACH": {
+    "$ref": "../../../Common/commonPayments.json#/retrievePaymentTypeIdForACH",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "PaymentTypeName": "Wire Transfer"
+      }
+    }
+  },
+  "addACHPaymentInformation": {
+    //"$ref": "../../../Common/commonPayments.json#/addACHPaymentInformation",
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Comp Admin: Add ACH Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null,
+        "SaveToTypes": null
+      }
+    }
+  },
+  "addACHTokenizerPaymentInformation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Comp Admin: Add ACH Tokenizer Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null,
+        "SaveToTypes": null
+      }
+    }
+  },
+  "AddPaymentTypeOnOrder": {
+    "$ref": "../../../Common/commonPayments.json#/AddPaymentTypeOnOrder",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null
+      }
+    }
+  },
+  "addPaymentTypeOnPayment": {
+    "$ref": "../../../Common/commonPayments.json#/addPaymentTypeOnPayment",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "PaymentGE": null,
+        "PaymentTypeID": null
+      }
+    }
+  },
+  "addACHPaymentInformationOnPaymentsGE": {
+    "$ref": "../../../Common/commonPayments.json#/addACHPaymentInformationOnPaymentsGE",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "PaymentsGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "validateSaveForFutureUse": {
+    "$ref": "../../../Common/commonPayments.json#/validateSaveForFutureUse",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+        "SaveForFutureUse": "@request.saveForFutureUse"
+      }
+    }
+  },
+  "validateCompanyAttendeeIds": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Company Bulk Order Ids",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "bulkObjectPropertyName": null,
+        "DataObjectName": null,
+        "companyId": null
+      }
+    }
+  },
+  "validateCompanyPersonIds": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Company Bulk Person Ids",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "bulkObjectPropertyName": null,
+        "DataObjectName": null,
+        "companyId": null,
+        "individualPropertyName": null
+      }
+    }
+  }
+}

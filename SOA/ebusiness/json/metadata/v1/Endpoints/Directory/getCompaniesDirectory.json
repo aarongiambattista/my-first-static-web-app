@@ -1,0 +1,38 @@
+{
+  "getAllCompanies": {
+    "route": {
+      "httpMethod": "GET",
+      "description": "Gets the List of All Companies",
+      "segments": {
+        "companydirectory": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetAllCompaniesOutput",
+      "$ref": "DirectoryEndpoint.json#/entityDefinitions/companiesDirectoryOutput"
+    },
+    "businessLogic": {
+      "allCommitteesRetrieve": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness7_0CompanyDirectory",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+
+  }
+}

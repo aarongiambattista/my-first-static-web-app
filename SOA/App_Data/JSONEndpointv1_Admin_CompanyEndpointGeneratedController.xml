@@ -1,0 +1,2274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Admin_CompanyEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetPersonCompanies(System.String)">
+            <summary>
+            Fetches the list of companies which the person can admin
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminCompany(System.Int64)">
+            <summary>
+            Gets the company details of the passed in company Id, secured by a security Fn
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdatePersonCompany(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyInput,System.Int64)">
+            <summary>
+            Updated the details of company whose ID is passed in URL
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddresses(System.Int64,System.String)">
+            <summary>
+            Get CompanyAddress All Addresses
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateSingleCompanyAddress(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminCompanyAddressInputPOST,System.Int64)">
+            <summary>
+            Create New Company Address for Admin
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteSingleCompanyAddress(System.Int64,System.String)">
+            <summary>
+            Delete a Company Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteProfileCompanyAddress(System.Int64,System.String)">
+            <summary>
+            Delete a Company Profile Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleCompanyAddress(System.Int64,System.String)">
+            <summary>
+            Get CompanyAddress single address by name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddresses(System.Int64,System.String)">
+            <summary>
+            Get Profile Company All Addresses
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanySingleAddress(System.Int64,System.String)">
+            <summary>
+            Get Profile Company address by address Name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateProfileCompanyAddress(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPatchAddressInput,System.Int64,System.String)">
+            <summary>
+            Update Profile Company Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateSingleCompanyAddress(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyAddressInput,System.Int64,System.String)">
+            <summary>
+            Update a CompanyAddress
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllPhones(System.Int64,System.String)">
+            <summary>
+            Get Profile Company All Phones
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanySinglePhoneByName(System.Int64,System.String)">
+            <summary>
+            Get Profile Company phone by phone Name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyAllPhones(System.Int64,System.String)">
+            <summary>
+            Get CompanyPhones All Phones
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanySinglePhoneByName(System.Int64,System.String)">
+            <summary>
+            Get CompanyPhones single phone by name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateProfileCompanyPhone(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhonePatchInput,System.Int64,System.String)">
+            <summary>
+            Update Profile Company Phone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateSingleCompanyPhone(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyPhoneInput,System.Int64,System.String)">
+            <summary>
+            Update a CompanyPhone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOrderHistorySingleOrder(System.Int64,System.Int64)">
+            <summary>
+            Retrieves the Order Details of the company order in question
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOrderHistory(System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOrderHistorySingleOrderAllItems(System.Int64,System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOrderHistorySingleOrderAllItemsAsSubscriptionItems(System.Int64,System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all subscription orderlines from the company's orders.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOrderHistorySingleOrderSingleItemAsSubscriptionItem(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Gets the common properties of single subscription orderline from the person's orders.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanySingleEventOrderHistory(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Gets the common properties of single event orderline from the company's orders.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyAllEventOrderHistory(System.Int64,System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all event orderlines from the company's orders.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyOutstandingOrderHistory(System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakeCompanyPaymentByCreditCard(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentCreditCardInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using a credit card.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakepaymentByACH(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentACHInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using ACH.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakeCompanyPaymentByACHTokenizerForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByACHTokenizerInput},System.Int64)">
+            <summary>
+            Make Bulk Payment using ACH Tokenizer
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakepaymentBySavedPaymentMethod(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentSavedPaymentMethodInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using a saved payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakeCompanyPaymentByGPay(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByGPayInput},System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using GPay
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakeCompanyPaymentByApplePay(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByApplePayInput},System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using Apple Pay
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetValidPayments(System.Int64,System.String)">
+            <summary>
+            Get valid payment types for a company
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetRemoteRequestDataForMakePayment(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakepaymenCompanytRemoteInput,System.Int64,System.Int64)">
+            <summary>
+            Get remote payment request data for make payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetRemoteRequestDataForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentRemoteInput},System.Int64)">
+            <summary>
+            Get remote payment request data for bulk  payments.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.PostRemoteRequestDataForMakePayment(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentProcessRemotePaymentResponseInput,System.Int64,System.Int64)">
+            <summary>
+            Processes the remote hosted payment response for make payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ProcessRemotePaymentResponseForBulkPayments(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkRemotePaymentResponseInput,System.Int64)">
+            <summary>
+            Process the remote hosted payment response for bulk payments.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSavedPaymentMethod(System.Int64,System.Int64)">
+            <summary>
+            Get a Credit Card Type Saved Payment Method of the company
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllSavedPaymentMethods(System.Int64,System.String)">
+            <summary>
+            Get all Credit Card Type Saved Payment Methods of the company
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleACHSavedPaymentMethod(System.Int64,System.Int64)">
+            <summary>
+            Get a ACH Type Saved Payment Method of the company
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllACHSavedPaymentMethods(System.Int64,System.String)">
+            <summary>
+            Get all ACH Type Saved Payment Methods of the company
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyDirectory(System.Int64,System.String)">
+            <summary>
+            Retrieves the Persons associated with the company in question
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompany(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput},System.Int64)">
+            <summary>
+            Add new member to company
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteMemberFromCompany(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.RemoveMemberFromCompanyInput},System.Int64)">
+            <summary>
+            Add new member to company
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateMemberFromCompany(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInput,System.Int64,System.Int64)">
+            <summary>
+            Update Existing Member from Company Directory
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateMemberProfilePhoneFromCompany(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInput,System.Int64,System.Int64,System.String)">
+            <summary>
+            Update Existing Member Profile Phone from Company Directory
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetUpcomingAdminEventsDetails(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the details for all meetings, including top levels and sessions and sessions of sessions.
+            </summary>
+            <param name="TopLevelOnly">If true then this will only return top level event information. Otherwise top level and child events will be included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetPastAdminEventsDetails(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the details for all PAST meetings, including top levels and sessions and sessions of sessions.
+            </summary>
+            <param name="TopLevelOnly">If true then this will only return top level event information. Otherwise top level and child events will be included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventRegisteredDetails(System.Int64,System.Int64,System.String)">
+            <summary>
+            Admin Events Registered Details
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventWaitlistingDetails(System.Int64,System.Int64,System.String)">
+            <summary>
+            Admin Events Waitlisting Details
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEvenAllDetails(System.Int64,System.Int64,System.String)">
+            <summary>
+            All Admin Events Registered Details
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminBadgeDetails(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            All Admin Badge Details
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateAdminBadgeDetails(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateAdminOrderLineBadgeDetailsInput,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Update Badge Details of person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleAdminEvent(System.Int64,System.Int64)">
+            <summary>
+            Retrieves the details for a single item in the admin events catalog.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleAdminSessionEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            Retrieves the Session details for a associated event including its events details in the admin events catalog.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleAdminEventSpeaker(System.Int64,System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the Speaker Information for a associated event including its speaker and company name
+            </summary>
+            <param name="includeSessionSpeakers">If true then this will both event speaker and its session's speaker details. Otherwise only event speaker details included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminEventAttendee(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminEventAttendeeInputPOST,System.Int64)">
+            <summary>
+            Creates a new person in the admin system that can then be used as an attendee for event registration
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventAttendeeSearch(System.Int64,System.String,System.String)">
+            <summary>
+            Retrieves Admin events details of attendee when searchterm is provided.
+            </summary>
+            <param name="SearchTerm">When searchterm is given, it results in list of attendee details related to that serach term , if not this will result into error.</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SendConfirmationEmailAdmin(Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.adminSendConfirmationEmailInput,System.Int64,System.Int64)">
+            <summary>
+            Sends confirmation email of successfully placed order to mentioned email ID(s).
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanyNonMembers(System.Int64,System.String)">
+            <summary>
+            Retrieves a list of all non-members belonging to the selected company.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetMembershipProducts(System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberFromCompanyDirectory(System.Int64,System.Int64)">
+            <summary>
+            Retrieves the Single Persons from Company Directory
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MakeCompanyPaymentByCreditCardForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByCreditCardInput},System.Int64)">
+            <summary>
+            Make Bulk Payment using Credit Card
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAdminCompanyInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyAddressesOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminCompanyAddressOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminCompanyAddressInputPOST.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminCompanyAddressInputPOSTForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminCompanyAddressInputPOSTForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteSingleCompanyAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteSingleCompanyAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteProfileCompanyAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DeleteProfileCompanyAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyAddressOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getSingleCompanyAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getSingleCompanyAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.isPreferredBillingAddress">
+            <summary>
+            The value indicate if profile address is preferred billing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.isPreferredShippingAddress">
+            <summary>
+            The value indicate if profile address is preferred shipping address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyAllAddressesOutput.isPreferredMailingAddress">
+            <summary>
+            The value indicate if profile address is preferred mailing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.isPreferredBillingAddress">
+            <summary>
+            The value indicate if profile address is preferred billing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.isPreferredShippingAddress">
+            <summary>
+            The value indicate if profile address is preferred shipping address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfileAddress.isPreferredMailingAddress">
+            <summary>
+            The value indicate if profile address is preferred mailing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPatchAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPatchAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyAddressInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetProfileCompanyPhones.isPreferredPhone">
+            <summary>
+            The value indicate if profile phone is preferred phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhone.isPreferredPhone">
+            <summary>
+            The value indicate if profile phone is preferred phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetPhoneInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllCompanyPhonesOutput.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyPhoneOutput.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getSingleCompanyPhonesInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getSingleCompanyPhonesInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhonePatchInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyProfilePhonePatchInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyPhoneInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateCompanyPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetCompanySingleOrderInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetOrderHistoryItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getCompanyOrderHistorySingleOrderAllItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CompanyOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSubscriptionOrderItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleEventOrderItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAllEventOrderHistoryOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.OrderId">
+            <summary>
+            The Id for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.OrderDate">
+            <summary>
+            The Date of this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.OrderTotal">
+            <summary>
+            The Total amount for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.OrderType">
+            <summary>
+            The OrderType for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.AmountDue">
+            <summary>
+            The amount due for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.currencyTypeId">
+            <summary>
+            The id of the currency being used on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.currencySymbol">
+            <summary>
+            The currency symbol for the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.billToName">
+            <summary>
+            The Bill to Person Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getOutstandingOrderHistoryOutput.billToId">
+            <summary>
+            Bill to Person Id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentCreditCardInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentACHInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByACHTokenizerInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByACHTokenizerInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByACHTokenizerInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.makeCompanyPaymentSavedPaymentMethodInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByGPayInput.orderId">
+            <summary>
+            order id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByGPayInput.paymentAmount">
+            <summary>
+            Amount to be paid
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByGPayInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByApplePayInput.orderId">
+            <summary>
+            order id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByApplePayInput.paymentAmount">
+            <summary>
+            Amount to be paid
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentByApplePayInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakepaymentRemoteOutput.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakepaymenCompanytRemoteInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakepaymenCompanytRemoteInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakepaymenCompanytRemoteInputForBusinessLogic.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentRemoteOutput.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentRemoteInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentRemoteInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentRemoteInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentProcessRemotePaymentResponseOutput.OrderId">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyMakePaymentProcessRemotePaymentResponseInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkRemotePaymentResponseOutput.id">
+            <summary>
+            The ID of created payment
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkRemotePaymentResponseInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleSavedPaymentInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.Id">
+            <summary>
+            Id of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.paymentType">
+            <summary>
+            payment type of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.partialNumber">
+            <summary>
+            Partial account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.accountNumber">
+            <summary>
+            Full account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.accountName">
+            <summary>
+            AccountName of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.ABA">
+            <summary>
+            ABA/Routing  of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.ACHSavedPaymentOutput.bank">
+            <summary>
+            Bank of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleACHSavedPaymentMethodInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.Id">
+            <summary>
+            Id of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.paymentType">
+            <summary>
+            payment type of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.partialNumber">
+            <summary>
+            Partial account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.accountNumber">
+            <summary>
+            Full account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.accountName">
+            <summary>
+            AccountName of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.ABA">
+            <summary>
+            ABA/Routing  of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.getAllACHSavedPaymentMethodsOutput.bank">
+            <summary>
+            Bank of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput.firstName">
+            <summary>
+            The First Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput.lastName">
+            <summary>
+            The Last Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput.email">
+            <summary>
+            The UserId/Email for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput.title">
+            <summary>
+            The title for the Person.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInput.doCreateWebUser">
+            <summary>
+            Whether new Web User be created
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AddMemberToCompanyInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.RemoveMemberFromCompanyInput.personId">
+            <summary>
+            Person Id to Remove company link from
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.RemoveMemberFromCompanyInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberOutput.firstName">
+            <summary>
+            The person firstName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberOutput.lastName">
+            <summary>
+            The person lastName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberOutput.title">
+            <summary>
+            The person title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberOutput.primaryEmail">
+            <summary>
+            The person primaryEmail
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInput.firstName">
+            <summary>
+            The person firstName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInput.lastName">
+            <summary>
+            The person lastName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInput.title">
+            <summary>
+            The person title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInput.primaryEmail">
+            <summary>
+            The person primaryEmail
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.memberId">
+            <summary>
+            The person ID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.firstName">
+            <summary>
+            The person firstName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.lastName">
+            <summary>
+            The person lastName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.title">
+            <summary>
+            The person title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.DirectoryMemberInputForBusinessLogic.primaryEmail">
+            <summary>
+            The person primaryEmail
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneOutput.isPreferredPhone">
+            <summary>
+            The value indicate if profile phone is preferred phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInput.countryCode">
+            <summary>
+            The countryCode of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInput.areaCode">
+            <summary>
+            The areaCode of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInput.phone">
+            <summary>
+            The phone of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInput.phoneExtension">
+            <summary>
+            The phoneExtension of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.countryCode">
+            <summary>
+            The countryCode of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.areaCode">
+            <summary>
+            The areaCode of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.phone">
+            <summary>
+            The phone of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.MemberProfilePhoneInputForBusinessLogic.phoneExtension">
+            <summary>
+            The phoneExtension of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.name">
+            <summary>
+            product name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.TotalAttendees">
+            <summary>
+            Total Attendees of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.TotalWaitList">
+            <summary>
+            Total WaitList of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.TotalRegistrants">
+            <summary>
+            Total Registrants of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AllAdminEventsDetails.productCategory">
+            <summary>
+            The product category of product
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetTopLevelAdminEventsDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetTopLevelAdminEventsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.OrderDetailID">
+            <summary>
+            OrderDetailID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.OrderID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.AttendeeID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.Subscriber">
+            <summary>
+            Person subscribed for the Event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.Title">
+            <summary>
+            Person Title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.Status">
+            <summary>
+            Registration Status
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsRegisteredOutput.CompanyID">
+            <summary>
+            Company ID of the Registered Person
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventRegisteredDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.OrderDetailID">
+            <summary>
+            OrderDetailID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.OrderID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.AttendeeID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.Subscriber">
+            <summary>
+            Person subscribed for the Event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.Title">
+            <summary>
+            Person Title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.Status">
+            <summary>
+            Registration Status
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsWaitlistingOutput.CompanyID">
+            <summary>
+            Company ID of the Registered Person
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventWaitlistingDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.OrderDetailID">
+            <summary>
+            OrderDetailID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.OrderID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.AttendeeID">
+            <summary>
+            OrderID
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.Subscriber">
+            <summary>
+            Person subscribed for the Event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.Title">
+            <summary>
+            Person Title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.Status">
+            <summary>
+            Registration Status
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.eventsAllRegistrationsOutput.CompanyID">
+            <summary>
+            Company ID of the Registered Person
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetAdminEventAllDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.badgeDetailsOutput.ID">
+            <summary>
+            ID of Order Meeting Detail Record
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.badgeDetailsOutput.BadgeCompanyName">
+            <summary>
+            Badge Company Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.badgeDetailsOutput.BadgeName">
+            <summary>
+            Badge Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.badgeDetailsOutput.BadgeTitle">
+            <summary>
+            Badge Title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetBadgeDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdatedbadgeDetailsOutput.ID">
+            <summary>
+            ID of Order Meeting Detail Record
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdatedbadgeDetailsOutput.BadgeCompanyName">
+            <summary>
+            Badge Company Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdatedbadgeDetailsOutput.BadgeName">
+            <summary>
+            Badge Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdatedbadgeDetailsOutput.BadgeTitle">
+            <summary>
+            Badge Title
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.UpdateAdminOrderLineBadgeDetailsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.name">
+            <summary>
+            product name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressLine1">
+            <summary>
+            The address where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressLine2">
+            <summary>
+            The address where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressCity">
+            <summary>
+            The city where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressStateProvince">
+            <summary>
+            The state where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressPostalCode">
+            <summary>
+            The postal code where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.addressCountry">
+            <summary>
+            The country where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.webImage">
+            <summary>
+            Image url for an event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEvent.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleAdminEventsInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.parentProductId">
+            <summary>
+            parent product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.name">
+            <summary>
+            Name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.hasScheduledSpeakers">
+            <summary>
+            true, when speakers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.webName">
+            <summary>
+            WebName of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminSessionEvent.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEventSpeaker.eventId">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEventSpeaker.name">
+            <summary>
+            Speaker of an event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEventSpeaker.companyName">
+            <summary>
+            companyName of Speaker
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEventSpeaker.title">
+            <summary>
+            Title of Speaker like Primary Speaker
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.SingleAdminEventSpeaker.type">
+            <summary>
+            Type of Speaker like Regular,Panelist
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleAdminEventSpeakersForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminEventAttendeeOutput.id">
+            <summary>
+            The unique identifier of the newly created person
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.CreateAdminEventAttendeeInputPOSTForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminEventAttendeeDetails.id">
+            <summary>
+            PersonID of Event Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminEventAttendeeDetails.firstName">
+            <summary>
+            First Name of Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminEventAttendeeDetails.lastName">
+            <summary>
+            Last Name of Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.AdminEventAttendeeDetails.city">
+            <summary>
+            City of Event Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSearchTermInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.adminSendConfirmationEmailInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetMembershipProductsOutput.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberoutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberoutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberoutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberoutput.PhoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.GetSingleMemberInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByCreditCardInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByCreditCardInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_CompanyEndpoint.v1_Admin_CompanyEndpointController.companyBulkMakepaymentByCreditCardInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+    </members>
+</doc>

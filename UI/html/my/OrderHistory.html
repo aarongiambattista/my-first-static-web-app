@@ -1,0 +1,164 @@
+<h3>Order History</h3>
+<hr>
+<div class="ebusiness-showing-applied-filters row">
+    <span class="FilterSort-Options col-md-12" data-bind="visible: OrderHistoryAvailable">
+        <span class="showingLabel"> Showing : </span><span data-bind="text:filterData"></span> / <span data-bind="text:sortData"></span>
+    </span>
+</div>
+<div class="alert alert-warning" data-bind="visible: noOrderHistory">You don't have any orders.</div>
+<div data-bind="visible: OrderHistoryAvailable">
+    <div class="d-sm-none d-xs-none d-none d-md-block">
+        <div class="ebMyOrderHeader row">
+            <div class="col-md-2"> <span class="heading-labels-orders"> OrderID</span></div>
+            <div class="col-md-2"> <span class="heading-labels-orders"> Order Date</span></div>
+            <div class="col-md-2"> <span class="heading-labels-orders"> Order Status</span></div>
+            <div class="col-md-2"> <span class="heading-labels-orders"> Ship Date</span></div>
+            <div class="col-md-3"> <span class="heading-labels-orders"> Shipment Method</span></div>
+        </div>
+    </div>
+    <div class="ebusiness-my-orderlist" data-bind="foreach: orderDetails" role="tablist">
+        <div class="ebusiness-my-orders-list">
+            <div class="row order-heading-panel">
+                <div class="col-md-2 col-sm-4 ebusiness-order-id-dwnld eb-ellipsis"> <span class="label-orders orders-order-id"> Order #</span> <span class="value-orders" data-bind="text: orderID"></span></div>
+                <div class="col-md-2 col-sm-4  eb-ellipsis"> <span class="label-orders"> Order Date</span><span class="value-orders" data-bind="text: orderDate"></span></div>
+                <div class="col-md-2 col-sm-4 eb-ellipsis"> <span class="label-orders eb-ellipsis"> Ship Status</span><span class="value-orders orders-order-status clsShipStatus" data-bind="text: orderStatus"></span></div>
+                <div class="col-md-2 col-sm-4 eb-ellipsis"> <span class="label-orders eb-ellipsis"> Ship Date</span><span class="value-orders" data-bind="text: shipDate"></span></div>
+                <div class="col-md-2 col-sm-4"> <span class="label-orders eb-ellipsis"> Shipment Method</span><span class="value-orders" data-bind="text: shipmentMethod"></span></div>
+                <span data-bs-toggle="collapse" data-bind="attr: {'data-bs-target': '#collapse'+ orderID()}" class="collapsed arrow-collapse">
+                    <a data-bind="click: showOrderDetails, text: toogleName">Details</a>
+                </span>
+            </div>
+
+            <div data-bind="attr: {id: 'collapse'+ orderID()}" class="panel-collapse collapse order-details-panel">
+                <div role="tabpanel" class="eb-content-row">
+                    <div class="panel-collapse ebClear" data-bind="foreach: allOrderLines">
+                        <div class="row grid-row-cart-list">
+                            <div class="col-sm-2 col-3">
+                                <div class="ebusiness-product-image-my-orders">
+                                    <img class="ebusiness-product-image-myorders" data-bind="imageSrc: { src: webImage}" />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="label-order-detail eb-ellipsis">Product Name</span>
+                                <span class="value-orders"> <a data-bind="text: name, click : productNameDetails, attr: {class : applyClass}"></a></span>
+                            </div>
+                            <div class="col-sm-2 col-6">
+                                <span class="label-order-detail eb-ellipsis">Price</span>
+                                <span class="value-orders" data-bind="text: price"></span>
+
+                            </div>
+                            <div class="col-sm-2 col-6">
+                                <span class="label-order-detail orders-ship-to eb-ellipsis">    Quantity</span>
+                                <span class="value-orders" data-bind="text: quantity"> </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- Subscription and membership HTML -->
+                                <div class="ebusiness-row-subscription" data-bind="visible:isSubscription">
+                                    <input type="checkbox" class="chkAutoRenewSub" data-bind="checked: autoRenew, disable: true" /> Auto Renew?
+                                </div>
+                            </div>
+                            <!-- Subscription and membership HTML -->
+                        </div>
+                        <!-- Kit Product HTML Starts here -->
+                        <div class="row">
+                            <div class="col-sm-2">
+
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="ebusiness-kit-product-wrapper" data-bind="visible:isParentProduct()">
+                                    <div class="ebusiness-collapse-header ebClear">
+                                        <span class="pull-left heading-Included"> Products Included in Kit (<span data-bind="text:subProductsList().length"></span>)</span>
+                                        <span class="pull-right">
+                                            <a data-bs-toggle="collapse" data-bind="click: kitproduct, text: displayDetails"></a>
+                                        </span>
+                                    </div>
+                                    <div data-bind="visible: kitShow" class="ebClear panel-collapse a-collapse-body ebusiness-kit-product-collapsible ebusiness-kit-product">
+                                        <div class="ebClear" data-bind="foreach : subProductsList">
+                                            <div class="ebusiness-row-kit-product row" data-bind="value:id">
+                                                <div class="col-sm-2 eb-kit-product-image-wrapper">
+                                                    <p class="ebusiness-kit-product-image">
+                                                        <img class="ebusiness-kit-productImage text-ellipsis" data-bind="imageSrc:{src: webImage}">
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <p><strong data-bind="text: name"></strong></p>
+                                                    <p data-bind="text: description"></p>
+                                                    <p><strong data-bind="text:'Quantity: ' + quantity()"></strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kit Product HTML Ends here -->
+
+                        <div class="ebusiness-meeting-viewcart-item-wrapper" data-bind="visible: productType() == 'Meeting'">
+                            <div class="ebusiness-collapse-header ebClear">
+                                <span class="pull-left heading-Included"> Currently Attending</span>
+                                <span class="pull-right" data-bind="click: toggleSession">
+                                    <span data-bs-toggle="collapse" data-bind="css: { isCollapseOpen: sessionCollapse(), isCollapseClosed: !sessionCollapse()}"> </span>
+                                </span>
+                            </div>
+
+                            <div class="registration-summary-viewcart" data-bind="visible: sessionCollapse">
+                                <div data-bind="foreach : subProductsList">
+                                    <div class="row-registration-summary">
+                                        <div class="panel-added-attendee row" data-bind="visible: parentProductId() <= 0">
+                                            <div class="col">
+                                                <span class="person-name" data-bind="text: description"></span>-
+                                                <span class="session-name-reg" data-bind="text: name"></span>
+                                            </div>
+
+                                            <div class="col text-right">
+                                                <span data-bind="text: price"></span>
+                                                <!--<span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span class="ebusiness-product-price-old" data-bind="text: price"></span>
+                                                <span class="ebusiness-product-view-cart-price" data-bind="text: currencySymbol"></span><span data-bind="text: finalPrice"></span>-->
+                                                <a class="delete-registration meeting" data-bs-toggle="modal" data-bind="attr: {'href': '#collapse1'+ id()}, visible: $root.removeButtonVisible">
+                                                    <i class="ebIcon-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-details-panel">
+                                            <div class="selected-attendees row" data-bind="visible: parentProductId() > 0">
+                                                <div class="col-sm-8">
+                                                    <span class="session-name-reg" data-bind="text: name"></span>
+                                                </div>
+                                                <div class="col-sm-4 text-right">
+                                                    <!-- ko if: discount() <= 0 || (price() == finalPrice()) -->
+                                                    </span><span data-bind="text: price"></span>
+                                                    <!-- /ko -->
+                                                    <!-- ko if: discount() > 0 && (price() != finalPrice())-->
+                                                    <span class="ebusiness-product-price-old" data-bind="text: price"></span>
+                                                    <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span data-bind="text: finalPrice"></span>
+                                                    <!-- /ko -->
+                                                    <a class="delete-registration session" data-bind="click: $root.removeProduct, visible: $root.removeButtonVisible">
+                                                        <i class="ebIcon-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary(Total) Section -->
+                <div class="row">
+                    <div class="col-sm-2 col-6 eb-ellipsis"> <span class="label-order-detail"> Order Type </span> <span class="value-orders" data-bind="text: orderType"></span></div>
+                    <div class="col-sm-3 col-6 eb-ellipsis"> <span class="label-order-detail orders-ship-to eb-ellipsis"> Ship To</span><span class="value-orders" data-bind="text: shipToName"></span></div>
+                    <div class="col-sm-2 col-6"> <span class="label-order-detail"> Order Total </span><span class="value-orders" data-bind="text: subTotal"></span></div>
+                    <div class="col-sm-3 col-6 eb-ellipsis"> <span class="label-order-detail eb-ellipsis"> Tracking Number</span><span class="value-orders tracking-number" data-bind="text: trackingNumber"></span></div>
+                    <div class="col-sm-2 col-6"> <span class="label-order-detail"> </span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loaderwrapper" data-bind="visible: showLoader">
+    <div class="ebloader"></div>
+</div>

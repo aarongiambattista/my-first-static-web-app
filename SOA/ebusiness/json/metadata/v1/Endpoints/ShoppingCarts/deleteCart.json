@@ -1,0 +1,29 @@
+{
+  "deleteShoppingCart": {
+    "route": {
+      "description": "Completely deletes the current shopping cart.",
+      "httpMethod": "DELETE",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "deleteCart": {
+        "$ref": "shoppingBusinessLogic.json#/deleteCart"
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

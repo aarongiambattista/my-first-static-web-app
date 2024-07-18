@@ -1,0 +1,76 @@
+﻿<div class="ebusiness-main-container">
+    <h3 class="ebusiness-sub-page-title">Donation</h3>
+    <hr>
+    <div class="ebClear">
+        <div>
+            <div class="eb-thanks-message">
+                <p>Thank you for your interest in supporting our organization.<br /> Please select your contribution amount and the project you want to support.</p>
+            </div>
+            <div class="eb-select-fund">
+                <label> Select Fund</label>
+
+                <div class="row" data-bind="foreach: fundRaisingOrders">
+                    <div class="col-sm-4" data-bind="click: selectedFund">
+                        <div class="eb-fund-card" data-bind="css: styleClass">
+                            <div class="eb-fund-name"><span data-bind="text:fundName"></span></div>
+                            <div class="eb-more-details">
+                                <span class="btn btn-link" data-bind="click: moreDetails">more details</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" role="dialog" data-bind="attr: {id: 'collapse'+ id()}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="eb-modal-donations-modal">
+                                        <h3><label data-bind="text: fundName"></label></h3>
+                                        <div class="eb-fund-details">
+                                            <img class="ebusiness-product-list-image-wrapper" alt="" data-bind="imageSrc: { src: webImage }" />
+                                            <p data-bind="html: description" style="padding-top:15px;"></p>
+                                        </div>
+                                        <div class="text-right"><input type="button" value="OK" class="btn btn-primary" data-bs-dismiss="modal"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger col-md-6" data-bind="visible: fundErrorMessage">
+                <span>Please select a fund</span>
+            </div><br/>
+
+            <div class="eb-select-amount col-md-8">
+                <div data-bind="visible: noAmountAvailable">
+                    <label> Select Amount</label>
+                    <span data-bind="foreach: allFundRaisingPrices">
+                        <button class="btn btn-primary eb-amount" data-bind="text: fundPrice, css: applyPrice, click: amountSelected"></button>
+                    </span>
+                </div>
+                <div class="eb-enter-amount">
+                    <label> Enter an Amount</label>
+                    <input type="text" class="form-control" data-bind="numeric:amount, value:amount, hasFocus: focus" />
+                </div>
+            </div>
+
+            <!--Payment Data-->
+            <div class="eb-payment-control col-md-8">
+            </div>
+
+            <div class="ebClear"></div>
+
+            <div class="alert alert-success eb-payment-success" data-bind="visible: showSuccess">
+                <h4> Your donation is successful!</h4>
+                Thank you for your generous contribution to <span data-bind="text: showFundName">[Product/Fund name]</span>.
+            </div>
+            <div class="alert alert-danger" data-bind="visible: showError, text: errorMessage">
+                Payment operation failed
+            </div>
+        </div>
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+</div>
+

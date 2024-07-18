@@ -1,0 +1,57 @@
+﻿{
+  "endpoints": {
+    "clearStandardCaches": {
+      "route": {
+        "httpMethod": "POST",
+        "description": "Clears standard Caches",
+        "segments": {
+          "ServerAdmin": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "StandardCaches": {
+            "isLiteral": true,
+            "type": "string",
+            "security": {
+              "isWebUserCompanyAdministrator": {
+                "$ref": "../../Common/AdminSecurity.json#/IsWebUserCompanyAdministrator"
+              }
+            }
+          },
+          "Clear": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "ClearStandardCachesInput",
+        "fields": {
+          "caches": {
+            "type": "string",
+            "input": {
+              "isCollection": true,
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "clearCache": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Clear Cache",
+            "processFlowParameters": {
+              "Caches": "@Request.caches"
+            }
+          }
+        }
+      }
+      
+
+    }
+  }
+}

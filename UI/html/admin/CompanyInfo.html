@@ -1,0 +1,332 @@
+﻿<div class="ebWrapper ebClear ebusiness-main-container offcanvas">
+    <div class="ebusiness-filter-control">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Information - <span data-bind="text:companyName"></span></h3>
+            </div>
+            <div class="col-sm-6 ebusiness-view-switcher">
+                <div class="dropdown">
+                    <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                    <span id="companyDropdown"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="eb-add-card">
+        <h3>Company Address <span class="pull-right"><a href="#" data-bind="click: fetchInformation" data-bs-toggle="modal" data-bs-target="#editShppingAddressCompany" class="eb-link">Edit</a></span></h3>
+        <div class="new-card-details frmCompleteOrder">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="eb-value-label">
+                        Billing Address
+                    </span>
+                    <div>
+                          <!-- ko if: showAddress -->
+                        <span class="eb-address">
+                            <!-- ko if: billingAddressLine1 -->
+                            <span data-bind="text:billingAddressLine1"></span><br />
+                            <!-- /ko -->
+                            <!-- ko if: billingAddressLine2 -->
+                            <span data-bind="text:billingAddressLine2"></span><br />
+                            <!-- /ko -->
+                            <span data-bind="text:billingAddressCity"></span>
+                            <span data-bind="text:billingAddressStateProvince"></span>
+                            <span data-bind="text:billingAddressPostalCode"></span>
+                            <!-- ko if: billingAddressCountry -->
+                            <br />  <span data-bind="text:billingAddressCountry"></span>
+                            <!-- /ko -->
+                        </span>
+                        <!-- /ko -->
+                        <!-- ko ifnot: showAddress -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="eb-value-label">
+                        (Area Code) Phone
+                    </span>
+                    <div>
+                        <!-- ko if: phone -->
+                        <span class="eb-address" data-bind="text:phone"></span><br />
+                        <!-- /ko -->
+                        <!-- ko ifnot: phone -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+                        <span class="eb-value-label">
+                            (Area Code) Fax
+                        </span>
+                        <div>
+                            <!-- ko if: fax -->
+                            <span class="eb-address" data-bind="text:fax"></span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: fax -->
+                            <span class="eb-address">--</span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <span class="eb-value-label">
+                        Email
+                    </span>
+                    <div>
+                        <!-- ko if: email -->
+                        <span class="eb-address" data-bind="text:email"></span>
+                        <!-- /ko -->
+                        <!-- ko ifnot: email -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+
+                    </div>
+                    <span class="eb-value-label">
+                        Website
+                    </span>
+                    <div>
+                        <!-- ko if: website -->
+                        <span class="eb-address">
+                            <a data-bind="attr: {href: website}, text: website" target="_blank"></a>
+                        </span>
+                        <!-- /ko -->
+                        <!-- ko ifnot: website -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="eb-add-card">
+        <h3>
+            Membership Information
+        </h3>
+        <div class="new-card-details frmCompleteOrder">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="eb-value-label">
+                        Membership Type
+                    </span>
+                    <div>
+                        <!-- ko if: membershipType -->
+                        <span class="eb-address" data-bind="text:membershipType"></span><br />
+                        <!-- /ko -->
+                        <!-- ko ifnot: membershipType -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+                        <span class="eb-value-label">
+                            Status
+                        </span>
+                        <div>
+                            <!-- ko if: memberStatus -->
+                            <span class="eb-address" data-bind="text:memberStatus"></span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: memberStatus -->
+                            <span class="eb-address">--</span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="eb-value-label">
+                        Start Date
+                    </span>
+                    <div>
+                        <!-- ko if: startDate -->
+                        <span class="eb-address" data-bind="text:startDate"></span><br />
+                        <!-- /ko -->
+                        <!-- ko ifnot: startDate -->
+                        <span class="eb-address">--</span>
+                        <!-- /ko -->
+                        <span class="eb-value-label">
+                            End Date
+                        </span>
+                        <div>
+                            <!-- ko if: endDate -->
+                            <span class="eb-address" data-bind="text:endDate"></span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: endDate -->
+                            <span class="eb-address">--</span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editShppingAddressCompany" class="modal" role="dialog" data-bind="clickOutside:clickOutside.bind($data)">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="heading-primary"> Edit Address</span>
+                </div>
+                <div class="modal-body">
+                    <div class="ebusiness-update-address-checkout">
+                        <div>
+                            <form id="updateAddressFormCompany">
+                                <div class="row">
+                                    <div class="col-7 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Address Type</label>
+                                            <select class="form-control" data-bind="options: addressTypeOptions, optionsText:'name', value: selectedAddress, event: { change: addressChanged(selectedAddress) }"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 col-sm-6 eb-verify-button">
+                                        <button class="btn-secondary" data-bind="click:verifyAddressDialog">Verify Address</button>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger" data-bind="visible: showAddressError, text: erroraddressMessage"></div>
+                                        <div class="alert alert-success" data-bind="visible: showAddressSuccess, text: successAddressMessage"></div>
+                                    </div>
+                                </div>
+                                <div class="ebusiness-profile-section row" data-bind="with: selectedAddress">
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Address Line 1</label>
+                                            <input type="text" class="form-control" data-bind="textInput: line1" placeholder="Address Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Address Line 2</label>
+                                            <input type="text" class="form-control" data-bind="textInput: line2" placeholder="Address Line 2">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">City</label>
+                                            <input type="text" class="form-control" data-bind="textInput: city" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Zip</label>
+                                            <input type="text" class="form-control" data-bind="textInput: postalCode" placeholder="Zip">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Country</label>
+                                            <select class="form-control" data-bind="options: addressCountryCodeOptions, optionsValue:'country', value:country, optionsText:function(item) {return item.country},event: { change: selectionChanged }, optionsCaption:'Country'"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">State/Province</label>
+                                            <select class="form-control" data-bind="options: addressStateProvinceOptions, optionsValue:'state', value:stateProvince, optionsText:function(item) {return item.state}, optionsCaption:'State/Province'"></select>
+                                        </div>
+                                    </div>
+
+                                </div><div class="row">
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Phone Type</label>
+                                            <select class="form-control" data-bind="options: phoneTypeOptions, , value:selectedPhoneType, optionsText:function(item) { return item.phoneName }"></select>
+                                        </div>
+                                    </div>
+                                    <div data-bind="with :selectedPhoneType" class="eb-PhoneControl col-md-12 row">
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="caption">Country Code</label>
+                                                <input type="text" class="form-control ebCountryCode" placeholder="Country Code" data-bind="numeric: countryCode, textInput: countryCode" maxlength="3">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="caption">Area Code</label>
+                                                <input type="text" class="form-control ebAreaCode" placeholder="Area Code" data-bind="numeric: countryCode, textInput: areaCode" maxlength="3">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="caption">Phone</label>
+                                                <input type="text" class="form-control" placeholder="Phone" data-bind="numeric: phone, textInput: phone,event:{focus: hideErrorMessage}" maxlength="15">
+                                                <span class="validationMessage" data-bind="visible:phoneRequired" style="display: none;">Phone is required.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-sm-6">
+                                            <div class="form-group">
+                                                <label class="caption">Extension</label>
+                                                <input class="form-control" type="text" placeholder="Extension" data-bind="numeric: phoneExtension, textInput: phoneExtension" maxlength="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <label class="caption">Email Type</label>
+                                            <select class="form-control" data-bind="options: emailTypeOptions, optionsText:'selectedEmailType', value:selectedEmailType"></select>
+                                        </div>
+                                    </div>
+                                    <div data-bind="with :selectedEmailType" class="col-md-8 col-sm-6 ">
+                                        <div class="form-group">
+                                            <label class="caption">Email Address</label>
+                                            <input class="form-control" data-bind="textInput: email" type="email" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="caption">Website</label>
+                                            <input class="form-control" data-bind="textInput: website" placeholder="Website">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 alert alert-danger" data-bind="visible: showError, text: errorMessage"></div>
+                                <div class="col-md-8 alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+                                <div class="text-right">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal" data-bind="click:windowChange"> Cancel </button>
+                                    <button type="button" class="btn btn-primary ebusiness-action-button-save-changes" data-bind="click:updateProfileChanges">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--This div belongs to Loader-->
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" id="modal-verify-address">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-verify-address">
+                        <h3>Please verify your address details</h3>
+                        <p>Address entered by you may be incorrect or incomplete. Please review our recommendation and choose from the option below.</p>
+                        <div class="row" data-bind="foreach: enteredAndSuggestedAddressRecord">
+                            <div class="col-md-6 eb-entered-add">
+                                <h4>Entered address</h4>
+                                <label data-bind="text: eline1, css: { correction: eline1 != sline1 }"></label><br>
+                                <label data-bind="text: eline2, css: { correction: eline2 != sline2 }"></label><br>
+                                <label data-bind="text:ecity, css: { correction: ecity != scity }"></label><br>
+                                <label data-bind="text:epostalCode, css: { correction: epostalCode != spostalCode }"></label>
+                                <label data-bind="text:ecountry, css: { correction: ecountry != scountry }"></label><br>
+                                <label data-bind="text:estateProvince, css: { correction: estateProvince != sstateProvince }"></label><br>
+                                <button class="btn btn-secondary btn-block eb-btn-entered" data-bs-dismiss="modal">Use address as entered</button>
+                            </div>
+                            <div class="col-md-6 eb-suggested-add">
+                                <h4>Suggested address</h4>
+                                <label data-bind="text: sline1, css: { correction: eline1 != sline1 }"></label><br>
+                                <label data-bind="text: sline2, css: { correction: eline2 != sline2 }"></label><br>
+                                <label data-bind="text:sstateProvince, css: { correction: estateProvince != sstateProvince }"></label><br>
+                                <label data-bind="text:scity, css: { correction: ecity != scity }"></label><br>
+                                <label data-bind="text:scountry, css: { correction: ecountry != scountry }"></label><br>
+                                <label data-bind="text:spostalCode, css: { correction: epostalCode != spostalCode }"></label>
+                                <button class="btn btn-primary btn-block eb-btn-suggested" data-bs-dismiss="modal" data-bind="click:suggestedAddressClick">Use suggested address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

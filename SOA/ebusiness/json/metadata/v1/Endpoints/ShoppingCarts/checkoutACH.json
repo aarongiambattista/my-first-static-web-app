@@ -1,0 +1,166 @@
+﻿{
+  "checkoutbyACH": {
+    "route": {
+      "description": "Completes the shopping experience using a ACH for payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "ACHCheckoutInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "fields": {
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "validateSaveForFutureUse": {
+        "$ref": "checkoutBusinessLogic.json#/validateSaveForFutureUse"
+      },
+      "addACHPaymentInformation": {
+        "$ref": "checkoutBusinessLogic.json#/addACHPaymentInformation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba",
+            "TransactionNumber": "ebiz payment",
+            "SaveForFutureUse": "@request.saveForFutureUse"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  },
+  "checkoutbyACHTokeizer": {
+    "route": {
+      "description": "Completes the shopping experience using a ACH Tokenizer for payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACHTokenizer": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "ACHTokenizerCheckoutInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHTokenizerInput",
+      "fields": {
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "validateSaveForFutureUse": {
+        "$ref": "checkoutBusinessLogic.json#/validateSaveForFutureUse"
+      },
+      "addACHPaymentInformation": {
+        "$ref": "checkoutBusinessLogic.json#/addACHTokenizerPaymentInformation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba",
+            "TransactionNumber": "ebiz payment",
+            "SaveForFutureUse": "@request.saveForFutureUse"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

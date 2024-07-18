@@ -1,0 +1,96 @@
+﻿<div class="ebWrapper ebusiness-main-container">
+    <div class="row">
+        <div class="eventContent">
+            <h3 class="eb-pg-title">Registered Members</h3>
+            <div class="eb-confirm-attendee-row">
+                <div class="col-sm-5">
+                    <span data-bind="text: registrationType"></span> (<span data-bind="text: members().length"></span>)
+                </div>
+                <div class="col-sm-7 eb-add-member-link">
+                    <span>
+                        <input type="text" data-bind="textInput: search" placeholder="Search" class="form-control">
+                    </span>
+                </div>
+            </div>
+            <div class="NoRecords text-center" data-bind="visible: noMembers()">
+                <span>No records found.</span>
+            </div>
+            <div class="attendeeConfirmed" data-bind="visible: !noMembers()">
+                <div class="d-sm-none d-xs-none d-none d-md-block">
+                    <div class="ebMyOrderHeader row">
+                        <div class="col-md-4"> <span class="heading-labels-orders"> Name</span></div>
+                        <div class="col-md-3"> <span class="heading-labels-orders">City</span></div>
+                        <div class="col-md-2"> <span class="heading-labels-orders">Status</span></div>
+                        <div class="col-md-3"> <span class="heading-labels-orders">Badge Information</span> </div>
+                    </div>
+                </div>
+                <div class="gridRegistered" data-bind="foreach: members">
+                    <div class="eb-attendee row">
+                        <div class="col-md-4 col-sm-4">
+                            <span class="label-orders orders-order-id"> Name/Title </span> <span class="value-orders">
+                                <span class="eb-cmp-name" data-bind="text: name"></span>
+                                <span class="eb-cmp-designation" data-bind="text: title"></span>
+                            </span>
+                        </div>
+                        <div class="col-md-3 col-sm-4">
+                            <span class="label-orders">City</span>
+                            <span class="value-orders eb-comp-user-email" data-bind="text: city"></span>
+                        </div>
+                        <div class="col-md-2 col-sm-4">
+                            <span class="label-orders">Status</span>
+                            <span class="value-orders orders-order-status" data-bind="text: status"></span>
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-4">
+                            <span class="label-orders">Badge Information</span>
+                            <span class="value-orders"><a data-bs-toggle="modal" data-bs-target="#badgeInformationModal" data-bind="click: $root.loadBadgeInfo">Preview/Edit</a></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- error message div -->
+            <div class="alert alert-danger" style="display: none;" data-bind="visible: showError, text: errorMessage"></div>
+        </div>
+
+    </div>
+    <div class="modal fade" role="dialog" id="badgeInformationModal">
+        <div class="modal-dialog ebusiness-modal-vertical-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="ebusiness-modal-content">
+                        <h2>Badge Information</h2>
+                        <div class="">
+                            <div class="form-group">
+                                <label class="caption">Name</label>
+                                <input placeholder="Name" class="form-control" data-bind="textInput: badgeName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="caption">Title</label>
+                            <input placeholder="Title" class="form-control" data-bind="textInput: badgeTitle">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="caption">Company</label>
+                            <input placeholder="Company" class="form-control" data-bind="textInput: badgeCompany">
+                        </div>
+                        <div class="ebusiness-action-buttons-footer row text-right">
+                            <div class="col-md-12">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary ebusiness-action-button-remove-all-items-button" data-bs-dismiss="modal" data-bind="click: update">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--This div belongs to Loader-->
+    <div class="loaderwrapper" data-bind="visible: showLoader">
+        <div class="ebloader"></div>
+    </div>
+</div>

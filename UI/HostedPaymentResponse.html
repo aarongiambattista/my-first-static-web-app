@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Checkout</title>
+    <script src="js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="js/3rdParty/knockout-3.4.2.js"></script>    
+    <script src="js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script src="js/3rdParty/knockout.validation.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <!--Solved icons issue-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/eb6.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/configuration/ebConfig.js"></script>
+    <script src="js/UserContext.js"></script>
+    <script src="js/ShoppingCart.js"></script>
+    <script src="js/admin/ShoppingCart.js"></script>
+
+</head>
+<body>
+
+    <h4 class="eb-wait-msg text-center">
+        Please do not refresh the page while we are processing your payment.
+    </h4>
+
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+
+            eb_Config.retrieveCSRFTokens().always(function (headers) {
+
+                var responseData = { responsedata: location.href };
+
+                var isSavedPaymentsControl = parent.eb_savedPayments ? true : false;
+
+                var paymentControl = parent.eb_paymentControl;
+                if (parent.location.pathname.includes("/admin/")) {
+                    paymentControl = parent.eb_adminPaymentControl;
+                }
+
+                var PostResponseUrl;
+                if (isSavedPaymentsControl) {
+                    PostResponseUrl = parent.eb_savedPayments.live.bluepayHPPPostResponseUrl;
+                }
+                else {
+                    PostResponseUrl = paymentControl.live.parentControl.bluepayHPPPostResponseUrl;
+                }
+
+                postHostedPaymentResponse(responseData);
+
+                function postHostedPaymentResponse(responseData) {
+                    var sUrl = PostResponseUrl;
+                    eBusinessJQObject.ajax({
+                        url: sUrl,
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify(responseData),
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        headers: headers
+                    }).done(function (data) {
+                        if (isSavedPaymentsControl) {
+                            parent.eb_savedPayments.live.handleBluepayHPPPostResponseSuccess(data);
+                        }
+                        else {
+                            paymentControl.live.parentControl.handleBluepayHPPPostResponseSuccess(data);
+                        }
+                    }).fail(function (xhr, msg, data) {
+                        if (isSavedPaymentsControl) {
+                            parent.eb_savedPayments.live.handleBluepayHPPPostResponseFailure(xhr, msg, data);
+                        }
+                        else {
+                            paymentControl.live.parentControl.handleBluepayHPPPostResponseFailure(xhr, msg, data);
+                        }
+                    });
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

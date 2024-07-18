@@ -1,0 +1,156 @@
+﻿{
+  "endpoints": {
+
+    "getAdminCartCompany": { //TODO: write description of routes, as well other descriptions, create an issue for Regression sprint
+      "route": {
+        "description": "Gets the company details of the passed in company Id, secured by a security Fn",
+        "httpMethod": "GET",
+        "segments": {
+          "admin": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "company": { //TODO: should be "companies" rather
+            "isLiteral": true,
+            "type": "string"
+          },
+          "id": {
+            "isLiteral": false,
+            "type": "long",
+            "security": {
+              "canAdminCompany": {
+                "$ref": "../../../Common/adminSecurity.json#/IsPersonCompanyAdministratorForCompany"
+              }
+            }
+          },
+          "ShoppingCarts": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "getAdminCompanyInput",
+        "fields": {
+          "id": {
+            "type": "long",
+            "description": "The id of the company to admin",
+            "input": {
+              "source": "path",
+              "httpMethods": [
+                "GET",
+                "POST",
+                "PATCH"
+              ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "adminCartsEntityDefinitions.json#/shoppingCartOutput",
+        "name": "ShoppingCartOutput"
+      },
+      "businessLogic": {
+        "ensureActiveCart": {
+          "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "returnTheOrder": {
+          "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+        }
+      }
+    },
+    "addEventProduct": {
+      "$ref": "adminAddEventProduct.json#/adminAddEventProduct"
+    },
+    "deleteAdminCart": {
+      "$ref": "adminDeleteCart.json#/deleteAdminShoppingCart"
+    },
+
+    "deleteEventCartItem": {
+      "$ref": "adminDeleteEventCartItem.json#/adminDeleteEventCartItem"
+    },
+    "adminEmptyCart": {
+      "$ref": "adminEmptyCart.json#/adminEmptyCart"
+    },
+    "getAllCartItems": {
+      "$ref": "adminGetAllCartItems.json#/getAllCartItems"
+    },
+    //"getCart": {
+    //  "$ref": "adminGetCart.json#/getAdminShoppingCart"
+    //} //,
+    //"getSingleCartItem": {
+    //  "$ref": "adminGetSingleCartItem.json#/getSingleCartItem"
+    //},
+
+    "getAllEventsProducts": {
+      "$ref": "adminGetAllEventsProducts.json#/getAllEventsProducts"
+    },
+    "getSingleEventProduct": {
+      "$ref": "adminGetSingleEventProduct.json#/getSingleEventProduct"
+    },
+    "updateCart": {
+      "$ref": "adminUpdateCart.json#/updateShoppingCart"
+    },
+
+    "updateSingleEventProductItem": {
+      "$ref": "adminUpdateEventProduct.json#/updateSingleEventProductItem"
+    },
+    "checkoutPurchaseOrder": {
+      "$ref": "adminCheckoutPurchaseOrder.json#/adminCheckoutByPurchaseOrder"
+    },
+    //"adminCheckoutByPurchaseOrder": {
+    //  "$ref": "adminCheckoutPurchaseOrder.json#/adminCheckoutByPurchaseOrder"
+    //},
+    "checkoutByCreditCard": {
+      "$ref": "adminCheckoutCreditCard.json#/checkoutByCreditCard"
+    },
+    "adminCheckoutBySavedPaymentMethod": {
+      "$ref": "adminCheckoutSavedPaymentMethod.json#/adminCheckoutBySavedPaymentMethod"
+    },
+    "adminCheckoutbyACH": {
+      "$ref": "adminCheckoutACH.json#/adminCheckoutbyACH"
+    },
+    "adminCheckoutbyACHTokenizer": {
+      "$ref": "adminCheckoutACH.json#/adminCheckoutbyACHTokenizer"
+    },
+    "adminCheckoutbyGPay": {
+      "$ref": "adminCheckoutGPay.json#/checkoutByGPay"
+    },
+    "adminCheckoutbyApplePay": {
+      "$ref": "adminCheckoutApplePay.json#/checkoutByApplePay"
+    },
+    "adminCheckoutZeroPaymentOrder": {
+      "$ref": "adminCheckoutZeroPaymentOrder.json#/adminCheckoutZeroPaymentOrder"
+    },
+    "getAllShipmentTypes": {
+      "$ref": "adminGetAllShipmentTypes.json#/getAllShipmentTypes"
+    },
+    "getRemotePaymentRequestDataForCheckout": {
+      "$ref": "adminCheckoutRemotePayment.json#/getRemotePaymentRequestDataForCheckout"
+    },
+    "processRemotePaymentResponseDataForCheckout": {
+      "$ref": "adminCheckoutRemotePayment.json#/processRemotePaymentResponseDataForCheckout"
+    },
+    //"getRemotePaymentRequestDataForFundraisingCheckout": {
+    //  "$ref": "adminFundraisingCheckoutByRemotePayment.json#/getRemotePaymentRequestDataForFundraisingCheckout"
+    //},
+    //"processRemotePaymentResponseForFundraisingCheckout": {
+    //  "$ref": "adminFundraisingCheckoutByRemotePayment.json#/processRemotePaymentResponseForFundraisingCheckout"
+    //}
+    "adminAddSubscriptionGeneralProduct": {
+      "$ref": "adminAddSubscriptionGeneralProduct.json#/adminAddSubscriptionGeneralProduct"
+    },
+    "adminUpdateSubscriptionGeneralProduct": {
+      "$ref": "adminUpdateSubscriptionGeneralProduct.json#/adminUpdateSingleSubscriptionGeneralProductItem"
+    },
+    "adminGetAllSubscriptionProducts": {
+      "$ref": "adminGetAllSubscriptionProducts.json#/adminGetAllSubscriptionProducts"
+    },
+    "adminGetSingleSubscriptionProduct": {
+      "$ref": "adminGetSingleSubscriptionProduct.json#/adminGetSingleSubscriptionProduct"
+    },
+    "adminDeleteCartItem": {
+      "$ref": "adminDeleteCartItem.json#/adminDeleteCartItem"
+    }
+  }
+}

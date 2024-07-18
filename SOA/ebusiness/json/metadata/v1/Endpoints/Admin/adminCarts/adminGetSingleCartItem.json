@@ -1,0 +1,57 @@
+{
+  "getSingleCartItem": {
+    "route": {
+      "description": "Gets the common properties of a single item in the cart.  A cart item may have additional detail depending on its product type.  Those details can be retrieved through the URL specified by the additionalDetails output field.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "id": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleCartItemInput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET",
+              "PATCH"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetSingleCartItemsOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

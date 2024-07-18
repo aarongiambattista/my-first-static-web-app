@@ -1,0 +1,50 @@
+﻿{
+  "activeTopicCodesOutput": {
+    "fields": {
+      "topicCodeId": {
+        "type": "long"
+      }
+    }
+  },
+  "deactivateTopicCodeInput": {
+    "fields": {
+      "topicCodeId": {
+        "type": "long",
+        "input": {
+          "httpMethods": [ "DELETE" ],
+          "source": "path"
+        }
+      }
+    }
+  },
+  "addTopicCodeInput": {
+    "fields": {
+      "topicCodeId": {
+        "type": "int",
+        "input": {
+          "httpMethods": [
+            "POST"
+          ],
+          "source": "body",
+          "sourceField": "ID",
+          "requiredHttpMethods": [
+            "POST"
+          ]
+        }
+      }
+    }
+  },
+  "updateTopicCodesInput": {
+    "fields": {
+      "topicCodeIds": {
+        "type": "int",
+        "input": {
+          "httpMethods": [ "PUT" ],
+          "source": "body",
+          "isCollection": true,
+          "requiredHttpMethods": [ "PUT" ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+﻿{
+  "checkoutByCreditCard": {
+    "route": {
+      "description": "Completes the shopping experience using a credit card for payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "creditCardCheckoutInput",
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationMonth": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+             "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationYear": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdByCardNumber": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByCardNumber"
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "getPaymentExpirationDate": {
+        "$ref": "checkoutBusinessLogic.json#/getPaymentExpirationDate"
+      },
+      "addCreditCardPaymentInfo": {
+        "$ref": "checkoutBusinessLogic.json#/addCreditCardPaymentInfo"
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

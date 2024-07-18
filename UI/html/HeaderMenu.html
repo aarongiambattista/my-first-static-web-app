@@ -1,0 +1,87 @@
+﻿<a href="../Index.html" class="navbar-brand visbleoniPad">e-Business 7.0</a>
+
+<nav class="navbar navbar-expand-lg">
+    <a href="../Index.html" class="navbar-brand hideoniPad">e-Business 7.0</a>
+    <div class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </div>
+    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+        <ul class="navbar-nav" data-bind="foreach:mainMenuItems">
+            <li class="nav-item" data-bind="css: activeClass">
+                <a class="nav-link" data-bind="text:labelText, attr: {'href': URL()}, visible: hasAccess">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li>
+                <div class="dropdown nav-item">
+                    <label for="ebCommunityCheckbox" class="toggle">Community <span class="caret"></span></label>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Community<span class="caret"></span></a>
+                    <input type="checkbox" id="ebCommunityCheckbox" />
+                    <ul class="dropdown-menu">
+                        <li class="eb-sub-menu">
+                            <label for="ebCommunityCheckbox1" class="toggle">Committees <span class="caret"></span></label>
+                            <a href="#">Committees</a>
+                            <input type="checkbox" id="ebCommunityCheckbox1" />
+                            <ul class="submenu dropdown-menu">
+                                <li>
+                                    <a data-bind="text:myCommittees, attr: {'href': myCommitteesURL()}"></a>
+                                </li>
+                                <li>
+                                    <a data-bind="text:committeeListing, attr: {'href': committeeListingURL()}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="eb-sub-menu">
+                            <label for="ebCommunityCheckbox2" class="toggle">Directories <span class="caret"></span></label>
+                            <a href="#">Directories</a>
+                            <input type="checkbox" id="ebCommunityCheckbox2" />
+                            <ul class="submenu dropdown-menu">
+                                <li>
+                                    <a data-bind="attr: {'href': companyDirectoryURL()}">Company Directory</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto" data-bind="foreach:mainMenuAdminItems">
+            <li class="nav-item" data-bind="css: activeClass">
+                <a class="nav-link" data-bind="text:labelText, attr: {'href': URL()}, visible: hasAccess"><span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+            <div class="eb-btn-donate-now-wrapper"><a data-bind="text:membershipApplicationText, attr: {'href': membershipApplicationURL()}" class="btn btn-secondary eb-btn-donate-now"></a></div>
+            <div class="eb-btn-donate-now-wrapper"><a data-bind="text:donationsText, attr: {'href': donationsURL()}" class="btn btn-secondary eb-btn-donate-now"></a></div>
+
+            <div class="dropdown userLoggedIn" data-bind="visible:userContext.userLoggedIn">
+                <a class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#">Welcome <span class="userName" data-bind="text: userContext.FirstName"></span><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-bind="text:myProfilePage, attr: {'href': myProfileURL()}"></a></li>
+                    <li><a data-bind="click: logOutUser">Logout</a></li>
+                </ul>
+            </div>
+            <div class="loggedOutuser" data-bind="visible:userContext.userLoggedIn()==0">
+                <a data-bind="attr: {'href': signUpURL()}" class="nav-link">
+                    <span class="fa-icon">
+                        <img data-bind="attr:{src: signUpImage}" />
+                    </span>Sign Up
+                </a>
+                <a data-bind="attr: {'href': loginURL()}" class="nav-link">
+                    <span class="fa-icon">
+                        <img data-bind="attr:{src: loginImage}" />
+                    </span>Login
+                </a>
+            </div>
+            <div data-bind="visible: visibleCart">
+                <a data-bind="attr: {'href': viewCartURL}" class="nav-link">
+                    <span class="fa-icon">
+                        <img data-bind="attr:{src: shoppingCartImage}" />
+                    </span> <span data-bind="text: cartText"></span> <span data-bind="visible: shoppingCart.showCartItems"> (<span id="shoppingCart" data-bind="text: shoppingCart.numberOfItems"></span>)</span>
+                </a>
+            </div>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,88 @@
+﻿{
+  "AllowUserToUpdateThemselves": {
+    "type": "IsAuthenticatedUser",
+    "parameters": {
+      "RequestedPersonId": "@request.personId"
+    }
+  },
+  "AllowCompanyAdministrator": {
+    "$ref": "AdminSecurity.json#/AllowCompanyAdministrator"
+  },
+  "hasWebUserSecurityGroups": {
+    "type": "WebUserSecurityGroups",
+    "parameters": {
+      "Groups": [ "Customer" ]
+    }
+  },
+  "canShipToAddress": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0CanShipToAddress",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@AddressID": "@request.shippingAddressId"
+      }
+    }
+  },
+  "canBillToAddress": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0CanShipToAddress",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@AddressID": "@request.billingAddressId"
+      }
+    }
+  },
+  "isYourRecord": {
+    "type": "ValueComparer",
+    "parameters": {
+      "actualValue": "@request.Id",
+      "expectedValue": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+    }
+  },
+  "isYourOrder": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0CanPersonAccessOrder",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@OrderID": "@request.orderId"
+      }
+    }
+  },
+  "allowAnonymous": {
+    "type": "AllowAnonymous"
+  },
+  "isYourSavedPaymentMethod": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0IsCurrentPersonSavedPaymentMethod",
+      "functionParameters": {
+        "@PersonId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@SavedPaymentId": "@request.savedPaymentId"
+      }
+    }
+  },
+  "isYourCompanySavedPaymentMethod": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0IsCompanySavedPaymentMethod", //create sp
+      "functionParameters": {
+        "@CompanyId": "@request.id",
+        "@SavedPaymentId": "@request.savedPaymentId"
+      }
+    }
+  },
+  "isYourCommitteeTerm": {
+    "type": "SQLFunction",
+    "parameters": {
+      "functionName": "spSecurityeBusiness6_0IsYourCommitteeTerm",
+      "functionParameters": {
+        "@AuthenticatedPersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "@CommitteeTermID": "@request.id"
+
+      }
+    }
+  }
+}

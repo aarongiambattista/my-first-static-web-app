@@ -1,0 +1,133 @@
+﻿{
+  "createPersonSPMByRemoteHostedPayment": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Create SPM by remote hosted payment method. Returns remote URL to add payment details.",
+      "httpMethod": "POST",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GetRemotePaymentRequest": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/personRemoteSavedPaymentInput",
+      "name": "CreatePersonRemoteSavedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/getRemotePaymentRequestForSPMOutput",
+      "name": "personSPMRemoteOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "getCardExpirationDate": {
+        "$ref": "savedPaymentsBusinessLogic.json#/getCardExpirationDate"
+      },
+      "singleGERetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/singlePersonGERetrieval"
+      },
+      "singleNewSubTypeRecordRetrival": {
+        "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "subTypeName": "PersonSavedPaymentMethods",
+            "action": "create"
+          }
+        }
+      },
+      "mapInputToSavedPaymentMethodGE": {
+        "$ref": "savedPaymentsBusinessLogic.json#/mapInputToSavedPaymentMethodGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create",
+            "paymentTypeId": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeID",
+            "expirationDate": "@parent.getCardExpirationDate.outputPaymentExpirationDate",
+            "cardNumber": "",
+            "cvv": ""
+          }
+        }
+      },
+      "createNewSavedPaymentRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleNewSubTypeRecordRetrival.outputGE",
+            "action": "create"
+          }
+        }
+      },
+      "retrieveRemotePaymentURL": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Remote Payment RequestData",
+          "processFlowParameters": {
+            "GEObject": "@parent.createNewSavedPaymentRecord.outputGE"
+          }
+        }
+      }
+    }
+  },
+  "processPersonSPMResponse": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Processes the remote hosted SPM response.",
+      "httpMethod": "POST",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ProcessRemoteResponse": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/processRemotePaymentResponseInput",
+      "name": "PersonSPMProcessRemotePaymentResponseInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "PersonSPMProcessRemotePaymentResponseOutput"
+    },
+    "businessLogic": {
+      "processRemotePaymentResponse": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Process Remote Payment Response Data",
+          "processFlowParameters": {
+            "ResponseData": "@request.responseData"
+          }
+        }
+      },
+      "prepareSavedPaymentMethodForOutput": {
+        "$ref": "savedPaymentsBusinessLogic.json#/prepareSavedPaymentMethodForOutput",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "spmGEObject": "@parent.processRemotePaymentResponse.outputGE"
+          }
+        }
+      }
+    }
+  }
+}

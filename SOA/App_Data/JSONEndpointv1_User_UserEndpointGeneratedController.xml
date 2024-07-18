@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_User_UserEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegistration(Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInput)">
+            <summary>
+            Register a Web User
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterOutput.UserID">
+            <summary>
+            The Id of registered user
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInput.firstName">
+            <summary>
+            The First Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInput.lastName">
+            <summary>
+            The Last Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInput.email">
+            <summary>
+            The UserId/Email for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInput.password">
+            <summary>
+            The password for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInputForBusinessLogic.firstName">
+            <summary>
+            The First Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInputForBusinessLogic.lastName">
+            <summary>
+            The Last Name for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInputForBusinessLogic.email">
+            <summary>
+            The UserId/Email for the User.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_User_UserEndpoint.v1_User_UserEndpointController.UserRegisterInputForBusinessLogic.password">
+            <summary>
+            The password for the User.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,113 @@
+﻿{
+  "companyProfilePhoneOutput": {
+    "$ref": "companyPhonesEntities.json#/companyPhoneOutput",
+    "fields": {
+      "isPreferredPhone": {
+        "type": "boolean",
+        "description": "The value indicate if profile phone is preferred phone"
+      }
+    }
+  },
+
+  "companyPhoneInput": {
+    "fields": {
+      "name": {
+        "type": "string",
+        "description": "The phone name of person phone used to GET,PATCH and DELETE",
+        "input": {
+          "httpMethods": [ "GET", "PATCH", "DELETE" ],
+          "source": "path"
+        }
+      },
+      "countryCode": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "areaCode": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      },
+      "phone": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST" ]
+        } 
+      },
+      
+      "phoneExtension": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body"
+        }
+      }
+    }
+  },
+
+  "companyPhoneOutput": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "The id of this phone"
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of this phone"
+      },
+      "countryCode": {
+        "type": "string",
+        "description": "The country code of this phone"
+      },
+      "areaCode": {
+        "type": "string",
+        "description": "The area code of this phone"
+      },
+      "phone": {
+        "type": "string",
+        "description": "The phone"
+      },
+      "formattedPhone": {
+        "type": "string",
+        "description": "The formatted value of this phone"
+      },
+      "phoneExtension": {
+        "type": "string",
+        "description": "The extension of this phone"
+      }
+    }
+  }
+
+  //"personProfilePreferredPhoneInput": {
+  //  "fields": {
+  //    "name": {
+  //      "type": "string",
+  //      "description": "The phone name of profile phone used to GET phone",
+  //      "input": {
+  //        "httpMethods": [ "PATCH" ],
+  //        "source": "path",
+  //        "requiredHttpMethods": [ "PATCH" ]
+  //      }
+  //    }
+  //  }
+  //},
+
+  //"personPhonePostInput": {
+  //  "$ref": "personPhonesEntities.json#/personPhoneInput",
+  //  "fields": {
+  //    "name": {
+  //      "input": {
+  //        "httpMethods": [ "POST" ],
+  //        "source": "body"
+  //      }
+  //    }
+  //  }
+  //}
+}

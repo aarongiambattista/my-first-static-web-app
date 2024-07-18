@@ -1,0 +1,79 @@
+{
+  "getCommitteeTermGeneralInfo": {
+    "route": {
+      "httpMethod": "GET",
+      "description": "Gets the Details of a Committee Term",
+      "segments": {
+        "Committees": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "General": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "id": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "IsYourCommitteeTerm": {
+              "$ref": "../../Common/security.json#/isYourCommitteeTerm"
+            }
+          }
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetMyCommitteeTermInput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": false,
+      "name": "GetMyCommitteeTermInfo",
+      "fields": {
+        "Id": {
+          "type": "long"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "CommitteeName": {
+          "type": "string"
+        },
+        "Goals": {
+          "type": "string"
+        },
+        "StartDate": {
+          "type": "date"
+        },
+        "EndDate": {
+          "type": "date"
+        },
+        "Director": {
+          "type": "string"
+        }
+      }
+    },
+    "businessLogic": {
+      "MyCommitteeTermInfoRetrieve": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0MyCommitteeTermInfo",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+
+  }
+}

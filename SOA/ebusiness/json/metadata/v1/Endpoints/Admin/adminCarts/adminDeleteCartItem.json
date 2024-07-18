@@ -1,0 +1,81 @@
+{
+  "adminDeleteCartItem": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Removes the specified item from the admin's company cart.  This may result in multiple items being removed if items are part of a group.",
+      "httpMethod": "DELETE",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": { //sequenceid
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+
+    "outputEntityDefinition": null,
+    "inputEntityDefinition": {
+      "name": "adminDeleteCartItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "DELETE"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "inputFieldsToIgnore": "cartSequenceId"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "meetingProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/meetingProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsNotMeetingProduct"
+            ]
+          }
+        }
+      },
+      "deleteSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/deleteSingleOrderLine"
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      }
+    }
+  }
+}

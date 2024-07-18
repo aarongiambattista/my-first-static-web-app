@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Directory_DirectoryEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompanies(System.String)">
+            <summary>
+            Gets the List of All Companies
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompanyInfo(System.Int64)">
+            <summary>
+            Gets Company Information
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.Id">
+            <summary>
+            Company id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.Name">
+            <summary>
+            Company Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.AddressLine1">
+            <summary>
+            Company Address Line 1
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.AddressLine2">
+            <summary>
+            Company Address Line 2
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.City">
+            <summary>
+            Company City
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.State">
+            <summary>
+            Company State
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.ZipCode">
+            <summary>
+            Company Zip code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.Country">
+            <summary>
+            Company Country
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.StreetAddress">
+            <summary>
+            Company complete Street Address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.MainPhone">
+            <summary>
+            Company Phone Number
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.MainFaxNumber">
+            <summary>
+            Company Fax Number
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.CompanyType">
+            <summary>
+            Company Type
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.MemberSince">
+            <summary>
+            Company Joining date
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.Description">
+            <summary>
+            Company Comments
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.PhoneAreaCode">
+            <summary>
+            Company Phone Area code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.FaxAreaCode">
+            <summary>
+            Company Fax Area code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.WebSite">
+            <summary>
+            Company Website link
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetAllCompaniesOutput.TopicCode">
+            <summary>
+            Topic Code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.Id">
+            <summary>
+            Company id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.Name">
+            <summary>
+            Company Name
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.AddressLine1">
+            <summary>
+            Company Address Line 1
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.AddressLine2">
+            <summary>
+            Company Address Line 2
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.City">
+            <summary>
+            Company City
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.State">
+            <summary>
+            Company State
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.ZipCode">
+            <summary>
+            Company Zip code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.Country">
+            <summary>
+            Company Country
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.StreetAddress">
+            <summary>
+            Company complete Street Address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.MainPhone">
+            <summary>
+            Company Phone Number
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.MainFaxNumber">
+            <summary>
+            Company Fax Number
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.CompanyType">
+            <summary>
+            Company Type
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.MemberSince">
+            <summary>
+            Company Joining date
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.Description">
+            <summary>
+            Company Comments
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.PhoneAreaCode">
+            <summary>
+            Company Phone Area code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.FaxAreaCode">
+            <summary>
+            Company Fax Area code
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.WebSite">
+            <summary>
+            Company Website link
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Directory_DirectoryEndpoint.v1_Directory_DirectoryEndpointController.GetCompaniesInfoOutput.TopicCode">
+            <summary>
+            Topic Code
+            </summary>
+        </member>
+    </members>
+</doc>

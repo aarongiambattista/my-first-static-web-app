@@ -1,0 +1,483 @@
+﻿{
+  "getCompanyDirectory": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Retrieves the Persons associated with the company in question",
+      "httpMethod": "GET",
+      "segments": {
+        "directory": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetCompanyDirectoryOutput",
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "FirstLast": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "MemberType": {
+          "type": "string"
+        },
+        "JoinDate": {
+          "type": "date"
+        },
+        "DuesPaidThru": {
+          "type": "date"
+        },
+        "StatusName": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "PreferredPhone": {
+          "type": "string"
+        },
+        "preferredPhoneNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "businessLogic": {
+      "getCompanies": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGetCompanyDirectory",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "updateMemberFromCompany": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update Existing Member from Company Directory",
+      "httpMethod": "PATCH",
+      "segments": {
+        "member": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "memberId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyPerson": {
+              "$ref": "../../Common/adminSecurity.json#/isYourCompanyPerson",
+              "parameters": {
+                "functionParameters": {
+                  "@PersonID": "@request.memberId"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DirectoryMemberInput",
+      "$ref": "CompanyEndpoint.json#/entityDefinitions/DirectoryMemberInput"
+    },
+    "outputEntityDefinition": {
+      "name": "DirectoryMemberOutput",
+      "$ref": "CompanyEndpoint.json#/entityDefinitions/DirectoryMemberOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Get GE Object",
+          "processFlowParameters": {
+            "entityName": "Persons",
+            "action": "get",
+            "clientPocoFieldName": "memberId"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      },
+      "updateRecord": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute GE Action",
+          "processFlowParameters": {
+            "GE": "@parent.singleGERetrieval.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "returnThePerson": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.singleGERetrieval.outputGE",
+            "outputPropertyName": "outputGE"
+          }
+        }
+      }
+    }
+  },
+
+  "updateMemberProfilePhoneFromCompany": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update Existing Member Profile Phone from Company Directory",
+      "httpMethod": "PATCH",
+      "segments": {
+        "member": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "memberId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyPerson": {
+              "$ref": "../../Common/adminSecurity.json#/isYourCompanyPerson",
+              "parameters": {
+                "functionParameters": {
+                  "@PersonID": "@request.memberId"
+                }
+              }
+            }
+          }
+        },
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "MemberProfilePhoneInput",
+      "$ref": "CompanyEndpoint.json#/entityDefinitions/personPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "name": "MemberProfilePhoneOutput",
+      "$ref": "CompanyEndpoint.json#/entityDefinitions/personProfilePhoneOutput"
+    },
+    "businessLogic": {
+      "validatePhonePayload": {
+        "$ref": "companyPhonesBusinessLogic.json#/validatePhonePayload"
+      },
+      "getProfilePersonGE": {
+        "$ref": "companyBusinessLogic.json#/singlePersonsRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "memberId"
+          }
+        }
+      },
+      "personEmbeddedPhoneFieldNameRetrieval": {
+        "$ref": "companyBusinessLogic.json#/personEmbeddedPhoneFieldNameRetrieval"
+      },
+      "getProfilePersonPhoneGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "embeddedObjectIDFieldName": "@parent.personEmbeddedPhoneFieldNameRetrieval.outputEmbeddedPhoneIDFieldName"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getProfilePersonPhoneGE.outputGE",
+            "inputFieldsToIgnore": "name"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfilePersonGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "personSinglePhoneRetrieval": {
+        "$ref": "companyBusinessLogic.json#/profilePersonsPhonesRetrieval"
+      }
+    }
+  },
+
+  "getSingleMemberFromCompanyDirectory": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Retrieves the Single Persons from Company Directory",
+      "httpMethod": "GET",
+      "segments": {
+        "Directorymember": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "memberId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyPerson": {
+              "$ref": "../../Common/adminSecurity.json#/isYourCompanyPerson",
+              "parameters": {
+                "functionParameters": {
+                  "@PersonID": "@request.memberId"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleMemberInput",
+      "fields": {
+        "memberId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "POST" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetSingleMemberoutput",
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "FirstLast": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "MemberType": {
+          "type": "string"
+        },
+        "JoinDate": {
+          "type": "date"
+        },
+        "DuesPaidThru": {
+          "type": "date"
+        },
+        "StatusName": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "PreferredPhone": {
+          "type": "string"
+        },
+        "preferredPhoneNumber": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "The country code of this phone"
+        },
+        "areaCode": {
+          "type": "string",
+          "description": "The area code of this phone"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone"
+        },
+        "PhoneExtension": {
+          "type": "string",
+          "description": "The extension of this phone"
+        }
+
+      }
+    },
+    "businessLogic": {
+      "getCompanies": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness7_0MemberDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+
+  "addMemberToCompany": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Add new member to company",
+      "httpMethod": "POST",
+      "segments": {
+        "members": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "AddMemberToCompanyInput",
+      "isCollection": true,
+      "fields": {
+        "firstName": {
+          "type": "string",
+          "description": "The First Name for the User.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The Last Name for the User.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "email": {
+          "type": "string",
+          "description": "The UserId/Email for the User.",
+          "sourceField": "email1",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "The title for the Person.",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body" //,
+            //"requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "doCreateWebUser": {
+          "type": "boolean",
+          "description": "Whether new Web User be created",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "addMemberToCompany": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Comp Admin Add Member to Company",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": null,
+            "bulkObjectPropertyName": "AddMemberToCompanyInputObject",
+            "companyId": "@request.id",
+            "inputFieldsToIgnore": "doCreateWebUser"
+          }
+        }
+      }
+
+    }
+  },
+
+  "removeMemberFromCompany": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Add new member to company",
+      "httpMethod": "DELETE",
+      "segments": {
+        "members": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "RemoveMemberFromCompanyInput",
+      "isCollection": true,
+      "fields": {
+        "personId": {
+          "type": "long",
+          "description": "Person Id to Remove company link from",
+          "input": {
+            "httpMethods": [ "DELETE" ],
+            "source": "body",
+            "requiredHttpMethods": [ "DELETE" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "removeMemberFromCompany": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Comp Admin Delete Member From Company",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "bulkObjectPropertyName": "RemoveMemberFromCompanyInputObject",
+            "companyId": "@request.id"
+          }
+        }
+      }
+
+    }
+  }
+
+
+}

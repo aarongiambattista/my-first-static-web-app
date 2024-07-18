@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order History </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="../js/3rdParty/moment.min.js"></script> <!--Moment.js for date format-->
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/Configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/ShoppingCart.js"></script>
+    <script src="../js/my/TopicOfInterest.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/Footer.js"></script>
+</head>
+
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+
+    <div class="ebBody ebWrapper">
+        <div class="ebusiness-main-container">
+            <div class="ebusiness-tabs-my-border-bottom">
+                <ul class="ebusiness-tabs-my-profile-page">
+                    <li class="ebusiness-user-profile-profile-icon ebusiness-profile-tab-style"><a href="../PersonProfile.html" title="Profile"><img src="../images/icons/icon_profile-32px.svg"><span class="eb-menu-label"> Profile</span></a> </li>
+                    <!--  <li class="ebusiness-user-profile-company-icon ebusiness-profile-tab-style"><a href="#"><img src="./images/icon_company-32px.svg"></a></li>-->
+                    <li class="ebusiness-user-profile-orders-icon ebusiness-profile-tab-style"><a href="../my/OrderHistory.html" title="Order History"><img src="../images/icons/icon_order-history-32px.svg"> <span class="eb-menu-label"> Order History</span></a></li>
+                    <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="../my/MakeMyPayment.html" title=" Pay Off Orders"> <img src="../images/icons/icon_make-payment-24px.svg"><span class="eb-menu-label"> Pay Off Orders</span></a></li>
+                    <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="../my/SavedPaymentMethods.html" title="Saved Payments">  <img src="../images/icons/icon_saved_cards_32px.png"><span class="eb-menu-label"> Saved Payments</span></a></li>
+                    <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style active-maintab"><a href="../my/TopicOfInterest.html" title="Topics of Interest"> <img src="../images/icons/icon_topic-of-interest-32px.png"> <span class="eb-menu-label">Topics Of Interest</span></a></li>
+                    <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style"><a href="../my/MyDownloads.html" title="My Downloads"> <img src="../images/icons/icon-download-32px.svg"> <span class="eb-menu-label">My Downloads</span></a></li>
+                </ul>
+            </div>
+
+            <div id="topicOfInterest">
+
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+
+
+    <script type="text/javascript">
+        /*Page level initializations*/
+        eBusinessJQObject(document).ready(function () {
+            /*Page level configurations*/
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load. 
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    eBusinessJQObject.when(eb_shoppingCart.getShoppingCart(),
+                        eb_topicCode.getTopicCodeData(),
+                        eb_topicCode.getSelectedTopicCodeData(eb_UserContext.live.LinkId())).done(function (result, allTopicCodes, selectedTopicCodes) {
+                            var cartOptions = {};
+                            cartOptions.shoppingCartData = result;
+                            eb_shoppingCart.live = new eb_shoppingCart.shoppingCartModel(cartOptions);
+
+                            //load footer control
+                            var footerOptions = footerOptions || {};
+                            footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                            footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                            eb_Footer.render(footerOptions).done(function () {
+                                //load header control
+                                var headerOptions = headerOptions || {};
+                                headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                headerOptions.userContext = eb_UserContext.live;
+                                headerOptions.shoppingCart = eb_shoppingCart.live;
+                                headerOptions.sitePath = "../";
+                                eb_HeaderMenu.render(headerOptions).done(function () {
+                                    eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                    ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                    var topicCodeOptions = {}
+                                    topicCodeOptions.domElement = eBusinessJQObject("#topicOfInterest")[0];
+                                    topicCodeOptions.templatePath = eb_Config.SitePath + "html/my/TopicOfInterest.html";
+                                    topicCodeOptions.allTopicCodes = allTopicCodes;
+                                    topicCodeOptions.selectedTopicCodes = selectedTopicCodes;
+                                    topicCodeOptions.UserLinkedID = eb_UserContext.live.LinkId();
+                                    eb_Config.config(topicCodeOptions, eb_topicCode);
+                                    eb_topicCode.render(topicCodeOptions).done(function () {
+                                        eb_topicCode.live = new eb_topicCode.model(topicCodeOptions);       /*Page's live instance of the model. Handy for troubleshooting.*/
+                                        ko.applyBindings(eb_topicCode.live, eb_topicCode.live.domElement);  /*Apply KO bindings, fire up the control*/
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error("Failed to get topic codes data.");
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error("Failed to get header page.");
+                                });
+                            }).fail(function (data, msg, jhr) {
+                                console.error('Failed to render footer control...');
+                            });
+
+                        }).fail(function (data, msg, jhr) {
+                            console.error("Failed to get topic codes data.");
+                            eb_Config.getErrorMessageForControl(data.responseJSON, eb_topicCode);
+                        });
+                } else (window.location.assign(eb_Config.loginPageURL))
+            }).fail(function (data, msg, jhr) {
+                console.error("Failed to get user context data.");
+            });
+        });
+    </script>
+</body>
+</html>

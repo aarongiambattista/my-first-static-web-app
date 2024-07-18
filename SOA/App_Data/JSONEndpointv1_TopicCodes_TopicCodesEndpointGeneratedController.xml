@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_TopicCodes_TopicCodesEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_TopicCodes_TopicCodesEndpoint.v1_TopicCodes_TopicCodesEndpointController.GetAllowedTopicCodes(System.String)">
+            <summary>
+            Gets the allowed set of topic codes for a Lookup.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+    </members>
+</doc>

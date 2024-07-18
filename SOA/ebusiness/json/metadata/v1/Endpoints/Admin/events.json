@@ -1,0 +1,782 @@
+{
+  "getUpcomingAdminEventsDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves the details for all meetings, including top levels and sessions and sessions of sessions.",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Upcoming": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetTopLevelAdminEventsDetailsInput",
+      "fields": {
+        "TopLevelOnly": {
+          "type": "bool",
+          "description": "If true then this will only return top level event information. Otherwise top level and child events will be included",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/AdminEventsDetailsOutput",
+      "name": "AllAdminEventsDetails"
+    },
+    "businessLogic": {
+      "allAdminEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminUpcomingEventsDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getPastAdminEventsDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves the details for all PAST meetings, including top levels and sessions and sessions of sessions.",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Past": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetTopLevelAdminEventsInput",
+      "fields": {
+        "TopLevelOnly": {
+          "type": "bool",
+          "description": "If true then this will only return top level event information. Otherwise top level and child events will be included",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/AdminEventsDetailsOutput",
+      "name": "AllAdminEventsDetails"
+    },
+    "businessLogic": {
+      "allAdminEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminPastEventsDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getAdminEventRegisteredDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Admin Events Registered Details",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "productId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "Registered": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetAdminEventRegisteredDetailsInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/EventRegistrationsOutput",
+      "name": "eventsRegisteredOutput"
+    },
+    "businessLogic": {
+      "allEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminEventRegisteredDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getAdminEventWaitlistingDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Admin Events Waitlisting Details",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "productId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "Waitlisting": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetAdminEventWaitlistingDetailsInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/EventRegistrationsOutput",
+      "name": "eventsWaitlistingOutput"
+    },
+    "businessLogic": {
+      "allEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminEventWaitingDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getAdminEventAllRegistrationDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "All Admin Events Registered Details",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "productId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "All": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetAdminEventAllDetailsInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/EventRegistrationsOutput",
+      "name": "eventsAllRegistrationsOutput"
+    },
+    "businessLogic": {
+      "allEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminEventAllRegistrationDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getSingleAdminEvent": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves the details for a single item in the admin events catalog.",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "productId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleAdminEventsInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminEventsEntities.json#/SingleAdminEvent",
+      "name": "SingleAdminEvent"
+    },
+    "businessLogic": {
+      "singleAdminEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0AdminSingleEventDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+
+  "getSingleAdminSessionEvent": {
+    "parent": {
+      "name": "getSingleAdminEvent"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves the Session details for a associated event including its events details in the admin events catalog.",
+      "segments": {
+        "Sessions": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/SingleAdminSessionEvent",
+      "name": "SingleAdminSessionEvent"
+    },
+    "businessLogic": {
+      "singleAdminSessionEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0AdminEventSessions",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  },
+
+  "getSingleAdminEventSpeaker": {
+    "parent": {
+      "name": "getSingleAdminEvent" //single event
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves the Speaker Information for a associated event including its speaker and company name",
+      "segments": {
+        "Speakers": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleAdminEventSpeakers",
+      "fields": {
+        "includeSessionSpeakers": {
+          "description": "If true then this will both event speaker and its session's speaker details. Otherwise only event speaker details included",
+          "type": "bool",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/SingleAdminEventSpeaker",
+      "name": "SingleAdminEventSpeaker"
+    },
+    "businessLogic": {
+      "singleAdminSessionEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0AdminEventSpeakers",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  },
+
+  "getAdminEventAttendeeSearch": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves Admin events details of attendee when searchterm is provided.",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Attendees": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Search": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSearchTermInput",
+      "fields": {
+        "SearchTerm": {
+          "type": "string",
+          "description": "When searchterm is given, it results in list of attendee details related to that serach term , if not this will result into error.",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "requiredHttpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminEventsEntities.json#/AdminEventAttendeeDetails",
+      "name": "AdminEventAttendeeDetails"
+    },
+    "businessLogic": {
+      "allEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminSearchFullTextAttendee",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+  "createAdminEventAttendee": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "POST",
+      "description": "Creates a new person in the admin system that can then be used as an attendee for event registration",
+      "segments": {
+        "Events": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Attendees": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "CreateAdminEventAttendeeInputPOST",
+      "fields": {
+        "firstName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "email": {
+          "type": "string",
+          "sourceField": "email1",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "city": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "AdminEventAttendeeOutput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "The unique identifier of the newly created person"
+        }
+      }
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyBusinessLogic.json#/newPersonGERetrieval"
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      },
+      "personDupeCheck": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Event: Person Dupe Check",
+          "processFlowParameters": {
+            "Email1": "@request.email",
+            "FirstName": "@request.firstName",
+            "LastName": "@request.lastName",
+            "DatabaseObject": "spGeteBusiness6_0PersonDupeCheck",
+            "GE": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      },
+      "createRecord": {
+        "$ref": "companyBusinessLogic.json#/createRecord",
+        "processFlowProperties": {
+          "processFlowName": "Execute GE Action",
+          "processFlowParameters": {
+            "GE": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      },
+      "getPersonId": {
+        "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE",
+            "FieldName": "id"
+          }
+        }
+      },
+      "addCompanyToPersonGE": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "UpdatePersonGEWithCompanyID",
+          "processFlowParameters": {
+            "companyId": "@request.id",
+            "recordId": "@parent.getPersonId.outputFieldValue"
+          }
+        }
+      },
+      "updateRecord": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute GE Action",
+          "processFlowParameters": {
+            "GE": "@parent.singleGERetrieval.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "returnThePerson": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.singleGERetrieval.outputGE",
+            "outputPropertyName": "outputGE"
+          }
+        }
+      }
+    }
+  },
+  "getAdminBadgeDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "All Admin Badge Details",
+      "segments": {
+        "Order": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "orderId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyOrder": {
+              "$ref": "../../Common/AdminSecurity.json#/isYourCompanyOrder"
+            }
+          }
+        },
+        "OrderDetail": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "orderDetailId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "BadgeDetails": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetBadgeDetailsInput",
+      "fields": {
+        "orderId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "POST" ],
+            "source": "path"
+          }
+        },
+        "orderDetailId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminEventsEntities.json#/BadgeDetailsOutput",
+      "name": "badgeDetailsOutput"
+    },
+    "businessLogic": {
+      "allEventsRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_AdminBadgeDetails",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+  "updateAdminBadgeDetails": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update Badge Details of person",
+      "httpMethod": "PATCH",
+      "segments": {
+        "Order": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "orderId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyOrder": {
+              "$ref": "../../Common/AdminSecurity.json#/isYourCompanyOrder"
+            }
+          }
+        },
+        "OrderMeetDetail": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "orderMeetDetailId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "BadgeDetails": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "UpdateAdminOrderLineBadgeDetailsInput",
+      "fields": {
+        "orderId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "PATCH" ],
+            "source": "path"
+          }
+        },
+        "orderMeetDetailId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "PATCH" ],
+            "source": "path",
+            "sourceField": "path"
+          }
+        },
+        "badgeName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        },
+        "badgeCompanyName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        },
+        "badgeTitle": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminEventsEntities.json#/BadgeDetailsOutput",
+      "name": "UpdatedbadgeDetailsOutput"
+    },
+    "businessLogic": {
+      "singleOrderMeetDetailRecordRetrieval": {
+        "$ref": "companyBusinessLogic.json#/singleOrderMeetDetailRecordRetrieval"
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.singleOrderMeetDetailRecordRetrieval.outputGE",
+            "inputFieldsToIgnore": "orderMeetDetailId"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.singleOrderMeetDetailRecordRetrieval.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "returnTheRecord": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.singleOrderMeetDetailRecordRetrieval.outputGE",
+            "outputPropertyName": "outputOrderMeetDetailGE"
+          }
+        }
+      }
+    }
+  }
+}

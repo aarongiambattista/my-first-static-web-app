@@ -1,0 +1,61 @@
+﻿<div class="ebusiness-event-short-details">
+    <div data-bind="attr:{class:fixedPanelEv}">
+        <h3>Event Summary</h3>
+        <hr />
+        <div class="ebClear">
+            <h4>
+                <span class="event-name-quick-details" data-bind="text: name">
+                </span>
+            </h4>
+            <span><span class="ebusiness-product-view-cart-price" data-bind="text:showCurrencySymbol"></span><span class="ebusiness-product-view-cart-price" data-bind="html: showPriceOrText"></span></span>
+        </div>
+
+        <div class="ebusiness-event-date-quick-details">
+            <h4>Dates</h4>
+            <p>Start : <span class="pull-right" data-bind="text: startDate"></span> </p>
+            <p>End :<span class="pull-right" data-bind="text: endDate"></span> </p>
+        </div>
+        <div class="ebusiness-event-location-quick-details">
+            <h4>Location</h4>
+            <span data-bind="text: noLocationAvailabel, visible: noLocation"></span>
+            <div data-bind="visible: locationAvailabel">
+                <p data-bind="text: venue"></p>
+                <p>
+                    <span data-bind="text: addressLine1"></span>
+                    <span data-bind="text: addressLine2"></span>
+                    <span data-bind="text: addressPostalCode"></span>
+
+                </p>
+                <p>
+                    <span data-bind="text:addressCity"></span> <span data-bind="text: addressStateProvince"></span>
+                </p>
+                <p>
+                    <span data-bind="text: addressCountry"></span>
+                </p>
+                <div class="wrapper-btn-direction">
+                    <form action="https://maps.google.com/maps" method="get" target="_blank">
+                        <input type="hidden" name="daddr" data-bind="attr: { value:fullAddress}" />
+                        <button type="submit" class="btn btn-secondary btn-getDirection"><span class="eb-map-icon"></span> Get directions</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="eb-registration-btn">
+            <input type="button" data-bs-toggle="modal" class="btn btn-primary btn-block" data-bind="visible: showRegisterButton, enable : enabledRegisterButton, click: registerAttendee, value: registerButton" value="Register">
+        </div>
+    </div>
+
+    <div id="eb-modal-conflict-meeting" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="eb-modal-conflict-meeting">
+                        <h3 data-bind="text:meetingConflictHeader">Meeting Conflict</h3>
+                        <p class="error-message" data-bind="text: errorMessage"></p>
+                        <div class="text-right"><input type="button" value="OK" data-bind="click:clickEvent" class="btn btn-primary" data-bs-dismiss="modal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

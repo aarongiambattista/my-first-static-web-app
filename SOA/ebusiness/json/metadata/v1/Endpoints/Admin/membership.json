@@ -1,0 +1,128 @@
+{
+  "getCompanyNonMembers": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "description": "Retrieves a list of all non-members belonging to the selected company.",
+      "segments": {
+        "NonMembers": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetCompanyNonMembersOutput",
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "FirstLast": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "MemberType": {
+          "type": "string"
+        },
+        //"JoinDate": {
+        //  "type": "date"
+        //},
+        //"DuesPaidThru": {
+        //  "type": "date"
+        //},
+        //"StatusName": {
+        //  "type": "string"
+        //},
+        "Title": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "State": {
+          "type": "string"
+        }
+      }
+    },
+    "businessLogic": {
+      "getCompanyNonMembers": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0CompanyNonMembersList",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  },
+  "getMembershipProducts": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "desciption": "Retrieves a list of active membership products.",
+      "segments": {
+        "MembershipProducts": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetMembershipProductsOutput",
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "webName": {
+          "type": "string"
+        },
+        "isSubscription": {
+          "type": "boolean"
+        },
+        "retailPrice": {
+          "type": "decimal"
+        },
+        "CurrencySymbol": {
+          "type": "string"
+        },
+        "hasComplexPricing": {
+          "type": "boolean",
+          "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+        },
+        "defaultPrice": {
+          "type": "decimal"
+        },
+        "defaultMemberPrice": {
+          "type": "decimal"
+        },
+        "nonMemberPrice": {
+          "type": "decimal"
+        }
+      }
+    },
+    "businessLogic": {
+      "getMembershipProducts": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0MembershipProducts",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+﻿<div class="ebusiness-main-container ebWrapper">
+    <div class="ebusiness-filter-control">
+        <div class="row">
+            <div class="col-sm-6"><h3>Events - <span data-bind="text: companyName"></span></h3></div>
+            <div class="col-sm-6 ebusiness-view-switcher">
+                <div class="dropdown">
+                    <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+            <div id="filterSort" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+                <div class="ebusiness-filter-details-panel">
+                    <div class="ebusiness-filter">
+                        <div class="ebusiness-filter-section-title">Filter by</div>
+                        <div class="ebusiness-filter-options">
+                            <ul role="menu">
+                                <li>
+                                    <label>
+                                        <input type="radio" id="ProductType" name="ProductType" value="All" data-bind="checked: categoryFilter">
+                                        <span class="cat-name">
+                                            <span>All</span>
+                                            (<span data-bind="text: events().length"></span>)
+                                        </span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <ul role="menu" data-bind="foreach: categoryCollection">
+                                <li>
+                                    <label>
+                                        <input type="radio" id="ProductType" name="ProductType" data-bind="value:name ,checked: $parent.categoryFilter">
+                                        <span class="cat-name">
+                                            <span data-bind="text:name"></span>
+                                            (<span data-bind="text:$data.records().length "></span>)
+                                        </span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-8">
+            <div class="eb-tabs-events">
+                <div class="col-md-4 eb-active-tabs"> <a data-bind="click: upcomingEvents, css: { 'eb-active-Links' : upcomingEventsClicked}">Upcoming Events </a>  |  <a data-bind="click: pastEvents, css: {'eb-active-Links' : pastEventsClicked}">Past Events </a></div><div class="col-sm-8 ebusiness-view-switcher">
+                    <span> <input name="txteventsListSearch" data-bind="textInput: search" type="text" placeholder="Search" class="ebClient-search-event form-control"></span>
+                    <span class="d-inline d-sm-inline d-md-none"><a class="fa-icon" title="Sort/Filter" data-bind="click:toggleFilterControl"><img src="../images/icons/fontawesome/filter.svg"></a></span>
+                </div>
+            </div>
+
+            <span>
+                Showing:
+                <span data-bind="text:categoryFilter"></span>
+            </span>
+            <div class="NoRecords text-center" data-bind="visible: noEvents">
+                <span>No records found.</span>
+            </div>
+            <div class="ebClear ebusiness-listing-wrapper" data-bind="foreach: eventsList">
+                <div class="row ebusiness-events-card-listing-admin">
+                    <div class="ebusiness-events-card-image col-sm-3"><img class="ebusiness-product-list-image" data-bind="imageSrc: { src: webImage},  click : eventNameDetails"></div>
+                    <div class="ebusiness-events-card-details col-sm-9">
+                        <div class="ebusiness-events-card-details-title"><a data-bind="text: name, click : eventNameDetails"></a></div>
+                        <div class="ebusiness-events-card-details-desc" data-bind="html: webDescription"></div>
+
+                        <div class="row">
+                            <div class="ebusiness-events-card-details-location col-md-4">
+                                <span class="fa-icon"><img src="../images/icons/fontawesome/map-marker-alt-dark-blue.svg"></span> <span data-bind="text: venue"></span>
+                            </div>
+                            <div class="ebusiness-events-see-details col-md-8 row">
+                                <div class="ebusiness-events-card-details-date-time col-md-8"><span class="fa-icon"><img src="../images/icons/fontawesome/calendar-alt-dark-blue.svg"></span> <span data-bind="text: startDate"></span></div>
+                                <div class="col-md-4 text-right eb-events-see-details"><a data-bind="click : eventNameDetails">See Details</a></div>
+                            </div>
+                        </div>
+
+                        <h5>Registered Member Count </h5>
+                        <div class="ebusiness-ev-registred-count row">
+                            <div class="col-md-4 eb-registered-clm">
+                                <span class="ebusiness-registered">
+                                    <button class="btn btn-secondary" data-bind="click: eventMembers">
+                                        <span data-bind="text: totalConfirmed()"></span>
+                                        <span> Confirmed</span>
+                                    </button>
+                                </span>
+                            </div>
+                                <div class="col-md-4 eb-registered-clm">
+                                    <span class="ebusiness-registered"><button class="btn btn-secondary" data-bind="click: eventMembers"><span data-bind="text: totalWaitlist()"></span><span> Waitlist</span></button></span>
+                                </div>
+                                <div class="col-md-4 eb-registered-clm"> <span class="ebusiness-registered"><button class="btn btn-secondary" data-bind="click: eventMembers"><span data-bind="text: totalAttendees()"></span><span> All</span></button></span></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--This div belongs to Loader-->
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+</div>

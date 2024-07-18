@@ -1,0 +1,276 @@
+<div class="ebusiness-shoppingcart-product">
+    <div class="ebusiness-page-title" data-bind="visible: cartTitleMessageVisible"><span data-bind="text : companyName"> Danube Partners</span> - Cart<span id="CartItems" class="ebusiness-cart-no-CartItems ebusiness-viewcart-Items" data-bind="text :numberOfItems">7</span><span class="ebusiness-viewcart-Items"> item(s)</span></div>
+    <div class="ebClear">
+        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: false, text: 'Error message here !'"></div>
+        <div class="alert alert-danger ebusiness-service-failure-message row" data-bind="visible: showError, text: errorMessage"></div>
+    </div>
+    <div class="ebusiness-cart-empty-message" data-bind="visible: cartEmptyMessageVisible, text: cartEmptyMessage"></div>
+    <div data-bind="foreach: viewCartProduct,visible: removeAllDetailsVisible">
+        <div class="row ebusiness-grid-row-cart-list" data-bind="value:id">
+            <div class="ebusiness-cartlist-product-image-resize col-sm-2">
+                <div class="ebusiness-product-image-cart">
+                    <a class="ebusiness-product-image-cart-product">
+                        <img class="ebusiness-product-image-myorders" data-bind="imageSrc:{src: productImage}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-10 ebusiness-product-viewcart-pro-name">
+                <div>
+                    <div class="ebusiness-cartlist-review-order-pro-name">
+                        <a class="ebusiness-cartlist-aproduct-detail-name" data-bind="text: name, click : $parent.productNameDetails"></a>
+                    </div>
+                    <p class="ebusiness-grid-row-cart-list-price">
+                        <!-- ko if: discount() <= 0 || (price() == finalPrice()) -->
+                        <strong class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></strong><span class="ebusiness-product-price" data-bind="text:price"></span>
+                        <!-- /ko -->
+                        <!-- ko if: discount() > 0 && (price() != finalPrice()) -->
+                        <strong class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></strong><span class="ebusiness-product-price ebusiness-product-price-old" data-bind="text: price"></span>
+                        <strong class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></strong><span class="ebusiness-product-price" data-bind="text: finalPrice"></span>
+                        <!-- /ko -->
+                    </p>
+                    <p class="ebusiness-cartlist-review-order-pro-description">
+                        <span class="ebusiness-cartlist-aproduct-detail cursor-pointer ebusiness-product-view-cart-desc" data-bind="text: description, visible:isSubscription"></span>
+                    </p>
+                    <div class="row">
+                        <p class="col-sm-6 ">
+                            <!-- ko if: discount() > 0 && (price() != finalPrice()) -->
+                            <span class="ebusiness-product-view-cart-coupon-applied grid-coupon-applied"> <i class="ebIcon-ok"></i>Discount Applied</span>
+                            <!-- /ko -->
+                        </p>
+                        <p class="qunty-text text-right col-sm-6" data-bind="visible: productType() != 'Meeting'">
+                            <span class="ebusiness-product-view-cart-quantity-value-review">
+                                <strong>
+                                    Qty:
+                                    <input type="number" class="grid-product-quantity ebusiness-product-view-cart-product-quantity" value="1" min="1" data-bind="numeric: quantity, value :quantity, valueUpdate:['afterkeydown', 'input'], disable:isSubscription()? 'true': $parent.visible" />
+                                    <span class="validationMessage" data-bind="visible: showQtyError, text: qtyErrorMsg">This field is required.</span>
+                                </strong>
+                            </span>
+                            <span>
+                                <span class="eb-link-update" data-bind="css:{'btn-disable' : showUpdateButton() == 0}, click: $parent.qtyUpdate, visible: $parent.updateButtonVisible">Update |</span>
+                            </span>
+                            <span>
+                                <span class="eb-link-update ebusiness-product-view-cart-removeProduct" data-bind="click: $parent.removeProduct, visible: $parent.removeButtonVisible">
+                                    Remove
+                                </span>
+                            </span>
+                        </p>
+                        <p class="qunty-text qty-edit-text col-sm-6" data-bind="visible: productType() == 'Meeting'">
+                            <span>
+                                <a class="cursor-pointer" data-bind="click: $parent.editMeeting,visible: $parent.updateButtonVisible">Edit</a>
+                            </span>
+                            <!-- EB-1999: Removing the "Remove" button-->
+                            <!--<span>
+                                <a class="cursor-pointer" data-bind="click: $parent.removeAllMeetingProduct,visible: $parent.removeButtonVisible">Remove</a>
+                            </span>-->
+                        </p>
+                    </div>
+                    <span class="alert alert-warning alertProductQty hide"><strong>Warning!</strong> <span class="alertProductQtyMsg">Indicates a warning that might need attention.</span></span>
+                </div>
+                <!-- Subscription and membership HTML -->
+                <div class="ebusiness-row-subscription" data-bind="visible:isSubscription">
+                    <input type="checkbox" class="chkAutoRenewSub" data-bind="checked: autoRenew, click:autoRenewCheck, disable: $parent.visible" /> Auto Renew?
+                </div>
+                <!-- Subscription and membership HTML -->
+                <!-- Kit Product HTML Starts here -->
+                <div class="ebusiness-kit-product-wrapper" data-bind="visible:isParentProduct()">
+                    <div class="ebusiness-collapse-header ebClear">
+                        <span class="pull-left heading-Included"> Products Included in Kit (<span data-bind="text:subProductsList().length"></span>)</span>
+                        <span class="pull-right">
+                            <a data-bs-toggle="collapse" data-bind="attr: {'href': '#collapse'+ id()}" class="showDetails collapsed"></a>
+                        </span>
+                    </div>
+                    <div data-bind="attr: {id: 'collapse'+ id()}" class="ebClear panel-collapse a-collapse-body collapse ebusiness-kit-product-collapsible">
+                        <div class="ebClear" data-bind="foreach : subProductsList">
+                            <div class="ebusiness-row-kit-product row" data-bind="value:id">
+                                <div class="col-sm-2 eb-kit-product-image-wrapper">
+                                    <p class="ebusiness-kit-product-image">
+                                        <img class="ebusiness-kit-productImage text-ellipsis" data-bind="imageSrc:{src: productImage}">
+                                    </p>
+                                </div>
+                                <div class="col-sm-10">
+                                    <p><strong data-bind="text: name"></strong></p>
+                                    <p data-bind="text: description"></p>
+                                    <p><strong data-bind="text:'Quantity: ' + quantity()"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Kit Product HTML Ends here -->
+                <!-- Meeting Product HTML Starts here -->
+                <div class="ebusiness-meeting-viewcart-item-wrapper" data-bind="visible: productType() == 'Meeting'">
+                    <div class="ebusiness-collapse-header ebClear">
+                        <span class="pull-left heading-Included"> Currently Attending</span>
+                        <span class="pull-right" data-bind="click: toggleSession">
+                            <span data-bs-toggle="collapse" data-bind="css: { isCollapseOpen: sessionCollapse(), isCollapseClosed: !sessionCollapse()}"> </span>
+                        </span>
+                    </div>
+
+                    <div class="registration-summary-viewcart" data-bind="visible: sessionCollapse">
+                        <div data-bind="foreach : subProductsList">
+                            <div class="row-registration-summary">
+                                <div class="panel-added-attendee row" data-bind="visible: parentproductId() <= 0">
+                                    <div class="col">
+                                        <span class="person-name" data-bind="text: description"></span>-
+                                        <span class="session-name-reg" data-bind="text: name"></span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <!--<span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span data-bind="text: price"></span>-->
+                                        <!-- ko if: discount() <= 0 || (price() == finalPrice()) -->
+                                        <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span data-bind="text: price"></span>
+                                        <!-- /ko -->
+                                        <!-- ko if: discount() > 0 && (price() != finalPrice()) -->
+                                        <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span class="ebusiness-product-price-old" data-bind="text: price"></span>
+                                        <span class="ebusiness-product-view-cart-price" data-bind="text: currencySymbol"></span><span data-bind="text: finalPrice"></span>
+                                        <!-- /ko -->
+
+                                        <a class="delete-registration meeting" data-bs-toggle="modal" data-bind="attr: {'href': '#collapse1'+ id()}, visible: $root.removeButtonVisible">
+                                            <i class="ebIcon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--For Removing the cart item yes or no field-->
+                                <div class="modal fade" role="dialog" data-bind="attr: {id: 'collapse1'+ id()}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4>Remove Cart Items</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure you want to remove the associated attendee ?</p>
+
+                                                <div class="ebusiness-action-buttons-footer text-right">
+                                                    <div>
+                                                        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button class="btn btn-primary ebusiness-action-button-remove-all-items-button" data-bs-dismiss="modal" data-bind="click: $root.removeProduct">Yes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="event-details-panel">
+                                    <div class="selected-attendees row" data-bind="visible: parentproductId() > 0">
+                                        <div class="col-sm-8">
+                                            <span class="session-name-reg" data-bind="text: name"></span>
+                                        </div>
+                                        <div class="col-sm-4 text-right">
+                                            <!-- ko if: discount() <= 0 || (price() == finalPrice()) -->
+                                            <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span data-bind="text: price"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: discount() > 0 && (price() != finalPrice())-->
+                                            <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span class="ebusiness-product-price-old" data-bind="text: price"></span>
+                                            <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></span><span data-bind="text: finalPrice"></span>
+                                            <!-- /ko -->
+                                            <a class="delete-registration session" data-bind="click: $root.removeProduct, visible: $root.removeButtonVisible">
+                                                <i class="ebIcon-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Meeting Product HTML End here -->
+            </div>
+        </div>
+
+    </div>
+    <!--For Removing the product and Subtotal-->
+    <div class="ebusiness-action-cart-footer row" data-bind="visible: removeAllDetailsVisible">
+        <div class="col-sm-6">
+            <a class="ebusiness-action-button-remove-all-items cursor-pointer" data-bs-toggle="modal" data-bs-target="#confirmRemoveAllProducts" data-bind="visible :$data.removeButtonVisible">Remove All Items</a>
+        </div>
+        <div class="col-sm-6 text-right ebusiness-total-amount-review">
+            <div class="row ebusiness-total-savings-row">
+                <div class="col-sm-8 col">Subtotal </div>
+                <div class="col-sm-4 col ebusiness-total-summary-review">
+                    <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol">$</span><span class="ebusiness-product-view-cart-price" data-bind="text:subTotal"></span>
+                </div>
+            </div>
+            <!-- ko if: totalSavings() > 0 -->
+            <div class="row ebusiness-total-savings-row">
+                <div class="col-sm-8 col">Total Savings </div>
+                <div class="col-sm-4 col ebusiness-total-savings">
+                    <span class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol">$</span><span class="ebusiness-product-view-cart-price" data-bind="text:totalSavings"></span>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <div id="CartUpdateMsg">Cart Updated..</div>
+</div>
+
+<!--For Removing the cart item yes or no field-->
+<div class="modal fade" role="dialog" id="confirmRemoveAllProducts">
+    <div class="modal-dialog ebusiness-modal-vertical-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="ebusiness-modal-content">
+                    <h2>Remove All Items</h2>
+                    <div class="row">
+                        <p class="col-md-12">Are you sure you want to remove all the items from your cart?</p>
+                    </div>
+                    <div class="ebusiness-action-buttons-footer row text-right">
+                        <div class="col-md-12">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button class="btn btn-primary ebusiness-action-button-remove-all-items-button" data-bs-dismiss="modal" data-bind="click: $root.removeAllProduct">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="saveYourShoppingCart" role="dialog" class="modal fade saveYourShoppingCart">
+    <div class="modal-dialog ebusiness-modal-vertical-centered">
+
+        <!-- Modal content-->
+        <div class="modal-body">
+            <form class="frmSaveCart">
+
+                <div class="ebusiness-modal-content">
+                    <h3>Save Your Shopping Cart?</h3>
+                    <div class="saveYourShoppingCartInventoryMessageDiv hide">
+                        <div class="alert text-left saveYourShoppingCartInventoryMessageAlertDiv">
+
+                        </div>
+                        <div class="row ebusiness-action-buttons-footer">
+                            <div class="col-md-12 amount">
+                                <button class="btn btn-primary ebusiness-action-button-proceed">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divWithoutInventoryMessage">
+                        <div class="ebusiness-form-control-row row">
+                            <div class="col-md-12">
+                                <div class="ebusiness-float-label">
+                                    <input name="txtSavedCartName" type="text" class="form-control ebusiness-view-cart-name" placeholder="Name Your Cart" maxlength="40" required>
+                                    <label class="caption">Name Your Cart</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ebusiness-form-control-row row">
+                            <div class="col-md-12">
+                                <div class="ebusiness-float-label">
+                                    <textarea name="txtSavedCartDesc" type="text" class="form-control ebusiness-view-cart-description" placeholder="Add Description" maxlength="100" required></textarea>
+                                    <label class="caption">Add Description</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ebusiness-action-buttons-footer">
+                            <div class="col-md-12 amount">
+                                <button type="submit" class="btn btn-primary ebusiness-view-cart-create-new">Create New Cart </button>
+                                <button type="submit" class="btn btn-primary ebusiness-view-cart-update-existing-cart hidden">Update Existing</button>
+                                <button class="btn-link" data-bs-dismiss="modal"> Cancel </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

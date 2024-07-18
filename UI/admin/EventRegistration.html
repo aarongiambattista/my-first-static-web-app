@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Events Add Attendee</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="../js/3rdParty/knockout.validation.min.js"></script>
+    <script src="../js/3rdParty/moment.min.js"></script>    <!--Moment.js for date format-->    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/Configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/admin/ShoppingCart.js"></script>
+    <script src="../js/admin/EventRegistration.js"></script>
+    <script src="../js/admin/EventSummary.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody">
+        <div class="ebusiness-main-container ebWrapper ebEventRegistration" id="topDiveventRegistration">
+            <div class="ebusiness-filter-control">
+                <div class="row">
+                    <div class="col-sm-6"><h3>Add Attendees - <span data-bind="text: companyName"></span></h3></div>
+                    <div class="col-sm-6 ebusiness-view-switcher">
+                        <div class="dropdown">
+                            <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="eventRegistration"></div>
+                </div>
+                <div class="col-md-4">
+                    <div id="eventSummary"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            //Page level configuration settings.
+            var options = {}
+            options.domElement = eBusinessJQObject('#eventRegistration')[0];
+            options.templatePath = eb_Config.SitePath + "html/admin/EventRegistration.html";
+            eb_Config.config(options, eb_EventRegistrationAdmin);
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load.
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                /*Pass user context object.*/
+                options.companyId = eb_UserContext.live.companyId();
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    if (eb_UserContext.live.checkCompanyAdminInUserContext()) {
+                        /*1. Get shopping cart items for shopping cart count, speakers data, session data, event summary data*/
+                        eBusinessJQObject.when(eb_adminShoppingCart.getShoppingCart(),
+                            eb_EventRegistrationAdmin.getSpeakerInfo(eb_UserContext.live.companyId(), eb_EventRegistrationAdmin.productId, eb_EventRegistrationAdmin.hasSessions),
+                            eb_EventRegistrationAdmin.getSessionDetails(eb_UserContext.live.companyId(), eb_EventRegistrationAdmin.productId, eb_EventRegistrationAdmin.hasSessions),
+                            eb_adminEventSummary.getEventDetails(eb_UserContext.live.companyId(), eb_EventRegistrationAdmin.productId)).done(function (cartData, speakerData, sessionDetails, eventSummaryData) {
+                                var cartOptions = {};
+                                cartOptions.shoppingCartData = cartData;
+                                eb_adminShoppingCart.live = new eb_adminShoppingCart.shoppingCartModel(cartOptions);
+
+                                //load footer control
+                                var footerOptions = footerOptions || {};
+                                footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                                footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                                eb_Footer.render(footerOptions).done(function () {
+                                    //load header control
+                                    var headerOptions = headerOptions || {};
+                                    headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                    headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                    headerOptions.userContext = eb_UserContext.live;
+                                    headerOptions.shoppingCart = eb_adminShoppingCart.live;
+                                    headerOptions.cartText = "My Company Cart";
+                                    headerOptions.sitePath = "../";
+                                    headerOptions.viewCartURL = eb_HeaderMenu.SitePath + "admin/" + eb_HeaderMenu.pages["ViewCart"];
+                                    eb_HeaderMenu.viewCartURL = eb_Config.SitePath + "admin/ViewCart.html";
+
+                                    eb_HeaderMenu.render(headerOptions).done(function () {
+                                        eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                        ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                        eb_EventRegistrationAdmin.render(options).done(function () {
+                                            options.userContext = eb_UserContext.live;
+                                            options.shoppingCart = eb_adminShoppingCart.live;
+                                            options.speakerData = speakerData;
+                                            options.sessionDetails = sessionDetails;
+                                            options.eventSummaryData = eventSummaryData;
+
+                                            eb_EventRegistrationAdmin.live = new eb_EventRegistrationAdmin.model(options);
+
+                                            /*Apply KO bindings, fire up the control*/
+                                            ko.applyBindings(eb_EventRegistrationAdmin.live, eBusinessJQObject('#topDiveventRegistration')[0]);
+
+                                            //Load event summary widget
+                                            var eventSummaryWidget = {};
+                                            eventSummaryWidget.domElement = eBusinessJQObject('#eventSummary')[0];
+                                            eventSummaryWidget.templatePath = eb_Config.SitePath + "html/admin/EventSummary.html";
+                                            eventSummaryWidget.eventID = eb_EventRegistrationAdmin.productId; /*Parent Product ID*/
+                                            eventSummaryWidget.companyId = eb_UserContext.live.companyId();
+                                            eventSummaryWidget.userContext = eb_UserContext.live;
+                                            eventSummaryWidget.data = eventSummaryData;
+
+                                            eb_Config.config(eventSummaryWidget, eb_adminEventSummary);
+                                            eb_adminEventSummary.render(eventSummaryWidget).done(function () {
+                                                /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                eb_adminEventSummary.live = new eb_adminEventSummary.model(eventSummaryWidget, eb_EventRegistrationAdmin.live);
+
+                                                eb_adminEventSummary.live.showRegisterButton(0);/*Hide the register button*/
+                                                eb_adminEventSummary.live.showBackToEventsButton(0);/*Hide the Back To Events button*/
+
+                                                /*Don't show price on registration page*/
+                                                eb_adminEventSummary.live.showPrice(0);
+                                                eb_adminEventSummary.live.showPriceText(0);
+                                                eb_adminEventSummary.live.showCurrencySymbol('');
+
+                                                /*Apply KO bindings, fire up the control*/
+                                                ko.applyBindings(eb_adminEventSummary.live, eb_adminEventSummary.live.domElement);
+                                            }).fail(function (data, msg, jhr) {
+                                                console.error('Failed to render event Summary Details..');
+                                            });
+                                        }).fail(function (data, msg, jhr) {
+                                            console.error('Failed to render Event Registration Admin page...');
+                                        });
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render header control..');
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error('Failed to render footer control...');
+                                });
+                            }).fail(function (data, msg, jhr) {
+                                console.error('Failed to get data on Event Registration Admin page...');
+                                eb_Config.getErrorMessageForControl(data.responseJSON, eb_EventRegistrationAdmin);
+                            });
+                    }
+                    else {
+                        window.location.assign(eb_Config.companyAdminDashboardURL);
+                    }
+
+                } else {
+                    window.location.assign(eb_Config.loginPageURL)
+                }
+            }).fail(function (data, msg, jhr) {
+                console.error('Failed to get user context data.');
+            });
+        });
+    </script>
+
+   
+</body>
+</html>

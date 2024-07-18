@@ -1,0 +1,9325 @@
+﻿/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300i,400');
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext,greek-ext,greek,vietnamese,cyrillic,cyrillic-ext);
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    align-items: center;
+    left: 800px;
+    top: 120px;
+}
+
+.ebHeader {
+    background: #0098cc;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+a {
+    color: #018ed5;
+    text-decoration: none
+}
+
+    a:hover {
+        color: #00699D;
+        text-decoration: none
+    }
+
+.nav-link {
+    color: #fff;
+    display: inline-block;
+    padding: 0.8rem 0.5rem !important;
+}
+
+    .nav-link:hover {
+        color: #fff;
+    }
+
+.eb-btn-donate-now-wrapper a {
+    color: #018ed5;
+}
+
+    .eb-btn-donate-now-wrapper a:hover {
+        color: #fff;
+    }
+
+span.icon-bar {
+    display: block;
+    background: white;
+    height: 3px;
+    margin: 4px 0;
+    width: 25px;
+}
+
+.navbar-collapse {
+    padding: 0 10px;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #018ed5;
+}
+
+a.btn-disable {
+    color: #c0c0c0 !important;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%;
+    margin: auto;
+}
+
+.carousel {
+    margin: 10px 0 0 0;
+    max-height: 544px;
+    overflow: hidden;
+}
+
+.ebusiness-form input:focus {
+    color: #333;
+    border: 1px solid #33b5e5;
+}
+
+.ebusiness-form footer {
+    background: #f2f2f2;
+    width: 100%;
+    padding: 8px 25px;
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+}
+
+input.apex-user-login-rememberme-checkbox {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.modal-header {
+    border: 0;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-footer {
+    border: 0;
+}
+
+.ebusiness-savedCards .modal-body {
+    padding-top: 0;
+}
+
+.search-Input {
+    padding: 5px;
+    border: none;
+    width: 500px;
+    outline: none;
+    color: #fff;
+    font-size: 17px;
+    background: transparent;
+}
+
+.ebusiness-product-price {
+    /*font-size: 16px;*/
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu.show {
+    border-radius: 0 0 5px 5px;
+    margin-top: -1px;
+    padding: 0;
+    box-shadow: 1px 2px 4px 0px #cbcbcb;
+}
+
+    .dropdown-menu.show li {
+        padding: 5px 10px;
+        background: #ffffff;
+        margin: 0 0 2px 0;
+        font-size: 0.875rem;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .dropdown-menu.show li:last-child {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 2px;
+        }
+
+.dropdown.show {
+    background: #007ca9;
+}
+
+    .dropdown.show > a {
+        color: #fff
+    }
+
+.ebusiness-user-info {
+    padding: 8px 0 0;
+    float: right;
+    text-align: right;
+}
+
+.navbar {
+    border-radius: 0;
+    border: none;
+    background: #0098cc;
+}
+
+.change-password {
+    padding-top: 20px;
+}
+
+.ebFooter {
+    background: #dcdcdc;
+    padding: 15px 0;
+    margin-top: 10px;
+    color: #333;
+}
+
+    .ebFooter h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 5px;
+    background-color: #767374;
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 3px;
+    background-color: #767374;
+}
+
+/*Products page css*/
+
+.ebusiness-product-list-image-wrapper {
+    border: 1px solid #f0f0f0 !important;
+    text-align: center;
+    overflow: hidden;
+    padding: 0;
+    height: 75px;
+    position: relative;
+    line-height: 70px;
+    float: left;
+    width: 75px !important;
+    margin: 0 10px 0 0;
+}
+
+    .ebusiness-product-list-image-wrapper img {
+        z-index: 1;
+        max-width: 70px !important;
+        max-height: 70px !important;
+    }
+
+.ebusiness-add-to-cart-buttons {
+    text-align: right;
+    padding: 5px 5px 5px 0;
+    z-index: 3;
+}
+
+.ebusiness-product-list-description {
+    padding: 0 15px 0;
+    color: #17596E;
+}
+
+.ebusiness-quntity-text-pd-details {
+    font-weight: 500 !important;
+    padding: 0 0 15px 0;
+}
+
+.ebusiness-product-price-offer {
+    font-size: 14px;
+    font-weight: normal;
+    color: red;
+}
+
+.ebusiness-product-details-description {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 10px 0;
+    font-size: 14px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.ebusiness-product-code {
+    padding: 25px 0 0 0;
+}
+
+.ebusiness-product-list-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+    margin: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+    .ebusiness-product-list-name a {
+        cursor: pointer;
+    }
+
+/*tab css */
+
+.ebusiness-add-coupon-row {
+    padding: 5px 0;
+}
+
+.eBusiness-tabs-reviews-description {
+    padding: 25px 10px 0;
+}
+.review-text.reviewDesc {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.ebusiness-product-wrap {
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 0 5px #f0f0f0;
+    background: #fff;
+    padding: 10px;
+}
+
+.ebusiness-product-list-item {
+    padding: 5px;
+}
+
+.ebusiness-payment-summary-total-order-panel {
+    background: #fff;
+    overflow: hidden;
+}
+
+.total-order-details h4 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+
+.ebusiness-modal-content h3 {
+    word-break: break-word;
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    overflow: hidden;
+    background: #fff;
+}
+
+.ebusiness-card-details hr,
+.ebusiness-modal-content hr {
+    margin: 10px 0;
+}
+
+.cart-preview-product-row {
+    overflow: hidden;
+    border-bottom: 1px solid #EFE7E7;
+    padding: 10px 0;
+}
+
+
+.message-confirmation {
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.confirmation-message {
+    border: 1px solid #ccc;
+}
+
+/*Cart Grid CSS*/
+
+.ebusiness-viewcart-coupon-checkout-row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #fff;
+    overflow: hidden;
+    padding: 0 15px;
+}
+
+.row-subtotal:last-child {
+    border-bottom: none;
+}
+
+.total-order-details {
+    background: #fff;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.orderSummaryList {
+    background: #fff;
+}
+
+    .orderSummaryList h3 {
+        padding: 15px 0;
+    }
+
+.ebusiness-payment-summary-list-wrapper .total-order-details {
+    background: #fff;
+    padding: 10px 0;
+}
+
+.ebusiness-shipping-payment-summary-list .total-order-details,
+.paymentSummaryList .total-order-details {
+    border: 1px solid #ccc;
+}
+
+.total-order-details .row-subtotal {
+    padding: 5px 0;
+}
+
+.became-a-member {
+    text-align: center;
+}
+
+.proceed-checkout {
+    /*text-align: right;*/
+    margin-right: 0;
+}
+
+
+.ebusiness-payment-summary-total-order-panel hr {
+    margin: 5px 0;
+}
+
+.amount {
+    text-align: right;
+}
+
+.ebusiness-action-buttons-address {
+    vertical-align: middle;
+    line-height: 38px;
+}
+
+.ebusiness-product-view-cart-product-quantity {
+    width: 70px;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.product-details-vcProductQuantity {
+    width: 50px;
+    text-align: center;
+    padding: 5px 0;
+    margin: 0 10px;
+}
+
+
+.sorting select {
+    padding: 5px;
+}
+
+.ebusiness-filter-sorting-control {
+    padding: 0 5px;
+    font-size: 14px;
+}
+
+.filter {
+    line-height: 32px;
+}
+
+.ebusiness-product-list .k-pager-wrap.k-widget {
+    background: transparent;
+    width: 99%;
+    margin: 10px auto 0;
+}
+
+.ebusiness-product-list .ebusiness-product-list-price-control {
+    height: 21px;
+}
+
+
+.ebusiness-filter-control {
+    padding: 5px 0 0;
+}
+
+.ebusiness-viewcart-wrapper {
+    padding-top: 10px;
+}
+
+.confirmation-message .ebusiness-service-failure-message {
+    margin: 10px;
+}
+
+.btn {
+    font-size: 0.875rem;
+}
+
+.ebusiness-filter-category-section {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: none;
+    box-shadow: none !important;
+    padding: 8px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.arrow-down {
+    float: right;
+    position: relative;
+    top: 3px;
+}
+
+.ebusiness-filter-details-panel label {
+    display: inline;
+    font-weight: normal;
+}
+
+.ebusiness-filter-details-panel label {
+    display: inline;
+}
+
+.ebusiness-filter-btn-group-category .dropdown-menu {
+    width: 100%;
+    margin: -3px 0 0 0;
+    border: 0;
+    box-shadow: none;
+    position: relative;
+}
+
+
+.ebusiness-filter-view-content {
+    padding: 10px;
+    height: calc(100% - 270px);
+    position: relative;
+    overflow: auto;
+}
+
+.ebusiness-filter-btn-group-category .dropdown-menu a {
+    padding-left: 15px;
+}
+
+.ebusiness-filter-section-title {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0px 4px 8px;
+}
+
+.ebusiness-filter-btn-group-sorting ul {
+    padding: 0 0 0 10px;
+    list-style-type: none;
+}
+
+    .ebusiness-filter-btn-group-sorting ul li {
+        padding: 5px 0;
+        color: #555;
+    }
+
+        .ebusiness-filter-btn-group-sorting ul li label,
+        .ebusiness-filter-btn-group-sorting ul li input {
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+.ebusiness-filter-sorting-generic ul {
+    padding: 0 0 0 10px;
+    font-size: 16px;
+    list-style-type: none;
+}
+
+.ebusiness-page-title {
+    color: #12586e;
+    font-size: 18px;
+    padding: 0 0 4px 0;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+.ebusiness-sub-page-title {
+       padding-top:10px;
+}
+.list .ebusiness-product-list-image-wrapper img {
+    height: auto;
+}
+
+.list .ebusiness-product-list-name {
+    padding: 0;
+    /*font-size: 16px;
+    font-weight: bold;*/
+}
+
+.list .ebusiness-product-list-description p {
+    display: -webkit-box;
+    margin: 0 auto;
+    word-break: break-all;
+}
+
+.eb-link-update {
+    color: #018ed5;
+    cursor: pointer;
+}
+
+.list .ebusiness-product-web-description {
+    display: block;
+}
+
+.ebusiness-product-web-description {
+    display: none;
+}
+
+.list .prouct-description-list {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list .ebusiness-product-list-description,
+.list .ebusiness-product-rating,
+.list .ebusiness-add-to-cart-buttons {
+    text-align: left;
+}
+
+.list .ebusiness-add-to-cart-buttons {
+    background: transparent;
+    padding: 5px;
+    padding-left: 85px;
+    text-align: right;
+}
+
+.list .ebusiness-out-of-stock-text {
+    padding-left: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.list .ebusiness-product-list-item {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+
+.detail-description {
+    display: none;
+    font-size: 12px;
+    line-height: 24px;
+    color: #05498E;
+    margin: 10px 0;
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    overflow: hidden;
+}
+
+.list .ebusiness-product-list-image-wrapper {
+    /*float: left;
+    padding: 4px 10px;
+    width: 20%;*/
+}
+
+.list .ebusiness-product-list-description {
+    margin-left: 70px;
+}
+
+.list .detail-description {
+    display: block;
+}
+
+.ebusiness-all-products .col-md-8 {
+    padding: 0;
+}
+
+.ebusiness-categories-header {
+    padding: 10px;
+    background: #12586e;
+    font-size: 16px;
+    color: #fff;
+}
+
+.ebusiness-widget-product-categories {
+    padding: 5px 5px 5px 15px;
+}
+
+.ebusiness-view-switcher {
+    position: relative;
+    top: 0;
+    text-align: right;
+    line-height: 34px;
+    right:0px;
+}
+
+.col-md-2.ebusiness-view-switcher {
+    margin-right: -5px;
+}
+
+.widget-top-rated {
+    padding: 5px;
+}
+
+
+.ebusiness-product-add-to-cart-button-widget {
+    margin: 0;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.product-top-rated {
+    border-bottom: 1px solid #B1B1B1;
+    padding: 10px;
+}
+
+    .product-top-rated:last-child {
+        border: none;
+    }
+
+.ebusiness-product-add-to-cart-button-widget .btn {
+    font-size: 11px;
+    padding: 5px;
+    background-color: #17596E;
+    color: #fff;
+}
+
+.ebusiness-featured-product-horizontal {
+    padding: 15px;
+}
+
+    .ebusiness-featured-product-horizontal .product {
+        border: 0;
+        padding: 0;
+    }
+
+    .ebusiness-featured-product-horizontal h3 {
+        text-align: center;
+        font-weight: normal;
+    }
+
+.ebusiness-grid-row-cart-list {
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+    .ebusiness-grid-row-cart-list .col-xs-3 {
+        padding: 0;
+        max-width: 75px;
+    }
+
+.ebusiness-product-image-cart img {
+    /*width: 100%;*/
+    height: auto;
+    max-height: 66px;
+    max-width: 90px;
+}
+
+.ebusniess-row-kit-product {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+.ebusiness-product-description-cart p:first-child {
+    margin: 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.qunty-text.hidden-xs {
+    padding-top: 15px;
+    text-align: right;
+}
+
+.qty-edit-text {
+    position: absolute;
+    top: 2px;
+    right: 17px;
+    text-align: right;
+}
+
+.ebusiness-product-view-cart-removeProduct {
+    cursor: pointer;
+}
+
+
+.grid-coupon-applied {
+    font-size: 12px;
+    color: forestgreen;
+}
+
+.ebusiness-cart-empty-message {
+    text-align: center;
+    padding: 10px;
+    color: #17596E;
+    font-size: 18px;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.ebusiness-product-list-price-control {
+    font-size: 16px;
+    padding: 2px 0;
+}
+
+
+.ebusiness-filter-footer-panel {
+    padding: 0 10px 10px;
+}
+
+.list .ebusiness-product-list-price-control {
+    height: auto;
+    padding: 2px 0;
+}
+
+.ebusiness-product-rating-control-wrapper {
+    padding: 2px 0;
+}
+
+.ebusiness-viewcart-text-apply-coupon {
+    width: 100% !important;
+}
+
+.ebusiness-billing-details-box {
+    background: #fff;
+}
+
+.ebusiness-add-coupon .col-xs-7 {
+    padding: 0;
+}
+
+.ebusiness-add-coupon .col-xs-5 {
+    padding: 0 5px;
+}
+
+.ebusiness-product-widget-top-rated h3 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.ebusiness-recent-Products-Widget {
+    padding: 5px 5px 5px 15px;
+}
+
+    .ebusiness-recent-Products-Widget h3 {
+        font-weight: normal;
+    }
+
+.ebusiness-checkout-billing-details h3 {
+    padding-left: 15px;
+}
+
+.ebusiness-card-details .ebusiness-form-control-row,
+.ebusiness-billing-details .ebusiness-form-control-row,
+.ebusiness-checkout-billing-details .ebusiness-form-control-row {
+    overflow: hidden;
+}
+
+.ebusiness-checkout-billing-details hr {
+    margin: 5px 0;
+}
+
+.popover-content {
+    padding: 9px 14px;
+    color: #000;
+}
+
+    .popover-content hr {
+        margin: 10px 0;
+    }
+
+.ebusiness-product-widget-Vertical .product {
+    width: 100%;
+}
+
+.ebusiness-product-widget-Vertical .product-image {
+    /*float: left;
+    padding: 0 10px;
+    width: 75px;
+    border: 0;
+    height: 95px;*/
+}
+
+.ebusiness-product-widget-Vertical .ebusiness-add-to-cart-buttons {
+    background: transparent;
+}
+
+.ebusiness-product-widget-Vertical .ebusiness-product-list-description {
+    text-align: left;
+    padding-top: 0;
+}
+
+.ebusiness-product-widget-Vertical .product-image img {
+    max-width: 75px;
+}
+
+
+.ebusiness-my-orders-list {
+    border-bottom: 1px solid #e8e8e8;
+    color: #555;
+    position: relative;
+    padding: 0 15px;
+}
+
+.row.order-heading-panel {
+    padding: 5px 0;
+}
+
+.ebusiness-text-label-field {
+    color: #9C9C9C;
+}
+
+.label-orders {
+    display: block;
+    color: #868686;
+    display: block;
+    font-weight: bold;
+}
+
+.ebusiness-poduct-desc-dwnld {
+    padding: 15px 0 0 0;
+    color: #999;
+}
+
+.ebusiness-text-value-filed {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.ebusiness-icon-download {
+    font-size: 1.7em;
+    margin-top: 10px;
+    position: relative;
+    top: 10px;
+}
+
+.ebusiness-my-orders-list hr {
+    margin: 10px 0;
+    border-color: #eee;
+}
+
+
+.ebusiness-my-orders-list a:hover,
+.ebusiness-my-orders-list a {
+    text-decoration: none;
+}
+
+.morecontent span {
+    display: none;
+}
+
+.morelink {
+    display: inline;
+    text-decoration: underline !important;
+}
+
+.ebusiness-my-downloads-list {
+    border: 0;
+}
+
+.ebusiness-downloads-content-row {
+    border: 0;
+    box-shadow: none;
+}
+
+.eb-content-row {
+    border: 0;
+    box-shadow: none;
+    padding: 10px 0 0 0;
+}
+
+.ebusiness-my-orders-list .col-sm-12 {
+    padding: 0;
+}
+
+.frmCompleteOrder .cards {
+    margin: 0 0 0 0;
+}
+
+.cards .card {
+    box-shadow: none;
+    margin: 0;
+}
+
+.btnCompleteOrder {
+    background: #17596E;
+    width: auto !important;
+}
+
+.frmCompleteOrder .cards li {
+    display: block;
+    float: left;
+    padding: 0 5px 0 0;
+}
+
+.frmCompleteOrder .card {
+    float: left;
+    width: 55px;
+    height: 34px;
+    text-indent: -9999px;
+    background-position: 0 0;
+    margin-right: 1px;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+}
+
+    .frmCompleteOrder .card.cdisabled {
+        background-position: 0 -34px;
+        opacity: 0.3;
+    }
+
+    .frmCompleteOrder .card.visa {
+        background-image: url('../images/card-visa.gif');
+    }
+
+    .frmCompleteOrder .card.amex {
+        background-image: url('../images/card-amex.gif');
+    }
+
+    .frmCompleteOrder .card.master {
+        background-image: url('../images/card-mastercard.gif');
+    }
+
+    .frmCompleteOrder .card.discover {
+        background-image: url('../images/card-discover.gif');
+    }
+
+    .frmCompleteOrder .card.jcb {
+        background-image: url('../images/card-jcb.gif');
+    }
+
+    .frmCompleteOrder .card.diners_club {
+        background-image: url('../images/card-diners.gif');
+    }
+
+.change-password a {
+    padding: 0 !important;
+    font-weight: bold;
+}
+
+
+.apex-user-email {
+    word-wrap: break-word;
+}
+
+.ebusiness-view-switcher-btn,
+.ebusiness-view-switcher .icon-r-search {
+    color: #018ed5;
+}
+
+.footer-popover .btn-default {
+    padding: 5px 10px !important;
+}
+
+.footer-popover .btn-primary {
+    padding: 5px 10px !important;
+    color: #fff !important;
+}
+
+.unstyled-dwnld-link {
+    font-size: 16px;
+}
+
+.myDownloadsList-inactive {
+    border: none;
+}
+
+    .myDownloadsList-inactive .ebusiness-icon-download {
+        font-size: 16px;
+    }
+
+.ebusiness-my-orderlist-inactive {
+    border: none;
+}
+
+    .ebusiness-my-orderlist-inactive .ebusiness-icon-download {
+        font-size: 16px;
+    }
+
+.dwnld-label {
+    font-size: 16px;
+    line-height: 25px;
+    position: relative;
+    top: -5px;
+    margin-left: 5px;
+}
+
+.iconFileDownload {
+    cursor: pointer;
+}
+
+.modal-header
+ {
+    padding: 15px 0 0px 15px;
+}
+.modal-footer{
+    padding:15px;
+}
+.panel-arrow-checkout {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.ebusiness-my-oders-actions {
+    border-top: 1px solid #000;
+    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
+}
+
+.hideItems {
+    display: none;
+}
+
+.iconsActions {
+    padding-left: 49px;
+}
+
+    .iconsActions img {
+        width: 32px;
+        height: auto;
+        padding: 0 5px;
+    }
+
+
+/*.orders-order-status {
+    color: #FF3B3B;
+}*/
+
+.arrow-collapse {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.italic-font {
+    font-style: italic;
+}
+
+.border-box-checkout {
+    background: #fff;
+    padding: 20px;
+    margin: 10px auto;
+    font-size: 14px;
+    line-height: 22px;
+    box-shadow: 0 0 10px 1px #ccc;
+    border-bottom: 3px solid #12596F;
+}
+
+    .border-box-checkout a {
+        text-decoration: none;
+    }
+
+.delete-card-info {
+    padding: 0 3px;
+}
+
+.card-type {
+    font-size: 14px;
+}
+
+.acceptedCards {
+    margin-top: -25px;
+}
+
+    .acceptedCards img {
+        max-width: 100%;
+        height: auto;
+    }
+
+.row-card {
+    padding: 5px 0;
+}
+
+.border-box-checkout hr {
+    margin: 10px 0;
+}
+
+.exp-date {
+    padding: 0 0 0 0;
+}
+
+.heading-seondary {
+    font-size: 16px;
+}
+
+.heading-primary {
+    font-size: 20px;
+}
+
+.ebusiness-modal-vertical-centered {
+    transform: translate(0, 50%) !important;
+    -ms-transform: translate(0, 50%) !important;
+    /* IE 9 */
+    -webkit-transform: translate(0, 50%) !important;
+    /* Safari and Chrome */
+}
+
+.row-subtotal.note-gaurantee {
+    font-size: 14px;
+}
+
+.confirmationForm {
+    outline: 0;
+    /* display: block; */
+    width: 100%;
+    margin: 0 20px 0 0;
+    padding: 6px 10px 5px 5px;
+    border: 1px solid #d9d9d9;
+    color: #8A8A8B;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.border-box-Card {
+    box-shadow: 0 0 10px 1px #ccc;
+    border-radius: 2px;
+}
+
+.ebusiness-footer {
+    margin-top: 30px;
+}
+
+.k-pager-wrap.k-widget * {
+    box-sizing: content-box;
+}
+
+.k-pager-sizes .k-widget.k-dropdown {
+    width: auto;
+    margin-top: 0;
+}
+
+
+/*Checkout pages css*/
+
+.ebusiness-action-buttons-footer {
+    padding: 10px 0;
+}
+
+    .ebusiness-action-buttons-footer input {
+        margin: 0 5px 0 15px;
+    }
+
+.ebusiness-payment-person-profile-link {
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    line-height: 38px;
+    padding: 0 4px;
+}
+
+    .ebusiness-payment-person-profile-link:hover,
+    .ebusiness-payment-person-profile-link:focus {
+        text-decoration: none;
+    }
+
+.ebusiness-payment-address-listing-row {
+    margin: 0 0 10px 0;
+    border: 1px solid #f0f0f0;
+    padding: 5px 0;
+    background: #fff;
+}
+
+    .ebusiness-payment-address-listing-row:last-child {
+        margin: 0 0 0 0
+    }
+
+.eb-prefAddChkbox {
+    margin-right: 15px
+}
+
+.ebusiness-payment-address-listing-row.billingShippingSame:last-child {
+    margin-bottom: 10px;
+}
+
+.ebusiness-collapsible-panel .panel {
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+.ebusiness-profile-subtab-holder {
+    padding: 5px 0;
+}
+
+.defaultAddress {
+    border-bottom: 3px solid #12596F;
+}
+
+.ebusiness-payment-address-listing-row p {
+    margin: 0;
+}
+
+.btn-link {
+    outline: none;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+h4 {
+    margin: 0;
+    padding: 5px 0px;
+    font-size: 1.0rem;
+}
+
+h5 {
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+h6 {
+    font-size: 0.565rem;
+    margin: 0;
+}
+
+.titleTypeOfAddress {
+    font-size: 16px;
+}
+
+.ebusiness-product-description-cart p {
+    margin: 0;
+}
+
+.qunty-text {
+    font-size: 14px;
+}
+
+.ebusiness-product-view-cart-quantity-value-review {
+    padding-right: 10px;
+}
+
+.ebusiness-product-image-cart {
+    padding: 5px;
+    border: 1px solid #f0f0f0;
+    height: 82px;
+    line-height: 55px;
+    text-align: center;
+}
+
+.ebusiness-product-image-my-orders {
+    padding: 5px;
+    height: 55px;
+    line-height: 35px;
+    text-align: center;
+    max-width: 65px;
+}
+
+    .ebusiness-product-image-my-orders img {
+        max-width: 51px;
+        max-height: 51px;
+    }
+
+.ebusiness-cart-detailed-view .ebusiness-product-image-cart,
+.ebusiness-cartList-item .ebusiness-product-image-cart,
+.ebusiness-product-details-ratings .ebusiness-product-image-cart {
+    padding: 5px;
+    border: 2px solid #e3e3e3;
+    height: 125px;
+    line-height: 105px;
+    text-align: center;
+    max-width: 105px;
+}
+
+.ebusiness-cartList-item .ebusiness-kit-product-wrapper {
+    margin-top: 10px;
+}
+
+.ebusiness-cartList-item .ebusiness-row-kit-product p {
+    font-size: 16px;
+}
+
+.ebusiness-cartList-item .heading-Included {
+    font-weight: bold;
+}
+
+.ebusiness-cartList-item .ebusiness-collapse-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.ebusiness-cartList-item .ebusiness-kit-product-description p {
+    font-size: 14px;
+}
+
+.ebusiness-product-description-cart {
+    padding: 0;
+}
+
+.totalAmoutReview {
+    font-size: 16px;
+    color: #555;
+}
+
+
+.ebusiness-checkout-active-step {
+    background: #fff;
+    color: #FFFFFF !important;
+}
+
+.ebusiness-checkout-completed {
+    background: #12596F;
+    color: #fff;
+    border: 2px solid #12596F;
+    cursor: pointer;
+}
+
+.cursor-default .ebusiness-checkout-completed {
+    cursor: default;
+}
+
+.panel-arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+}
+
+.payWithCreditCard,
+.payWithBillmelater {
+    position: relative;
+    padding: 0 10px;
+}
+
+.defaultAddres-msg {
+    padding: 0 15px 0 0;
+    margin-top: -10px;
+}
+
+.billMeLaterRow {
+    padding: 10px 0 0 0;
+}
+
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+
+.ebusiness-remove-all-side-gutter {
+    padding: 0;
+}
+
+.ebusiness-payment-progress {
+    text-align: right;
+    padding: 10px 28px 5px;
+}
+
+.error {
+    border-color: red;
+    color: red;
+}
+
+.ebusiness-change-passwrod-div label.error {
+    display: block;
+    text-align: right;
+}
+
+.ebusiness-row-input-change-password {
+    padding: 5px 0 0 0;
+}
+
+.ebusiness-change-passwrod-div .control-group {
+    padding-bottom: 10px;
+}
+
+.outOfstockText {
+    background: rgba(88, 88, 88, 0.2);
+    border-radius: 4px;
+    border: 1px solid #C5C5C5;
+    line-height: 1.3em;
+    margin: 0 auto;
+    width: 75%;
+    color: #b12704;
+}
+
+.ebusiness-payment-edit-card-info {
+    padding: 0 15px 0 0;
+    cursor: pointer;
+}
+
+.numberOfItems {
+    font-size: 14px;
+}
+
+.ebusiness-viewcart-text-apply-coupon.form-control {
+    background-color: #F4F4F4;
+    border-radius: 0;
+}
+
+a.ebusiness-checkout-completed:hover,
+a.ebusiness-checkout-completed:focus {
+    color: #fff;
+}
+
+.subTotalAmountCart {
+    padding: 10px 0;
+}
+
+.ebusiness-content-my-download-tab {
+    background: transparent;
+}
+
+span.value-orders.orderSummary {
+    display: block;
+}
+
+.orderSummary,
+.ebusiness-my-oders-actions {
+    display: none;
+}
+
+.ebusiness-saved-payments .ebusiness-payment-edit-card-info {
+    padding: 0;
+    cursor: pointer;
+}
+
+.ebusiness-product-wrapper-product-page.k-state-selected {
+    background: transparent;
+    box-shadow: none !important;
+}
+
+.ebusiness-main-container {
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.medium-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.ebusiness-product-list-ctrl .ebusiness-product-wrap {
+    padding: 10px 5px 5px 10px;
+}
+
+.ebusiness-profile-tab-style {
+    display: inline-block;
+}
+
+    .ebusiness-profile-tab-style a {
+        display: inline-block;
+        padding: 10px 30px;
+    }
+
+.ebusiness-tabs-my-profile-page {
+    max-width: 895px;
+    margin: 0 auto;
+    justify-content: flex-start;
+    display: flex;
+}
+
+.ebusiness-body .tab-content {
+    border: none;
+}
+
+.tabsMyprofilePage2 li.active a,
+.tabsMyprofilePage2 li a:hover,
+.tabsMyprofilePage2 li.active a:hover,
+.tabsMyprofilePage2 li.active a:focus {
+    background: transparent;
+    border-bottom: 2px solid #12596F;
+}
+
+div.k-window-content {
+    height: 96%;
+}
+
+.apex-boundcontrols-photo-popup .a-edit-image-dialog .a-edit-image-buttons .btn {
+    font-weight: bold;
+}
+
+.ebusiness-tabs-my-border-bottom {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+    .ebusiness-tabs-my-border-bottom:last-child {
+        border-bottom: none;
+    }
+
+.tabsProfileActive {
+    border-bottom: 3px solid #12596F;
+    opacity: 1.0;
+}
+
+
+/*Hide non working location control */
+
+.events-list .ebusiness-filter-details-panel .ebusiness-filter-sorting-generic:first-child {
+    display: none;
+}
+
+.ebusiness-saved-cart-wrapper {
+    position: relative;
+    padding: 5px 5px 0;
+}
+
+.ebusiness-heading-with-photo-viewcart-row {
+    padding: 5px;
+}
+
+.ebusiness-saved-cart-dropdown .modal-content {
+    border-radius: 0;
+    padding: 10px 0 0 0;
+    max-width: 362px;
+}
+
+.ebusiness-saved-cart-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 42px;
+    min-width: 320px;
+    color: #555;
+    font-size: 14px;
+}
+
+.ebusiness-saved-cart-action-button {
+    cursor: pointer;
+}
+
+.savedCartDescription {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.rowSavedCarts {
+    padding: 10px 0;
+}
+
+.cartNameTitle {
+    color: #12586e;
+    font-size: 16px;
+}
+
+.ebusiness-saved-cart-heading {
+    font-weight: bold;
+    font-size: 18px;
+    color: #12586e;
+}
+
+.numberOfItemsInCart {
+    font-size: 14px;
+}
+
+.ebusiness-saved-cart-dropdown hr {
+    margin: 10px 0 0 0;
+}
+
+.ebusiness-saved-cart-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width: inherit;
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+    border: #ccc;
+    box-shadow: 0 0 10px #585858;
+}
+
+.rowSavedCarts:hover {
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.ebusiness-product-description-cart-pd {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 76%;
+}
+
+.ebusiness-save-cart-modal {
+    padding-left: 15px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.navbar-inverse .btn-link:focus,
+.navbar-inverse .btn-link:hover {
+    color: #23527c;
+}
+
+.navbar-inverse .btn-link {
+    color: #337ab7;
+}
+
+.active a.nav-link {
+    color: #fff;
+    background-color: #007ca9;
+}
+
+.ebusiness-change-passwrod-div {
+    max-width: 485px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+    .ebusiness-change-passwrod-div input {
+        outline: 0;
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+        padding: 10px 15px;
+        border: 1px solid #d9d9d9;
+        color: #8A8A8B;
+        font-size: 16px;
+        line-height: 20px;
+        background: #fff;
+    }
+
+input.error {
+    border: 1px solid red;
+    color: #8A8A8B;
+}
+
+.ebusiness-product-widget-description {
+    font-size: 16px !important;
+}
+
+.grid-row-cart-list {
+    padding: 0;
+}
+
+.ebusiness-out-of-stock-text {
+    padding-top: 5px;
+    color: #b12704;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+.ebusiness-my-downloads-back-navigation {
+    padding: 0 0 0 0;
+}
+
+.vcSaveCart {
+    color: #12586e;
+    background-color: #f0f0f1;
+}
+
+.ebusiness-product-tags span {
+    background: #f5f5f5;
+    margin: 3px 5px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.ebusiness-product-tags {
+    display: inline;
+}
+
+.ebusiness-product-details-ratings {
+    background: #fff;
+    padding: 15px 0;
+    margin: 15px 0 0 0;
+}
+
+.allReviewsText {
+    font-size: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.allWriteAReview a {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.ebusiness-sorting-control-review {
+    padding: 15px 0;
+}
+
+    .ebusiness-sorting-control-review .dropdown {
+        font-size: 16px;
+        border-bottom: 2px solid #12596f;
+        padding: 5px;
+    }
+
+    .ebusiness-sorting-control-review .dropdown-menu {
+        right: 0;
+        border-radius: 0;
+    }
+
+.pro-price-details {
+    font-size: 16px;
+    padding: 10px 0 10px 0;
+    display: block;
+}
+
+#ProdTagsText {
+    font-weight: 500;
+}
+
+.demo {
+    border: 1px solid #ccc;
+}
+
+.pro-price-new-details {
+    padding: 10px 0 25px 0;
+}
+
+.ebusiness-product-more-details-section .ebusiness-product-details-description {
+    line-height: 20px;
+    margin: 10px 0;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    overflow: hidden;
+}
+
+.a-date-time-ratings {
+    padding: 10px 0;
+}
+
+.reviewTitle {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+}
+
+
+
+.ebusiness-filter-options .k-widget.FromDate,
+.ebusiness-filter-options .k-widget.ToDate {
+    border-radius: 0;
+    background: #fff;
+    border: none;
+    width: 97%;
+    margin: 0;
+}
+
+.ebusiness-filter-options .FromDate,
+.ebusiness-filter-options .ToDate {
+    padding: 5px;
+    height: auto;
+}
+
+.ebusiness-filter-options {
+    overflow-y: auto;
+    max-height: 624px;
+}
+
+.k-state-selected {
+    color: #fff;
+    box-shadow: none !important;
+}
+
+#CartItems {
+    padding-left: 15px;
+    text-transform: lowercase;
+}
+
+.allReviews-hr {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 2px solid #adadad;
+}
+
+.aRedirectToProduct {
+    font-size: 16px;
+}
+
+.ebusiness-product-total-reviews .k-pager-wrap.k-widget {
+    padding: 10px 0;
+}
+
+.ebusiness-nav-tabs-downloads > li.active > a,
+.ebusiness-nav-tabs-downloads > li.active > a:focus,
+.ebusiness-nav-tabs-downloads > li.active > a:hover {
+    border: none;
+    background: transparent;
+}
+
+.ebusiness-nav-tabs-downloads {
+    border-bottom: none;
+}
+
+    .ebusiness-nav-tabs-downloads > li a {
+        border: 0;
+        text-align: center;
+    }
+
+    .ebusiness-nav-tabs-downloads > li.active {
+        border-bottom: 4px solid #12596f;
+    }
+
+    .ebusiness-nav-tabs-downloads > li a:hover {
+        background: transparent;
+        border: none;
+    }
+
+.ebusiness-filter-control-downloads {
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 0;
+}
+
+.ebusiness-mydownloads-list-ctrl {
+    background: transparent;
+}
+
+.ebusiness-action-cart-footer {
+    padding: 15px 0;
+    background-color: #fff;
+    font-weight: normal;
+}
+
+.displayShipping {
+    border-bottom: 1px solid #ccc;
+}
+
+    .displayShipping .dropdown-toggle {
+        display: block;
+        padding: 5px 5px 5px 15px;
+        border: 1px solid #eee;
+    }
+
+    .displayShipping .dropdown-menu {
+        width: 100%;
+    }
+
+.ebusiness-product-write-review-URL.btn-link[disabled] {
+    color: #777;
+    text-decoration: none;
+}
+
+.ebusiness-product-write-review-URL {
+    /* padding: 0;*/
+}
+
+.lslide .ebusiness-product-list-price-control {
+    height: 25px;
+}
+
+.lslide .ebusiness-product-wrap {
+    box-shadow: none;
+}
+
+.ebusiness-featured-product-horizontal .ebusiness-product-list-price-control {
+    height: 26px;
+}
+
+.ebusiness-recent-Products-Widget .ebusiness-product-wrap {
+    border-top: 0;
+}
+
+.reviewerName {
+    color: #14596e;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.ebusiness-product-details-ratings .ebusiness-product-description-cart p:last-child {
+}
+
+.dropdown.open .icon-r-arrow-down-dwld:before {
+    content: "\e65b";
+}
+
+.dropdown .icon-r-arrow-down-dwld:before {
+    content: "\e658";
+}
+
+.ebusiness-sorting-control-review .dropdown.open {
+    box-shadow: 0 0 10px 1px #ccc;
+    background: #fff;
+}
+
+.numberOfReviews {
+    padding-left: 3px;
+}
+
+.row-upaidOrders {
+    background: #fff;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 22px;
+    box-shadow: 0 0 10px 1px #ccc;
+    color: #999;
+}
+
+.ebusiness-makepayment-input {
+    margin: 10px 0;
+    background: #f5f5f5;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.goToPayementControl {
+    border-radius: 100%;
+    padding: 10px;
+    box-shadow: 0 0 10px 1px #f0f0f0;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.ebusiness-product-details-ratings .ebusiness-product-widget-star-rating .rating-xxs {
+    font-size: 1.7em;
+}
+
+.successfulChangedPassword {
+    padding: 50px 1px;
+    font-size: 16px;
+}
+
+.FilterSort-Options {
+}
+
+.showingLabel {
+    color: #828282 !important;
+}
+
+.ebusiness-product-widget .ebusiness-product-list-price-control span {
+    font-size: 14px;
+}
+
+
+/*
+Back to top button 
+*/
+
+#eb-take-to-payment-control {
+    position: fixed;
+    bottom: 30px;
+    margin-left: 0;
+    right: 24%;
+    z-index: 99;
+}
+
+    #eb-take-to-payment-control a:hover {
+        color: #000;
+    }
+
+
+    /* arrow icon (span tag) */
+
+    #eb-take-to-payment-control span {
+        width: 46px;
+        height: 46px;
+        display: block;
+        margin-bottom: 7px;
+        background: #057f9b;
+        /* rounded corners */
+        -webkit-border-radius: 10%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        /* background color transition */
+        -webkit-transition: 1s;
+        -moz-transition: 1s;
+        transition: 1s;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        box-shadow: 1px 1px 10px #4b4b4b;
+        font-size: 24px;
+    }
+
+.fixedPos {
+    position: fixed;
+    top: 52px;
+    width: 22.2%;
+    max-width: 324px;
+}
+
+.ebusiness-checkout-addresses .fixedPos,
+.ebusiness-review-order .fixedPos {
+    position: fixed;
+    top: 52px;
+    width: 31.1%;
+    max-width: 450px;
+}
+
+.ebusiness-checkout-process .fixedPos,
+.ebusiness-complete-order .fixedPos {
+    position: fixed;
+    top: 52px;
+    width: 31.1%;
+    max-width: 450px;
+}
+
+.scpCCSecurityNumber {
+    /* margin: 10px 0;*/
+}
+
+.cvvInputField {
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    width: 100%;
+}
+
+.ebusiness-kit-product-wrapper {
+    border: 1px solid #f0f0f0;
+    margin-top: 10px;
+}
+
+.heading-Included {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ebusiness-collapse-header {
+    padding: 5px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #f0f0f0;
+    line-height: 23px;
+}
+
+.registration-summary-viewcart .ebusiness-collapse-header {
+    padding: 5px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #f0f0f0;
+    line-height: 23px;
+}
+
+.ebusiness-row-kit-product {
+    font-size: 12px;
+    padding: 10px 0;
+    margin: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ebusiness-kit-productImage {
+    max-height: 100px;
+    max-width: 45px;
+    width: 45px;
+    margin-right: 5px;
+    padding: 2px;
+    height: 45px;
+}
+
+.showDetails:after {
+    content: "Hide Details";
+}
+
+.showDetails.collapsed:after {
+    content: "Show Details";
+}
+
+.ebusiness-kit-product-image {
+    line-height: 52px;
+}
+
+.ebusiness-kit-product-name a {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ebusiness-kit-product-wrapper hr {
+    margin: 10px 0;
+}
+
+.ebusiness-row-kit-product p {
+    margin: 0;
+}
+
+.ebusiness-kit-product-description p {
+    font-size: 14px;
+}
+
+
+/*.ebusiness-kit-product-price {
+    text-align: center;
+}*/
+
+.errorExpDate {
+    font-weight: 700;
+}
+
+.ebusiness-modal-content {
+    color: #333;
+}
+
+.newInfo {
+    background: #12596f;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    z-index: 1040;
+    margin: 0;
+    border-radius: 0;
+    left: 0;
+    right: 0;
+}
+
+.ebusiness-carousel-product-images .usingCss {
+    border: 1px solid #ccc;
+    /*max-height: 300px;
+    max-width:310px;*/
+}
+
+.help-block {
+    margin-bottom: 0;
+    color: #ff0000;
+    padding: 0 15px;
+}
+
+.ebusiness-user-profile ::-webkit-scrollbar {
+    display: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+ul {
+    padding: 0;
+}
+
+    ul li {
+        list-style: none;
+    }
+
+input {
+    height: 2rem;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+    input[type="checkbox"] {
+        height: 16px;
+        width: 16px;
+        padding: 0;
+        margin: 4px !important;
+        vertical-align: middle;
+        border: 1px solid #018ed5;
+        border-radius: 2px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+    }
+
+span.pull-right.shipToDiff {
+    font-size: 14px;
+}
+
+input[type="checkbox"]:checked {
+    border: 1px solid #018ed5;
+    background-color: #018ed5;
+    background-image: url(../images/icons/icon_checkmark-24px.svg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+}
+
+select {
+    font-size: 14px;
+    border-radius: 0;
+    background: transparent;
+    border-color: #f0f0f0;
+    cursor: pointer;
+}
+
+    select.form-control:not([size]):not([multiple]) {
+        height: 2rem;
+    }
+
+button.btn-lg {
+    background-color: #14596e;
+    width: auto;
+    color: #fff;
+    font-size: 14px;
+    line-height: 8px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 2px;
+}
+
+button.btn-sm {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    height: 24px;
+    width: 24px;
+    margin: 4px;
+}
+
+.main {
+    width: 100%;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 2px;
+    margin-bottom: 16px;
+}
+
+    .card header.header {
+        font-size: 16px;
+    }
+
+        .card .header.title,
+        .card header.header .title {
+            display: inline-block;
+        }
+
+.apex-ftp .card .k-header .header.title,
+.apex-ftp .card .k-header header.header .title {
+    padding-left: 0;
+}
+
+.card-content,
+.apex-ftp .k-panelbar .card-content.k-content {
+    padding: 12px 0;
+    border: 0;
+}
+
+.card.expandable {
+    position: relative;
+    height: 56px;
+    overflow: hidden;
+}
+
+    .card.expandable.is-expanded {
+        height: 100%;
+        padding: 10px;
+    }
+
+.apex-ftp .k-panelbar .card[aria-expanded='true'] {
+    border-bottom: 2px solid #14596e;
+}
+
+.apex-ftp .k-panelbar .k-link.k-header {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.expandable .header,
+.apex-ftp .k-panelbar header.header {
+    padding: 0;
+}
+
+.expandable .expander button,
+.apex-ftp .k-panelbar .k-header > .k-icon {
+    margin: 0;
+    /*padding: 24px;*/
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 24px;
+    top: 15px;
+}
+
+.apex-boundcontrols-combobox .k-dropdown-wrap .k-input,
+.apex-boundcontrols-phones .k-dropdown-wrap .k-input {
+    text-indent: 0;
+    line-height: 18px;
+}
+
+.ebusiness-user-profile .k-tabstrip > .k-content {
+    padding: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+}
+
+.apex-ftp .k-panelbar .k-header > .k-icon.k-panelbar-expand.k-i-arrow-s:before,
+.apex-ftp .k-panelbar .k-header > .k-icon.k-panelbar-collapse.k-i-arrow-n:before {
+    content: "";
+}
+
+.apex-ftp .k-panelbar .k-header > .k-icon.k-panelbar-collapse.k-i-arrow-n {
+    background-size: 24px;
+}
+
+.expandable.is-expanded .expander button,
+.apex-ftp .k-panelbar .k-header > .k-icon.k-panelbar-expand.k-i-arrow-s {
+    background-size: 24px;
+}
+
+.apex-ftp .k-state-hover > .k-i-arrow-s,
+.apex-ftp .k-state-hover > .k-i-arrow-n {
+    background-position: 50%;
+}
+
+.apex-ftp .k-panelbar .k-state-selected {
+    background-color: transparent;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.tab-bar {
+    margin: 0 auto;
+}
+
+.tab {
+    padding: 0 8px;
+    opacity: .7;
+    text-align: center;
+    color: #555;
+    white-space: nowrap;
+}
+
+    .tab:hover {
+        opacity: .8;
+        color: inherit;
+        text-decoration: none;
+    }
+
+.k-tabstrip-items .k-item.apex-tab-item {
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.k-tabstrip-items .k-loading {
+    border-top: none;
+}
+
+.tab.is-active,
+.tab.k-state-active {
+    opacity: 1;
+    border-bottom: 3px solid #14596E;
+}
+
+.tab-content .tab-bar {
+    width: 100%;
+    height: 25px;
+}
+
+.primary.tab-container .tab {
+    width: 100%;
+    max-width: 116px;
+    padding: 8px;
+}
+
+.tab-control .tab-bar {
+    justify-content: flex-start;
+}
+
+.secondary.tab-container .tab-bar {
+    justify-content: flex-start;
+}
+
+.secondary.tab-bar {
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.tab-content.is-active {
+    display: block;
+}
+
+.tab-content .card {
+    height: initial;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.header {
+    font-size: 24px;
+    color: #14596e;
+    padding: 24px 0;
+}
+
+.section-header {
+    margin-bottom: 8px;
+}
+
+    .section-header .title {
+        font-size: 16px;
+    }
+
+.bread-crumb {
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.pull-right {
+    float: right;
+}
+
+.blue {
+    color: #14596e;
+}
+
+.pf-input,
+.ebusiness-user-profile .apex-ftp[data-fieldname]:not([data-subtypename]) {
+    margin: 8px;
+}
+
+input.pf-input,
+select.pf-input {
+    margin: 8px;
+    padding: 0;
+    width: 100%;
+}
+
+input.w-33,
+select.w-33 {
+    width: 33%;
+}
+
+
+/*div.apex-ftp input, div.apex-ftp .apex-boundcontrols-combobox {
+    display: flex;
+}*/
+
+.ebusiness-user-profile div.apex-ftp input:not([type="checkbox"]),
+.ebusiness-user-profile div.apex-ftp select,
+.ebusiness-user-profile div.apex-ftp .k-dropdown-wrap,
+div.apex-ftp .pf-input .k-dropdown-wrap {
+    border: none;
+    border-bottom: 1px solid #313335;
+    padding: 0;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    padding: 5px;
+    padding: 11px 10px 6px 5px;
+    background: #f5f5f5;
+}
+
+    .ebusiness-user-profile div.apex-ftp input:disabled,
+    .ebusiness-user-profile div.apex-ftp select:disabled,
+    .ebusiness-user-profile div.apex-ftp .k-dropdown-wrap.k-state-disabled,
+    div.apex-ftp .pf-input .k-dropdown-wrap.k-state-disabled {
+        border-color: #cecece;
+        background: #cecece;
+    }
+
+.k-state-disabled input:disabled {
+    border-color: #cecece;
+    background: #cecece;
+}
+
+.ebusiness-user-profile div.apex-ftp .apex-boundcontrols-combobox {
+    padding-top: 0;
+}
+
+.apex-boundcontrols-combobox .k-dropdown {
+    width: 100%;
+}
+
+.ebusiness-user-profile div.apex-ftp .k-dropdown-wrap,
+div.apex-ftp .pf-input .k-dropdown-wrap {
+    border-radius: 0;
+    padding-bottom: 4px;
+}
+
+div.apex-ftp.dropdown,
+div.apex-ftp .dropdown {
+    background-image: none;
+    padding-right: 0;
+}
+
+.ebusiness-user-profile .apex-ftp .k-icon,
+.apex-ftp .pf-input .k-icon {
+    height: 24px;
+    width: 24px;
+    background-size: 24px 24px;
+}
+
+.ebusiness-user-profile .apex-ftp .k-datepicker .k-icon {
+    height: 16px;
+    width: 16px;
+}
+
+.apex-ftp input[type='date']:disabled {
+    text-indent: 3px;
+}
+
+.apex-ftp :disabled,
+.apex-ftp .k-state-disabled .k-input,
+[data-disabled='true'] .apex-boundcontrols-combobox {
+    background-color: #f5f5f5;
+    color: grey;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    text-indent: 8px;
+}
+
+.ebusiness-user-profile div.apex-ftp.dropdown .k-select .k-icon.k-i-arrow-s,
+.ebusiness-user-profile div.apex-ftp .dropdown .k-select .k-icon.k-i-arrow-s {
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+
+.ebusiness-user-profile div.apex-ftp.dropdown .k-state-disabled .k-select .k-icon.k-i-arrow-s,
+.ebusiness-user-profile div.apex-ftp .dropdown .k-state-disabled .k-select .k-icon.k-i-arrow-s {
+    background: none;
+}
+
+.ebusiness-user-profile div.apex-ftp input:focus,
+.ebusiness-user-profile div.apex-ftp select:focus,
+.ebusiness-user-profile div.apex-ftp .k-dropdown-wrap.k-state-focused,
+.ebusiness-user-profile div.apex-ftp .pf-input .k-dropdown-wrap.k-state-focused {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 2px solid #14596e;
+}
+
+.ebusiness-user-profile .apex-ftp .k-dropdown-wrap.k-state-active.k-state-border-down,
+.ebusiness-user-profile .apex-ftp .pf-input .k-dropdown-wrap.k-state-active.k-state-border-down {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: #fff;
+}
+
+.ebusiness-user-profile div.apex-ftp .k-dropdown-wrap.k-state-hover,
+.ebusiness-user-profile div.apex-ftp .pf-input .k-dropdown-wrap.k-state-hover {
+    background-color: #fff;
+}
+
+.ebusiness-user-profile div.apex-ftp input:invalid,
+.ebusiness-user-profile div.apex-ftp .pf-input input:invalid,
+.ebusiness-user-profile input:invalid {
+    border-bottom: 2px solid red;
+}
+
+.ebusiness-user-profile div.apex-ftp .apex-boundcontrols-textfield .caption {
+    display: none;
+}
+
+.ebusiness-user-profile .apex-boundcontrols-combobox:focus {
+    outline: none;
+}
+
+.apex-boundcontrols-combobox .caption {
+    display: none;
+}
+
+.ebusiness-user-profile .dropdown .apex-combo-option {
+    display: none;
+}
+
+.apex-boundcontrols-checkbox {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+    .apex-boundcontrols-checkbox .caption {
+        margin-top: 5px;
+        font-weight: normal;
+    }
+
+.ebusiness-user-profile .apex-boundcontrols-personEmails .k-dropdown,
+.ebusiness-user-profile .apex-boundcontrols-phones .k-dropdown {
+    padding-top: 0;
+    background-color: transparent;
+}
+
+.pf-input .pf-input {
+    margin: 0;
+}
+
+.ebusiness-user-profile .apex-boundcontrols-phones .apex-ftp .k-dropdown {
+    padding-top: 0;
+}
+
+.apex-boundcontrols-personEmails .option-linked-fields .pf-input {
+    display: none;
+}
+
+    .apex-boundcontrols-personEmails .option-linked-fields .pf-input.active {
+        display: flex;
+    }
+
+.apex-boundcontrols-personEmails .option-linked-fields {
+    width: 100%;
+}
+
+    .apex-boundcontrols-personEmails .option-linked-fields .apex-boundcontrols-textfield {
+        width: 100%;
+    }
+
+.apex-boundcontrols-personEmails .email-clear,
+.apex-boundcontrols-phones .phone-clear {
+    margin-top: 16px;
+}
+
+.apex-boundcontrols-phones .phone-form-template {
+    width: 100%;
+    display: flex;
+}
+
+.apex-boundcontrols-activeButton {
+    display: flex;
+    justify-content: center;
+}
+
+.a-edit-image-dialog > canvas {
+    display: none;
+}
+
+.apex-boundcontrols-photo-popup {
+    border-radius: 2px;
+    border: 0;
+}
+
+    .apex-boundcontrols-photo-popup .k-window-titlebar {
+        position: relative;
+        min-height: 35px;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border-bottom: 0;
+    }
+
+    .apex-boundcontrols-photo-popup .k-window-title {
+        padding: 5px 12px 0;
+        color: #12586e;
+    }
+
+    .apex-boundcontrols-photo-popup .k-window-action {
+        width: 24px;
+        height: 24px;
+    }
+
+        .apex-boundcontrols-photo-popup .k-window-action .k-icon.k-i-close {
+            background-image: url(../images/icons/icon_close-blue_24px.svg);
+            background-repeat: no-repeat;
+            background-position: 100%;
+            height: 24px;
+            width: 24px;
+        }
+
+    .apex-boundcontrols-photo-popup .k-window-content {
+        color: #555555;
+    }
+
+    .apex-boundcontrols-photo-popup .a-edit-image-dialog {
+        padding: 12px;
+        height: 100%;
+    }
+
+    .apex-boundcontrols-photo-popup .a-edit-image {
+        overflow: auto;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        padding-bottom: 2px;
+        padding-right: 2px;
+        height: calc(100% - 85px);
+    }
+
+    .apex-boundcontrols-photo-popup .a-edit-image-dialog .a-edit-image-buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+.k-list-optionlabel {
+    font-size: 14px;
+}
+
+.eBiz-boundcontrol-personTopics {
+    padding-top: 10px;
+}
+
+    .eBiz-boundcontrol-personTopics .add-interests-message {
+        font-size: 16px;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .eBiz-boundcontrol-personTopics .add-interests-message .smiley-frown {
+            margin: 0 8px;
+            height: 32px;
+        }
+
+    .eBiz-boundcontrol-personTopics .toolbar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .eBiz-boundcontrol-personTopics .toolbar .action {
+            cursor: pointer;
+        }
+
+    .eBiz-boundcontrol-personTopics .column.search {
+        width: 48%;
+    }
+
+    .eBiz-boundcontrol-personTopics .search button.btn-sm {
+        margin-left: -30px;
+    }
+
+
+/* need div.apex-ftp specifier here so the padding is not overwritten
+     * by the .user-profile div.apex-ftp input:not([type="checkbox"]) rule
+     */
+
+div.apex-ftp .eBiz-boundcontrol-personTopics input.search-input {
+    float: left;
+    width: auto;
+    margin: 0;
+    margin-bottom: 16px;
+    padding: 0 40px;
+    width: calc(100% - 24px);
+    background-image: url(../images/icons/icon_search-blue.svg);
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+    background-color: #fff;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.eBiz-boundcontrol-personTopics input.k-checkbox {
+    opacity: 1;
+    position: static;
+    /* position static for firefox as well*/
+}
+
+    .eBiz-boundcontrol-personTopics input.k-checkbox:indeterminate {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+
+    .eBiz-boundcontrol-personTopics input.k-checkbox + label.k-checkbox-label {
+        display: none;
+    }
+
+
+/* can't add any extra classes to stuff generated by treeview. Make this look like an expandable card*/
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item {
+    /* .card */
+    background-color: #fff;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    /* .card.expandable */
+    position: relative;
+    /*height: 56px;*/
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    /* flexy thing */
+    height: 100%;
+    width: calc(50% - 6px);
+}
+
+    .eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item[data-expanded='true'] {
+        /* .card.expandable.is-expanded */
+        height: 100%;
+        border-bottom: 2px solid #14596e;
+    }
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview .k-checkbox {
+    vertical-align: middle;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview .k-item {
+    padding-left: 0;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview .k-in.k-state-focused {
+    box-shadow: none;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview .k-in.k-state-hover,
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview .k-in.k-state-selected {
+    background-color: transparent;
+    color: initial;
+}
+
+
+/* expandable card header-alike */
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > div {
+    /* header */
+    display: block;
+    /* .header */
+    color: #14596e;
+    /* .card .header */
+    font-size: 14px;
+    /* .expandable .header */
+    padding: 7px;
+    /* .toi.card .header */
+    padding-left: 12px;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > ul.k-group {
+    border-top: 1px solid #f0f0f0;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > div > .k-in {
+    color: #14596e;
+    margin: 0;
+    border: 0;
+    padding: 14px 14px 14px 0;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > div > .k-icon:before {
+    content: '';
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > div > .k-icon {
+    float: right;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    padding-right: 32px;
+    padding-top: 36px;
+    margin-right: 8px;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item[data-expanded='true'] > div > .k-icon {
+}
+
+
+/* expandable card contents-alike for secondary tier */
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > .k-group {
+    padding: 12px;
+}
+
+.k-checkbox-wrapper {
+    margin-bottom: 0;
+}
+
+.eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > ul.k-group li {
+    color: initial;
+    font-size: 14px;
+}
+
+    .eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > ul.k-group li > div {
+        display: flex;
+        align-items: center;
+    }
+
+    .eBiz-boundcontrol-personTopics .toi.section-wrapper.k-treeview > .k-group > .k-item > ul.k-group li .k-in {
+        margin: 0;
+        padding: 0;
+    }
+
+.ebusiness-user-profile .dropdown {
+    background-repeat: no-repeat;
+    background-position: 100%;
+    padding-right: 32px;
+}
+
+.ebusiness-user-profile .tab-content > .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px 8px;
+}
+
+.w-33 {
+    width: 33%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.profile-form .btn-lg.button-label {
+    display: none;
+    color: #14596e;
+    width: 100%;
+    position: absolute;
+    padding: 0;
+    padding-left: 32px;
+    /* float: left; */
+}
+
+.expander {
+    float: right;
+}
+
+.flex-table .header {
+    border: none;
+    padding: 4px;
+    line-height: 40px;
+}
+
+.flex-table li.list-item {
+    display: flex;
+    justify-content: space-between;
+    line-height: 24px;
+    padding: 8px 0;
+    border-bottom: 1px solid #b2b2b2;
+    font-size: 14px;
+    color: #313335;
+}
+
+    .flex-table li.list-item:last-child {
+        border-bottom: none;
+    }
+
+.flex-table .item-label {
+    color: #b2b2b2;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.order .header {
+    padding: 0;
+}
+
+.order .flex-table li.list-item {
+    padding: 8px 12px;
+}
+
+.ebusiness-product-list-image-wrapper {
+    border: 2px solid #F5F5F5;
+    width: 56px;
+    height: auto;
+    overflow: hidden;
+}
+
+.btn-lg .icon {
+    margin: 4px;
+}
+
+
+/* flex */
+
+.flexbox .flex-card {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-box .flex-card .flex-content {
+    display: flex;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.flexbox .flex-content {
+    min-width: 0;
+    width: 100%;
+}
+
+.flexbox .flex-area-primary {
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.flex-card {
+    position: relative;
+}
+
+    .flex-card .flex-area-primary {
+        vertical-align: top;
+    }
+
+    .flex-card .flex-figure {
+        width: 25%;
+    }
+
+    .flex-card .flex-area-primary .primary-block {
+        display: block;
+        float: left;
+        min-width: 9em;
+        padding-right: .29411765em;
+    }
+
+    .flex-card .flex-area-primary .primary-block {
+        display: inline-block;
+        min-width: 9em;
+        width: 24%;
+        vertical-align: top;
+        padding-right: .29411765em;
+    }
+
+.flexbox .flex-area-secondary {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.flex-card .flex-figure .image {
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+.flexbox .flex-listing .flex-figure .image {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.flex-card .flex-figure .image,
+.flex-listing.flex-card .flex-figure .image {
+    margin-bottom: 0;
+}
+
+.flex-card .flex-figure .flex-image {
+    background-color: white;
+}
+
+.flex-card .flex-figure .flex-image {
+    padding-top: 24px;
+    padding-bottom: 40px;
+    background-color: white;
+    margin-bottom: 0;
+}
+
+.flex-card .flex-figure img {
+    width: 56px;
+    /*    padding: .70588235em;*/
+}
+
+.image img {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.header .flex-table {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.header .flex-card .flex-area-primary .primary-block,
+.footer .flex-card .flex-area-primary .primary-block {
+    width: 20%;
+}
+
+.flex-card.product-wrapper {
+    margin: 8px 0;
+}
+
+.flex-area-primary.product-info {
+    padding-top: 12px;
+}
+
+.flex-content .product-info .primary-block {
+    line-height: 24px;
+}
+
+.card-content.alert {
+    margin-bottom: 0;
+}
+
+.card-content .footer .flex-table {
+    padding: 8px 0;
+    border-bottom: 1px solid #B2B2B2;
+    border-top: 1px solid #B2B2B2;
+}
+
+.card-content .footer .toolbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+    .card-content .footer .toolbar .btn-lg {
+        font-weight: 500;
+        color: #14596e;
+        height: auto;
+        padding: 8px;
+        background-color: transparent;
+        margin: 0;
+    }
+
+        .card-content .footer .toolbar .btn-lg .label {
+            color: inherit;
+            padding: 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+.topics .section-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topics .column {
+    width: calc(50% - 12px);
+    height: 100%;
+}
+
+.toi.card .header {
+    padding-left: 12px;
+}
+
+    .toi.card .header .title {
+        padding-left: 0;
+    }
+
+.toi.card .tag-list.group-list {
+    padding-left: 24px;
+}
+
+    .toi.card .tag-list.group-list .list-item {
+        margin: 8px 0;
+        font-size: 18px;
+    }
+
+.tag-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.remove-tag {
+    content: "X";
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 10px;
+    font-family: Verdana;
+    cursor: pointer;
+}
+
+    .remove-tag:hover {
+        background-color: #bebebe;
+        border-radius: 5px;
+    }
+
+.tag-wrapper {
+    display: inline;
+    padding: 2px 2px 2px 10px;
+    margin: 4px;
+    border-radius: 5px;
+    color: #14596e;
+    display: inline-block;
+    border: 1px solid #ccc;
+}
+
+.tagSavedCode {
+    background-color: #F1F1F1;
+}
+
+.tag-wrapper:hover {
+    background-color: #efeeee;
+}
+
+
+/* BOOTSTRAP OVERRIDES */
+
+a:focus {
+    outline: none;
+}
+
+.ebusiness-user-profile a:focus,
+.ebusiness-user-profile a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breadcrumb {
+    font-size: 12px;
+}
+
+    .breadcrumb a {
+        color: #14596e;
+    }
+
+.toolbar .list-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-group {
+    margin: 0 !important;
+}
+
+
+/*.panel-default {
+    border: none;
+}
+
+.panel-heading {
+    padding: 16px !important;
+    background-color: transparent !important;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #14596e;
+}
+
+.panel-body {
+    padding: 0;
+}*/
+
+.panel-heading {
+    background-color: transparent;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #14596e;
+    border-color: none;
+    border-radius: 100%;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #14596e;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+}
+
+.ebusiness-categories-panel-wrapper .ebusiness-categories-details {
+    -ms-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.ebusiness-categories-panel-wrapper.active .ebusiness-categories-details {
+    -ms-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-box-shadow: 0 30px 30px rgba(0, 0, 0, .3), 0 20px 12px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0 30px 30px rgba(0, 0, 0, .3), 0 20px 12px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 30px 30px rgba(0, 0, 0, .3), 0 20px 12px rgba(0, 0, 0, 0.22);
+}
+
+.ebusiness-categories-panel-wrapper {
+    position: absolute;
+    left: 0;
+}
+
+    .ebusiness-categories-panel-wrapper ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+.ebusiness-categories-details {
+    position: fixed;
+    width: 80%;
+    max-width: initial;
+    text-align: left;
+    height: 100%;
+    z-index: 1040;
+    color: #fff;
+    /* overflow-y: auto; */
+    max-width: 350px;
+    top: 0;
+    border: 1px solid #505050;
+    background: #fff;
+    -webkit-transition: all .25s ease-out;
+    -o-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+    left: 0 !important;
+    background: #12596f;
+}
+
+    .ebusiness-categories-details li a {
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 20px;
+        display: block;
+    }
+
+.ebusiness-categories-for-mobile {
+    font-size: 18px;
+    margin: 0;
+    color: #676767;
+    width: 150px;
+    cursor: pointer;
+    padding: 4px 0 2px 22px;
+}
+
+.ebusiness-categories-details-header {
+    font-size: 20px;
+}
+
+.ebusiness-categories-details-header-wrapper {
+    padding: 11px 7px 15px 18px;
+    margin: 0;
+    border-bottom: 1px solid #444;
+}
+
+.btnOrderConfirmationEmail {
+    margin: 0 0 0 15px;
+}
+
+li.current:hover {
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.current-mobile:hover {
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.ebusiness-product-price-change-toast {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+    .ebusiness-product-price-change-toast .close {
+        opacity: 1.0;
+        color: #fff;
+        font-size: 28px;
+        font-weight: normal;
+    }
+
+    .ebusiness-product-price-change-toast strong {
+        font-size: 20px;
+        font-weight: normal;
+        padding-right: 50px;
+    }
+
+.close-categories-mobile {
+    float: right;
+    font-size: 34px;
+    padding: 0;
+    top: 0;
+    margin: 0;
+    line-height: 20px;
+}
+
+.ebusiness-cartList-item .ebusiness-product-image-cart {
+    padding: 5px;
+    border: 2px solid #e3e3e3;
+    height: 85px;
+    line-height: 65px;
+    text-align: center;
+    max-width: 85px;
+}
+
+.ebusiness-grid-row-cart-list p {
+    margin: 0;
+}
+
+.iconExpand {
+    font-size: 14px;
+    transform: rotate(180deg);
+}
+
+.collapsed .iconExpand {
+    transform: rotate(0deg);
+}
+
+.eb-vertical-align {
+    line-height: 51px;
+}
+
+.verticalCenter-CreditCards {
+    line-height: 50px;
+}
+
+.grid-coupon-applied i {
+    padding-right: 5px;
+}
+
+.btn-link:focus,
+.btn-link:active {
+    outline: none !important;
+}
+
+.ebusiness-savedCards-list-ctrl .modal-body {
+    padding: 0 15px;
+}
+
+.ebusiness-product-details {
+    background: #fff;
+}
+
+.ebusiness-my-orderlist .grid-row-cart-list {
+    padding: 2px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ebusiness-carousel-product-images {
+    vertical-align: middle;
+    line-height: 269px;
+    border: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.ebusiness-product-more-details-section .ebusiness-product-more-details-product-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+.ebusiness-event-listing-featured .ebusiness-featured-product-horizontal {
+    max-width: 1060px;
+    margin: 0 auto 0 auto;
+}
+
+.ebusiness-grid-row-cart-list-price {
+    padding: 3px 0;
+}
+
+.ebusiness-error {
+    max-width: 1000px;
+    background: #ffffff;
+    overflow: hidden;
+    font-size: 16px;
+    box-shadow: 0 0 10px #ccc;
+    margin: 5% auto;
+}
+
+    .ebusiness-error img {
+        width: 85px;
+    }
+
+.error-body {
+    text-align: center;
+    padding: 15px 0;
+}
+
+    .error-body h1 {
+        font-size: 24px;
+    }
+
+    .error-body a {
+        text-decoration: underline;
+    }
+
+.hide-for-relase2 {
+    display: none;
+}
+
+.icon-menu .popover {
+    width: 220px;
+    text-align: center;
+}
+
+.ebusiness-break-long-word p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ebusiness-review-submit-success-message .ebusiness-product-more-details-section {
+    padding-left: 0;
+}
+
+
+/* Events Listing Page*/
+
+.ebusiness-events-card-listing {
+    padding: 5px 5px 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+}
+
+.row-name-company {
+    margin: 0;
+}
+
+.ebClear.ebusiness-events-card-listing:last-child {
+    margin-bottom: 10px;
+}
+
+.ebusiness-listing-wrapper {
+    min-height: 415px
+}
+
+.ebusiness-events-card {
+    padding: 5px 5px 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.ebusiness-events-card-image {
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    margin-top: 5px;
+    line-height: 85px;
+}
+
+.ebusiness-events-card-details-title a {
+    font-size: 16px;
+}
+
+.ebusiness-events-card-details-desc {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+}
+
+.ebusiness-events-card-details-location {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ebusiness-events-card-details .fa-icon img {
+    width: 14px;
+    height: auto;
+    vertical-align: middle;
+    max-height: 16px;
+}
+
+img.ebusiness-product-list-image {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 83px;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+.ebusiness-event-listing-featured .ebusiness-events-card {
+    background: transparent;
+    padding: 15px 30px;
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.ebusiness-events-see-details a {
+    line-height: 30px;
+}
+
+.ebusiness-product-widget-featured-events .ebusiness-events-card-image {
+    line-height: 138px;
+    height: 150px;
+    margin: 0 auto;
+    max-width: 220px;
+}
+
+    .ebusiness-product-widget-featured-events .ebusiness-events-card-image img {
+        display: inline-block;
+        max-width: 100%;
+        max-height: 110px;
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+    }
+
+.ebusiness-event-listing-featured {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+    .ebusiness-event-listing-featured .ebusiness-events-card-details-date-time {
+        font-weight: normal;
+        color: #fff;
+    }
+
+.k-popup.k-list-container {
+    overflow: auto !important;
+}
+
+.ebusiness-event-listing-featured .ebusiness-events-card-details-location {
+    font-weight: normal;
+    color: #fff;
+}
+
+.ebusiness-event-listing-featured .ebusiness-events-see-details a {
+    font-weight: normal;
+    color: #fff;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.ebusiness-product-widget-featured-events {
+    max-width: 670px;
+    margin: 0 auto;
+}
+
+    .ebusiness-product-widget-featured-events .ebusiness-events-card-details {
+        /*width: 70%;*/
+    }
+
+.ebusiness-event-listing-featured .ebusiness-events-card-details-title a {
+    font-size: 32px;
+    color: #fff;
+}
+
+.ebusiness-event-listing-featured .ebusiness-events-card-details-desc {
+    font-weight: normal;
+    color: #fff;
+}
+
+.ebusiness-event-details-card {
+    font-weight: 500;
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+    .ebusiness-event-details-card h3 {
+        margin: 0;
+        padding-left: 0;
+        font-size: 22px;
+    }
+
+.ebusiness-row-event-details {
+    padding: 10px;
+}
+
+.ebusiness-event-title-on-details {
+    font-size: 32px;
+    text-align: center;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.ebusiness-all-events-list.k-widget {
+    background-color: transparent;
+    border: none;
+    -webkit-box-shadow: none !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+.member-profile-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.ebusiness-header-event-details {
+    padding: 10px;
+    margin: 10px 0 0 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.ebusiness-event-short-details {
+}
+
+.ebusiness-event-action-register-meeting {
+    padding: 12px 0;
+    height: auto;
+    font-size: 18px;
+}
+
+.ebusiness-event-location-quick-details {
+    padding: 10px 0;
+}
+
+.ebusiness-event-short-details p {
+    margin: 0;
+}
+.ebusiness-event-location-quick-details p {
+    max-width: 50%
+}
+
+/*Calendar Control-small*/
+
+.ebusiness-event-scheduler-small > div > ul.k-reset.k-header.k-toolbar.k-scheduler-navigation > li.k-state-default.k-nav-today {
+    display: none;
+}
+
+a.fc-day-grid-event, a.fc-time-grid-event {
+    color: #fff !important;
+}
+
+.fc-content {
+    white-space: normal !important;
+}
+.ebusiness-event-scheduler-small div.k-more-events {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 0;
+    width: 12px !important;
+    border-radius: 100%;
+    margin-left: 5px;
+}
+
+.ebusiness-event-scheduler-small > div > ul.k-reset.k-header.k-toolbar.k-scheduler-views {
+    display: none;
+}
+
+.k-widget.k-tooltip {
+    border: none;
+    background-color: #fff;
+    padding: 0;
+}
+
+#scheduler_tt_active {
+    border: 1px solid #ccc;
+    padding: 0 !important;
+}
+
+.k-tooltip-content {
+    max-height: 213px;
+    overflow-y: auto;
+}
+
+.ebusiness-event-template-small {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 24px;
+}
+
+.k-nav-current > .k-link span + span {
+    max-width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.ebusiness-event-title-calendar {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+
+.calendar-margin {
+    margin: 10px 0 0 0;
+}
+
+.ebusiness-event-address-calendar {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+}
+
+.ebusiness-event-date-calendar {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    padding: 5px 0 10px 0;
+}
+
+.k-scheduler-header {
+}
+
+#team-schedule {
+    background: url('../content/web/scheduler/team-schedule.png') transparent no-repeat;
+    height: 115px;
+    position: relative;
+}
+
+.ebusiness-events-card-calendar {
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+    .ebusiness-events-card-calendar:last-child {
+        border-bottom: none;
+    }
+
+    .ebusiness-events-card-calendar .ebusiness-event-photo-cal-wrapper img {
+        width: 52px;
+        max-height: 52px;
+        border-radius: 100%;
+        border: 1px solid #12596f;
+        padding: 2px;
+        height: 52px;
+    }
+
+.ebusiness-event-photo-cal-wrapper {
+    line-height: 70px;
+}
+
+.k-scheduler-dayview .k-scheduler-table td,
+.k-scheduler-weekview tr:nth-child(2) .k-scheduler-table td,
+.k-scheduler-monthview .k-scheduler-table td {
+    height: 10px !important;
+}
+
+.ebusiness-event-scheduler-small .k-scheduler-layout {
+    font-size: 13px;
+}
+
+.ebusiness-event-scheduler-small .k-nav-prev {
+    border-radius: 4px 0 0 4px;
+    border-width: 1px 1px 1px 1PX;
+}
+
+.ebusiness-event-calendar-small-heading {
+    background: #12596f;
+    padding: 10px;
+    /*margin: 10px 0 0 0;*/
+    color: #fff;
+    font-size: 18px;
+}
+
+.ebusiness-event-go-to-full-calendar-link {
+    color: #428bca;
+    padding: 4px;
+}
+
+
+/*calendar control*/
+
+.scheduler .k-widget.k-tooltip {
+    border: none;
+    background-color: #fff;
+    color: #000;
+    padding: 0;
+}
+
+
+/*.scheduler .k-animation-container {
+    background: #fff;
+    border: 1px solid #ccc;
+}*/
+
+.scheduler .k-tooltip-content {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scheduler .event-template {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 24px;
+}
+
+.scheduler .k-nav-current > .k-link span + span {
+    max-width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.scheduler .ebusiness-event-title-calendar {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+
+.scheduler .ebusiness-event-address-calendar {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+}
+
+.ebusiness-badge-info-section .form-control {
+    font-size: 14px;
+    background: #fff;
+}
+
+.scheduler .ebusiness-event-date-calendar {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    padding: 5px 0 10px 0;
+}
+
+.scheduler .ebusiness-events-card-calendar {
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+    .scheduler .ebusiness-events-card-calendar:last-child {
+        border-bottom: none;
+    }
+
+    .scheduler .ebusiness-events-card-calendar img {
+        width: 64px;
+        max-height: 64px;
+    }
+
+.scheduler .ebusiness-event-photo-cal-wrapper {
+    line-height: 70px;
+}
+
+.scheduler .k-event {
+    cursor: pointer;
+}
+
+    .scheduler .k-event:hover {
+        background: #555656;
+    }
+
+.ebusiness-event-calendar-heading {
+    text-align: center;
+    font-size: 16px;
+    background: #12596f;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.k-tooltip-closable .k-tooltip-content {
+    padding-right: 0 !important;
+}
+
+.ebusiness-event-scheduler-small .k-nav-today {
+    display: none !important;
+}
+
+.ebusiness-event-full-calendar {
+    border: 1px solid #ccc;
+    padding: 0;
+    z-index: 99;
+}
+
+.k-callout-n {
+    border-bottom-color: #cacaca !important;
+}
+
+.k-callout-e {
+    border-left-color: #cacaca !important;
+}
+
+.ebusiness-event-scheduler-small .k-scheduler-toolbar {
+    background: #fff;
+}
+
+.scheduler .k-scheduler-table th {
+    font-size: 11px;
+}
+
+
+/*community attending*/
+
+.ebusiness-event-community-user-image {
+    max-height: 64px;
+    max-width: 64px;
+}
+
+.ebusiness-attendee-member-info {
+    padding-left: 75px;
+    padding-top: 5px;
+}
+
+.ebusiness-community-Company.member-position {
+    font-weight: normal;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ebusiness-event-search-attendee-wrapper {
+    margin: 12px auto;
+    max-width: 450px;
+    border-bottom: 1px solid #12596f;
+}
+
+    .ebusiness-event-search-attendee-wrapper input:focus {
+        box-shadow: none;
+    }
+
+.ebusiness-event-additional-registrations {
+    background: #fff;
+    padding-bottom: 10px;
+}
+
+    .ebusiness-event-additional-registrations h3 {
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+.ebusiness-btn-add-attendee {
+    text-align: right;
+    line-height: 40px;
+}
+
+.ebusiness-row-buttons-attendee {
+    padding-top: 5px;
+}
+
+.ebusiness-attendee-close-icon {
+    width: 24px;
+    display: inline-block;
+    height: 36px;
+    border: none;
+}
+
+    .ebusiness-attendee-close-icon:focus {
+        outline: none;
+    }
+
+.ebusiness-row-search-results .btn-secondary {
+    padding: 10px;
+    border-radius: 2px;
+    width: 100%;
+    font-weight: 500;
+    background: #f1f1f1;
+}
+
+.ebusiness-row-search-results {
+    padding: 5px 0;
+    border-bottom: 1px solid #f3f3f3;
+    padding-bottom: 9px;
+}
+
+.ebusiness-search-attendee-results {
+    border: 1px solid #f0f0f0;
+}
+
+.ebusiness-heading-search {
+    margin: 0;
+    padding: 0 10px 10px 0;
+}
+
+.ebusiness-row-search-results:last-child {
+    border: 0
+}
+
+.ebusiness-dynamic-address-title {
+    font-size: 1.1rem;
+    line-height: 3rem;
+}
+
+.ebusiness-checkout-step-wrapper {
+    padding: 15px 0;
+    text-align: right;
+    font-size: 12px;
+}
+
+.ebusiness-event-attendee-photo img {
+    width: 48px;
+    height: 48px;
+}
+
+.ebusiness-search-no-attendee {
+    padding: 6px 0px 5px 1px;
+    font-weight: 500;
+}
+
+    .ebusiness-search-no-attendee span {
+        color: #555;
+        padding-right: 50px;
+    }
+
+    .ebusiness-search-no-attendee a {
+        background: url(../images/icons/icon_add_blue-24px.svg) no-repeat;
+        padding-left: 22px;
+        display: inline-block;
+        background-size: 20px;
+    }
+
+.form-control {
+    font-size: 0.875rem;
+}
+
+.ebusiness-event-new-person-form {
+    padding: 10px 0 0 0;
+    border-top: 1px solid #ccc;
+    font-size: 16px;
+    color: #555;
+}
+
+    .ebusiness-event-new-person-form .form-control {
+        font-size: 14px;
+    }
+
+.ebusiness-popular-events-wrapper .ebusiness-events-card-details {
+    width: 85%;
+    margin: 10px auto 0;
+}
+
+.ebusiness-popular-events-wrapper .ebusiness-events-card-details-title a {
+    font-size: 18px;
+}
+
+.ebusiness-popular-events-wrapper .ebusiness-events-see-details .col-md-6 {
+    width: 100%;
+}
+
+.ebusiness-popular-events-wrapper .ebusiness-events-card-image {
+    line-height: 110px;
+    /*border: 1px solid #ccc;*/
+    padding: 5px;
+    text-align: center;
+    background: #fff;
+    max-height: 145px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+    .ebusiness-popular-events-wrapper .ebusiness-events-card-image img {
+        height: auto;
+        max-height: 100px;
+    }
+
+.ebusiness-popular-events-wrapper .ebusiness-events-see-details a {
+    font-size: 14px;
+}
+
+
+/*Popular Events*/
+
+.ebusiness-attendee-navigator {
+    background: #fff;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+
+.prev-attendee {
+    width: 25px;
+    float: left;
+    padding: 5px 0;
+}
+
+.attendee-profile-details {
+    width: 65%;
+    float: left;
+}
+
+.next-attendee {
+    width: 30%;
+    float: right;
+    text-align: right;
+}
+
+.ebusiness-session-dropdown {
+    float: right;
+    width: 25px;
+    text-align: right;
+}
+
+.ebusiness-session-name-price {
+    float: left;
+    width: 91%;
+    padding-left: 5px;
+}
+
+.ebusiness-check-session {
+    width: 25px;
+    float: left;
+}
+
+.ebusiness-extra-content-child,
+.ebusiness-session-extracontent-child,
+.ebusiness-sessionTitle-child {
+    padding-left: 25px;
+}
+
+.ebusiness-person-image-wrapper {
+    width: 40px;
+    float: left;
+    margin-right: 10px;
+}
+
+.ebusiness-attendee-or-currentuser-review-regtn {
+    color: #555;
+}
+
+.ebusiness-session-Schedule-list-parent-review-page {
+    padding: 0 0 0 20px;
+}
+
+.ebusiness-person-name-wrapper {
+    width: 75%;
+    padding: 5px 0 0 0;
+    float: left;
+}
+
+.ebusiness-edit-review-regstn-wrapper {
+    width: 25px;
+    float: right;
+}
+
+.ebusiness-attendee-session-filter {
+    padding: 10px;
+    display: none;
+}
+
+.ebusiness-sessions-by-date h2 {
+    padding: 10px;
+    margin: 0;
+    font-size: 22px;
+}
+
+.ebusiness-session-title-parent .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.ebusiness-sessionTitle-child .caption {
+    font-size: 20px;
+    padding-left: 0;
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+    top: 3px;
+}
+
+.ebusiness-badge-info-section h4 {
+    padding: 0 0 0 15px;
+}
+
+.ebusiness-session-Schedule-list-parent {
+    padding-left: 35px;
+}
+
+.ebusiness-extra-content {
+    padding-left: 35px;
+}
+
+
+/*Popular Events*/
+
+
+/*btn-client-side-search-remove*/
+
+.ebusiness-action-btn-client-side-search-remove {
+    top: 2px;
+    left: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ebusiness-attendee-buttons-wrapper {
+    padding: 10px 15px;
+}
+
+.ebusiness-sessionInfo {
+    background: #fff;
+    padding: 15px;
+    margin: 0 0 15px 0;
+}
+
+.ebusiness-session-price-applicapble {
+    font-size: 16px;
+    color: #313335;
+    padding: 0 10px 0 0;
+    font-weight: 500;
+    float: right;
+}
+
+.avatar-session {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    border: 1px solid #12596f;
+}
+
+.text-nextAttendee {
+    line-height: 35px;
+    padding-right: 30px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chevron-leftBlue {
+    padding-left: 30px;
+    line-height: 35px;
+    height: 14px;
+}
+
+.ebusiness-registration-summary-person-image {
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+    .ebusiness-registration-summary-person-image img {
+        vertical-align: baseline;
+    }
+
+.ebusiness-registration-summary-person-details {
+    display: inline-block;
+    width: 63%;
+}
+
+.ebusiness-rs-action-arrow {
+    display: inline-block;
+    width: 20px;
+    float: right;
+    position: relative;
+    top: 5px;
+}
+
+.ebusiness-registration-summary-person-details a,
+.ebusiness-registration-summary-you-or-attendee {
+    font-size: 14px;
+    font-weight: 500;
+    float: left;
+}
+
+.ebusiness-registration-summary-you-or-attendee {
+    padding-left: 5px;
+}
+
+.ebusiness-attendee-name-wrapper {
+    display: inline-block;
+    padding-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 88%;
+}
+
+.ebusiness-session-price {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+}
+
+.icon-r-arrow-down-dwld {
+    font-weight: bolder !important;
+    font-size: 16px;
+}
+
+.ebusiness-sub-session-title {
+    font-size: 12px;
+    margin: 0;
+}
+
+.ebusiness-parent-session-section {
+    margin: 0;
+    font-weight: 500;
+}
+
+.ebusiness-parent-session-title {
+    font-size: 14px;
+    margin: 0;
+}
+
+.ebusiness-clientside-generic-search {
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+    .ebusiness-clientside-generic-search[type=text] {
+        width: 0;
+        padding: 0;
+        -webkit-transition: width .35s ease-in-out;
+        transition: width .35s ease-in-out;
+        border: 0;
+    }
+
+.ebusiness-clientside-generic-search-animated[type=text],
+.ebClient-search-event[type=text],
+.ebClient-search-event-calendar[type=text] {
+    display: inline-block;
+    max-width: 360px;
+    margin-top: 4px;
+}
+
+.productCatlogPager ul,
+.ebusiness-productCatalog-pagination ul {
+    display: inline;
+}
+
+.list-events-wrapper {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.ebusiness-list-of-sessions hr {
+    margin: 10px;
+}
+
+.ebusiness-no-events-found {
+    padding: 25px;
+    background: #fff;
+    text-align: center;
+    font-size: 22px;
+    color: #555;
+}
+
+.ebusiness-popular-events-wrapper .ebusiness-loading-overlay-box {
+    /* background: #fff; */
+    padding: 10px 0;
+    margin: 10px -5px 10px 0;
+}
+
+.ebusiness-popular-events-wrapper.ebusiness-event-details-card {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.ebusiness-step-navigator {
+    padding: 10px 0;
+    background: #ebebec;
+    font-size: 18px;
+    margin: 10px 0;
+    padding: 10px 10%;
+}
+
+    .ebusiness-step-navigator .btn-cancel {
+        padding-left: 25px;
+    }
+
+.ebusiness-extra-content hr {
+    margin: 5px 0 15px 0;
+}
+
+.ebusiness-span-session-previous-attendee {
+    cursor: pointer;
+}
+
+.ebusiness-image-avatar-session {
+    padding: 0;
+}
+
+.ebusiness-session-kendo-listview {
+    background: transparent;
+}
+
+.ebusiness-add-sessions-to-all {
+    padding-left: 0;
+    float: left;
+}
+
+.ebusiness-sub-session-title-ellipsis {
+    padding: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ebusiness-sub-session-price-rs {
+    text-align: right;
+    padding: 5px 0;
+}
+
+.ebusiness-list-of-sessions {
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.ebusiness-no-session-selected-message {
+    text-align: center;
+    padding-bottom: 5px;
+    font-weight: 500;
+}
+
+.ebusiness-list-of-sessions:last-child {
+    border: 0;
+}
+
+.ebusiness-heading-with-photo-inner {
+    padding-bottom: 5px;
+}
+
+.ebusiness-removeAttendee {
+    margin: 1px 15px 0 0;
+}
+
+.ebusiness-popular-events-wrapper {
+    background: #fff;
+    padding: 15px 0 0;
+    margin-right: 5px;
+}
+
+.ebusiness-event-details-review-page-title {
+    font-size: 22px;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    /* margin: 0 0 15px 0; */
+}
+
+.ebusiness-event-details-confirmation-page-title {
+    font-size: 22px;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 15px 0;
+}
+
+.ebusiness-event-name-review-page {
+    font-size: 16px;
+    padding: 10px 15px 0 15px;
+    font-weight: 500;
+}
+
+.ebusiness-session-name-review-page {
+    font-size: 14px;
+    padding: 5px 0 0 15px;
+    font-weight: 500;
+}
+
+.ebClear.ebusiness-row-event-details-review-page {
+    padding: 10px 0;
+}
+
+.ebusiness-session-details-parent-review-page {
+    background: #fff;
+}
+
+.scheduler .k-scheduler-table .k-today,
+.k-today > .k-scheduler-datecolumn,
+.k-today > .k-scheduler-groupcolumn {
+    color: #000;
+}
+
+.ebusiness-title-sessions-review-reg {
+    font-size: 18px;
+    padding: 0 15px;
+    font-weight: 500;
+}
+
+.ebusiness-wrapper-subsessions {
+    padding: 0 0 0 25px;
+}
+
+.ebusiness-event-schedule-description-sessions {
+    display: block;
+}
+
+.ebusiness-row-event-session-details {
+    border: 1px solid #f3f3f3;
+}
+
+.ebusiness-sessions-all {
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+}
+
+.ebusiness-total-price-sessions {
+    padding: 5px 0 15px 0;
+    text-align: right;
+    font-weight: 500;
+}
+
+.ebusiness-grand-total-amount {
+    padding-left: 25px;
+}
+
+.ebusiness-row-subscription {
+    font-size: 12px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+    .ebusiness-row-subscription input[type="checkbox"] {
+        margin: 0 !important;
+    }
+
+.ebusiness-auto-renew-chkbox {
+    padding-right: 15px;
+    text-align: right;
+}
+
+.ebusiness-event-details-card-about {
+    font-weight: 500;
+    background: #fff;
+    margin: 10px 0;
+}
+
+    .ebusiness-event-details-card-about h3 {
+        margin: 0;
+        padding-left: 0;
+        color: #555;
+        font-size: 22px;
+    }
+
+.ebusiness-events-card-image-about {
+    line-height: 113px;
+    padding: 5px 5px 5px 15px;
+    text-align: center;
+    background: #fff;
+    height: 125px;
+}
+
+    .ebusiness-events-card-image-about img {
+        max-width: 100% !important;
+    }
+
+.ebusiness-events-details.ebClear {
+    background: #fff;
+}
+
+.ebClear:after,
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.ebClear:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.ebusiness-no-attendee-found {
+    padding: 15px 0;
+    font-size: 18px;
+    color: #555;
+    border-top: 1px solid #ccc;
+}
+
+.ebusiness-no-events-available {
+    padding-left: 15px;
+}
+
+a.ebusiness-registration-summary-person-name {
+    max-width: 124px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 18px;
+}
+
+.ebusiness-vcDisabledRemoveProduct {
+    pointer-events: none;
+    cursor: default;
+    color: gray;
+}
+
+.k-webkit .k-pager-numbers {
+    left: 4.9em;
+}
+
+
+.stepsText {
+    display: inline-block;
+    text-align: center;
+    padding: 0 10px 0 0;
+    line-height: 18px;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+
+.stepsBg {
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    padding-top: 0;
+    background: #fff;
+    font-size: 11px;
+    border: 2px solid #12596F;
+    line-height: 16px;
+}
+
+.stepsText.activeSteps {
+    opacity: 1;
+}
+
+.activeSteps a {
+    background: #12596F;
+    border: 2px solid #12596F;
+    cursor: pointer;
+    color: #fff !important;
+}
+
+.stepsText a:hover {
+    color: #fff;
+}
+
+.ebusiness-viewcart-review-button {
+    padding: 15px 0 0 0;
+    margin: 0 -5px;
+}
+
+.ebusiness-add-new-person-to-meeting h3 {
+    padding-left: 10px;
+    margin: 0 0 10px 0;
+}
+
+.ebusiness-registration-summary-title {
+    padding: 5px 0;
+}
+
+.ebusiness-btn-remove-attendee {
+    background: #ff0000;
+    color: #fff;
+}
+
+    .ebusiness-btn-remove-attendee:hover,
+    .ebusiness-btn-remove-attendee:active,
+    .ebusiness-btn-remove-attendee:focus {
+        color: #fff;
+    }
+
+.ebusiness-user-profile .k-tabstrip .k-content.k-state-active {
+    background: transparent;
+}
+
+.ebusiness-user-profile .card {
+    margin-bottom: 15px;
+}
+
+.ebusiness-btn-add-guest {
+    max-width: 90px;
+}
+
+.btn-add-guest-wrapper {
+    text-align: right;
+}
+
+.ebusiness-user-profile .k-tabstrip:focus {
+    box-shadow: none;
+}
+
+.k-popup .k-list .k-item {
+    font-size: 14px !important;
+}
+
+div.k-window {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.ebusiness-txt-food-preferenceID,
+.ebusiness-txt-travel-preferenceID,
+.ebusiness-form-new-food-preferenceID,
+.ebusiness-form-new-travel-preferenceID {
+    width: 100%;
+}
+
+    .ebusiness-txt-food-preferenceID .k-dropdown-wrap,
+    .ebusiness-txt-travel-preferenceID .k-dropdown-wrap,
+    .ebusiness-form-new-food-preferenceID .k-dropdown-wrap,
+    .ebusiness-form-new-travel-preferenceID .k-dropdown-wrap {
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+        padding: 0 0 5px 0;
+        border-radius: 0;
+    }
+
+.confirmation-details-page {
+}
+
+.ebusiness-product-view-cart-updatecount {
+    display: none;
+    visibility: hidden;
+}
+
+.row-review-events {
+    border-bottom: 1px solid #12596f;
+}
+
+.apex-boundcontrols-photo-popup .k-i-close {
+    display: none;
+}
+
+
+
+.ebusiness-product-widget-star-rating .rating-xxs {
+    font-size: 0.9em;
+}
+
+.success-message {
+    background: rgba(0, 0, 0, 0.6);
+    font-size: 32px;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+}
+
+    .success-message p {
+        font-size: 20px;
+    }
+
+    .success-message h2 {
+        font-size: 35px;
+        font-weight: normal;
+    }
+
+.email-attendees {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.email-attendees-list {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+}
+
+.tag-email {
+    background: #ebeced;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.confirmation-event-details .ebusiness-header-event-details {
+    margin: 0;
+}
+
+.ebusiness-approx-message-shipping {
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+    padding-top: 0;
+    text-transform: none;
+}
+
+.attendee-list {
+    padding: 10px 0;
+}
+
+.ebusiness-forgot-password-request-input,
+.ebusiness-forgot-password-request-success,
+.ebusiness-reset-password-success,
+.ebusiness-reset-password-input {
+    margin: 0 auto;
+    padding: 15px;
+    color: #555;
+    background: #fff;
+}
+
+    .ebusiness-forgot-password-request h1,
+    .ebusiness-forgot-password-request-success h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .ebusiness-reset-password-success h3 {
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .ebusiness-reset-password-success p {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+
+.ebusiness-reset-password-rules {
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.ebusiness-send-password-reset {
+    padding: 5px 15px;
+}
+
+.ebusiness-password-field-row:last-child {
+    padding: 5px 0 0 0;
+}
+
+.ebusiness-forgot-password-request-card h3,
+.ebusiness-reset-password-input h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.ebusiness-forgot-password-request-card p,
+.ebusiness-forgot-password-request-success p {
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.ebusiness-action-buttons {
+    padding: 10px 0 0 0;
+}
+
+.column-button {
+    padding: 0 10px 0 0;
+}
+
+.ebusiness-error-area {
+    margin: 5px 0;
+}
+
+.ebusiness-password-field-row {
+    padding: 5px 0;
+}
+
+.column-button:last-child {
+    padding-right: 0;
+}
+
+.column-button .btn-primary {
+    width: 100%;
+}
+
+.ebusiness-product-events-search {
+    line-height: 18px;
+}
+
+.phone-clear,
+.email-clear {
+    display: none;
+}
+
+.all-events-link {
+    display: inline;
+    padding: 0 25px 0 15px;
+}
+
+    .all-events-link a {
+        font-weight: bold;
+    }
+
+.ebusiness-new-card-title {
+    /*font-size: 20px;
+    color: #12586e;*/
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.ebusiness-accepted-cards-title {
+    line-height: 20px;
+}
+
+.ebusiness-accepted-cards .card {
+    float: left;
+    width: 55px;
+    height: 34px;
+    text-indent: -9999px;
+    background-position: 0 0;
+    margin-right: 1px;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+}
+
+.ebusiness-accepted-cards .cards > li {
+    display: block;
+    float: left;
+    padding: 0 5px 0 0;
+}
+
+.ebusiness-accepted-cards .card.cdisabled {
+    background-position: 0 -34px;
+    opacity: 0.3;
+}
+
+.ebusiness-accepted-cards .card[title='Visa'] {
+    background-image: url(../images/card-visa.gif);
+}
+
+.ebusiness-accepted-cards .card[title='MasterCard'] {
+    background-image: url(../images/card-mastercard.gif);
+}
+
+.ebusiness-accepted-cards .card[title='American Express'] {
+    background-image: url(../images/card-amex.gif);
+}
+
+.ebusiness-accepted-cards .card[title='Discover'] {
+    background-image: url(../images/card-discover.gif);
+}
+
+hr.thin {
+    margin: 10px 0;
+}
+
+.ebusiness-credit-cards .savedCards > hr {
+    display: none;
+}
+
+.ebusiness-payment-methods {
+    background-color: #fff;
+    padding: 10px 15px;
+}
+
+.ebusiness-collapsible-title {
+    font-size: 20px;
+    color: #12586e;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.ebusiness-collapsible-panel {
+    padding: 10px;
+    box-shadow: 0 0 2px 0 #ccc;
+    border: 1px solid #C8C8C8;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #12596F;
+}
+
+.ebusiness-payment-methods .ebusiness-collapsible-panel {
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+
+.ebusiness-user-profile .scpSelectCard,
+.ebusiness-user-profile .CVV-Wrapper {
+    display: none !important;
+}
+
+.ebusiness-product-code h5 {
+    margin: 10px 0;
+}
+
+.btn[disabled] {
+    opacity: 0.7 !important;
+    background: #018ED5 !important;
+}
+
+.btn[disabled] {
+    background: #018ED5 !important;
+}
+
+.Pager li a {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.ebusiness-meeting-row-collapsible .avatar img {
+    width: 36px;
+    height: 36px;
+}
+
+.ebusiness-heading-with-photo-viewcart-row .ebusiness-name-of-attendee,
+.ebusiness-viewcart-sessionprice {
+    font-size: 16px;
+}
+
+.ebusiness-add-new-address-checkout .list-unstyled {
+    padding-left: 20px;
+}
+
+.ebusiness-viewcart-sessionprice {
+    margin-top: 10px;
+}
+
+.ebusiness-complete-order .ebusiness-action-button-remove-all-items {
+    display: none;
+}
+
+
+/* IE10+ specific styles go here */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .ebusiness-product-view-cart-updatecount {
+        display: inline-block;
+        visibility: visible;
+    }
+}
+
+.ebusiness-float-label input,
+.ebusiness-float-label input:not([type="checkbox"]) {
+    padding: 16px 12px 5px 5px !important;
+    height: 41px !important;
+}
+
+@-moz-document url-prefix() {
+    .ebusiness-product-view-cart-updatecount {
+        display: inline-block;
+        visibility: visible;
+    }
+}
+
+
+.ebusiness-product-view-cart-price-updatedPrice {
+    padding-left: 10px;
+}
+
+.ebusiness-price-change-viewcart {
+    font-size: 12px;
+    text-transform: capitalize;
+    font-style: italic;
+    color: #827f7f;
+}
+
+label.a-radio-button-label input {
+    margin: 0 5px 0 15px;
+    height: auto;
+    display: inline;
+}
+
+    label.a-radio-button-label input:not([type="checkbox"]) {
+        width: auto;
+    }
+
+.a-radio-button-label {
+    cursor: pointer;
+}
+
+.apex-boundcontrols-textfield .k-autocomplete {
+    width: 100%;
+}
+
+.apex-boundcontrols-textfield input:not([type="checkbox"]) {
+    padding: 25px 10px 15px 5px;
+    border-radius: 0;
+}
+
+
+/*
+.apex-boundcontrols-textfield input[type='text']{
+       margin:10px 0 ;
+}*/
+
+.ebusiness-menu-items-list * {
+    box-shadow: none !important;
+}
+
+.ebusiness-header .ebusiness-menu-items-list a,
+.ebusiness-header .ebusiness-menu-items-list a.k-link {
+    color: #fff;
+    background: transparent;
+    padding: 11px 11px 6px;
+}
+
+.ebusiness-header .k-menu .menu-items-list.k-group {
+    background: #00b3ea;
+    border: 0;
+    margin-top: 1px;
+}
+
+.k-menu .k-state-hover .k-link.k-state-active {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.k-item .ebusiness-menu-item .k-link {
+    background: #12596f;
+    padding: 10px 16px !important;
+    border-right: 0;
+    color: #fff;
+}
+
+.ebusiness-header .k-menu .k-item,
+.k-widget.k-menu-horizontal > .k-item {
+    border: none;
+    padding: 0 15px;
+    font-size: 14px;
+    border: 0;
+    background: transparent;
+    border-bottom: 4px solid #12596f;
+}
+
+.ebusiness-header .k-state-hover,
+.ebusiness-header .k-state-hover > .k-link,
+.ebusiness-header .k-state-active {
+    background: transparent;
+    border: 0;
+    color: #fff;
+}
+
+.ebusiness-menu-items-list {
+    background: transparent;
+}
+
+a.k-link.k-state-active.k-state-border-right {
+    background: transparent !important;
+}
+
+.ebusiness-header .k-menu .menu-items-list.k-group .menu-items-list.k-group {
+    background: #058ab3;
+}
+
+.ebusiness-header .k-menu .k-group .k-item {
+    border: 0;
+    border-bottom: 1px solid #12596f;
+}
+
+    .ebusiness-header .k-menu .k-group .k-item:hover {
+        background: #058ab3;
+    }
+
+    .ebusiness-header .k-menu .k-group .k-item .k-group .k-item:hover a {
+    }
+
+.ebusiness-header .k-menu .k-group .k-group .k-item:hover {
+    background: #fafafa;
+}
+
+.ebusiness-menu-item .k-i-arrow-s {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+.ebusiness-menu-item .k-i-arrow-e {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin: 0 0 0 4px !important;
+    vertical-align: middle;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid rgba(255, 255, 255, 1);
+}
+
+.ebusiness-menu-items-list > li.ebusiness-menu-item.k-item.k-state-default:hover {
+    background: #00b3ea;
+    border-bottom: 4px solid #00b3ea;
+}
+
+
+/*Group Admin - Add new person*/
+
+.ebusiness-add-new-person-block {
+    background: #fff;
+    padding: 15px 0;
+    box-shadow: 0 0 10px #ccc;
+    margin: 0 15px 15px;
+}
+
+.ebusiness-add-new-person-row label {
+    display: block;
+}
+
+.ebusiness-add-new-person-row input[type='text'] {
+    width: 100%;
+}
+
+.ebusiness-action-buttons-add-person .btn-primary {
+    margin-right: 15px;
+}
+
+.ebusiness-add-new-person-block input:not([type="checkbox"]):focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+    border-bottom: 2px solid #14596e;
+    height: 35px;
+}
+
+.ebusiness-add-new-person-mobile .ebusiness-admin-textfield {
+    margin-bottom: 10px;
+}
+
+.ebusiness-add-new-person-block input:not([type="checkbox"]) {
+    font-size: 14px;
+    font-weight: 400;
+    color: #313335;
+    height: 34px;
+    border-radius: 0;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.ebusiness-group-my-company {
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 0 5px #ccc;
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.ebusiness-admin-company-name {
+    font-size: 18px;
+}
+
+.ebusiness-admin-company-address {
+    padding: 5px 0 0 0;
+}
+
+    .ebusiness-admin-company-address p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+.ebusiness-group-admin-company-name {
+    font-size: 18px;
+}
+
+.ebusiness-title-my-company {
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+.ebusiness-group-admin-company-name img {
+    width: 32px;
+    height: 32px;
+}
+
+.ebusiness-group-admin-company-name a {
+    padding-left: 10px;
+}
+
+.ebusiness-text-or {
+    border-bottom: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.ebusiness-download-template {
+    padding: 0 0 0 15px;
+}
+
+    .ebusiness-download-template h3 {
+        font-size: 16px;
+    }
+
+.ebusiness-icon-excel img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+
+/*Templaete*/
+
+.ebusiness-file-text {
+    width: 262px;
+}
+
+.ebusiness-ViewAllPerson-text {
+    margin: 0 15px;
+    font-size: 16px;
+    color: #12586E;
+}
+
+#btnFile {
+    display: none;
+}
+
+#btnUpload {
+    margin-left: 32px;
+}
+
+h3.ebusiness-upload-style {
+    color: #12586E;
+}
+
+.ebusiness-add-new-person-success {
+    text-align: left;
+    color: #12586E;
+    font-size: 25px;
+    padding: 0 0 4px 0;
+}
+
+.ebusiness-page-title-admin {
+    padding: 06px;
+    background-color: #EBECED;
+}
+
+.ebusiness-btn-addnotherrecord {
+    width: 225px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.ebusiness-newrcord-success-msg {
+    color: #12586E;
+    float: left;
+    padding: 10px 5px;
+    margin: 0;
+    width: 79%;
+}
+
+.ebusiness-circle-animation {
+    margin-left: 15px;
+}
+
+.ebusiness-usererror-excelfile {
+}
+
+
+/*Person*/
+
+.ebusiness-action-buttons-all-person {
+    margin-right: 5px;
+    padding: 6px 7px;
+}
+
+.ebusiness-company-directory-check input[type="checkbox"] {
+    margin-top: 14px !important;
+}
+
+.ebIcon-directory-allperson {
+    position: absolute;
+    right: 0px;
+    top: 2px;
+}
+
+.popover-main {
+    color: #12586E;
+}
+
+.popover-content-allperson {
+    padding: 0 13px;
+    color: #000;
+}
+
+
+/* Animation Circle Tick */
+
+.ebusiness-checkmark-circle {
+    width: 42px;
+    height: 42px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    float: left;
+}
+
+    .ebusiness-checkmark-circle .background {
+        width: 42px;
+        height: 42px;
+        border-radius: 63%;
+        background: #2EB150;
+        position: absolute;
+    }
+
+    .ebusiness-checkmark-circle .checkmark {
+        border-radius: 16px;
+    }
+
+        .ebusiness-checkmark-circle .checkmark.draw:after {
+            -webkit-animation-delay: 100ms;
+            -moz-animation-delay: 100ms;
+            animation-delay: 100ms;
+            -webkit-animation-duration: 1s;
+            -moz-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: ease;
+            -moz-animation-timing-function: ease;
+            animation-timing-function: ease;
+            -webkit-animation-name: checkmark;
+            -moz-animation-name: checkmark;
+            animation-name: checkmark;
+            -webkit-transform: scaleX(-1) rotate(135deg);
+            -moz-transform: scaleX(-1) rotate(135deg);
+            -ms-transform: scaleX(-1) rotate(135deg);
+            -o-transform: scaleX(-1) rotate(135deg);
+            transform: scaleX(-1) rotate(135deg);
+            -webkit-animation-fill-mode: forwards;
+            -moz-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+
+        .ebusiness-checkmark-circle .checkmark:after {
+            opacity: 1;
+            height: 40px;
+            width: 17.5px;
+            -webkit-transform-origin: left top;
+            -moz-transform-origin: left top;
+            -ms-transform-origin: left top;
+            -o-transform-origin: left top;
+            transform-origin: left top;
+            border-right: 4px solid white;
+            border-top: 4px solid white;
+            border-radius: 0 !important;
+            content: '';
+            left: 11.66667px;
+            top: 23px;
+            position: absolute;
+        }
+
+@-webkit-keyframes checkmark {
+    0% {
+        height: 0;
+        width: 0;
+        opacity: 1;
+    }
+
+    20% {
+        height: 0;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    40% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes checkmark {
+    0% {
+        height: 0;
+        width: 0;
+        opacity: 1;
+    }
+
+    20% {
+        height: 0;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    40% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        height: 0;
+        width: 0;
+        opacity: 1;
+    }
+
+    20% {
+        height: 0;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    40% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 17px;
+        width: 8.5px;
+        opacity: 1;
+    }
+}
+
+.ebusiness-floating-label {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    pointer-events: none;
+    color: #aaa;
+    -webkit-transition: all 200ms;
+    transition: all 200ms;
+}
+
+.ebusiness-floating-form-control:focus + .ebusiness-floating-label {
+    font-size: 85%;
+    top: -20px;
+}
+
+input.ebusiness-action-add-new-address-button {
+    margin-right: 10px;
+}
+
+.ebusiness-group-admin-details {
+    padding-left: 25px;
+}
+
+.ebusiness-form-control-row.ebClear {
+    margin: 0 -15px;
+}
+
+.ebusiness-company-widget {
+    padding: 0 15px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.eb-basic-profile-info .form-group {
+    margin-bottom: 15px;
+}
+
+    .eb-basic-profile-info .form-group span.validationMessage {
+        position: absolute;
+    }
+
+.apex-boundcontrols-combobox .k-dropdown-wrap .k-input {
+    padding: 5px 18px 0 0;
+}
+
+.ebusiness-company-orders-list .ebusiness-product-image-my-orders {
+    padding: 5px;
+    border: 2px solid #e3e3e3;
+    height: 53px;
+    line-height: 35px;
+    text-align: center;
+    max-width: 65px;
+    margin-bottom: 10px;
+}
+
+    .ebusiness-company-orders-list .ebusiness-product-image-my-orders img {
+        max-width: 42px;
+        max-height: 42px;
+    }
+
+.ebusiness-company-orders-list {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 15px;
+    font-size: 16px;
+    line-height: 22px;
+    box-shadow: 0 0 10px 1px #ccc;
+    border-bottom: 3px solid #12596F;
+    color: #999;
+    position: relative;
+}
+
+.ebusiness-admin-product-image-wrapper {
+    max-width: 105px;
+}
+
+.ebusiness-company-orders-list .panel-arrow {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 0;
+}
+
+.ebusiness-company-orders-list hr {
+    margin: 5px 0;
+}
+
+.ebusiness-company-admin-horizontal {
+    padding: 0 15px;
+}
+
+.ebusiness-required-field-note {
+    font-size: 12px;
+    color: #12586E;
+    margin: 0;
+    padding-right: 15px;
+}
+
+.ebusiness-text-or strong {
+    color: #12586E;
+}
+
+.ebusiness-newrcord-partial-success-msg {
+    color: #12586E;
+    float: left;
+    padding: 2px 10px;
+    margin: 0;
+    font-size: 18px;
+}
+
+.ebusiness-ebIcon-style {
+    width: 24px;
+    display: inline-block;
+    height: 24px;
+    border: none;
+    background: transparent;
+    top: 0;
+    color: #6565ff;
+    outline: none;
+}
+
+.ebusiness-admin-textfield-close .ebusiness-attendee-close-icon {
+    float: none;
+}
+
+.ebusiness-errors-in-fields .ebusiness-attendee-close-icon {
+    height: 40px;
+}
+
+.ebusiness-user-profile label.caption {
+    display: block;
+}
+
+
+/*PayOf Orders*/
+
+.ebusiness-my-payoff-list {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 22px;
+    box-shadow: 0 0 10px 1px #ccc;
+    border-bottom: 3px solid #12596F;
+    color: #999;
+    position: relative;
+}
+
+    .ebusiness-my-payoff-list .panel-arrow {
+        top: 5px;
+        right: 5px;
+    }
+
+.ebusiness-unpaid-orders {
+    font-size: 16px;
+    font-weight: bold;
+    color: #12586E;
+    text-transform: none;
+}
+
+
+/*
+.payment-amount-text{
+    margin :6px 0;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    text-align:center;
+}*/
+
+.ebusiness-payoff-payment {
+    margin: 6px 0;
+    background: #f5f5f5;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+    text-overflow: ellipsis;
+}
+
+
+/*
+.ebusiness-glyphy-payoff{
+    margin: 13px 0;
+    bottom:4px;
+}*/
+
+.ebusiness-payoff-fontsize {
+    font-size: 13px;
+}
+
+.ebusiness-balance-color {
+    color: #FEA82B;
+}
+
+.ebusiness-payoff-hr {
+    border-color: #000;
+    margin: 4px;
+}
+
+.ebusiness-padding-assign {
+    padding: 0px;
+}
+
+.payoff_fixedPos {
+    position: fixed;
+    top: 52px;
+    width: 22.2%;
+    max-width: 322px;
+}
+
+.payoff-hr-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.grid-payoff-align-context {
+    padding: 4px;
+}
+
+.ebusiness-glyphy-payoff {
+    position: absolute;
+    padding: 0;
+    right: 19px;
+}
+
+.payoff_SubTotal {
+    color: #339999;
+}
+
+.ebusiness-payoff-payment {
+    color: #339999;
+}
+
+.ebusiness-style-adminallperson {
+    font-size: 11px;
+    color: #12586E;
+}
+
+.ebusiness-payment-block-padd {
+    margin: 10px 0;
+    text-align: top;
+}
+
+.ebusiness-apply-full-width {
+    width: 100%;
+}
+
+.ebusiness-success {
+    background-color: #DFF0D8;
+}
+
+.ebusiness-company-event-registration-list-row {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 15px;
+    font-size: 16px;
+    line-height: 22px;
+    box-shadow: 0 0 10px 1px #ccc;
+    border-bottom: 3px solid #12596F;
+    color: #999;
+    position: relative;
+}
+
+    .ebusiness-company-event-registration-list-row .panel-arrow {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        padding: 0;
+    }
+
+    .ebusiness-company-event-registration-list-row hr {
+        margin: 5px 0;
+    }
+
+.ebusiness-btn-substitute {
+    height: auto;
+    padding: 5px 10px 2px 34px;
+    background: #17596E url(../images/icons/icon-substitute-attendees-white.png) no-repeat 5px center;
+    font-size: 12px;
+}
+
+.ebusiness-title-currently-attending-event {
+    color: #17596E;
+    padding: 0 0 0 13px;
+}
+
+.ebusiness-fileds-substitute-attendees {
+    padding: 2px 0;
+}
+
+.eBiz-boundcontrol-personTopics .k-checkbox input:indeterminate {
+    background-image: url(../images/icons/icon_selected-alt.svg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ebusiness-admin-company-profile div[data-layoutkey="Companies.eBusiness.Profile.Form.Tabs.Your Information.Text.Basic Info.Flex.Name"] {
+    margin: 0 !important;
+}
+
+.apex-boundcontrols-checkbox label.caption {
+    display: block !important;
+}
+
+.ebusiness-user-profile .k-dropdown ~ label.caption {
+    display: block;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.ebusiness-float-label select {
+    height: 42px;
+    padding: 0 !important;
+    padding-top: 8px !important;
+}
+
+.apex-boundcontrols-textfield.ebusiness-float-label input:focus {
+    padding: 25px 10px 14px 5px;
+}
+
+.ebusiness-user-profile input[disabled]:valid ~ label.caption,
+.ebusiness-user-profile .k-state-disabled ~ label.caption {
+    display: block;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.ebusiness-float-label label.error {
+    position: static;
+    font-size: 14px;
+    color: red !important;
+    -webkit-transition: none;
+}
+
+.eBiz-boundcontrol-personTopics .k-checkbox-label {
+    display: none;
+}
+
+.phone-type .k-dropdown-wrap,
+.address-type .k-dropdown-wrap,
+apex-boundcontrols-personEmails .k-dropdown-wrap {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.ebusiness-float-label input:focus::-webkit-input-placeholder,
+.ebusiness-float-label textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.ebusiness-float-label input:focus:-moz-placeholder,
+.ebusiness-float-label textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+
+/* FF 4-18 */
+
+.ebusiness-float-label input:focus::-moz-placeholder,
+.ebusiness-float-label textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+
+/* FF 19+ */
+
+.ebusiness-float-label input:focus:-ms-input-placeholder,
+.ebusiness-float-label textarea:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+
+/* IE 10+ */
+
+.apex-boundcontrols-personEmails span.k-dropdown-wrap.k-state-default {
+    padding-top: 7px;
+    padding-bottom: 10px;
+}
+
+.ebusiness-float-label textarea {
+    padding-top: 17px;
+    padding-left: 4px;
+}
+
+.list-unstyled {
+    overflow: hidden;
+}
+
+
+/*
+.ebusiness-purchase-allselect{  
+  
+    width: 60px;
+    height: 35px;
+}*/
+
+
+/*
+.ebusiness-purchase-allselect-checkid{
+    position:absolute;
+    top: 5px;
+    left: 17px;
+    padding: 0;
+}*/
+
+.apex-boundcontrols-checkbox label {
+    display: block;
+}
+
+.ebusiness-purchase-pageSelect {
+    position: absolute;
+    top: 9px;
+    padding-left: 21px;
+}
+
+.ebusiness-apply-allbtn {
+    right: 38px;
+}
+
+.ebusiness-select-purchase {
+    background-color: #F4F5F6;
+}
+
+.adminPurchase-quantity {
+    width: 47px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.eb-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/*
+.ebusiness-purchase-allselect-checkid{
+    width: 41px;
+    height: 36px;
+    right: 6px;
+    padding:0;
+}*/
+
+.ebusiness-purchase-allselect-allperson {
+    right: 7px;
+    width: 42px;
+    height: 34px;
+}
+
+.ebusiness-select-item {
+    background-color: #F4F5F6;
+}
+
+.ebusiness-adminall-selected {
+    padding-top: 8px;
+}
+
+.ebusiness-purchase-unselect {
+    padding: 6px !important;
+}
+
+.ebusiness-adminall-unselect {
+    padding: 6px !important;
+}
+
+.eb-map-icon::before {
+    content: url('../images/icons/fontawesome/map-marker-alt.svg');
+    display: inline-block;
+    width: 12px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    height:16px;
+}
+
+.btn-getDirection:hover .eb-map-icon::before {
+    content: url('../images/icons/fontawesome/map-marker-alt-white.svg');
+    height: 16px;
+    vertical-align: middle
+}
+
+.ebusiness-adminall-pageselect-mobile {
+    padding: 0;
+    top: 8px;
+    left: 33px;
+}
+
+.ebusiness-adminall-pageselect-desk {
+    padding: 0;
+    top: 6px;
+    right: 13px;
+}
+
+.ebusiness-adminall-select-unselect {
+    margin-right: 5px;
+}
+
+.ebusiness-modal-vertical-centered-adminall {
+    transform: translate(0, 80%) !important;
+    -ms-transform: translate(0, 80%) !important;
+    /* IE 9 */
+    -webkit-transform: translate(0, 80%) !important;
+    /* Safari and Chrome */
+}
+
+.ebusiness-adminall-cancel {
+    padding-left: 20px;
+}
+
+.ebusiness-modal-vertical-centered-adminall-big {
+    transform: translate(0, 73%) !important;
+    -ms-transform: translate(0, 73%) !important;
+    /* IE 9 */
+    -webkit-transform: translate(0, 73%) !important;
+    /* Safari and Chrome */
+}
+
+.modal-adminall {
+    padding-top: 12px;
+    padding-left: 11px;
+}
+
+.adminall-warning-message {
+    position: absolute;
+    font-size: 25px;
+    padding-left: 12px;
+}
+
+.ebusiness-float-label input:placeholder-shown:not(:focus) + *,
+.ebusiness-float-label textarea:placeholder-shown:not(:focus) + *,
+.ebusiness-float-label select:placeholder-shown:not(:focus) + * {
+    opacity: 0;
+}
+
+@-moz-document url-prefix() {
+    .ebusiness-float-label input,
+    .ebusiness-float-label input:not([type="checkbox"]) {
+        padding: 16px 12px 5px 5px !important;
+        height: 41px !important;
+    }
+}
+
+.ebusiness-float-label input[disabled] {
+    background: #cecece;
+}
+
+.ebusiness-swap-attendee-wrapper {
+    background: #ebeced;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.ebusiness-swap-payment-step4-label {
+    display: inline-flex;
+    text-align: center;
+}
+
+.ebusiness-swap-payment-step3-label {
+    margin-left: 30px;
+    display: inline-flex;
+    width: 75px;
+    text-align: center;
+}
+
+.ebusiness-swap-payment-step2-label {
+    display: inline-flex;
+    margin-left: 10px;
+    width: 49px;
+    text-align: center;
+}
+
+.ebusiness-payment-step1-label {
+    display: inline-flex;
+    width: 93px;
+    text-align: left;
+}
+
+.ebusiness-apply-upside-space {
+    padding-top: 6px;
+}
+
+.ebusiness-swap-selected {
+    font-size: 16px;
+}
+
+.ebusiness-swap-selected-values {
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.ebusiness-step-swap-navigator {
+    padding: 10px 0;
+    background: #ebebec;
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px 10%;
+}
+
+.ebusiness-apply-selected-space {
+    padding: 6px 0;
+}
+
+.swap_fixed {
+    position: fixed;
+    top: 52px;
+    width: 30.2%;
+    max-width: 435px;
+}
+
+.ebusiness-apply-padding-desktop {
+    padding: 0px 17px 10px;
+}
+
+.ebusiness-block-padding {
+    padding: 10px;
+}
+
+.ebusiness-apply-swap-values {
+    font-size: 14px;
+    color: #7c7d7c;
+    margin: 5px 0 0 0;
+}
+
+.ebusiness-apply-swap-answer {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+}
+
+.ebusiness-step-replace-navigator {
+    padding: 10px 0;
+    background: #ebebec;
+    font-size: 18px;
+    padding: 10px 10%;
+    margin: 10px 0;
+}
+
+.ebusiness-action-cart-footer-confirm {
+    padding: 0 0 5px;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.ebusiness-note-message-payment {
+    padding: 12px 5px 10px 12px;
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0;
+    text-transform: none;
+}
+
+.ebusiness-selected-attendee {
+    font-size: 18px;
+}
+
+.up-down-spacing {
+    padding: 5px 0;
+}
+
+.k-radio-label-swap:before {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.k-radio:checked + .k-radio-label:after {
+    width: 12px !important;
+    height: 12px !important;
+}
+
+.ebusiness-font-padd {
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+.rpl-btn-padding {
+    padding: 5px;
+}
+
+.ebusiness-user-profile .k-icon.k-i-arrow-60-down:before {
+    content: "";
+}
+
+.navbar-brand {
+    color: #fff;
+    padding-left: 0.75rem;
+}
+
+.ebusiness-company-event-registration-list-row-swap {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 22px;
+    box-shadow: 0px 0px 10px 1px #ccc;
+    border-bottom: 3px solid #12596F;
+    color: #999;
+    position: relative;
+}
+
+    .ebusiness-company-event-registration-list-row-swap .panel-arrow {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        padding: 0;
+    }
+
+    .ebusiness-company-event-registration-list-row-swap hr {
+        margin: 5px 0;
+    }
+
+.ebusiness-padding-swap {
+    padding: 1px 0px !important;
+}
+
+.k-header .k-icon {
+    background-image: none;
+}
+
+.ebusiness-apply-space-up {
+    line-height: normal;
+}
+
+.ebusiness-gap-two-rows {
+    padding-top: 4px;
+}
+
+.save-cart-btn-color {
+    background-color: #DDDDDD;
+}
+
+.ebusiness-return-homepage-button {
+    padding: 10px 0 0 0;
+    top: 0;
+    right: 10px;
+}
+
+.ebusiness-savedCards-image-resize {
+    width: 55px !important;
+    height: 34px !important;
+}
+
+
+/*NEW STYLES ADDED FOR REDEVELOPMENT*/
+
+.ebusiness-clear {
+    clear: both;
+}
+
+.ebusiness-user-profile-profile-icon a {
+    text-decoration: none !important;
+}
+
+.ebusiness-user-profile-profile-icon {
+    text-decoration: none !important;
+}
+
+.ebusiness-profile-tab-style img {
+    width: 24px;
+    vertical-align: bottom;
+    height:20px;
+}
+
+
+/*.ebusiness-profile-subtab-holder{
+    padding-bottom:10px;
+}*/
+
+
+/*.ebusiness-profile-subtab-bar {
+    padding-bottom:20px;
+}*/
+
+.ebusiness-profile-subtab-bar li {
+    color: #428bca;
+    padding: .5em .92em;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 100%;
+    text-decoration: none;
+    border-bottom: 3px solid transparent !important;
+    cursor: pointer;
+    display: inline-block;
+}
+
+    .ebusiness-profile-subtab-bar li:hover {
+        border-bottom: 3px solid #14596e !important;
+    }
+
+    .ebusiness-profile-subtab-bar li a:link,
+    .ebusiness-profile-subtab-bar li a:visited {
+        text-decoration: none !important;
+    }
+
+.ebwhiteBg {
+    background-color: #fff;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    clear: inherit;
+    padding: 10px 15px;
+    border: 1px solid #f0f0f0;
+}
+
+    .ebwhiteBg:last-child {
+        margin-bottom: 0;
+    }
+
+.business-profile-image {
+    float: left;
+    padding: 10px;
+}
+
+    .business-profile-image img {
+        border-radius: 50%;
+        border: 2px solid #12596f;
+    }
+
+.ebusiness-profile-main-title {
+    clear: both !important;
+}
+
+.ebwhiteBg h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.ebProBody {
+    border-top: 1px solid #f0f0f0;
+    padding: 10px 0 0 0;
+    margin-top: 5px;
+}
+
+.ebProfHeader:hover {
+    cursor: pointer;
+}
+
+.ebBox {
+    height: auto;
+    overflow: auto;
+    display: block;
+}
+
+.ebStyleForm {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #313335;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    padding: 11px 10px 6px 5px;
+    background: #f5f5f5;
+}
+
+select[name="ebusiness-profile-set-height"] {
+    height: 40px;
+}
+
+.ebinputHt input {
+    height: 40px;
+}
+
+.checkout-default-checkbox input {
+    height: 20px;
+}
+
+.ebProfHeader span {
+    font-size: 18px;
+    /* padding: 3px 10px 0px 15px*/
+}
+
+.k-panelbar-expand {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 27px;
+    margin-top: 8px !important;
+    float: right;
+    height: 12px;
+    width: 20px;
+}
+
+.iconExpand:before {
+    content: "\e114";
+}
+
+.ebusiness-bar-space-apply-top {
+    padding-top: 5px;
+}
+
+.ebusiness-bar-space-apply-allside {
+    padding: 9px 0 3px 0;
+}
+
+.toi,
+.section-wrapper:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.Pager {
+    padding: 10px;
+}
+
+.productCatlogPager {
+    border-top: 1px solid #f0f0f0;
+    margin-top: 5px;
+}
+
+.Pager li {
+    display: inline-block;
+    margin: 0 5px;
+    border-color: #f0f0f0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+span.ebusiness-icon-top-menu {
+    cursor: pointer;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.rowSavedCards {
+    border: 1px solid #f0f0f0;
+    margin: 0 0 10px 0;
+    padding: 5px;
+}
+
+.savedPayments h3,
+.eb-add-card h3 {
+    padding: 10px;
+    background: #f0f0f0;
+    font-size: 1rem;
+}
+
+.savedPayments,
+.eb-add-card {
+    border: 1px solid #f0f0f0;
+}
+
+.ebusiness-savedCards-list-ctrl,
+.new-card-details {
+    padding: 10px;
+}
+
+input[type="radio"] {
+    height: auto;
+}
+
+.panel-footer,
+.panel-heading {
+    background: #f8f8f8;
+    padding: 10px;
+}
+
+.panel-body {
+    padding: 10px;
+}
+
+input[type="radio"] {
+    height: 16px;
+    width: 16px;
+    padding: 0;
+    margin: 4px !important;
+    vertical-align: middle;
+    border: 1px solid #2196F3;
+    border-radius: 11px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    cursor: pointer;
+}
+
+    input[type="radio"]:checked {
+        border: 5px solid #2196F3;
+        outline: none;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+    }
+
+    input[type="radio"]:focus {
+        outline: 0;
+    }
+
+.panel.panel-default {
+    border-radius: 0;
+    border: 1px solid #f0f0f0;
+    border-bottom: 2px solid #13586f;
+    margin-bottom: 10px;
+}
+
+.ebusiness-payment-address-fields {
+    margin-bottom: 20px;
+}
+
+    .ebusiness-payment-address-fields .panel-title {
+        padding: 0;
+        font-size: 0.95rem;
+    }
+
+.caption {
+    margin-bottom: 0;
+}
+
+.ebSlctbillme {
+    display: block;
+}
+
+.invalid {
+    border: 1px solid red;
+}
+
+.ebusiness-add-coupon {
+    padding-top: 10px;
+}
+
+.captionShipping {
+    font-size: 14px;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.shippingType {
+    line-height: 30px;
+}
+
+.shippingTypeDropDown {
+    max-width: 165px;
+    padding-right: 0;
+}
+
+img.display {
+    max-width: 115px;
+    border: 2px solid #f0f0f0;
+    border-radius: 100%;
+    margin: 0 auto;
+    display: block;
+    width: 115px;
+}
+
+.upload.load-image {
+    position: relative;
+    text-align: center;
+    max-width: 28px;
+    margin: 0 auto;
+}
+
+input.upload {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 35px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color: #007ca9;
+}
+
+.ebBody {
+    min-height: 542px;
+}
+
+.ebusiness-product-image {
+    max-width: 100%;
+}
+
+.ebusiness-product-read-more-reviews {
+    padding-bottom: 15px;
+}
+
+.ebusiness-viewcart-Items {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+
+.useLoggedIn .dropdown {
+    min-width: 120px;
+}
+
+.addrNewShip h3 {
+    padding: 10px 0;
+}
+
+.addrNewShip {
+    background: #fff;
+    padding: 0 0 10px 0;
+}
+
+.actionButtonWrapper {
+    margin-bottom: 15px;
+}
+
+.NoRecords span {
+    border: 1px solid #f0f0f0;
+    padding: 25px 0;
+    background: #fff;
+    display: block;
+}
+
+.price-strip {
+    text-decoration: line-through;
+    color: red;
+    font-style: italic;
+    font-weight: normal;
+}
+
+span.validationMessage {
+    color: red;
+}
+
+.isCollapseOpen:before {
+    content: url('../images/icons/fontawesome/chevron-down.svg');
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 20px;
+}
+
+.isCollapseClosed:before {
+    content: url('../images/icons/fontawesome/chevron-right.svg');
+    display: inline-block;
+    width: 11px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 20px;
+}
+
+.ebIcon-pencil:before {
+    content: url('../images/icons/fontawesome/pencil-alt.svg');
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 16px;
+}
+
+.ebIcon-trash:before {
+    content: url('../images/icons/fontawesome/trash-alt.svg');
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    height:16px;
+}
+
+.clsShipStatus {
+    color: #EEAC57;
+}
+
+.fixedPanelpaymentBottom {
+    bottom: 100px;
+    position: fixed;
+}
+
+.ebusinesss-orderhistory-bottom {
+    margin-bottom: 12px;
+}
+
+.couponFailed {
+    color: red;
+}
+
+label {
+    font-weight: 500;
+}
+
+.couponApplied {
+    color: green;
+}
+
+.label-orders {
+    display: none;
+}
+
+.ebMyOrderHeader {
+    padding: 10px;
+    /* font-size: 14px; */
+    line-height: 22px;
+    border-bottom: 1px solid #e8e8e8;
+    color: #555;
+    position: relative;
+    font-weight: 500;
+}
+
+.ebusiness-my-orders-list:last-child {
+    border-bottom: 0;
+}
+
+.ebusiness-my-orderlist {
+    border: 1px solid #ececec;
+    margin: 0 -15px;
+}
+
+.ebMyOrderHeader {
+    padding: 5px 0;
+    /* font-size: 14px; */
+    line-height: 22px;
+    color: #555;
+    position: relative;
+    font-weight: 500;
+    border: 1px solid #e8e8e8;
+    border-bottom: 0;
+    background: #f0f0f0;
+}
+
+.ebusiness-total-savings-row {
+    font-weight: bold;
+}
+
+.ebusiness-my-orders-list:last-child {
+    border-bottom: 0;
+}
+
+.order-details-panel {
+    margin: 0 -15px;
+    padding: 0 15px;
+}
+
+.signup input {
+    color: #304457;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    box-shadow: none;
+    background: #fff;
+    outline: none;
+}
+
+.btn-primary {
+    background: #018ED5;
+    color: #fff;
+    border: #018ED5 solid 1px;
+    border-radius: 4px;
+    outline: 0;
+    padding: 4px 16px;
+}
+
+    .btn-primary:hover {
+        background: #0074af;
+        color: #fff;
+        border: #0074af solid 1px;
+    }
+
+.btn-secondary {
+    background: #FFF;
+    color: #018ED5;
+    border: #018ED5 solid 1px;
+    border-radius: 4px;
+    outline: 0;
+    padding: 4px 6px;
+    margin-right: 10px;
+    min-width: 50px;
+}
+
+    .btn-secondary:hover {
+        background: #018ED5;
+        color: #fff;
+        border: #0074af solid 1px;
+    }
+
+.validationMessage {
+    font-size: 13px;
+}
+
+label i {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+[required] label.caption:after {
+    content: "*";
+    padding-left: 2px;
+    color: red;
+}
+
+[invalid] input {
+    border: 1px solid red;
+}
+
+.signup {
+    padding: 10px 15px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+    .signup h3,
+    #login1 h3 {
+        padding: 0 0 10px 0;
+    }
+
+div#login1 {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+.ebClear.order-heading-panel {
+    padding: 10px 0;
+}
+
+.order-details-panel {
+    background: #fafafa;
+}
+
+span.label-order-detail {
+    display: block;
+    font-weight: 500;
+}
+
+.ebusiness-my-orderlist .grid-row-cart-list:last-child {
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.calendar-view {
+    color: #fff;
+    padding: 6px 6px 5px 6px !important;
+    vertical-align: top;
+}
+
+    .calendar-view:hover {
+        background: #0074AE;
+    }
+
+.ebHeader .navbar {
+    margin-bottom: 10px;
+    padding: 0rem;
+    max-width: 1248px;
+    margin: 0 auto;
+}
+
+.ebusiness-filter-control {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+    .ebusiness-filter-control h3 {
+        line-height: 35px;
+    }
+
+.ebusiness-filter-details-panel h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ebusiness-sorting {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.ebWrapper {
+    min-height: calc(100vh - 108px);
+}
+
+.ebEvent-session-list:last-child {
+    margin-bottom: 0
+}
+
+.ebusiness-event-Price-info {
+    padding: 0 0 10px 0;
+}
+
+.eb-PhoneControl {
+    padding: 0;
+    margin: 0;
+}
+
+#orderConfirmation .activeSteps a {
+    cursor: default;
+}
+
+.ebEventRegistration {
+    padding-top: 15px;
+}
+
+.delete-registration .ebIcon-trash {
+    margin-right: -15px;
+}
+
+.ebEventDetails h4,
+.ebusiness-event-short-details h4 {
+    font-size: 16px;
+}
+
+.schedule-panel h4 {
+    padding-bottom: 10px;
+}
+
+.events-heading-panel {
+    background: #f6f6f6;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.session-name {
+    width: 60%;
+    float: left;
+    padding: 0 5px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.label-events {
+    display: block;
+    font-weight: 500;
+}
+
+.registration-summary-viewcart .event-details-panel {
+    border: 1px solid #f0f0f0;
+    padding: 0 10px;
+    margin: -5px 0 5px 0;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+.registration-summary-viewcart .selected-attendees {
+    padding: 5px 0px 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: -10px;
+    border-right: 0;
+    border-left: 0;
+}
+
+.eb-events-card-details-location {
+    padding: 10px 0;
+}
+
+.my-events {
+    padding: 0 0 10px 0;
+    margin-bottom: 10px;
+}
+
+    .my-events input[type="checkbox"] {
+        margin-left: 0 !important;
+    }
+
+.devider {
+    padding: 0 5px;
+    vertical-align: middle;
+    font-size: 24px;
+    color: #e0e0e0
+}
+
+.ebEvent-session-list {
+    margin-bottom: 10px;
+}
+
+span.session-price {
+    font-size: 14px;
+    vertical-align: text-bottom;
+}
+
+.schedule-panel {
+    border-bottom: 0;
+}
+
+.collapseAll {
+    font-weight: 500;
+    line-height: 28px;
+}
+
+a.readmore {
+    text-decoration: underline;
+}
+
+.ebusiness-events-card p {
+    margin: 0
+}
+
+h3.select-sessions {
+    font-size: 16px;
+    padding: 0 0 4px 0;
+    line-height: 24px;
+}
+
+.select-sessions a {
+    font-size: 12px
+}
+
+.session-name input[type="checkbox"] {
+    margin-right: 7px !important;
+}
+
+.attendee-search {
+    font-weight: 500;
+    padding-top: 10px;
+}
+
+    .attendee-search input {
+        font-weight: normal;
+        display: inline;
+        max-width: 400px;
+    }
+
+.panel-added-attendee {
+    padding: 5px 0;
+    border-bottom: 1px solid #f6f6f6;
+    background: #f6f6f6;
+    margin: 0;
+}
+
+.delete-registration {
+    padding: 0 10px;
+    color: #018ed5;
+}
+
+.selected-attendees {
+    padding: 5px 0px 5px 0;
+    border: 1px solid #f0f0f0;
+    margin: 0;
+}
+
+    .selected-attendees:last-child {
+        border-top: 0;
+    }
+
+.ebusiness-modal-content h2 {
+    font-size: 18px;
+    padding: 0 12px 10px 0;
+}
+
+.proceed-attendee {
+    padding-top: 10px;
+}
+
+.row-registration-summary {
+    margin-bottom: 10px;
+}
+
+.registration-summary-viewcart {
+    margin-top: 5px;
+}
+
+.loaderwrapper {
+    background: #000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    text-align: center;
+    opacity: 0.5;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.ebloader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 36px;
+    height: 36px;
+    -webkit-animation: spin 1s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
+    margin: 20% auto 0 auto;
+}
+
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ebusiness-search-attendee-results {
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.btn-buy-add-cart {
+    vertical-align: top;
+}
+
+.ebusiness-row-kit-product:last-child {
+    border-bottom: 0;
+}
+
+.eb-additional-detail {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.ebusiness-product-list {
+    min-height: 415px;
+    padding: 0 15px;
+    margin: 0 10px;
+}
+
+.fa-icon {
+    padding: 0 5px;
+}
+
+.active-maintab {
+    border-bottom: 2px solid
+}
+
+.btnAddDelete {
+    padding: 6px 0 0 0;
+    max-width: 65px;
+}
+
+.btnEditDelete {
+    padding: 6px 0 0 0
+}
+
+.tab-bar li:first-child {
+    padding-left: 0;
+}
+
+.ebusiness-filter-options input[type="radio"] {
+    float: left;
+    margin-top: 1px !important;
+}
+
+.ebusiness-filter-options label {
+    float: left;
+    width: calc(100% - 25px);
+    cursor: pointer;
+}
+
+.ebusiness-filter-options li {
+    clear: both;
+    line-height: 18px
+}
+
+.btn-disable {
+    cursor: not-allowed;
+    pointer-events: none;
+    /*Button disabled - CSS color class*/
+    color: #c0c0c0;
+    background-color: #ffffff;
+}
+
+.ebusiness-cartlist-aproduct-detail-name {
+    font-size: 16px;
+}
+
+span.ebusiness-product-view-cart-quantity-value-review .validationMessage {
+    position: absolute;
+    top: 35px;
+    left: auto;
+    right: 83px;
+    font-weight: normal;
+}
+
+.ebusiness-product-viewcart-pro-name .qunty-text {
+    margin-bottom: 10px;
+}
+
+.a-divider.a-divider-break {
+    text-align: center;
+    position: relative;
+    top: 2px;
+    padding-top: 1px;
+    margin-bottom: 14px;
+    line-height: 0;
+}
+
+    .a-divider.a-divider-break:after {
+        content: "";
+        width: 100%;
+        background-color: transparent;
+        display: block;
+        height: 1px;
+        border-top: 1px solid #e7e7e7;
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        z-index: 1;
+    }
+
+    .a-divider.a-divider-break h5 {
+        line-height: 1;
+        font-size: 12px;
+        color: #767676;
+        font-weight: 400;
+        z-index: 2;
+        position: relative;
+        display: inline-block;
+        background-color: #fff;
+        padding: 0 8px 0 7px;
+    }
+
+.fc-row.fc-week.fc-widget-content.fc-rigid {
+    max-height: 79px;
+    min-height: 55px;
+}
+
+.fc-widget-header {
+    line-height: 35px;
+    background: #94d7ed;
+}
+
+.fc-day-grid-container {
+    height: 100% !important;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0em;
+    /* background: #94d7ed; */
+    padding: 13px;
+    border: 1px solid #f0f0f0;
+    border-bottom: 0;
+}
+
+.fc-unthemed td.fc-today {
+    background: #f0f0f0;
+}
+
+.fc-state-default {
+    background-color: #0098cc;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #0098cc, #0098cc);
+    background-repeat: repeat-x;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #fff;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.fc-state-disabled {
+    color: #333333;
+    background-color: #e6e6e6;
+}
+
+.fc-center h2 {
+    font-size: 20px;
+}
+
+.fc-state-down,
+.fc-state-active {
+    background-color: #fff;
+    background-image: none;
+    box-shadow: none;
+    color: #555;
+}
+
+.fc-state-disabled {
+    cursor: default;
+    background-image: none;
+    box-shadow: none;
+}
+
+.price-of-event {
+    padding-left: 10px;
+}
+
+.fc-event .fc-content {
+    line-height: 20px;
+    padding-left: 8px;
+}
+
+.tooltiptopicevent {
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: 10001;
+    padding: 5px 10px 10px 10px;
+    line-height: 200%;
+    background: #fff !important;
+    border: 1px solid #0098cc;
+    min-width: 275px;
+    border-radius: 4px;
+    font-size: 12px
+}
+
+.eventName-tooltip {
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    margin-top: 0;
+}
+
+.tooltiptopicevent p {
+    font-size: 14px;
+}
+
+.ebusiness-product-price-old {
+    text-decoration: line-through;
+}
+
+.eb-kit-product-image-wrapper {
+    max-width: 65px;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.isFilterOpen {
+    display: block;
+}
+
+.toi label {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.autoHeight {
+    height: auto !important;
+}
+
+.btn-getDirection {
+    position: relative;
+    top: -30px;
+    margin-right: 0;
+}
+
+.wrapper-btn-direction {
+    text-align: right;
+}
+
+    .wrapper-btn-direction form {
+        height: 0;
+    }
+
+#map {
+    position: relative;
+    text-align: right;
+    overflow: hidden;
+    background: none !important;
+    height: 274px;
+}
+
+.eb-select-fund label,
+.eb-select-amount label {
+    display: block;
+    font-size: 16px;
+    margin: 0;
+}
+
+.eb-select-amount .eb-amount {
+    margin: 0 30px 10px 0;
+    font-size: 18px;
+}
+
+.eb-select-amount {
+    background: #f3f3f3;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+    .eb-select-amount input {
+        max-width: 200px;
+        background: #fff;
+        font-size: 18px;
+    }
+
+.eb-enter-amount {
+    padding: 10px 0 0 0;
+}
+
+.eb-verify-button {
+    padding-top: 21px;
+}
+
+.correction {
+    background: #ccc;
+}
+
+.modal-verify-address h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.modal-verify-address p {
+    margin-bottom: 0
+}
+
+.eb-suggested-add h5,
+.eb-entered-add h5 {
+    padding: 0 0 10px 0
+}
+
+.eb-btn-suggested {
+    margin-top: 10px;
+}
+
+.eb-btn-entered {
+    margin-top: 10px;
+}
+
+.eb-entered-add,
+.eb-suggested-add {
+    padding-top: 10px;
+}
+
+.nav .eb-btn-donate-now-wrapper > a.eb-btn-donate-now:hover {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #122b40;
+}
+
+.nav .eb-btn-donate-now-wrapper > a.eb-btn-donate-now {
+    padding: 5px 10px;
+    color: #0098cc;
+}
+
+.eb-payment-title {
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.eb-payment-success {
+    margin-top: 10px;
+}
+
+.error-message {
+    padding-top: 13px;
+}
+
+.ebMakePayment {
+    border: 1px solid #f0f0f0;
+    padding: 10px 0;
+    border-bottom: 0;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+}
+
+.ebMakePaymentList {
+    border: 1px solid #ececec;
+    padding: 0 15px;
+}
+
+.makePaymentHeadingPanel {
+    padding: 6px 0;
+    line-height: 33px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.eb-amount-clm {
+    display: block;
+    padding-right: 18px;
+    text-align: right
+}
+
+.eb-amount-Balance {
+    display: block;
+    text-align: right;
+    color: #FAAF3B;
+    padding-right: 20px;
+}
+
+.eb-makePaymentErrormsg {
+    margin: 10px 15px 10px;
+    line-height: 18px;
+}
+
+.eb-payment-control {
+    padding: 10px 0 0 0;
+}
+
+.eb-Account-summary {
+    background: #eaeaea;
+    padding: 10px;
+}
+
+.eb-heading-payment {
+    font-size: 16px;
+}
+
+.paymentMethodsCheckData {
+    padding-top: 10px;
+}
+
+.eb-amount-clm-summ {
+    font-weight: 500;
+    text-align: right;
+}
+
+.ebIntermediateChk {
+    border: 5px solid #018ed5 !important;
+}
+
+.eb-fund-card {
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+    margin: 10px 0;
+    height: 80px;
+}
+
+.eb-membership-card {
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    height: 82px;
+}
+
+.eb-more-details {
+    text-align: right;
+    font-size: 12px;
+}
+
+.eb-fund-details {
+    max-height: 450px;
+    overflow: auto;
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+    .eb-fund-details img {
+        max-width: 100%;
+    }
+
+.eb-modal-conflict-meeting h3 {
+    font-size: 16px;
+}
+
+.eb-fund-selected-card,
+.eb-membership-selected-card {
+    border-top: 4px solid #018ed5;
+}
+
+.eb-fund-name,
+.eb-membership-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.eb-fund-card:hover,
+.eb-membership-card:hover {
+    cursor: pointer;
+    background: #f8f8f8;
+}
+
+.isCollapseOpen.collapsed:before {
+    content: url(../images/icons/fontawesome/chevron-right.svg);
+    width: 11px;
+}
+
+.newInterest {
+    background-color: #82dfff;
+}
+
+.partialInterestSelection {
+    background-color: #82dfff;
+}
+
+.eb-confirm-message {
+    padding: 10px;
+}
+
+.eb-secondary-heading {
+    font-size: 16px;
+    padding: 0 0 5px 0;
+}
+
+.eb-membership-name {
+    font-weight: 500;
+}
+
+.eb-no-membership-porduct,
+.eb-all-membership-porduct {
+    max-width: 1104px;
+}
+
+.isCollapseClosed.expanded:before {
+    content: url(../images/icons/fontawesome/chevron-down.svg);
+    display: inline-block;
+    width: 16px;
+}
+
+.eb-modal-membership-modal h3,
+.eb-modal-donations-modal h3 {
+    font-size: 16px;
+    overflow-wrap: break-word;
+}
+
+.btn.disabledPagination,
+.btn.disabledPagination:focus,
+.btn.disabledPagination:hover,
+.btn.disabledPagination:hover {
+    cursor: not-allowed;
+    filter: alpha(opacity=45);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .45;
+    border-color: #f0f0f0;
+    background: #fff;
+    outline: none;
+    color: #ccc;
+}
+
+    .btn.disabledPagination a {
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+.eb-msg-ach {
+    margin: 0;
+    padding: 10px 10px 0;
+    font-weight: bold;
+}
+
+.ebAchPanel .form-group {
+    margin-bottom: 5px;
+}
+
+.changeColor,
+.changeColor:hover {
+    color: #555;
+    cursor: text;
+}
+
+.eb-ach-type {
+    line-height: 34px;
+}
+
+#CartUpdateMsg {
+    visibility: hidden;
+    max-width: 150px;
+    /* height: 25px; */
+    /*margin-left: -125px;*/
+    background-color: green;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    bottom: 20px;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: 1s;
+    left: 20px;
+}
+
+.show {
+}
+
+#CartUpdateMsg.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 20px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 20px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+.eb-overflow-text-hidden {
+    max-height: 318px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.eb-overflow-text-visible {
+    max-height: 100%;
+    overflow: visible;
+    display: inline-block;
+}
+
+.ebusiness-kit-product {
+    background: #ffffff;
+}
+
+.anonymousUser {
+    margin: 0;
+}
+
+.fa-icon img {
+    width: 16px;
+    height: 20px;
+    vertical-align: middle;
+    max-height: 20px;
+}
+
+.ebIcon-list:after {
+    content: url('../images/icons/fontawesome/list.svg');
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    height:16px;
+}
+
+.ebIcon-th:after {
+    content: url('../images/icons/fontawesome/table.svg');
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    height: 16px;
+}
+.calendar-view .fa-icon img, .calendar-view.fa-icon img {
+    height: 20px;
+}
+.inValidCreditCard {
+    display: none;
+}
+
+input[type="checkbox"][disabled] {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.eb-addcart-selected-card {
+    pointer-events: none;
+}
+.ebusiness-productCatalog-pagination .fa-icon img {
+    height: 20px;
+}
+/* Grid CSS*/
+.eb-grid-header {
+    padding: 5px 0;
+    line-height: 22px;
+    color: #555;
+    position: relative;
+    font-weight: 500;
+    border: 1px solid #e8e8e8;
+    border-bottom: 0;
+    background: #f0f0f0;
+}
+
+.eb-grid-row {
+    border-bottom: 1px solid #e8e8e8;
+    color: #555;
+}
+
+#eb-BluePay .modal-dialog {
+    width:620px;
+}
+.eb-BluePay{
+    border: 0;
+    outline: 0;
+    width: 600px;
+    height:520px;
+}
+.eb-button-add span:first-child {
+    width: 50px;
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+    margin-right: 15px;
+    max-height: 26px;
+    vertical-align:top
+}
+
+.eb-button-add {
+    text-align: left;
+    padding: 14px;
+    background: #fbfbfb;
+    border: 1px solid #f0f0f0;
+    color: #3bb0d8;
+    font-size: 18px;
+    margin: 10px 0;
+}
+.eb-button-add:hover {
+    background: #0098cc;
+    color:#fff;
+}
+.eb-companyInfo {
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+}
+.eb-dashboard-btns {
+    margin-left: 15px;
+}
+.eb-add-member {
+    background: url(../images/icons/fontawesome/user-plus-solid.svg) no-repeat 0 0;
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-button-add:hover .eb-add-member {
+    background: url(../images/icons/fontawesome/user-plus-solid-white.svg) no-repeat 0 0;
+}
+.eb-button-add:hover .eb-company-directory {
+    background: url(../images/icons/fontawesome/address-book-regular-white.svg) no-repeat 0 0;
+}
+.eb-button-add:hover .eb-payoff-orders {
+    background: url(../images/icons/icon_make-payment-24px-white.svg) no-repeat 0 0;
+}
+.eb-button-add:hover .eb-event-registration {
+    background: url(../images/icons/fontawesome/calendar-alt-dark-blue-white.svg) no-repeat 0 0;
+}
+.eb-button-add:hover .eb-company-order-hisotry {
+    background: url(../images/icons/icon_order-history-32px-white.svg) no-repeat 0 0;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-button-add:hover .eb-company-info {
+    background: url(../images/icons/fontawesome/building-regular-white.svg) no-repeat 0 0;
+}
+.eb-company-info {
+    background: url(../images/icons/fontawesome/building-regular.svg) no-repeat 0 0;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-company-directory {
+    background: url(../images/icons/fontawesome/address-book-regular.svg) no-repeat 0 0;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-payoff-orders {
+    background: url(../images/icons/icon_make-payment-24px.svg) no-repeat 0 0;
+    width: 34px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-event-registration {
+    background: url(../images/icons/fontawesome/calendar-alt-dark-blue.svg) no-repeat 0 0;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-company-order-hisotry {
+    background: url(../images/icons/icon_order-history-32px.svg) no-repeat 0 0;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-company-purchase-membership {
+    background: url(../images/icons/icon_purchase-membership-blue_24px.svg) no-repeat 0 0;
+    width: 34px;
+    height: 28px;
+    display: inline-block;
+    background-size: contain;
+}
+.eb-button-add:hover .eb-company-purchase-membership {
+    background: url(../images/icons/icon_purchase-membership-blue_24px-white.svg) no-repeat 0 0;
+}
+.eb-company-dropdown {
+    font-size: 14px;
+}
+    .eb-company-dropdown .dropdown-item {
+        padding: 5px 10px;
+        line-height: 20px;
+        color:#0098cc;
+        
+    }
+        .eb-company-dropdown .dropdown-item:hover {
+        }
+
+    .eb-company-dropdown .eb-active-menu {
+        background: #0098cc;
+        color: #fff;
+    }
+    .eb-company-dropdown .dropdown-item span {
+        font-size: 12px;
+        color: #000;
+        float: right;
+        padding-left:10px;
+    }
+
+.eb-company-dropdown .dropdown-item:hover {
+    background: #0098cc;
+    color: #fff;
+}
+.eb-action-btn {
+    text-align: right;
+    padding: 10px 0;
+}
+
+.eb-add-member-grid-row {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ced4da;
+}
+
+.eb-add-member-grid-body {
+    border: 1px solid #ced4da;
+}
+
+.eb-add-member-grid-header {
+    background: #f0f0f0;
+    padding: 5px 15px;
+    font-weight: bold;
+    border: 1px solid #ced4da;
+    border-bottom: 0;
+}
+.eb-action-btn-submit {
+    text-align: right;
+    padding: 10px;
+}
+.eb-pg-title{
+    font-size:16px;
+    padding-bottom:10px;
+}
+.eb-back-link{
+    padding-right:15px;
+}
+.eb-action-btn .btn {
+    padding-right: 25px;
+    padding-left: 25px
+}
+.eb-sorting-company label a{
+    font-size:11px;
+}
+.eb-comp-user-email{
+word-wrap:break-word;
+}
+.eb-comp-directory {
+    border: 1px solid #f0f0f0;
+    padding: 10px 0;
+    /*border-top: 0;*/
+}
+    .eb-comp-directory:nth-child(even), .makePaymentHeadingPanel:nth-child(even), .eb-payoff-row:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+.eb-cmp-designation {
+    color: #737373;
+    font-size: 12px;
+    display: block;
+    word-break: break-word;
+}
+.membersAvailable {
+    min-height: 415px;
+    padding: 0 15px;
+}
+.eb-filter-company {
+    padding: 0px 0 10px 0;
+}
+
+.eb-add-member-link {
+    line-height: 34px
+}
+.eb-status-warning {
+    color: #EEAC57;
+}
+.eb-status-error {
+    color: #ff0000;
+}
+.eb-value-label {
+    color: #868686;
+    display: block;
+    font-weight: bold;
+}
+.label-payoff-orders {
+    font-weight: bold;
+    color: #868686;
+    display:block;
+}
+.eb-address {
+    color: #969696;
+}
+#editShppingAddressCompany .modal-dialog {
+    max-width: 800px;
+}
+
+.eb-img-icon{
+    height:18px;
+    margin-left:15px;
+    cursor:pointer;
+}
+.eb-link{
+    font-size:12px;
+}
+.makePaymentHeadingPanel {
+    padding:5px 0;
+}
+.ebMakePayment{
+    background:#f0f0f0;
+}
+.eb-center-date{
+    text-align:center;
+}
+.eb-payoff-row{
+    padding:5px 0;
+    line-height:32px;
+}
+.eb-clm-a {
+    float: left;
+}
+.eb-totl-amount-pay{
+    font-size:20px;
+    padding:10px;
+    border:1px solid #f0f0f0;
+    margin:15px 15px 0 15px;
+    width:100%;
+}
+.kit-orderhistory {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+}
+.amount-clm-algn {
+    text-align: right !important;
+    padding-right: 32px;
+}
+
+.modal-backdrop {
+    visibility: hidden !important;
+}
+
+.modal.show {
+    background-color: rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.non-styled-btn {
+    background: none;
+    outline: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+}
+
+/*Eb6.1 Event registration*/
+
+span.ebusiness-registered {
+    display: block;
+    text-align: center;
+    padding: 5px;
+}
+.ebusiness-registered .btn {
+    width: 100%;
+}
+.ebusiness-ev-registred-count .eb-registered-clm:last-child .ebusiness-registered {
+    border-right: none;
+}
+
+.ebusiness-events-card-image {
+    max-height: 100px;
+}
+
+.eb-tabs-events {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0;
+    margin-bottom: 5px;
+    display:flex;
+}
+
+.eb-active-tabs {
+    padding-top: 18px;
+    font-size: 17px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+ .eb-active-tabs a {
+        display: inline-block;
+        padding: 0 5px 0 0;
+        color: #949494;
+    }
+
+.ebusiness-meeting-viewcart-item-wrapper {
+    padding: 5px 0;
+}
+
+.row.grid-row-cart-list:first-child {
+    border-top: 0;
+}
+
+.ebusiness-my-orderlist .grid-row-cart-list {
+    padding: 2px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: none;
+}
+
+.order-details-panel {
+    background: #fdfdfd;
+    margin: 0px 0px 10px 0px;
+    box-shadow: 0px 0px 4px #d1cfcf;
+}
+
+.eb-active-Links {
+    border-bottom: 4px solid #018ed5 !important;
+    color: #000 !important;
+}
+
+.ebusiness-events-card-listing-admin {
+    padding: 5px 5px 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 10px 0;
+}
+.ebusiness-registered span[data-bind]:first-child {
+    font-weight: bold;
+    padding-right:10px;
+}
+.eb-confirm-attendee-row {
+    display: flex;
+    background: #dedede;
+    line-height: 34px;
+    padding: 5px 0;
+    font-weight: bold;
+}
+.attendeeConfirmed {
+    padding: 0 15px;
+}
+.eb-attendee {
+    border: 1px solid #f0f0f0;
+    padding: 10px 0;
+    border-top: 0;
+}
+
+.eb-attendee:nth-child(even), .makePaymentHeadingPanel:nth-child(even), .eb-payoff-row:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 18px;
+    top: 15px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0;
+    background-color: #a9a9a9;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+/*div#companyDirectory {
+    margin: 0 -15px 0 0;
+}*/
+.ebusiness-page-admin-heading {
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    line-height: 2rem;
+}
+.ebusiness-events-see-details a {
+    text-decoration: underline !important;
+}
+img.ebusiness-product-list-image{
+    cursor:pointer;
+}
+.ebBody a:not([href]):not([class="btn"]):hover{
+    color: #00689c !important;
+}
+.eventContent {
+    width: 100%;
+}
+.selectLabel {
+    font-weight: bold;
+    text-align: right;
+    padding: 0 0 0 20px;
+    line-height: 34px;
+}
+.visbleoniPad {
+    display: none
+}
+.cl1 {
+    max-width: 4%;
+}
+
+.cl2 {
+    flex: 0 0 18.666667% !important;
+    max-width: 20% !important;
+}
+
+#topDiveventRegistration{
+    padding-top:15px;
+}
+
+/*Related Products CSS*/
+.thumbnail {
+    text-align: center;
+}
+
+.thumbnail img {
+    width: auto;
+    height: auto;
+    max-height: 75px;
+}
+
+.related-products-ul {
+    border: 0 none;
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+    margin-left: 18px;
+}
+
+.related-products-li {
+    list-style-type: none;
+    width: 264px;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid #f5f5f5;
+    float: left;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px #d7d5d5;
+}
+.related-product-name {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.related-product-description {
+    height: 75px;
+    margin: 5px;
+    text-align: center;
+}
+
+.a-prev {
+    left: -80px;
+}
+
+.a-next{
+    right: -80px;
+}
+
+.carousel-control-prev-icon {
+    background-image: url(../images/icons/chevron-left.svg) !important;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #b7b3b3;
+    box-shadow: 0px 0px 5px #d7d5d5;
+    border-radius: 3px;
+}
+
+.carousel-control-next-icon {
+    background-image: url(../images/icons/chevron-right.svg) !important;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #b7b3b3;
+    box-shadow: 0px 0px 5px #d7d5d5;
+    border-radius: 3px;
+}
+/*Related Products CSS*/
+/*Committee Listing CSS*/
+.ebCommitteeTerm .ebusiness-my-orderlist,
+.ebMyCommittees .ebusiness-my-orderlist,
+.ebCommitteeListing .ebusiness-my-orderlist {
+    margin: 0;
+}
+.ebCommitteeTerm .ebMyOrderHeader,
+.ebMyCommittees .ebMyOrderHeader,
+.ebCommitteeListing .ebMyOrderHeader {
+    margin: 10px 0 0;
+}
+.ebCommitteeTermList ul .ebusiness-profile-tab-style {
+    display: block;
+}
+.ebCommitteeTermList ul .ebusiness-profile-tab-style a{
+    display: block;
+    padding: 10px;
+    display: block;
+}
+/*Committee Listing CSS*/
+/*My Committees CSS*/
+.ebMyCommittees .eb-active-tabs {
+    padding-top: 0px;
+}
+.ebMyCommittees .eb-tabs-events {
+    margin-bottom: 15px;
+}
+/*My Committee CSS*/
+/*Committee Term CSS*/
+.ebCommitteeTermHeading {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+.ebCommitteeGeneralBox {
+    border: 1px solid #f0f0f0;
+    max-width: 450px;
+}
+    .ebCommitteeGeneralBox .row > div:first-child {
+        padding: 8px 15px;
+        display: block;
+        background: #f0f0f0;
+        border-bottom: 1px solid #ffffff;
+    }
+    .ebCommitteeGeneralBox .row > div:last-child {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        border-bottom: 1px solid #f0f0f0;
+    }
+        .ebCommitteeGeneralBox .row:last-child > div:first-child{
+    border-bottom: none;
+}
+.ebCommitteeTermList {
+    border-bottom: 1px solid #f0f0f0;
+}
+.ebCommitteeInformation hr{
+    border-color: #f0f0f0;
+}
+.ebCommitteeTermList ul li.active-maintab {
+    border: none;
+}
+.ebCommitteeTermList ul li.active-maintab a {
+    background: #0098cc;
+    color: #ffffff;
+}
+.ebCommitteeTermList ul li.active-maintab a img{
+    filter: brightness(0) invert(1);
+}
+.a-members-email{
+    word-break: break-all;
+}
+/*Committee Term CSS*/
+/*Footer Privacy CSS Start*/
+.footer-privacy {
+    display: flex;
+    justify-content: space-between;
+}
+/*Footer Privacy CSS End*/
+/* Added Edit icon in Company Directory Page */
+.ebFlex-jcsb {
+    display: flex;
+    justify-content: space-between;
+}
+.ebIcon-edit {
+    cursor: pointer;
+}
+.ebIcon-edit:after {
+    content: url(../images/icons/fontawesome/pencil-alt.svg);
+    display: inline-block;
+    width: 16px;
+    padding-top: 0;
+    line-height: 10px;
+    vertical-align: middle;
+    height: 16px;
+}
+.ebIcon-edit:hover:after{
+    filter: saturate(65%) brightness(75%);
+}
+.ebRight-none {
+    right: 0px;
+}
+/*.ebRight-none .eb-back-link{
+    padding-right: 0px;
+}*/
+/* Company Directory & Company Info Css Start  */
+.eb-align-right {
+    text-align: right;
+}
+.eb-company-details-page .eb-add-card {
+    margin-bottom: 10px;
+}
+.eb-comp-logo {
+    margin-right: 15px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.eb-comp-logo img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+.eb-comp-description {
+    display: flex;
+    margin-bottom: 20px;
+}
+.eb-comp-description h3{
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+.eb-grey-txt {
+    color: #969696;
+}
+.eb-website-link {
+    word-break: break-all;
+}
+.companyDirectory .membersAvailable .NoRecords {
+    margin: 0 -15px;
+}
+/* Company Directory & Company Info Css End  */
+/*Header dropdown Css Start*/
+.nav-item .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -3px;
+    padding: 0px;
+    box-shadow: 1px 2px 4px 0px #cbcbcb;
+    border-radius: 0 0 5px 5px;
+}
+.dropdown-menu li {
+    position: relative;
+}
+.dropdown-menu > li:active,
+.dropdown-menu > li:hover {
+    background-color: #f1f1f1
+}
+.eb-sub-menu > a:after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 2px);
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #018ed5;
+}
+.dropdown-menu.show li {
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+.dropdown-menu.show li:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+.toggle, [id^=ebCommunityCheckbox] {
+    display: none;
+}
+.navbar-brand:hover {
+    color: #fff;
+}
+.carousel-control-next, .carousel-control-prev {
+    opacity: 1;
+}
+.carousel-control-next:hover, .carousel-control-prev:hover {
+    opacity: 0.8;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #fff;
+}
+/*Tokenizer Css Start*/
+#tokenframe {
+    height: 210px;
+    width: 100%;
+}
+.tokenizer_payment_screen {
+    font-size: 14px;
+    font-family: Roboto, arial, sans-serif;
+}
+
+    .tokenizer_payment_screen .tokenizer_btn[disabled] {
+        cursor: default;
+        opacity: 0.5;
+    }
+
+    .tokenizer_payment_screen .tokenizer_btn {
+        min-width: 70px;
+        margin-top: 0.5em;
+        padding: 9px 15px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: #7ebe6a;
+        font-size: 14px;
+        line-height: 14px;
+        font-family: Roboto, arial, sans-serif;
+        color: #fff;
+        display: inline-block;
+        cursor: pointer;
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,.3);
+        height: 32px;
+    }
+        .tokenizer_payment_screen .tokenizer_btn.tokenizer_continue:hover {
+            background-color: #8dc059;
+        }
+
+        .tokenizer_payment_screen .tokenizer_btn.tokenizer_cancel {
+            background: #f1f1f1;
+            color: #777;
+            border: 1px solid #ccc;
+        }
+
+    .tokenizer_payment_screen .tokenizer_btn.tokenizer_cancel:hover {
+        background: #FFF;
+    }
+
+.tokenizer_error_block {
+    margin-bottom: 10px;
+}
+
+    .tokenizer_error_block span {
+        color: #db5c71;
+    }
+
+#tokenizerSaveForFutureDiv {
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 15px;
+}
+
+    #tokenizerSaveForFutureDiv input {
+        vertical-align: middle;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        margin-left: 0px !important;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,.3);
+        position: relative;
+        appearance: none;
+    }
+        #tokenizerSaveForFutureDiv input:hover {
+            border-color: rgba(82,168,236,0.8);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px rgba(82,168,236,0.6);
+        }
+        #tokenizerSaveForFutureDiv input:checked:after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 3px;
+            top: 0px;
+            width: 6px;
+            height: 10px;
+            border-width: 0 2px 2px 0;
+            border-style: solid;
+            border-color: #60b7e4;
+            transform-origin: bottom left;
+            transform: rotate(45deg);
+            box-sizing: border-box;
+        }
+    #tokenizerSaveForFutureDiv select {
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.65em;
+        background: #f9f9f9;
+        font-family: Roboto, arial, sans-serif;
+        text-indent: 0.33em;
+        height: 32px;
+        min-width: 110px;
+        margin-bottom: 20px;
+        color: #555555;
+        padding: 4px;
+        box-sizing: border-box;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    #tokenizerSaveForFutureDiv select:hover,
+    #tokenizerSaveForFutureDiv select:focus {
+        border-color: rgba(82,168,236,.8);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
+        outline: none;
+    }
+.tokenizer_field_wrapper {
+    margin: 5px 10px;
+}
+.tokenizer-cards-image-resize {
+    width: 55px !important;
+    height: 34px !important;
+    display: block;
+    background-position: -1px -1px;
+}
+.tokenizer_payment_screen .cards {
+    margin-bottom: 0px;
+    line-height: 0px;
+}
+.tokenizer_payment_screen .cards .card {
+    box-shadow: none;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.tokenizer_payment_screen .card.cdisabled {
+    background-position: 0 -35px;
+    opacity: 0.3;
+}
+.tokenizer_payment_screen .cards li {
+    display: inline-block;
+    line-height: 0px;
+}
+#tokenizerSaveForFutureDiv label,
+.heading-AcceptedCard {
+    font-family: Roboto, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-block;
+    text-align: right;
+    margin-bottom: 0px;
+    color: #555;
+}
+.card-list-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+}
+.payment-card-container {
+    margin: 35px 8px 12px;
+}
+.tokenizer-popup-header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.cardpointe-branding {
+    text-align: center;
+    padding: 35px;
+}
+.cardpointe-branding {
+    margin-top: 30px;
+    background: #ebebeb;
+}
+.cardpointe-branding span {
+    color: #999;
+    font-size: 10px;
+}
+.cardpointe-logo {
+    vertical-align: middle;
+    margin-right: 3px;
+    background-image: url('../images/cardpointe-logo.svg');
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 150px;
+    display: inline-block;
+}
+.tokenizer-visa {
+    background-image: url('../images/card-visa.gif');
+}
+.tokenizer-mastercard {
+    background-image: url('../images/card-mastercard.gif');
+}
+.tokenizer-discover {
+    background-image: url('../images/card-discover.gif');
+}
+.tokenizer-amex {
+    background-image: url('../images/card-amex.gif');
+}
+/*ACH Fields Css Start*/
+.achfields input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65em;
+    background: #f9f9f9;
+    font-family: Roboto, arial, sans-serif;
+    color: #304457;
+    text-indent: 0.33em;
+    height: 32px;
+    width: 230px;
+    margin-bottom: 14px;
+    color: #555;
+    padding: 4px;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+
+    .achfields input.error {
+        border: 1px solid #db5c71;
+    }
+
+    .achfields input:focus,
+    .achfields input:hover {
+        border-color: rgba(82,168,236,.8);
+        box-shadow: inset 0 1px 3px rgba(0,0,0,.1), 0 0 8px rgba(82,168,236,.6);
+        outline: none;
+    }
+
+.achfields label {
+    font-family: Roboto, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    display: block;
+    width: 230px;
+    margin-bottom: 5px;
+}
+
+.achfields {
+    padding: 0px 8px;
+}
+
+.payment-type-selection {
+    margin-bottom: 12px;
+}
+
+#card-number-label {
+    padding-top: 8px;
+}
+
+    #card-number-label label {
+        margin-bottom: 0px;
+    }
+
+.payment-type-selection label:before {
+    border: 1px solid #ababab;
+    content: "\00a0";
+    display: inline-block;
+    font: 12px/1em sans-serif;
+    height: 14px;
+    padding: 0;
+    margin: 0 5px;
+    vertical-align: text-bottom;
+    width: 14px;
+    border-radius: 8px;
+    top: 0px;
+    cursor: pointer;
+    position: relative;
+}
+
+.payment-type-selection input {
+    display: none;
+}
+
+.payment-type-selection label {
+    display: inline-block;
+}
+
+.payment-type-selection input:checked + label:before {
+    border-style: inset;
+    height: 8px;
+    width: 8px;
+    border: 4px solid #60b7e4;
+    border-radius: 100%;
+    background-color: #fff;
+    top: 0px;
+    position: relative;
+}
+
+.payment-type-selection > div {
+    margin-top: 6px;
+}
+/*ACH Fields Css Start*/
+/*Tokenizer Css Only for Ebiz Start*/
+.payment-card-container {
+    margin-top: 0px;
+}
+
+.payment-type-selection label:before {
+    box-sizing: content-box;
+}
+.payment-type-selection > div:nth-child(2) {
+    margin-top: 0px;
+}
+/*Tokenizer Css Only for Ebiz End*/
+/*Tokenizer Css End*/
+/* Bootstrap 5.3 Caraousel Css Start*/
+.carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    margin-right: -100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-item {
+        transition: none;
+    }
+}
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+}
+
+    .carousel-item-next:not(.carousel-item-start),
+    .active.carousel-item-end {
+        transform: translateX(100%);
+    }
+
+    .carousel-item-prev:not(.carousel-item-end),
+    .active.carousel-item-start {
+        transform: translateX(-100%);
+    }
+
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition-property: opacity;
+    transform: none;
+}
+
+    .carousel-fade .carousel-item.active,
+    .carousel-fade .carousel-item-next.carousel-item-start,
+    .carousel-fade .carousel-item-prev.carousel-item-end {
+        z-index: 1;
+        opacity: 1;
+    }
+
+.carousel-fade .active.carousel-item-start,
+.carousel-fade .active.carousel-item-end {
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0s 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-fade .active.carousel-item-start,
+    .carousel-fade .active.carousel-item-end {
+        transition: none;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: none;
+    border: 0;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        transition: none;
+    }
+}
+
+.carousel-control-prev:hover, .carousel-control-prev:focus,
+.carousel-control-next:hover,
+.carousel-control-next:focus {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    opacity: 0.9;
+}
+
+.carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin-right: 15%;
+    margin-bottom: 1rem;
+    margin-left: 15%;
+}
+
+    .carousel-indicators [data-bs-target] {
+        box-sizing: content-box;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 3px;
+        padding: 0;
+        margin-right: 3px;
+        margin-left: 3px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        opacity: 0.5;
+        transition: opacity 0.6s ease;
+    }
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-indicators [data-bs-target] {
+        transition: none;
+    }
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 1.25rem;
+    left: 15%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+}
+/*Old bootstrapv4 overwite css*/
+.active.carousel-item-right,
+.carousel-item-next {
+    -webkit-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0)
+}
+
+.active.carousel-item-left,
+.carousel-item-prev {
+    -webkit-transform: translateX(0%);
+    transform: translateX(-0%)
+}
+
+@supports ((-webkit-transform-style:preserve-3d) or (transform-style:preserve-3d)) {
+    .active.carousel-item-left,
+    .carousel-item-prev {
+        -webkit-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0)
+    }
+}
+/* Bootstrap 5.3 Caraousel Css End*/
+.ebusiness-view-switcher .dropdown {
+    display: inline-block;
+}
+#companyDropdown .dropdown {
+    display: inline-block;
+}
+.dropdown-menu-end {
+    right: 0px !important;
+    left: auto !important;
+}
+/* My downloads Page Css Start */
+.ebusiness-profile-tab-style a {
+    padding: 10px 22px;
+}
+.ebMyDownloads .ebusiness-my-orderlist {
+    margin: 0px;
+}
+.ebusiness-tabs-my-profile-page {
+    max-width: none;
+    justify-content: center;
+}
+.ebMyDownloads .heading-labels-orders,
+.ebMyDownloads .ebusiness-order-id-dwnld {
+    word-break: break-word;
+}
+.eb-disable-link {
+    color: #828282 !important;
+    pointer-events: none;
+}
+.ebMyDownloads .FilterSort-Options {
+    margin-bottom: 5px;
+}
+/* My downloads Page Css End */
+/* Tokenizer Css for the tooltip overlay Start */
+.achtooltiptext {
+    display: none;
+}
+
+.ach-tooltip-overlay {
+    position: relative;
+}
+
+.ach-tooltip-overlay .achtooltiptext {
+    visibility: hidden;
+    width: 230px;
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    color: #555;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: -6px;
+    left: 245px;
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+    line-height: 16px;
+    display: inline-block;
+}
+
+.ach-tooltip-overlay .achtooltiptext:after,
+.ach-tooltip-overlay .achtooltiptext:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #f0f0f0;
+    position: absolute;
+    left: -9px;
+    top: 16px;
+    z-index: 2;
+}
+
+.ach-tooltip-overlay .achtooltiptext:after {
+    border-right-color: #dcdcdc;
+    left: -10px;
+    z-index: 1;
+}
+
+.ach-tooltip-overlay:hover .achtooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+span.ach-tooltip-overlay .achtooltiptext {
+    top: 13px;
+    left: 25px;
+    transform: none;
+}
+span.ach-tooltip-overlay:before {
+    content: "";
+    background: url(../images/icons/icon_circle-info-solid.svg) no-repeat center/cover;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    right: -20px;
+    top: -2px;
+}
+/* Tokenizer Css for the tooltip overlay End */
+.eb-ach-type {
+    line-height: 24px;
+    padding-left: 40px;
+}
+.eb-ach-type input{
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - 5px));
+    left: 8px;
+}

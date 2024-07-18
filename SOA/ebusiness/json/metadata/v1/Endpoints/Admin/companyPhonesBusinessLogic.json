@@ -1,0 +1,64 @@
+﻿{
+  "profileCompaniesPhonesRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0ProfileCompaniesPhones",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+
+
+  "companiesPhoneRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0CompaniesPhones",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "validatePhonePayload": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Phone Payload",
+      "processFlowParameters": {
+        "requestPoco": "@request.objectValue"
+      }
+    }
+  },
+  "companyEmbeddedPhoneFieldNameRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Embedded Phone ID Field Name",
+      "processFlowParameters": {
+        "embeddedPhoneFieldName": "@Request.name"
+      }
+    }
+  },
+  "getPhoneRequestNameFieldValue": {
+    "$ref": "../../Common/businessLogic.json#/inputContextValueRetriever",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "InputContextObject": "@Request",
+        "PropertyName": "name"
+      }
+    }
+  },
+  "companyPhoneSubTypeRetriever": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Subtype GE Object",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null,
+        "fieldName": null,
+        "fieldValue": null
+      }
+    }
+  }
+
+}

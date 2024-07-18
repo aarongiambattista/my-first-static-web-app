@@ -1,0 +1,65 @@
+﻿<div class="text-right"><span class="d-inline d-sm-inline d-lg-none" data-bind="click:toggleFilterControl"><a class="fa-icon" title="Sort/Filter"><img src="../images/icons/fontawesome/filter.svg" /></a></span></div>
+<div class="ebusiness-filter-details-panel" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+    <div class="ebusiness-sorting">
+        <div class="ebusiness-filter-section-title">Sorting</div>
+        <ul role="menu">
+            <li>
+                <label>
+                    <input type="radio" name="radioGroupSort" value="Latest" data-bind="checked: radioSelectedOptionValue, click: setLatestOrders">
+                    Recent Orders
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" name="radioGroupSort" value="Oldest" data-bind="checked: radioSelectedOptionValue, click: setOldestData">
+                    Oldest Orders
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" name="radioGroupSort" value="Order Type" data-bind="checked: radioSelectedOptionValue, click: setOrderType">
+                    Order Type
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div class="ebusiness-filter">
+        <div class="ebusiness-filter-section-title">Filters</div>
+        <div class="ebusiness-filter-options">
+            <span>Select Period</span>
+            <ul role="menu">
+                <li>
+                    <label>
+                        <input type="radio" name="FilterType" value="30" data-bind="checked: selectedCategory, click: filterByDays">
+                        Last 30 Days
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="FilterType" value="90" data-bind="checked: selectedCategory, click: filterByDays">
+                        Last 90 Days
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="FilterType" value="180" data-bind="checked: selectedCategory, click: filterByDays" />
+                        Last 180 Days
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="FilterType" value="365" data-bind="checked: selectedCategory, click: filterByDays" />
+                        Last Year
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="FilterType" value="All Time" data-bind="checked: selectedCategory, click: filterByDays" />
+                        All Time
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

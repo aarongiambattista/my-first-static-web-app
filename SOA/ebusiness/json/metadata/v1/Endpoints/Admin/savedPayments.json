@@ -1,0 +1,155 @@
+﻿{
+  
+  "getCompanySingleSavedPaymentMethod": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get a Credit Card Type Saved Payment Method of the company",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetSingleSavedPaymentInput",
+      "$ref": "savedPaymentsEntities.json#/savedPaymentInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "SavedPaymentOutput"
+    },
+    "businessLogic": {
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrieval"
+      },
+      "validateSavedPaymentMethod": {
+        "$ref": "savedPaymentsBusinessLogic.json#/validateSavedPaymentMethod",
+        "processFlowProperties": {
+          "processFlowName": "Validate Saved Payment Methods",
+          "processFlowParameters": {
+            "SavedPaymentMethods": "@parent.singleSubTypeRetrival.outputDataObjectTable"
+          }
+        }
+      }
+    }
+  },
+  
+  "getAllSavedPaymentMethods": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get all Credit Card Type Saved Payment Methods of the company",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "savedPaymentsEntities.json#/savedPaymentOutput",
+      "name": "getAllSavedPaymentMethodsOutput"
+    },
+    "businessLogic": {
+      "savedPaymentRetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrieval"
+      }
+    }
+  },
+
+  "getSingleACHSavedPaymentMethod": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get a ACH Type Saved Payment Method of the company",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "savedPaymentId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemInput",
+      "name": "GetSingleACHSavedPaymentMethodInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "ACHSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "singleSubTypeRetrival": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrievalForACH"
+      },
+      "validateSavedPaymentMethod": {
+        "$ref": "savedPaymentsBusinessLogic.json#/validateSavedPaymentMethod",
+        "processFlowProperties": {
+          "processFlowName": "Validate Saved Payment Methods",
+          "processFlowParameters": {
+            "SavedPaymentMethods": "@parent.singleSubTypeRetrival.outputDataObjectTable"
+          }
+        }
+      }
+    }
+  },
+  "getAllACHSavedPaymentMethods": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get all ACH Type Saved Payment Methods of the company",
+      "httpMethod": "GET",
+      "segments": {
+        "SavedPaymentMethods": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentACHItemOutput",
+      "name": "getAllACHSavedPaymentMethodsOutput"
+    },
+    "businessLogic": {
+      "savedPaymentRetrieval": {
+        "$ref": "savedPaymentsBusinessLogic.json#/savedPaymentRetrievalForACH"
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+﻿{
+  "getTopicCodesForRecord": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Gets set of active topic codes for a record.",
+      "httpMethod": "GET",
+      "segments": {
+        "TopicCodes": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "topiccodesentities.json#/activeTopicCodesOutput",
+      "name": "activeTopicCodesOutput"
+    },
+    "businessLogic": {
+      "activeTopicCodesRetrieval": {
+        "$ref": "topiccodesbusinesslogic.json#/topicCodesLinksForRecord"
+      }
+    }
+  },
+  "deactivateTopicCodesForRecord": {
+    "parent": {
+      "name": "getTopicCodesForRecord"
+    },
+    "route": {
+      "description": "Deactivates an active topic code on a record.",
+      "httpMethod": "DELETE",
+      "segments": {
+        "topicCodeId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "deactivateTopicCodeInput",
+      "$ref": "topiccodesentities.json#/deactivateTopicCodeInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "activeTopicCodesRetrieval": {
+        "$ref": "topiccodesbusinesslogic.json#/deactivateTopicCodesLinkForRecord"
+      }
+    }
+  },
+  "activateTopicCodesForRecord": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Activates a topic code on a record.",
+      "httpMethod": "POST",
+      "segments": {
+        "TopicCodes": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "addTopicCodeInput",
+      "$ref": "topiccodesentities.json#/addTopicCodeInput"
+    },
+    "outputEntityDefinition": {
+      "name": "addTopicCodeOutput",
+      "$ref": "topiccodesentities.json#/activeTopicCodesOutput"
+    },
+    "businessLogic": {
+      "activateTopicCodes": {
+        "$ref": "topiccodesbusinesslogic.json#/activateTopicCodesLinkForRecord"
+      },
+      "returnActivatedTopicCode": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.activateTopicCodes.outputTopicCode",
+            "outputPropertyName": "outputTopicCode"
+          }
+        }
+      }
+    }
+  },
+  "updateTopicCodesForRecord": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "description": "Updates the set of active topic codes for a record. The supplied list of topic codes are activated and the other topic codes are deactivated.",
+      "httpMethod": "PUT",
+      "segments": {
+        "TopicCodes": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "updateTopicCodeInput",
+      "$ref": "topiccodesentities.json#/updateTopicCodesInput"
+    },
+    "outputEntityDefinition": {
+      "name": "addTopicCodeOutput",
+      "isCollection": true,
+      "$ref": "topiccodesentities.json#/activeTopicCodesOutput"
+    },
+    "businessLogic": {
+      "updateTopicCodes": {
+        "$ref": "topiccodesbusinesslogic.json#/updateTopicCodesLinkForRecord"
+      },
+      "returnActivatedTopicCode": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.updateTopicCodes.outputTopicCodeList",
+            "outputPropertyName": "outputTopicCodeList"
+          }
+        }
+      }
+    }
+  }
+}

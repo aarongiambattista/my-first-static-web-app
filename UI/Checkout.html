@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Checkout</title>
+    <script src="js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script src="js/3rdParty/knockout.validation.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <!--Solved icons issue-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/eb6.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/style_applepay.css">
+    <script src="js/configuration/ebConfig.js"></script>
+    <script src="js/UserContext.js"></script>
+    <script src="js/ShoppingCart.js"></script>
+    <script src="js/PaymentMethods.js"></script>
+    <script src="js/PaymentSummary.js"></script>
+    <script src="js/Checkout.js"></script>
+    <script src="js/HeaderMenu.js"></script>
+    <script src="js/Footer.js"></script>
+    <script src="js/Tokenizer.js"></script>
+    <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+    <script src="js/Aptify.Gpay.js"></script>
+    <script src="js/Aptify.ApplePay.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div id="Checkout"></div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            var options = {}
+            options.domElement = eBusinessJQObject('#Checkout')[0];
+            options.templatePath = eb_Config.SitePath + "html/Checkout.html";
+            eb_Config.config(options, eb_checkout);
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load.
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    eBusinessJQObject.when(eb_shoppingCart.getShoppingCart()).done(function (result) {
+                        var cartOptions = {};
+                        cartOptions.shoppingCartData = result;
+                        eb_shoppingCart.live = new eb_shoppingCart.shoppingCartModel(cartOptions);
+
+                        //load footer control
+                        var footerOptions = footerOptions || {};
+                        footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                        footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                        eb_Footer.render(footerOptions).done(function () {
+                            //load header control
+                            var headerOptions = headerOptions || {};
+                            headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                            headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                            headerOptions.userContext = eb_UserContext.live;
+                            headerOptions.shoppingCart = eb_shoppingCart.live;
+                            eb_HeaderMenu.render(headerOptions).done(function () {
+                                eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                eb_checkout.render(options).done(function () {
+                                    /*checkout render and binding.*/
+                                    options.shoppingCart = eb_shoppingCart.live;
+                                    options.personId = eb_UserContext.live.LinkId();
+                                    eb_checkout.live = new eb_checkout.model(options); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                    ko.applyBindings(eb_checkout.live, eb_checkout.live.domElement);/*Apply KO bindings, fire up the control*/
+
+                                    /*payment Methods such as [Credit Card, Paypal and BillMeLater]*/
+                                    var genericPaymentMethods = {};
+                                    genericPaymentMethods.domElement = eBusinessJQObject(eb_checkout.live.domElement).find(".ebusiness-profile-card-savedCards")[0];
+                                    genericPaymentMethods.templatePath = eb_Config.SitePath + "html/PaymentMethods.html";
+                                    eb_Config.config(genericPaymentMethods, eb_paymentControl);
+
+                                    eb_paymentControl.render(genericPaymentMethods).done(function () {
+                                        eBusinessJQObject.when(eb_paymentControl.getValidPayments(eb_UserContext.live.LinkId()),
+                                            eb_paymentControl.getAllRecords(eb_UserContext.live.LinkId()),
+                                            eb_paymentControl.getAllACHSavedCardRecords(eb_UserContext.live.LinkId())).done(function (payments, savedCards, achCards) {
+                                                genericPaymentMethods.validPayments = payments;
+                                                genericPaymentMethods.savedCards = savedCards;
+                                                genericPaymentMethods.achCards = achCards;
+                                                eb_paymentControl.live = new eb_paymentControl.paymentModel(genericPaymentMethods, eb_checkout.live); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                ko.applyBindings(eb_paymentControl.live, eb_paymentControl.live.domElement);/*Apply KO bindings, fire up the control*/
+
+                                                /*Payment Summary Details Info*/
+                                                var paymentSummaryDetails = {};
+                                                paymentSummaryDetails.domElement = eBusinessJQObject(eb_checkout.live.domElement).find(".ebusiness-ui-payment-summary")[0];
+                                                paymentSummaryDetails.templatePath = eb_Config.SitePath + "html/PaymentSummary.html";
+                                                eb_Config.config(paymentSummaryDetails, eb_paymentSummaryDetails);
+
+                                                eb_paymentSummaryDetails.render(paymentSummaryDetails).done(function () {
+                                                    paymentSummaryDetails.shoppingCart = eb_shoppingCart.live;
+                                                    eb_paymentSummaryDetails.live = new eb_paymentSummaryDetails.model(paymentSummaryDetails); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                    eb_paymentSummaryDetails.live.hidePaymentDetails(0);
+                                                    eb_paymentSummaryDetails.live.showHandlingChargesNote(0);               /*Remove the note of handling charges from checkout and confirmation page.*/
+                                                    ko.applyBindings(eb_paymentSummaryDetails.live, eb_paymentSummaryDetails.live.domElement);/*Apply KO bindings, fire up the control*/
+
+                                                    //Load GPay Payment Type Div
+                                                    gPayPriceSettings.totalPrice = eb_paymentSummaryDetails.live.subTotalWithoutCurrencySymbol();
+                                                    gPayPriceSettings.currencySymbol = eb_shoppingCart.live.currencySymbol();
+                                                    onGooglePayLoaded(eb_paymentControl);
+
+                                                    //Load Apple Pay Settings
+                                                    applePayPriceSettings.totalPrice = eb_paymentSummaryDetails.live.subTotalWithoutCurrencySymbol();
+                                                    applePayPriceSettings.currencySymbol = eb_shoppingCart.live.currencySymbol();
+
+                                                }).fail(function (data, msg, jhr) {
+                                                    console.error("Failed to get payment Summary Details.");
+                                                });
+                                            }).fail(function (xhr, msg, data) {
+                                                console.error("Failed to get SPMs.");
+                                                eb_Config.getErrorMessageForControl(data.responseJSON, eb_checkout);
+                                            });
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error("Failed to get payment Methods.");
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error("Failed to get checkout render.");
+                                });
+                            }).fail(function (data, msg, jhr) {
+                                console.error("Failed to render header control.");
+                            });
+                        }).fail(function (data, msg, jhr) {
+                            console.error('Failed to render footer control...');
+                        });
+                    }).fail(function (data, msg, jhr) {
+                        console.error('Failed to get ShoppingCart data...');
+                        eb_Config.getErrorMessageForControl(data.responseJSON, eb_checkout);
+                    });
+                } else {
+                    window.location.assign(eb_Config.loginPageURL);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

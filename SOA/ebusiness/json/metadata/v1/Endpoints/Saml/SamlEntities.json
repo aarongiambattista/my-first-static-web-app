@@ -1,0 +1,23 @@
+﻿{
+  "SamlInput": {
+    "fields": {
+      //"SAMLRequest": {
+      //  "type": "string",
+      //  "description": "Incoming SAML XML request",
+      //  "input": {
+      //    "httpMethods": [  "POST" ],
+      //    "requiredHttpMethods": [  "POST" ],
+      //    "source": "body"
+      //  }
+      //},
+      "RelayState": {
+        "type": "string",
+        "description": "RelayState if on the input payload will be appended to the logout response",
+        "input": {
+          "httpMethods": [ "GET", "POST" ],
+          "source": "queryString"
+        }
+      }
+    }
+  }
+}

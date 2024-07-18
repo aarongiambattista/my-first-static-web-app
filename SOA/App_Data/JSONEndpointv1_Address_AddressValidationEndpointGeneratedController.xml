@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Address_AddressValidationEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.AddressValidation(Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationInput)">
+            <summary>
+            Validate provided address and suggest new address.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.status">
+            <summary>
+            The validation status of address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.line1">
+            <summary>
+            The line1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.line2">
+            <summary>
+            The line2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.line3">
+            <summary>
+            The line3 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.county">
+            <summary>
+            The county of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Address_AddressValidationEndpoint.v1_Address_AddressValidationEndpointController.addressValidationOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+    </members>
+</doc>

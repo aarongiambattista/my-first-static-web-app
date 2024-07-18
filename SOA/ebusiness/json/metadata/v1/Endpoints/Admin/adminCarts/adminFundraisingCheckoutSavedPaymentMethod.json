@@ -1,0 +1,148 @@
+﻿{
+  "fundraisingCheckoutBySavedPaymentMethod": {
+    "route": {
+      "description": "Completes fundraising checkout using a saved payment method.",
+      "httpMethod": "POST",
+      "segments": {
+        "Fundraising": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SavedPayment": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "fundraisingSavedPaymentInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "amount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "savedPaymentId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          },
+          "security": {
+            "isYourSavedPaymentMethod": {
+              "$ref": "../../../Common/security.json#/isYourCompanySavedPaymentMethod"
+            }
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "fundraisingSavedPaymentOutput"
+    },
+    "businessLogic": {
+      "sharedProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/sharedProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1"
+          }
+        }
+      },
+      "fundraisingProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1",
+            "verifiers": [
+              "IsFundraisingProduct"
+            ]
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateAndUpdateCartForFundRaising": {
+        "$ref": "adminFundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+      },
+      "ensureActiveCartForFundraising": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "updateFundraisingCart": {
+        "$ref": "adminFundraisingBusinessLogic.json#/restoreSavedCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "FundraisingCartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE",
+            "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+            "Status": "Fundraising_Temporary"
+          }
+        }
+      },
+      "addFundraisingProduct": {
+        "$ref": "adminFundraisingBusinessLogic.json#/addFundraisingProduct",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "ProductId": "@request.productId",
+            "Amount": "@request.amount",
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "validateOrderForCoupon": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "addSavedPaymentMethodInfo": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addSavedPaymentMethodInfo",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE",
+            "SavedPaymentId": "@request.savedPaymentId",
+            "CVV": "@request.cvv"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "CartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE"
+          }
+        }
+      },
+      //"sendOrderConfirmationEmailCheckout": {
+      //  "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      //},
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

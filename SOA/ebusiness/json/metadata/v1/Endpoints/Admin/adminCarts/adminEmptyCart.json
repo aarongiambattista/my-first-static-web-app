@@ -1,0 +1,40 @@
+{
+  "adminEmptyCart": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Removes all items from the admin cart.",
+      "httpMethod": "DELETE",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "outputEntityDefinition": null,
+    "inputEntityDefinition": null,
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "emptyTheCart": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Clear Subtype",
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE",
+            "subTypeName": "OrderLines"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      }
+    }
+  }
+}

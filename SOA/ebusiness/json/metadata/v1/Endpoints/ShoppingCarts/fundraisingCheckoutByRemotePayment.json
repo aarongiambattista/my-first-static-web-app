@@ -1,0 +1,200 @@
+﻿{
+  "getRemotePaymentRequestDataForFundraisingCheckout": {
+    "route": {
+      "description": "Gets the remote payment request data for fundraising.",
+      "httpMethod": "POST",
+      "segments": {
+        "Fundraising": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GetRemotePaymentRequest": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "RemotePaymentRequestInputForFundraising",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "amount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/getRemotePaymentRequestOutput",
+      "name": "RemotePaymentRequestOutputForFundraising"
+    },
+    "businessLogic": {
+      "sharedProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/sharedProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1"
+          }
+        }
+      },
+      "fundraisingProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1",
+            "verifiers": [
+              "IsFundraisingProduct"
+            ]
+          }
+        }
+      },
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateAndUpdateCartForFundRaising": {
+        "$ref": "fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+      },
+      "ensureActiveCartForFundraising": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "updateFundraisingCart": {
+        "$ref": "fundraisingBusinessLogic.json#/restoreSavedCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "FundraisingCartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE",
+            "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+            "Status": "Fundraising_Temporary"
+          }
+        }
+      },
+      "addFundraisingProduct": {
+        "$ref": "fundraisingBusinessLogic.json#/addFundraisingProduct",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "ProductId": "@request.productId",
+            "Amount": "@request.amount",
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "validateOrderForCoupon": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "addPaymentTypeOnOrderObject": {
+        "$ref": "checkoutBusinessLogic.json#/AddPaymentTypeOnOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "action": "save",
+            "GE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE"
+          }
+        }
+      },
+      "retrieveRemotePaymentURL": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Remote Payment RequestData",
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE"
+          }
+        }
+      }
+    }
+  },
+  "processRemotePaymentResponseForFundraisingCheckout": {
+      "route": {
+        "description": "Processes the remote payment response data for fundraising.",
+        "httpMethod": "POST",
+        "segments": {
+          "Fundraising": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "ProcessRemoteResponse": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "entityDefinitions.json#/processRemotePaymentResponseInput",
+        "name": "ProcessRemotePaymentResponseInputForFundraising"
+      },
+      "outputEntityDefinition": {
+        "$ref": "entityDefinitions.json#/processRemotePaymentResponseOutput",
+        "name": "ProcessRemotePaymentResponseOutputForFundraising"
+      },
+      "businessLogic": {
+        "retrieveCart": {
+          "$ref": "shoppingBusinessLogic.json#/retrieveCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "currentUserIdentifierType": "@ShoppingCartUserIdentifier.identifierType",
+              "currentUserIdentifierValue": "@ShoppingCartUserIdentifier.identifierValue",
+              "serviceApplicationName": "@AuthenticatedAttributes.ServiceApplicationName",
+              "cartStatus": "Fundraising_Temporary"
+            }
+          }
+        },
+        "processRemotePaymentResponse": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Process Remote Payment Response Data",
+            "processFlowParameters": {
+              "ResponseData": "@request.responseData"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.processRemotePaymentResponse.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      }
+    }
+}

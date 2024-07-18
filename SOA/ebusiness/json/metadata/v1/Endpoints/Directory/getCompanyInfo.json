@@ -1,0 +1,52 @@
+{
+  "getCompanyInfo": {
+    "route": {
+      "httpMethod": "GET",
+      "description": "Gets Company Information",
+      "segments": {
+        "getCompanyInfo": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Id": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "CompanyInfoInput",
+      "fields": {
+        "Id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "POST" ],
+            "source": "path"
+          }
+        }
+      }
+      },
+    "outputEntityDefinition": {
+      "name": "GetCompaniesInfoOutput",
+      "$ref": "DirectoryEndpoint.json#/entityDefinitions/companiesDirectoryOutput"
+    },
+      "businessLogic": {
+        "allCommitteesRetrieve": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness7_0CompanyDirectory",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+
+    }
+}

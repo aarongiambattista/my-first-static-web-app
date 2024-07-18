@@ -1,0 +1,17 @@
+﻿{
+  "name": "Common paging definition",
+  "fieldDefinitions": [
+    {
+      "name": "$top",
+      "type": "long",
+      "httpMethods": [ "GET" ],
+      "source": "queryString"
+    },
+    {
+      "name": "$skip",
+      "type": "long",
+      "httpMethods": [ "GET" ],
+      "source": "queryString"
+    }
+  ]
+}

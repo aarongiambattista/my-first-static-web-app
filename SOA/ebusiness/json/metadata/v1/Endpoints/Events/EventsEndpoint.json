@@ -1,0 +1,744 @@
+﻿{
+  "endpoints": {
+    "getAllEvents": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details for all events, including top levels and sessions and sessions of sessions.",
+        "segments": {
+          "Events": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetTopLevelEventInput",
+        "fields": {
+          "TopLevelOnly": {
+            "type": "bool",
+            "description": "If true then this will only return top level event information. Otherwise top level and child events will be included",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "queryString"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventsOutput",
+        "name": "AllEvents"
+      },
+      "businessLogic": {
+        "allEventsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0EventsDetails",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getSingleEvent": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details for a single item in the events catalog.",
+        "segments": {
+          "Events": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "productId": {
+            "isLiteral": false,
+            "type": "long"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSingleEventInput",
+        "fields": {
+          "productId": {
+            "type": "long",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "path"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "name": "getEventsOutput",
+        "$ref": "#/entityDefinitions/EventsOutput",
+        "name": "SingleEvent"
+      },
+      "businessLogic": {
+        "singleEventRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0EventsDetails",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getEventSessions": {
+      "parent": {
+        "name": "getSingleEvent"
+      },
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details for sessions and sessions of sessions of an event",
+        "segments": {
+          "Sessions": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventsOutput",
+        "name": "EventSessions"
+      },
+      "businessLogic": {
+        "getEventsSpeakersRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0EventSessions",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getEventSpeakers": {
+      "parent": {
+        "name": "getSingleEvent"
+      },
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details of Speakers for a particular event",
+        "segments": {
+          "Speakers": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetEventSpeakers",
+        "fields": {
+          "includeSessionSpeakers": {
+            "description": "If true then this will both event speaker and its session's speaker details. Otherwise only event speaker details included",
+            "type": "bool",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "queryString"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventSpeakerDetails",
+        "name": "EventSpeakerDetails"
+      },
+      "businessLogic": {
+        "getEventsSpeakersRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0EventSpeakers",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getEventSponsors": {
+      "parent": {
+        "name": "getSingleEvent"
+      },
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details of Sponsers for a particular meeting",
+        "segments": {
+          "Sponsors": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetEventSponsors",
+        "fields": {
+          "includeSessionSponsors": {
+            "description": "If true then this will both event sponsor and its session's sponsor details. Otherwise only event sponsor details included",
+            "type": "bool",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "queryString"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventSponsorDetails",
+        "name": "EventSponsorDetails"
+      },
+      "businessLogic": {
+        "getEventsSpeakersRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0EventSponsors",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getMyEvents": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves the details of events for which person is registered",
+        "segments": {
+          "ProfilePersons": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "id": {
+            "isLiteral": false,
+            "type": "long",
+            "security": {
+              "IsYourRecord": {
+                "$ref": "../../Common/security.json#/isYourRecord"
+              }
+            }
+          },
+          "Events": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "getMyEventInput",
+        "fields": {
+          "id": {
+            "type": "long",
+            "input": {
+              "httpMethods": [ "GET", "PATCH" ],
+              "source": "path"
+            }
+          },
+          "TopLevelOnly": {
+            "type": "bool",
+            "description": "If true then this will only return top level event information. Otherwise top level and child events will be included",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "queryString"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventsOutput",
+        "name": "MyEvents"
+      },
+      "businessLogic": {
+        "getMyEventsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0PersonEvents"
+            }
+          }
+        }
+      }
+    },
+    "getEventAttendeeSearch": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Retrieves details of attendee when searchterm is provided.",
+        "segments": {
+          "Events": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Attendees": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Search": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSearchTermInput",
+        "fields": {
+          "SearchTerm": {
+            "type": "string",
+            "description": "When searchterm is given, it results in list of attendee details related to that serach term , if not this will result into error.",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "requiredHttpMethods": [ "GET" ],
+              "source": "queryString"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/EventAttendeeDetails",
+        "name": "EventAttendeeDetails"
+      },
+      "businessLogic": {
+        "allEventsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0SearchFullTextAttendee",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "createEventAttendee": {
+      "route": {
+        "httpMethod": "POST",
+        "description": "Creates a new person in the system that can then be used as an attendee for event registration",
+        "segments": {
+          "Events": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Attendees": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "CreateEventAttendeeInputPOST",
+        "fields": {
+          "firstName": {
+            "type": "string",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "body",
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "lastName": {
+            "type": "string",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "body",
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "email": {
+            "type": "string",
+            "sourceField": "email1",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "body",
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "city": {
+            "type": "string",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "body",
+              "requiredHttpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "name": "EventAttendeeOutput",
+        "fields": {
+          "id": {
+            "type": "long",
+            "description": "The unique identifier of the newly created person"
+          }
+        }
+      },
+      "businessLogic": {
+        "singleGERetrieval": {
+          "$ref": "../../Endpoints/ProfilePersons/personBusinessLogic.json#/newGERetrieval"
+        },
+        "applyClientInput": {
+          "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "geObjectToMap": "@parent.singleGERetrieval.outputGE"
+            }
+          }
+        },
+        "personDupeCheck": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Event: Person Dupe Check",
+            "processFlowParameters": {
+              "Email1": "@request.email",
+              "FirstName": "@request.firstName",
+              "LastName": "@request.lastName",
+              "DatabaseObject": "spGeteBusiness6_0PersonDupeCheck",
+              "GE": "@parent.singleGERetrieval.outputGE"
+            }
+          }
+        },
+        "createRecord": {
+          "$ref": "../../Endpoints/ProfilePersons/personBusinessLogic.json#/createRecord",
+          "processFlowProperties": {
+            "processFlowName": "Execute GE Action",
+            "processFlowParameters": {
+              "GE": "@parent.singleGERetrieval.outputGE"
+            }
+          }
+        },
+        "returnThePerson": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.singleGERetrieval.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      }
+    },
+    "getEventRelatedProducts": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "events": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "productIds": {
+            "isLiteral": false,
+            "type": "string"
+          },
+          "RelatedProducts": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves the details every a event."
+      },
+      "inputEntityDefinition": {
+        "name": "GetRelatedProductsInput",
+        "fields": {
+          "productIds": {
+            "type": "string",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "path"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/EventRelatedProductsDetails",
+        "name": "RelatedProductsDetails",
+        "isCollection": true
+      },
+      "businessLogic": {
+        "singleProductRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_RelatedProducts",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "EventSpeakerDetails": {
+      "fields": {
+        "eventId": {
+          "type": "long",
+          "description": "product id of an event."
+        },
+        "name": {
+          "type": "string",
+          "description": "Speaker of an event"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "companyName of Speaker"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of Speaker like Primary Speaker"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of Speaker like Regular,Panelist"
+        }
+      }
+    },
+    "EventSponsorDetails": {
+      "fields": {
+        "eventId": {
+          "type": "long",
+          "description": "product id of an event."
+        },
+        "name": {
+          "type": "string",
+          "description": "Sponsor of an event."
+        }
+      }
+    },
+    "EventAttendeeDetails": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "PersonID of Event Attendee"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First Name of Attendee"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last Name of Attendee"
+        },
+        "city": {
+          "type": "string",
+          "description": "City of Event Attendee"
+        }
+      }
+    },
+    "EventsOutput": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "product id of an event."
+        },
+        "parentProductId": {
+          "type": "long",
+          "description": "parent product id of an event."
+        },
+        "hasSessions": {
+          "type": "boolean",
+          "description": "true, when child sessions are available for particular event."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of an event."
+        },
+        "startDate": {
+          "type": "date",
+          "description": "Startdate of an event."
+        },
+        "endDate": {
+          "type": "date",
+          "description": "EndDate of an event."
+        },
+        "requireAvailableSpace": {
+          "type": "boolean",
+          "description": "If true, it will not be possible to add a registration for this even if there is no more available space."
+        },
+        "webName": {
+          "type": "string",
+          "description": "WebName of an event."
+        },
+        "webDescription": {
+          "type": "string",
+          "description": "A short rich text description of event with html encoding."
+        },
+        "webLongDescription": {
+          "type": "string",
+          "description": "A long rich text description of event with html encoding."
+        },
+        "hasComplexPricing": {
+          "type": "boolean",
+          "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+        },
+        "defaultPrice": {
+          "type": "decimal"
+        },
+        "defaultMemberPrice": {
+          "type": "decimal"
+        },
+        "nonMemberPrice": {
+          "type": "decimal"
+        },
+        "retailPrice": {
+          "type": "decimal"
+        },
+        "earlyRegistrationDate": {
+          "type": "date"
+        },
+        "regularRegistrationDate": {
+          "type": "date"
+        },
+        "lateRegistrationDate": {
+          "type": "date"
+        },
+        "earlyRegistrationDiscount": {
+          "type": "decimal",
+          "description": "Early registration discount, if applied to event."
+        },
+        "lateRegistrationFee": {
+          "type": "decimal",
+          "description": "Late registration fee/dues, if applied to event."
+        },
+        "availableSpace": {
+          "type": "long",
+          "description": "The available amount of space for an event."
+        },
+        "maxSpace": {
+          "type": "long",
+          "description": "The maximum amount of space for an event."
+        },
+        "addressLine1": {
+          "type": "string",
+          "sourceField": "addressLine1",
+          "description": "The addressLine1 of this event."
+        },
+        "addressLine2": {
+          "type": "string",
+          "description": "The addressLine2 of this event."
+        },
+        "addressCity": {
+          "type": "string",
+          "description": "The city of this event."
+        },
+        "addressStateProvince": {
+          "type": "string",
+          "description": "The state province of this event."
+        },
+        "addressPostalCode": {
+          "type": "string",
+          "description": "The postal code of this event."
+        },
+        "addressCountry": {
+          "type": "string",
+          "description": "The country of this event"
+        },
+        "venue": {
+          "type": "string",
+          "description": "The name of the location where this event is taking place'."
+        },
+        "hasScheduledSpeakers": {
+          "type": "boolean",
+          "description": "true, when speakers are available for particular event."
+        },
+        "hasSponsors": {
+          "type": "boolean",
+          "description": "true, when sponsers are available for particular event."
+        },
+        //"webImage": {
+        //  "type": "string",
+        //  "description": "Image url for an event"
+        //},
+        "currencyId": {
+          "type": "int",
+          "description": "The currency the prices are in."
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "productCategory": {
+          "type": "string",
+          "description": "The product category of product"
+        }
+      }
+    },
+    "EventRelatedProductsDetails": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "sourceField": "ProductID"
+        },
+        "name": {
+          "type": "string",
+          "sourceField": "Name"
+        },
+        "description": {
+          "type": "string",
+          "sourceField": "GridDescription"
+        },
+        "imageURL": {
+          "type": "string",
+          "sourceField": "ProdImageURL"
+        },
+        "promptText": {
+          "type": "string",
+          "sourceField": "PromptText"
+        },
+        "relationship": {
+          "type": "string",
+          "sourceField": "Relationship"
+        },
+        "productType": {
+          "type": "string",
+          "sourceField": "ProductType"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,310 @@
+﻿{
+  "paymentItemInput": {
+    "fields": {
+      "cvv": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "paymentACHItemInput": {
+    "fields": {
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "DELETE", "PATCH" ],
+          "source": "path"
+        }
+      },
+      "accountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "accountName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "bank": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "aba": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": ["POST", "PATCH"],
+          "requiredHttpMethods": [ "POST"]
+        }
+      }
+    }
+  },
+  "paymentACHTokenizerInput": {
+    "fields": {
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "DELETE", "PATCH" ],
+          "source": "path"
+        }
+      },
+      "accountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "accountName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "bank": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "aba": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST"]
+        }
+      }
+    }
+  },
+  "paymentACHItemOutput": {
+    "fields": {
+      "Id": {
+        "type": "long",
+        "description": "Id of ACH saved payment method"
+      },
+      "paymentType": {
+        "type": "string",
+        "description": "payment type of ACH saved payment method"
+      },
+      "partialNumber": {
+        "type": "string",
+        "description": "Partial account number of ACH saved payment method"
+      },
+      "accountNumber": {
+        "type": "string",
+        "description": "Full account number of ACH saved payment method"
+      },
+      "accountName": {
+        "type": "string",
+        "description": "AccountName of ACH saved payment method"
+      },
+      "ABA": {
+        "type": "string",
+        "description": "ABA/Routing  of ACH saved payment method"
+      },
+      "bank": {
+        "type": "string",
+        "description": "Bank of ACH saved payment method"
+      }
+    }
+  },
+  "payByACHTokenizerBulkInput": {
+    "isCollection": true,
+    "fields": {
+      "orderId": {
+        "description": "order id.",
+        "type": "long",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "paymentAmount": {
+        "description": "Amount to be paid.",
+        "type": "decimal",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "DELETE", "PATCH" ],
+          "source": "path"
+        }
+      },
+      "AccountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "AccountName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "Bank": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "ABA": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      },
+      "CheckNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "BranchName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "saveForFutureUse": {
+        "type": "boolean",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      },
+      "saveToTypes": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "payByCreditCardBulkInput": {
+    "isCollection": true,
+    "fields": {
+      "orderId": {
+        "description": "order id.",
+        "type": "long",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "paymentAmount": {
+        "description": "Amount to be paid.",
+        "type": "decimal",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "CCAccountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "CCExpireDate": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "saveForFutureUse": {
+        "type": "boolean",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      },
+      "saveToTypes": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+
+  "payByDigitalWalletInput": {
+    "isCollection": true,
+    "fields": {
+      "orderId": {
+        "description": "order id",
+        "type": "long",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "paymentAmount": {
+        "description": "Amount to be paid",
+        "type": "decimal",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "CCAccountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      }
+    }
+  }
+
+
+}

@@ -1,0 +1,46 @@
+<div class="ebusiness-main-container">
+    <h3>Login</h3>
+    <form class="ebusiness-form" data-bind="visible: showLogInForm, attr: { action: samlURL }" id="SAML" method="post">
+        <div class="alert alert-danger" data-bind="visible: showError">
+            <strong data-bind="text:userErrorMessage"></strong>
+        </div>
+
+        <div class="form-group">
+            <label class="caption">Username or email</label>
+            <input class="form-control eb-userName" name="username" type="text" placeholder="" autocomplete="off" required autofocus="" data-bind="value: userName,  valueUpdate: 'afterkeydown',hasFocus: showError(0)">
+        </div>
+        <div class="form-group">
+            <label class="caption">Password</label>
+            <input class="form-control" name="password" placeholder="" type="password" autocomplete="off" required data-bind="value: password,  valueUpdate: 'afterkeydown',hasFocus: showError(0)">
+        </div>
+
+        <div class="ebClear">
+            <label class="apex-user-login-rememberme-checkbox-wrapper pull-left">
+                <!-- updated checkbox binding from "!rememberMe" to rememberMe, as binding with ! doesn't work here -->
+                <input type="checkbox" value="rememberme" class="apex-user-login-rememberme-checkbox" id="apex-user-login-rememberme-checkbox"
+                       data-bind="checked: rememberMe">
+                <label for="apex-user-login-rememberme-checkbox"></label>
+                Keep me logged in
+            </label>
+            <a href="PasswordResetRequest.html" class="pull-right">Forgot Password? </a>
+        </div>
+        <div class="form-group text-right">
+            <button class="btn btn-primary" data-bind="click: Login , enable:userName().length && password().length">Log In</button>
+        </div>
+        <div class="a-section a-spacing-base">
+            <div class="a-divider a-divider-break"><h5>New to e-Business?</h5></div>
+            <span id="auth-create-account-link" class="a-button a-button-span12">
+                <span class="a-button-inner">
+                    <a class="btn btn-block btn-secondary" href="#" data-bind="click:signUpPage">Create your new e-Business account</a>
+                </span>
+            </span>
+        </div>
+        <button type="submit" value="Login" style="display:none;" id="samlLoginBtn" class="btn-login-saml" />
+        <input type="hidden" id="RelayState" data-bind="value: relayState">
+        <input type="hidden" id="Issuer" data-bind="value: issuer">
+    </form>
+</div>
+
+<div class="loaderwrapper" data-bind="visible: showLoader">
+    <div class="ebloader"></div>
+</div>

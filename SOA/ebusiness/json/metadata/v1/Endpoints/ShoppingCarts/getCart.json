@@ -1,0 +1,32 @@
+{
+  "getShoppingCart": {
+    "route": {
+      "description": "Retrieves top level information about the cart contents.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/shoppingCartOutput",
+      "name": "ShoppingCartOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

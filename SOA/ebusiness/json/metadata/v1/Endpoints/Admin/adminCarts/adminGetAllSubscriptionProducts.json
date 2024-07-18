@@ -1,0 +1,43 @@
+﻿{
+  "adminGetAllSubscriptionProducts": {
+    "parent": {
+      "name":  "getAdminCartCompany"
+    },
+    "route": {
+      "description": "Gets the common properties of all subscription items in the cart.",
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminCartsEntityDefinitions.json#/subscriptionCartItemOutput",
+      "name": "adminGetAllSingleSubscriptionProductsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSubscriptionOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/getAllSubscriptionRecords",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

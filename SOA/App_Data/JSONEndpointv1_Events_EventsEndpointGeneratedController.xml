@@ -1,0 +1,645 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Events_EventsEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetAllEvents(System.Boolean,System.String)">
+            <summary>
+            Retrieves the details for all events, including top levels and sessions and sessions of sessions.
+            </summary>
+            <param name="TopLevelOnly">If true then this will only return top level event information. Otherwise top level and child events will be included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetSingleEvent(System.Int64)">
+            <summary>
+            Retrieves the details for a single item in the events catalog.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetEventSessions(System.Int64,System.String)">
+            <summary>
+            Retrieves the details for sessions and sessions of sessions of an event
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetEventSpeakers(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the details of Speakers for a particular event
+            </summary>
+            <param name="includeSessionSpeakers">If true then this will both event speaker and its session's speaker details. Otherwise only event speaker details included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetEventSponsors(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the details of Sponsers for a particular meeting
+            </summary>
+            <param name="includeSessionSponsors">If true then this will both event sponsor and its session's sponsor details. Otherwise only event sponsor details included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetMyEvents(System.Int64,System.Boolean,System.String)">
+            <summary>
+            Retrieves the details of events for which person is registered
+            </summary>
+            <param name="TopLevelOnly">If true then this will only return top level event information. Otherwise top level and child events will be included</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetEventAttendeeSearch(System.String,System.String)">
+            <summary>
+            Retrieves details of attendee when searchterm is provided.
+            </summary>
+            <param name="SearchTerm">When searchterm is given, it results in list of attendee details related to that serach term , if not this will result into error.</param>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.CreateEventAttendee(Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.CreateEventAttendeeInputPOST)">
+            <summary>
+            Creates a new person in the system that can then be used as an attendee for event registration
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.GetEventRelatedProducts(System.String,System.String)">
+            <summary>
+            Retrieves the details every a event.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.parentProductId">
+            <summary>
+            parent product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.hasSessions">
+            <summary>
+            true, when child sessions are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.name">
+            <summary>
+            Name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.requireAvailableSpace">
+            <summary>
+            If true, it will not be possible to add a registration for this even if there is no more available space.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.webName">
+            <summary>
+            WebName of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.earlyRegistrationDiscount">
+            <summary>
+            Early registration discount, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.lateRegistrationFee">
+            <summary>
+            Late registration fee/dues, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.availableSpace">
+            <summary>
+            The available amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.maxSpace">
+            <summary>
+            The maximum amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressLine1">
+            <summary>
+            The addressLine1 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressLine2">
+            <summary>
+            The addressLine2 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressCity">
+            <summary>
+            The city of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressStateProvince">
+            <summary>
+            The state province of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressPostalCode">
+            <summary>
+            The postal code of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.addressCountry">
+            <summary>
+            The country of this event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.hasScheduledSpeakers">
+            <summary>
+            true, when speakers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.hasSponsors">
+            <summary>
+            true, when sponsers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.AllEvents.productCategory">
+            <summary>
+            The product category of product
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.parentProductId">
+            <summary>
+            parent product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.hasSessions">
+            <summary>
+            true, when child sessions are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.name">
+            <summary>
+            Name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.requireAvailableSpace">
+            <summary>
+            If true, it will not be possible to add a registration for this even if there is no more available space.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.webName">
+            <summary>
+            WebName of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.earlyRegistrationDiscount">
+            <summary>
+            Early registration discount, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.lateRegistrationFee">
+            <summary>
+            Late registration fee/dues, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.availableSpace">
+            <summary>
+            The available amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.maxSpace">
+            <summary>
+            The maximum amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressLine1">
+            <summary>
+            The addressLine1 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressLine2">
+            <summary>
+            The addressLine2 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressCity">
+            <summary>
+            The city of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressStateProvince">
+            <summary>
+            The state province of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressPostalCode">
+            <summary>
+            The postal code of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.addressCountry">
+            <summary>
+            The country of this event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.hasScheduledSpeakers">
+            <summary>
+            true, when speakers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.hasSponsors">
+            <summary>
+            true, when sponsers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.SingleEvent.productCategory">
+            <summary>
+            The product category of product
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.parentProductId">
+            <summary>
+            parent product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.hasSessions">
+            <summary>
+            true, when child sessions are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.name">
+            <summary>
+            Name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.requireAvailableSpace">
+            <summary>
+            If true, it will not be possible to add a registration for this even if there is no more available space.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.webName">
+            <summary>
+            WebName of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.earlyRegistrationDiscount">
+            <summary>
+            Early registration discount, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.lateRegistrationFee">
+            <summary>
+            Late registration fee/dues, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.availableSpace">
+            <summary>
+            The available amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.maxSpace">
+            <summary>
+            The maximum amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressLine1">
+            <summary>
+            The addressLine1 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressLine2">
+            <summary>
+            The addressLine2 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressCity">
+            <summary>
+            The city of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressStateProvince">
+            <summary>
+            The state province of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressPostalCode">
+            <summary>
+            The postal code of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.addressCountry">
+            <summary>
+            The country of this event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.hasScheduledSpeakers">
+            <summary>
+            true, when speakers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.hasSponsors">
+            <summary>
+            true, when sponsers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSessions.productCategory">
+            <summary>
+            The product category of product
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSpeakerDetails.eventId">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSpeakerDetails.name">
+            <summary>
+            Speaker of an event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSpeakerDetails.companyName">
+            <summary>
+            companyName of Speaker
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSpeakerDetails.title">
+            <summary>
+            Title of Speaker like Primary Speaker
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSpeakerDetails.type">
+            <summary>
+            Type of Speaker like Regular,Panelist
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSponsorDetails.eventId">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventSponsorDetails.name">
+            <summary>
+            Sponsor of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.id">
+            <summary>
+            product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.parentProductId">
+            <summary>
+            parent product id of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.hasSessions">
+            <summary>
+            true, when child sessions are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.name">
+            <summary>
+            Name of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.startDate">
+            <summary>
+            Startdate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.endDate">
+            <summary>
+            EndDate of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.requireAvailableSpace">
+            <summary>
+            If true, it will not be possible to add a registration for this even if there is no more available space.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.webName">
+            <summary>
+            WebName of an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.webDescription">
+            <summary>
+            A short rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.webLongDescription">
+            <summary>
+            A long rich text description of event with html encoding.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.hasComplexPricing">
+            <summary>
+            If true, this indicates you must add the product to the cart in order to get an accurate price.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.earlyRegistrationDiscount">
+            <summary>
+            Early registration discount, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.lateRegistrationFee">
+            <summary>
+            Late registration fee/dues, if applied to event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.availableSpace">
+            <summary>
+            The available amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.maxSpace">
+            <summary>
+            The maximum amount of space for an event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressLine1">
+            <summary>
+            The addressLine1 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressLine2">
+            <summary>
+            The addressLine2 of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressCity">
+            <summary>
+            The city of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressStateProvince">
+            <summary>
+            The state province of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressPostalCode">
+            <summary>
+            The postal code of this event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.addressCountry">
+            <summary>
+            The country of this event
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.venue">
+            <summary>
+            The name of the location where this event is taking place'.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.hasScheduledSpeakers">
+            <summary>
+            true, when speakers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.hasSponsors">
+            <summary>
+            true, when sponsers are available for particular event.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.currencyId">
+            <summary>
+            The currency the prices are in.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.MyEvents.productCategory">
+            <summary>
+            The product category of product
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventAttendeeDetails.id">
+            <summary>
+            PersonID of Event Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventAttendeeDetails.firstName">
+            <summary>
+            First Name of Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventAttendeeDetails.lastName">
+            <summary>
+            Last Name of Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventAttendeeDetails.city">
+            <summary>
+            City of Event Attendee
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Events_EventsEndpoint.v1_Events_EventsEndpointController.EventAttendeeOutput.id">
+            <summary>
+            The unique identifier of the newly created person
+            </summary>
+        </member>
+    </members>
+</doc>

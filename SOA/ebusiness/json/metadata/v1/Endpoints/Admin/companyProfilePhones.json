@@ -1,0 +1,280 @@
+﻿{
+  "getProfileCompanyPhones": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get Profile Company All Phones",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyPhonesEntities.json#/companyProfilePhoneOutput",
+      "name": "GetProfileCompanyPhones"
+    },
+    "businessLogic": {
+      "companiesAllPhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/profileCompaniesPhonesRetrieval"
+      }
+    }
+  },
+
+  "getProfileCompanySinglePhone": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get Profile Company phone by phone Name",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetPhoneInput",
+      "$ref": "companyPhonesEntities.json#/companyPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyPhonesEntities.json#/companyProfilePhoneOutput",
+      "name": "CompanyProfilePhone"
+    },
+    "businessLogic": {
+      "companySinglePhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/profileCompaniesPhonesRetrieval"
+      }
+    }
+  },
+
+  "updateProfileCompanyPhone": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update Profile Company Phone",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfilePhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "CompanyProfilePhonePatchInput",
+      "$ref": "companyPhonesEntities.json#/companyPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyPhonesEntities.json#/companyProfilePhoneOutput",
+      "name": "CompanyProfilePhone"
+    },
+    "businessLogic": {
+      "validatePhonePayload": {
+        "$ref": "companyPhonesBusinessLogic.json#/validatePhonePayload"
+      },
+      "getProfileCompanyGE": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "id"
+          }
+        }
+      },
+      "companyEmbeddedPhoneFieldNameRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/companyEmbeddedPhoneFieldNameRetrieval"
+      },
+      "getProfileCompanyPhoneGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfileCompanyGE.outputGE",
+            "embeddedObjectIDFieldName": "@parent.companyEmbeddedPhoneFieldNameRetrieval.outputEmbeddedPhoneIDFieldName"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getProfileCompanyPhoneGE.outputGE",
+            "inputFieldsToIgnore": "name"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfileCompanyGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "companySinglePhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/profileCompaniesPhonesRetrieval"
+      }
+    }
+  },
+
+  //company phones
+  "getAllCompanyPhones": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get CompanyPhones All Phones",
+      "httpMethod": "GET",
+      "segments": {
+        "CompanyPhones": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyPhonesEntities.json#/companyPhoneOutput",
+      "name": "GetAllCompanyPhonesOutput"
+    },
+    "businessLogic": {
+      "companiesPhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/companiesPhoneRetrieval"
+      }
+    }
+  },
+  "getSingleCompanyPhones": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get CompanyPhones single phone by name",
+      "httpMethod": "GET",
+      "segments": {
+        "CompanyPhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "getSingleCompanyPhonesInput",
+      "$ref": "companyPhonesEntities.json#/companyPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyPhonesEntities.json#/companyPhoneOutput",
+      "name": "CompanyPhoneOutput"
+    },
+    "businessLogic": {
+      "companiesPhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/companiesPhoneRetrieval"
+      }
+    }
+  },
+
+  "updateSingleCompanyPhone": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update a CompanyPhone",
+      "httpMethod": "PATCH",
+      "segments": {
+        "CompanyPhones": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "name": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "companyPhonesEntities.json#/companyPhoneInput",
+      "name": "UpdateCompanyPhoneInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyPhonesEntities.json#/companyPhoneOutput",
+      "name": "CompanyPhoneOutput"
+    },
+    "businessLogic": {
+      "getProfileCompanyGE": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getPhoneRequestNameFieldValue": {
+        "$ref": "companyPhonesBusinessLogic.json#/getPhoneRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "InputContextObject": "@Request",
+            "PropertyName": "name"
+          }
+        }
+      },
+      "getCompanyPhoneSubtypeGE": {
+        "$ref": "companyPhonesBusinessLogic.json#/companyPhoneSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfileCompanyGE.outputGE",
+            "subTypeName": "CompanyPhone",
+            "fieldName": "name",
+            "fieldValue": "@parent.getPhoneRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getCompanyPhoneSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getCompanyPhoneSubtypeEmbeddedPhoneGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getCompanyPhoneSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "PhoneID"
+          }
+        }
+      },
+      "updateCompanyPhoneSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getCompanyPhoneSubtypeGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "companiesPhoneRetrieval": {
+        "$ref": "companyPhonesBusinessLogic.json#/companiesPhoneRetrieval"
+      }
+    }
+  }
+
+
+
+}

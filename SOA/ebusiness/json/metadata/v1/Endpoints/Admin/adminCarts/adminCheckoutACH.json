@@ -1,0 +1,166 @@
+﻿{
+  "adminCheckoutbyACH": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the admin shopping experience using a ACH for admin payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACH": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminACHCheckoutInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentACHItemInput",
+      "fields": {
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "AdminCartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "validateSaveForFutureUse": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateSaveForFutureUse"
+      },
+      "addACHPaymentInformation": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addACHPaymentInformation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba",
+            "TransactionNumber": "ebiz payment",
+            "SaveForFutureUse": "@request.saveForFutureUse",
+            "SaveToTypes": "Company"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  },
+  "adminCheckoutbyACHTokenizer": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the admin shopping experience using a ACH for admin payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ACHTokenizer": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminACHTokenizerCheckoutInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentACHTokenizerItemInput",
+      "fields": {
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "AdminCartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForACH": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Wire Transfer",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "validateSaveForFutureUse": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateSaveForFutureUse"
+      },
+      "addACHPaymentInformation": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addACHTokenizerPaymentInformation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+            "AccountNumber": "@request.accountNumber",
+            "AccountName": "@request.accountName",
+            "Bank": "@request.bank",
+            "ABA": "@request.aba",
+            "TransactionNumber": "ebiz payment",
+            "SaveForFutureUse": "@request.saveForFutureUse",
+            "SaveToTypes": "Company"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

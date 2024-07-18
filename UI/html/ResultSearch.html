@@ -1,0 +1,29 @@
+<div class="ebusiness-categories-panel-wrapper">
+    <ul class="ebusiness-categories-details ebusiness-mobile-categories-ul">
+        <li class="ebusiness-categories-details-header">Categories <span class="close-categories-mobile" onclick="toggleCategoriesClose(e)">×</span></li>
+        <li>
+            <a id="Merchendise" onclick="toggleCategoryMobile(e)">Merchendise</a>
+            <ul class="hide">
+                <li><a>Samsung</a></li>
+                <li><a>Sony</a></li>
+                <li><a>Bravia</a></li>
+                <li><a>Panasonic</a></li>
+                <li><a>LG</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="col-sm-9 col-md-6 ebusiness-view-switcher">
+    <!-- search control -->
+    <span class="ebusiness-product-events-search"><span>
+    <input name="txteventsListSearch" type="text" placeholder="Search" class="form-control required ebusiness-clientside-generic-search-animated">
+
+    <button class="ebusiness-eventsList-search-button btn btn-default"><img src="images/icons/icon_search-24px.svg"> </button>
+</span></span>
+    <button class="btn btn-default glyphicon glyphicon-list ebusiness-view-switcher-btn hidden-xs"></button>
+    <button class="btn btn-default ebusiness-filter-control-toggle" onclick="toggleViewOpen()">
+        <img src="images/icons/icon_filter-blue-24px.svg" width="24" height="24"></button>
+
+    <div class="my-events-link" style="display: none;"><a>My Events</a></div>
+    <div class="all-events-link" style="display: none;"><a>All Events</a></div>
+</div>

@@ -1,0 +1,83 @@
+{
+  "getMyCommittee": {
+    "route": {
+      "httpMethod": "GET",
+      "description": "Gets the List of All Committees associated with a Person",
+      "segments": {
+        "Committees": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "id": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "IsYourRecord": {
+              "$ref": "../../Common/security.json#/isYourRecord"
+            }
+          }
+        },
+        "Term": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetMyCommitteeInput",
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        },
+        "Term": {
+          "type": "string",
+          "description": "Current tab selected on My Committee Page, this can only be one of the following values : [All, Current, Past, Future]",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "requiredHttpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetMyCommitteeOutput",
+      "fields": {
+        "CommitteeID": {
+          "type": "long"
+        },
+        "CommitteeTermID": {
+          "type": "long"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Term": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        }
+      }
+    },
+    "businessLogic": {
+      "myCommitteesRetrieve": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0MyCommittees",
+            "authenticatedAttributes": "@AuthenticatedAttributes"
+          }
+        }
+      }
+    }
+  }
+
+
+}

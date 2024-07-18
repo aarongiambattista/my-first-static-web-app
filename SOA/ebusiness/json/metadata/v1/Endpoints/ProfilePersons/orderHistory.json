@@ -1,0 +1,119 @@
+﻿{
+  "getPersonOrderHistorySingleOrder": {
+    "parent": {
+      "name": "getPersonOrderHistory"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "orderId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "IsYourOrder": {
+              "$ref": "../../Common/security.json#/isYourOrder"
+            }
+          }
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "orderHistoryEntities.json#/personSingleOrderInput",
+      "name": "GetPersonSingleOrderInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "orderHistoryEntities.json#/personOrderOutput",
+      "name": "GetPersonOrderOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  },
+  "getPersonOrderHistory": {
+    "parent": {
+      "name": "getSingleProfilePerson"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "OrderHistory": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "orderHistoryEntities.json#/personOrderOutput",
+      "name": "getPersonOrderHistoryOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personSingleOrderRetrieval"
+      }
+    }
+  },
+  "getPersonOrderHistorySingleOrderSingleItem": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrderAllItems"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "itemId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetOrderHistoryItemInput",
+      "fields": {
+        "itemId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetOrderHistoryItemOutput",
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personOrderHistoryItemsRetrieval"
+      }
+    }
+  },
+  "getPersonOrderHistorySingleOrderAllItems": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrder"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "getPersonOrderHistorySingleOrderAllItemsOutput",
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personOrderHistoryItemsRetrieval"
+      }
+    }
+  }
+}

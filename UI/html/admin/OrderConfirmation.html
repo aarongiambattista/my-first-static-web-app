@@ -1,0 +1,103 @@
+﻿<div class="ebusiness-card-details row">
+    <h3 class="ebusiness-dynamic-address-title col-md-4 ">Order Confirmation</h3>
+    <div class="ebusiness-checkout-step-wrapper col-md-8" data-bind="visible:hideStepsWizardVisible()">
+        <div class="stepsText activeSteps">
+            <a class="stepsBg">1 </a>
+            Address
+        </div>
+        <div class="stepsText activeSteps">
+            <a class="stepsBg">2</a>
+            Review
+        </div>
+        <div class="stepsText activeSteps">
+            <a class="stepsBg">3</a>
+            Payment
+        </div>
+        <div class="stepsText activeSteps">
+            <a class="stepsBg">4</a>
+            Confirmation
+        </div>
+    </div>
+</div>
+<div class="confirmation-message">
+
+    <div class="alert ebusiness-service-failure-message alert-success" data-bind="visible: showSuccessEmail, text: successEmailMessage"></div>
+    <div class="alert ebusiness-service-failure-message alert-danger" data-bind="visible: showFailureEmail, text: failureEmailMessage"></div>
+    <!-- <div class="tick-confirmed pull-left"> <i class="icon-r-small-check"></i> </div>-->
+    <div class="total-order-details">
+        <div class="message-confirmation">  Thanks, your order has been placed!  </div>
+
+        <div class="row-subtotal note-gaurantee">
+            An email confirmation has been sent to your email:
+            <strong data-bind="text: emailTo"></strong>
+        </div>
+        <form class="frmOrderConfirmation">
+            <div class="row-subtotal note-gaurantee">
+                Email receipt to additional person(s)
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <input type="text" name="txtMultipleEmail" placeholder="Multiple email addresses should be separated by commas." class="form-control txtOrderConfirmationEmail" data-bind="value:email, valueUpdate: 'afterkeydown'">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <button type="submit" class="btn btn-primary btnOrderConfirmationEmail" data-bind="click: sendEmail,visible: emailSend , enable: email().length">Email Receipt</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr />
+        <div class="row-subtotal row">
+            <div class="col-md-6">Order Number: <br><strong data-bind="text: orderId"></strong></div>
+            <div class="col-md-6">Customer Number: <br /><strong data-bind="text: personId"><strong></strong></strong></div>
+        </div>
+
+        <div class="row-subtotal row">
+            <div class="col-md-6">Order Type:<br /><strong data-bind="text: orderType"></strong></div>
+            <div class="col-md-6">Order Date:<br /><strong data-bind="text: orderDate"></strong></div>
+        </div>
+
+        <div class="row-subtotal row">
+            <div class="col-md-6">Status:<br /><strong data-bind="text: orderStatus"></strong></div>
+            <div class="col-md-6">Grand Total:<br /><strong class="ebusiness-product-view-cart-price" data-bind="text:currencySymbol"></strong><strong data-bind="text: grandTotal"></strong></div>
+        </div>
+
+        <div class="row-subtotal row">
+            <div class="col-md-6">Shipment Method:<br /><strong data-bind="text:shipType"></strong></div>
+            <div class="col-md-6">Payment Method:<br /><strong data-bind="text:payType"></strong></div>
+        </div>
+
+        <div class="row-subtotal row">
+            <div class="col-md-6">
+                Ship To: <br />
+                <span><strong data-bind="text: shipToName"></strong></span>
+                <br>
+                <span><strong data-bind="text: shipToAddress"></strong></span>
+                <br>
+                <span><strong data-bind="text: shipToCity"></strong></span> <span><strong data-bind="text: shipToState"></strong> <strong data-bind="text: shipToZipCode"></strong></span>
+                <br>
+                <span><strong data-bind="text: shipToCountry"></strong></span>
+            </div>
+            <div class="col-md-6">
+                Bill To: <br />
+                <span><strong data-bind="text: billToName"></strong></span>
+                <br>
+                <span><strong data-bind="text: billToAddress"></strong></span>
+                <br>
+                <span><strong data-bind="text: billToCity"></strong></span> <span><strong data-bind="text: billToState"></strong> <strong data-bind="text: billToZipCode"></strong></span>            
+                <br>
+                <span><strong data-bind="text: billToCountry"></strong></span>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="orderSummaryList">
+    <h3>Purchased Items</h3>
+    <div class="ebusiness-cartList-item">
+    </div>
+</div>
+
+          

@@ -1,0 +1,56 @@
+﻿{
+  "getPersonOutstandingOrderHistory": {
+    "parent": {
+      "name": "getPersonOrderHistory"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "OutstandingOrders": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "getOutstandingOrderHistoryOutput",
+      "fields": {
+        "OrderId": {
+          "type": "long",
+          "description": "The Id for this order"
+        },
+        "OrderDate": {
+          "type": "date",
+          "description": "The Date of this order"
+        },
+        "OrderTotal": {
+          "type": "decimal",
+          "description": "The Total amount for this order"
+        },
+        "OrderType": {
+          "type": "string",
+          "description": "The OrderType for this order"
+        },
+        "AmountDue": {
+          "type": "decimal",
+          "description": "The amount due for this order"
+        },
+        "currencyTypeId": {
+          "type": "long",
+          "description": "The id of the currency being used on the order."
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "The currency symbol for the order."
+        }
+      }
+    },
+    "businessLogic": {
+      "personOutstandingOrdersRetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/personOutstandingOrdersRetrieval"
+      }
+    }
+  }
+}

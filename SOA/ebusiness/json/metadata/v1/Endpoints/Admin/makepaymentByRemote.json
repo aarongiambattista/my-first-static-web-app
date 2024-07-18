@@ -1,0 +1,272 @@
+﻿{
+  "getCompanyRemoteRequestDataForMakePayment": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrder"
+    },
+    "route": {
+      "description": "Get remote payment request data for make payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GetRemotePaymentRequest": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "companyMakepaymenCompanytRemoteInput",
+      "fields": {
+        "paymentAmount": {
+          "description": "Amount to be paid.",
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/getRemotePaymentRequestOutput",
+      "name": "companyMakepaymentRemoteOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createCompanyPaymentRecord"
+      },
+      "addPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addPaymentLinesRecord"
+      },
+      "addPaymentTypeOnPaymentObject": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/addPaymentTypeOnPayment",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentGE": "@parent.addPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+          }
+        }
+      },
+      "retrieveRemotePaymentURL": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Remote Payment RequestData",
+          "processFlowParameters": {
+            "GEObject": "@parent.addPaymentLinesRecord.outputPaymentsGE"
+          }
+        }
+      }
+    }
+  },
+  "processCompanyRemotePaymentResponseForMakePayment": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrder"
+    },
+    "route": {
+      "description": "Processes the remote hosted payment response for make payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ProcessRemoteResponse": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/processRemotePaymentResponseInput",
+      "name": "companyMakePaymentProcessRemotePaymentResponseInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/processMakePaymentRemotePaymentResponseOutput",
+      "name": "companyMakePaymentProcessRemotePaymentResponseOutput"
+    },
+    "businessLogic": {
+      "processRemotePaymentResponse": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Process Remote Payment Response Data",
+          "processFlowParameters": {
+            "ResponseData": "@request.responseData"
+          }
+        }
+      },
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companySingleOrderRetrieval"
+      }
+    }
+  },
+  "getCompanyRemoteRequestDataForBulkPayments": {
+    "parent": {
+      "name": "getCompanyOrderHistory"
+    },
+    "route": {
+      "description": "Get remote payment request data for bulk  payments.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "BulkOrder": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GetRemotePaymentRequest": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "companyBulkMakepaymentRemoteInput",
+      "isCollection": true,
+      "fields": {
+        "orderId": {
+          "description": "order id.",
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "paymentAmount": {
+          "description": "Amount to be paid.",
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/getRemotePaymentRequestOutput",
+      "name": "companyBulkMakepaymentRemoteOutput"
+    },
+    "businessLogic": {
+      "ValidateBulkIsYourCompanyOrders": {
+        "$ref": "../../Common/commonPayments.json#/validateCompanyBulkOrderIds",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            //"bulkObjectPropertyName": "bulkMakepaymentRemoteInputObject",
+            "bulkObjectPropertyName": "companyBulkMakepaymentRemoteInputObject",
+            "DataObjectName": "spValidateCompanyOrderIds",
+            "companyId": "@request.Id"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "createPaymentRecord": {
+        "$ref": "../../Common/commonPayments.json#/createCompanyPaymentRecord"
+      },
+      "addBulkPaymentLinesRecord": {
+        "$ref": "../../Common/commonPayments.json#/addBulkPaymentLinesRecord",
+        "processFlowProperties": {
+          "processFlowName": "Add Collection Objects To SubType GE",
+          "processFlowParameters": {
+            "collectionDataObjects": "@request",
+            "geObject": "@parent.createPaymentRecord.outputGE",
+            "subTypeName": "PaymentLines",
+            "bulkObjectPropertyName": "companyBulkMakepaymentRemoteInputObject"
+          }
+        }
+      },
+      "addPaymentTypeOnPaymentObject": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/addPaymentTypeOnPayment",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentGE": "@parent.addBulkPaymentLinesRecord.outputPaymentsGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+          }
+        }
+      },
+      "retrieveRemotePaymentURL": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Remote Payment RequestData",
+          "processFlowParameters": {
+            "GEObject": "@parent.addBulkPaymentLinesRecord.outputPaymentsGE"
+          }
+        }
+      }
+    }
+  },
+  "processCompanyRemotePaymentResponseForBulkPayments": {
+    "parent": {
+      "name": "getCompanyOrderHistory"
+    },
+    "route": {
+      "description": "Process the remote hosted payment response for bulk payments.",
+      "httpMethod": "POST",
+      "segments": {
+        "MakePayment": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "BulkOrder": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ProcessRemoteResponse": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/processRemotePaymentResponseInput",
+      "name": "companyBulkRemotePaymentResponseInput"
+    },
+    "outputEntityDefinition": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "The ID of created payment"
+        }
+      },
+      "name": "companyBulkRemotePaymentResponseOutput"
+    },
+    "businessLogic": {
+      "processRemotePaymentResponse": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Process Remote Payment Response Data",
+          "processFlowParameters": {
+            "ResponseData": "@request.responseData"
+          }
+        }
+      },
+      "returnThePayment": {
+        "$ref": "../../Common/commonPayments.json#/returnThePayment"
+      }
+    }
+  }
+}

@@ -1,0 +1,182 @@
+﻿<div class="ebBody ebWrapper">
+    <div class="ebusiness-main-container">
+        <h3 class="ebusiness-sub-page-title"><span data-bind="text: membershipApplicationName">Membership Application</span></h3>
+        <hr>
+        <div class="eb-no-membership-porduct">
+            <div class="eb-confirm-message alert alert-warning" data-bind="visible: memberErrorMessage">
+                <p>Membership application process is currently unavailable.<br>Please check back later or contact our customer service department for further details.</p>
+            </div>
+        </div>
+        <div class="eb-all-membership-porduct" data-bind="visible: !memberErrorMessage()">
+            <div class="eb-confirm-message alert alert-warning">
+                <p>Is your profile information up-to-date ?<br /> Please review and it will be updated along with your application submission.</p>
+            </div>
+
+            <h3 class="eb-secondary-heading">Basic Information</h3>
+            <div class="ebwhiteBg ">
+                <div class="eb-basic-profile-info ebClear">
+                        <div class="ebusiness-profile-section row">
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Prefix</label>
+                                    <select class="form-control" placeholder="Prefix" data-bind="options: prefixOptions, value:selectedPrefix, optionsCaption: 'Prefix'"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">First Name</label>
+                                    <input type="text" name="ebusiness-profile-set-height" class="form-control" data-bind="value: firstName" placeholder="First Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Last Name</label>
+                                    <input type="text" class="form-control" data-bind="value: lastName" placeholder="Last Name" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <div class="form-group">
+                                    <label class="caption">Suffix</label>
+                                    <select class="form-control" placeholder="Suffix" data-bind="options: suffixOptions, value:selectedSuffix, optionsCaption: 'Suffix'"></select>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="ebusiness-profile-section row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Title</label>
+                                <input type="text" class="form-control" data-bind="textInput: title" placeholder="Title" />
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Company</label>
+                                <input type="text" class="form-control" data-bind="textInput: search" list="companyList" placeholder="Company" autocomplete="off" />
+                                <datalist id="companyList" data-bind="foreach:searchResult, visible: recordFound">
+                                    <option data-bind="text: companyList" style="cursor: pointer"></option>
+                                </datalist>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Email Type</label>
+                            <select class="form-control" data-bind="options: emailTypeOptions, optionsText:'selectedEmailType', value:selectedEmailType"></select>                         
+                        </div>
+                    </div>
+                    <div data-bind="with :selectedEmailType" class="col-sm-6 ">
+                        <div class="form-group">
+                            <label class="caption">Email Address</label>
+                            <input class="form-control" data-bind="value: email" type="email" placeholder="Email Address" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Phone Type</label>
+                            <select class="form-control" data-bind="options: phoneTypeOptions,value:selectedPhoneType, optionsText:function(item) { return item.phoneName }"><option value="">Business Phone</option><option value="">Cell Phone</option><option value="">Home Phone</option><option value="">Pager Phone</option><option value="">Assistants Phone</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-8 row" data-bind="with :selectedPhoneType">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Country Code</label>
+                                <input type="text" class="form-control ebCountryCode" placeholder="Country Code" data-bind="numeric: countryCode, textInput: countryCode" maxlength="3">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Area Code</label>
+                                <input type="text" class="form-control ebAreaCode" placeholder="Area Code" data-bind="numeric: countryCode, textInput: areaCode" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Phone</label>
+                                <input type="text" class="form-control" placeholder="Phone" data-bind="numeric: phone, textInput: phone, event:{focus: hideErrorMessage}" maxlength="15">
+                                <span class="validationMessage" data-bind="visible:phoneRequired">Phone is required.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <div class="form-group">
+                                <label class="caption">Extension</label>
+                                <input class="form-control" type="text" placeholder="Ext" data-bind="numeric: phoneExtension, textInput: phoneExtension" maxlength="10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebusiness-profile-section row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Birthday</label>
+                            <input type="text" class="form-control" data-bind="textInput: birthday" placeholder="mm/dd/yyyy" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="caption">Gender</label>
+                            <select class="form-control" data-bind="options: genderOptions, value:selectedGender"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="eb-select-membership-level">
+                <h3 class="eb-secondary-heading"> <span data-bind="text:membershipLevelText">Select Membership Level</span></h3>
+                <div class="row" data-bind="foreach: membershipOrders">
+                    <div class="col-sm-3" data-bind="click: selectedMembership">
+                        <div class="eb-membership-card " data-bind="css: styleClass">
+                            <div class="eb-membership-name"><span data-bind="text:membershipName"></span></div>
+                            <div class="eb-membership-price"><span data-bind="text:currencySymbol"></span><span data-bind="text:price"></span></div>
+                            <div class="eb-more-details">
+                                <span class="eb-more-details btn-link" data-bind="click: moreDetails">more details</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" role="dialog" data-bind="attr: {id: 'collapse'+ id()}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="eb-modal-membership-modal">
+                                        <h3><label data-bind="text: membershipName"></label></h3>
+                                        <div class="eb-fund-details">
+                                            <img alt="" data-bind="imageSrc: { src: webImage }" />
+                                            <p data-bind="html: description" style="padding-top:15px;"></p>
+                                        </div>
+                                        <div class="text-right"><input type="button" value="OK" class="btn btn-primary" data-bs-dismiss="modal"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-danger col-md-8" data-bind="visible: selectMembershipError">
+                <span>Please select a membership product.</span>
+            </div>
+
+            <!--Payment Data-->
+            <div class="eb-payment-control col-md-12"></div>
+
+            <div class="ebClear"></div>
+            <div class="alert alert-success eb-payment-success" data-bind="visible: showSuccess">
+                <p> Your Membership Application is submitted and Confirmation email has been sent to the <span data-bind="text: primaryEmailAddress">email</span></p>
+            </div>
+            <div class="alert alert-danger" data-bind="visible: showError, text: errorMessage">
+                Your membership application is not submited.
+            </div>
+        </div>
+        <div class="ebClear"></div>
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+</div>

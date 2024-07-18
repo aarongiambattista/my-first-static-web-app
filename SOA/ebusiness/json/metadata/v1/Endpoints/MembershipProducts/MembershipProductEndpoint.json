@@ -1,0 +1,1750 @@
+﻿{
+  "endpoints": {
+    "getCurrentMembershipApplicationDefinition": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "MembershipApplicationDefinition": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Current": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves current membership application definition."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "name": "MembershipApplicationDefinitionOutput",
+        "$ref": "#/entityDefinitions/MembershipApplicationDefinitionOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationDefinition": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application Definition",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID"
+            }
+          }
+        }
+      }
+    },
+    "getCurrentMembershipApplicationDefinitionProducts": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "MembershipApplicationDefinition": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Current": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Products": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves current membership application products."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "membershipProductsOutput",
+        "$ref": "#/entityDefinitions/MembershipApplicationDefinitionProductsOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationDefinitionProducts": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application Definition Products",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID"
+            }
+          }
+        },
+        "getSingleOrderGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrieval",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Orders",
+              "action": "create"
+            }
+          }
+        },
+        "setDefaultValuesOnOrderGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Assign Default Values to OrderGE",
+            "processFlowParameters": {
+              "orderGE": "@parent.getSingleOrderGERetrieval.outputGE",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationProducts": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Get Membership Application Definition Products",
+            "processFlowParameters": {
+              "orderGE": "@parent.setDefaultValuesOnOrderGE.outputCurrentOrderGE",
+              "applicationDefinitionProductsDataTable": "@parent.loadMembershipApplicationDefinitionProducts.outputApplicationDefinitionProducts"
+            }
+          }
+        }
+      }
+    },
+    "getCurrentMembershipApplication": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves current membership application."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "MembershipApplicationOutput",
+        "$ref": "#/entityDefinitions/MembershipApplicationOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        }
+      }
+    },
+    "updateCurrentMembershipApplication": {
+      "route": {
+        "httpMethod": "PATCH",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves current membership application."
+      },
+      "inputEntityDefinition": {
+        "name": "updateSingleMembershipProductItemInput",
+        "fields": {
+          "productId": {
+            "type": "long",
+            "sourceField": "MembershipProduct",
+            "input": {
+              "httpMethods": [
+                "PATCH"
+              ],
+              "source": "body",
+              "requiredHttpMethods": [
+                "PATCH"
+              ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "UpdateMembershipApplicationOutput",
+        "$ref": "#/entityDefinitions/MembershipApplicationOutput"
+      },
+      "businessLogic": {
+        "sharedProductValidation": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/sharedProductValidation",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "quantity": 1
+            }
+          }
+        },
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "retrieveMembershipApplicationDefinitionProducts": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application Definition Products",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID"
+            }
+          }
+        },
+        "validateMembershipApplicationProduct": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Validate Membership Application Product",
+            "processFlowParameters": {
+              "InputApplicationProducts": "@parent.retrieveMembershipApplicationDefinitionProducts.outputApplicationDefinitionProducts",
+              "ProductId": "@request.productId"
+            }
+          }
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 1,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": -1
+            }
+          }
+        },
+        "applyClientInput": {
+          "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "geObjectToMap": "@parent.output"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnMembershipApplication": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "outputPropertyName": "outputMembershipApplicationGE"
+            }
+          }
+        }
+      }
+    },
+    "membershipCheckoutByCreditCard": {
+      "route": {
+        "description": "Completes membership product checkout using a credit card.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "CreditCard": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipCreditCardInput",
+        "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+        "fields": {
+          "cardNumber": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "expirationMonth": {
+            "type": "integer",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "expirationYear": {
+            "type": "integer",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "saveForFutureUse": {
+            "type": "boolean",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipCreditCardOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdByCardNumber": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByCardNumber"
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "getPaymentExpirationDate": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/getPaymentExpirationDate"
+        },
+        "addCreditCardPaymentInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addCreditCardPaymentInfo",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+    "membershipCheckoutBySavedPaymentMethod": {
+      "route": {
+        "description": "Completes membership product checkout using saved payment method.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "SavedPayment": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipSavedPaymentInput",
+        "$ref": "../ShoppingCarts/PaymentEntityDefinitions.json#/paymentItemInput",
+        "fields": {
+          "savedPaymentId": {
+            "type": "long",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            },
+            "security": {
+              "isYourSavedPaymentMethod": {
+                "$ref": "../../Common/security.json#/isYourSavedPaymentMethod"
+              }
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipSavedPaymentOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addSavedPaymentMethodInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addSavedPaymentMethodInfo",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE",
+              "SavedPaymentId": "@request.savedPaymentId",
+              "CVV": "@request.cvv"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+
+    "membershipCheckoutByACH": {
+      "route": {
+        "description": "Completes membership product checkout using ACH.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "ACH": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipACHInput",
+        "fields": {
+          "accountNumber": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "bank": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "aba": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "saveForFutureUse": {
+            "type": "boolean",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipACHOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdForACH": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+            "processFlowParameters": {
+              "PaymentTypeName": "Wire Transfer"
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addACHInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addACHPaymentInformation",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE",
+              "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+              "AccountNumber": "@request.accountNumber",
+              "AccountName": "@request.accountName",
+              "Bank": "@request.bank",
+              "ABA": "@request.aba",
+              "TransactionNumber": "ebiz payment",
+              "SaveForFutureUse": "@request.saveForFutureUse"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+    "membershipCheckoutByACHTokenizer": {
+      "route": {
+        "description": "Completes membership product checkout using ACH Tokenizer.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "ACHTokenizer": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipACHTokenizerInput",
+        "fields": {
+          "accountNumber": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "bank": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "aba": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          },
+          "saveForFutureUse": {
+            "type": "boolean",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipACHTokenizerOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdForACH": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+            "processFlowParameters": {
+              "PaymentTypeName": "Wire Transfer"
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addACHInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addACHTokenizerPaymentInformation",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE",
+              "PaymentTypeID": "@parent.retrievePaymentTypeIdForACH.outputPaymentTypeId",
+              "AccountNumber": "@request.accountNumber",
+              "AccountName": "@request.accountName",
+              "Bank": "@request.bank",
+              "ABA": "@request.aba",
+              "TransactionNumber": "ebiz payment",
+              "SaveForFutureUse": "@request.saveForFutureUse"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+    "membershipCheckoutByGPay": {
+      "route": {
+        "description": "Completes membership product checkout using GPay.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "GPay": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipGPayInput",
+        "fields": {
+          "cardNumber": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "saveForFutureUse": {
+            "type": "boolean",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipGPayOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdForDigitalWallet": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "PaymentTypeName": "Google Pay",
+              "IsWebEnabled": true
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addGPayPaymentInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addDigitalWalletPaymentInfo",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+    "membershipCheckoutByApplePay": {
+      "route": {
+        "description": "Completes membership product checkout using Apple Pay.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "ApplePay": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "membershipApplePayInput",
+        "fields": {
+          "cardNumber": {
+            "type": "string",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ]
+            }
+          },
+          "saveForFutureUse": {
+            "type": "boolean",
+            "input": {
+              "source": "body",
+              "httpMethods": [ "POST" ]
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../../Endpoints/ShoppingCarts/entityDefinitions.json#/cartCheckoutOutput",
+        "name": "membershipApplePayOutput"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdForDigitalWallet": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "PaymentTypeName": "Apple Pay",
+              "IsWebEnabled": true
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addApplePayPaymentInfo": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/addDigitalWalletPaymentInfo",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "completeOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/checkoutBusinessLogic.json#/completeOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "CartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.completeOrder.outputCurrentOrderGE",
+              "FieldName": "ID"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/returnTheOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        }
+      }
+    },
+    "getRemotePaymentRequestForMembershipCheckout": {
+      "route": {
+        "description": "Retrieves the remote payment request data for membership.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "GetRemotePaymentRequest": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/getRemotePaymentRequestOutput",
+        "name": "GetRemotePaymentRequestOutputForMembership"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrievePaymentTypeIdForRemotePayment": {
+          "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+              "IsWebEnabled": true
+            }
+          }
+        },
+        "ensureActiveCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "validateAndUpdateCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+        },
+        "ensureActiveCartForMembership": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "restoreSavedCart": {
+          "$ref": "../../Endpoints/ShoppingCarts/fundraisingBusinessLogic.json#/restoreSavedCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "FundraisingCartGE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE",
+              "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+              "Status": "Membership_Temporary"
+            }
+          }
+        },
+        "getProductValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "FieldName": "MembershipProduct"
+            }
+          }
+        },
+        "addMembershipProduct": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/addProduct",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getProductValueFromGE.outputFieldValue",
+              "quantity": 1,
+              "orderGe": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE"
+            }
+          }
+        },
+        "addPaymentTypeOnOrderObject": {
+          "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/AddPaymentTypeOnOrder",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "OrderGE": "@parent.ensureActiveCartForMembership.outputCurrentOrderGE",
+              "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+            }
+          }
+        },
+        "saveCart": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        },
+        "retrieveRemotePaymentRequest": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Remote Payment RequestData",
+            "processFlowParameters": {
+              "GEObject": "@parent.ensureActiveCartForMembership.outputCurrentCartGE"
+            }
+          }
+        }
+      }
+    },
+    "processRemotePaymentResponseForMembershipCheckout": {
+      "route": {
+        "description": "Processes the remote payment response data for membership.",
+        "httpMethod": "POST",
+        "segments": {
+          "MembershipApplication": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "Checkout": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "ProcessRemoteResponse": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/processRemotePaymentResponseInput",
+        "name": "ProcessRemotePaymentResponseInputForMembership"
+      },
+      "outputEntityDefinition": {
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/processRemotePaymentResponseOutput",
+        "name": "ProcessRemotePaymentResponseOutputForMembership"
+      },
+      "businessLogic": {
+        "getActiveMembershipApplicationDefinition": {
+          "$ref": "../../Common/businessLogic.json#/getActiveMembershipApplicationDefinition"
+        },
+        "loadMembershipApplicationRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Load Membership Application",
+            "processFlowParameters": {
+              "MembershipApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "personId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+            }
+          }
+        },
+        "getMembershipApplicationId": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Retrieve Membership ApplicationID",
+            "processFlowParameters": {
+              "MembershipApplicationDataTable": "@parent.loadMembershipApplicationRetrieval.outputApplicationDefinition"
+            }
+          }
+        },
+        "getSingleMembershipGERetrieval": {
+          "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "entityName": "Membership Application",
+              "action": "get",
+              "recordId": "@parent.getMembershipApplicationId.outputMembershipApplicationID"
+            }
+          }
+        },
+        "retrieveCart": {
+          "$ref": "../ShoppingCarts/shoppingBusinessLogic.json#/retrieveCart",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "currentUserIdentifierType": "@ShoppingCartUserIdentifier.identifierType",
+              "currentUserIdentifierValue": "@ShoppingCartUserIdentifier.identifierValue",
+              "serviceApplicationName": "@AuthenticatedAttributes.ServiceApplicationName",
+              "cartStatus": "Membership_Temporary"
+            }
+          }
+        },
+        "processRemotePaymentResponse": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Process Remote Payment Response Data",
+            "processFlowParameters": {
+              "ResponseData": "@request.responseData"
+            }
+          }
+        },
+        "getOrderValueFromGE": {
+          "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.processRemotePaymentResponse.outputGE",
+              "FieldName": "OrderId"
+            }
+          }
+        },
+        "addFieldsToMembershipGE": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Add Membership Application Information",
+            "processFlowParameters": {
+              "ApplicationDefinitionID": "@parent.getActiveMembershipApplicationDefinition.outputActiveApplicationDefinitionID",
+              "PersonID": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+              "Status": 2,
+              "MembershipApplicationGE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE",
+              "OrderID": "@parent.getOrderValueFromGE.outputFieldValue"
+            }
+          }
+        },
+        "saveMembershipApplicationGE": {
+          "$ref": "../../Common/businessLogic.json#/executeGEAction",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "action": "save",
+              "GE": "@parent.getSingleMembershipGERetrieval.outputMembershipApplicationGE"
+            }
+          }
+        },
+        "returnTheOrder": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.processRemotePaymentResponse.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "MembershipApplicationDefinitionOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "startDateTime": {
+          "type": "date"
+        },
+        "endDateTime": {
+          "type": "date"
+        },
+        "membershipYear": {
+          "type": "string"
+        },
+        "preStartDateText": {
+          "type": "string"
+        },
+        "postEndDateText": {
+          "type": "string"
+        }
+      }
+    },
+    "MembershipApplicationDefinitionProductsOutput": {
+      "fields": {
+        "productId": {
+          "type": "long"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "decimal"
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "currencyId": {
+          "type": "int"
+        },
+        "webDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "MembershipApplicationOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "productId": {
+          "type": "long",
+          "sourceField": "MembershipProduct"
+        },
+        "orderId": {
+          "type": "long",
+          "sourceField": "MembershipOrder"
+        },
+        "status": {
+          "type": "string",
+          "sourceField": "StatusName"
+        }
+      }
+    }
+  }
+}

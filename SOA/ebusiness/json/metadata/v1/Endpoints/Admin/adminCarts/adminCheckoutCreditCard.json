@@ -1,0 +1,88 @@
+﻿{
+  "checkoutByCreditCard": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completes the shopping experience using a credit card for admin payment.",
+      "httpMethod": "POST",
+      "segments": {
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "CreditCard": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminCreditCardCheckoutInput",
+      "$ref": "adminPaymentEntityDefinitions.json#/paymentItemInput",
+      "fields": {
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationMonth": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "expirationYear": {
+          "type": "integer",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "adminCartsEntityDefinitions.json#/cartCheckoutOutput",
+      "name": "adminCartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdByCardNumber": {
+        "$ref": "adminCheckoutBusinessLogic.json#/retrievePaymentTypeIdByCardNumber"
+      },
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/validateOrder"
+      },
+      "getPaymentExpirationDate": {
+        "$ref": "adminCheckoutBusinessLogic.json#/getPaymentExpirationDate"
+      },
+      "addCreditCardPaymentInfo": {
+        "$ref": "adminCheckoutBusinessLogic.json#/addCreditCardPaymentInfo"
+      },
+      "completeOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "adminCheckoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

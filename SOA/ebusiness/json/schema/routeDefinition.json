@@ -1,0 +1,35 @@
+﻿{
+  "properties": {
+    "segments": {
+      "description": "An array of routeSegment objects that define what a route looks like.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name for this part.",
+            "type": "string"
+          },
+          "isLiteral": {
+            "type": "boolean",
+            "description": "If a route segment is a literal then the segment name is expected to be found in the path.  Otherwise, the segment value is stored in a variable with the segment name.  This variables is matched against fields on the Input Entity Definition when the source of the fields is the path."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "long",
+              "string",
+              "decimal"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "isLiteral",
+          "type"
+        ]
+      }
+    }
+  },
+  "required" :  ["segments"]
+}

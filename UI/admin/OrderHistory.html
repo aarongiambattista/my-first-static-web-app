@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Order History</title>
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <!--Required for Bootstrap icons. -->
+    <script src="../js/configuration/ebConfig.js"></script>
+    <script src="../js/3rdParty/moment.min.js"></script> <!--Moment.js for date format-->
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/admin/ShoppingCart.js"></script>
+    <script src="../js/ProductCatalog.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/admin/OrderHistory.js"></script>
+    <script src="../js/admin/CompanyDropdown.js"></script> <!--For company dropdown control-->
+    <script src="../js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody">
+        <div id="orderHistoryAdmin"></div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            var options = {}
+            options.domElement = eBusinessJQObject('#orderHistoryAdmin')[0];
+            options.templatePath = eb_Config.SitePath + "html/admin/OrderHistory.html";
+            eb_Config.config(options, eb_OrderHistoryAdmin);
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load.
+            eb_Config.retrieveCSRFTokens();
+
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    if (eb_UserContext.live.checkCompanyAdminInUserContext()) {
+                    /*1. Get shopping cart items for shopping cart count and order history for selected company.*/
+                        eBusinessJQObject.when(eb_adminShoppingCart.getShoppingCart(), eb_OrderHistoryAdmin.OrderHistoryService(eb_UserContext.live.companyId())).done(function (cartData, orderData) {
+                            var cartOptions = {};
+                            cartOptions.shoppingCartData = cartData;
+                            eb_adminShoppingCart.live = new eb_adminShoppingCart.shoppingCartModel(cartOptions);
+
+                            options.companyId = eb_UserContext.live.companyId();
+                            options.data = orderData;
+                            options.userContext = eb_UserContext.live;
+
+                            //load footer control
+                            var footerOptions = footerOptions || {};
+                            footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                            footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                            eb_Footer.render(footerOptions).done(function () {
+                                //load header control
+                                var headerOptions = headerOptions || {};
+                                headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                headerOptions.userContext = eb_UserContext.live;
+                                headerOptions.sitePath = eb_Config.SitePath;//need to test this
+                                headerOptions.shoppingCart = eb_adminShoppingCart.live;
+                                headerOptions.cartText = "My Company Cart";
+                                headerOptions.viewCartURL = eb_HeaderMenu.SitePath + "admin/" + eb_HeaderMenu.pages["ViewCart"];
+                                eb_HeaderMenu.viewCartURL = eb_Config.SitePath + "admin/ViewCart.html";
+                                eb_HeaderMenu.render(headerOptions).done(function () {
+                                    eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                    ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                    eb_OrderHistoryAdmin.render(options).done(function () {
+                                        eb_OrderHistoryAdmin.live = new eb_OrderHistoryAdmin.model(options);
+                                        ko.applyBindings(eb_OrderHistoryAdmin.live, eb_OrderHistoryAdmin.live.domElement);/*Apply KO bindings, fire up the control*/
+
+                                        //load company dropdown control
+                                        var companyDropdownOptions = {};
+                                        companyDropdownOptions.domElement = eBusinessJQObject(eb_OrderHistoryAdmin.live.domElement).find("#companyDropdown")[0];
+                                        companyDropdownOptions.templatePath = eb_Config.SitePath + "html/admin/CompanyDropdown.html";
+                                        companyDropdownOptions.userContext = eb_UserContext.live;
+                                        eb_Config.config(companyDropdownOptions, eb_CompanyDropdown);
+
+                                        eb_CompanyDropdown.render(companyDropdownOptions).done(function () {
+                                            eb_CompanyDropdown.live = new eb_CompanyDropdown.model(companyDropdownOptions, eb_OrderHistoryAdmin.live);
+                                            ko.applyBindings(eb_CompanyDropdown.live, eb_CompanyDropdown.live.domElement);/*Apply KO bindings, fire up the control*/
+
+
+                                        }).fail(function (data, msg, jhr) {
+                                            console.error('Failed to render Company Dropdown...' + data);
+                                        });
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render order history page...' + data);
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error('Failed to render header control...');
+                                });
+                            }).fail(function (data, msg, jhr) {
+                                console.error('Failed to render footer control...');
+                            });
+                        }).fail(function (data, msg, jhr) {
+                            console.error('Failed to get data for Order History page...');
+                            eb_Config.getErrorMessageForControl(data.responseJSON, eb_OrderHistoryAdmin);
+                        });
+                    }
+                    else {
+                        window.location.assign(eb_Config.companyAdminDashboardURL);
+                    } 
+                }
+                else {
+                    window.location.assign(eb_Config.loginPageURL);
+                }
+            }).fail(function (data, msg, jhr) {
+                console.error('Failed to get user information data...');
+                eb_Config.getErrorMessageForControl(data.responseJSON, eb_OrderHistoryAdmin);
+            });
+        });
+    </script>
+</body>
+</html>

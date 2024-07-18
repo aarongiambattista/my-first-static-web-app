@@ -1,0 +1,278 @@
+﻿{
+  "retrievePaymentTypeIdByCardNumber": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Payment Type ID by Card Number",
+      "processFlowParameters": {
+        "CardNumber": null,
+        "SaveForFutureUse": false
+      }
+    }
+  },
+  "getExpirationDate": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Payment Expiration Date By Month and Year",
+      "processFlowParameters": {
+        "ExpirationMonth": null,
+        "ExpirationYear": null
+      }
+    }
+  },
+  "addCreditCardPaymentInfo": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Credit Card Payment Information on Payment Object",
+      "processFlowParameters": {
+        "PaymentsGE": null,
+        "PaymentTypeID": null,
+        "CardNumber": null,
+        "CVV": null,
+        "ExpirationDate": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "addCreditCardInfoOnOrderGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Credit Card Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "CardNumber": null,
+        "CVV": null,
+        "ExpirationDate": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "addDigitalWalletPaymentInfo": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Digital Wallet Payment Information on Payment Object",
+      "processFlowParameters": {
+        "PaymentsGE": null,
+        "PaymentTypeID": null,
+        "CardNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "addDigitalWalletInfoOnOrderGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Digital Wallet Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "CardNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "savePaymentObject": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Save Payment Object",
+      "processFlowParameters": {
+        "PaymentsGE": null
+      }
+    }
+  },
+  "createPaymentRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Create Payment Record",
+      "processFlowParameters": {
+        "PersonId": "@request.Id"
+      }
+    }
+  },
+  "createCompanyPaymentRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Create Company Payment Record",
+      "processFlowParameters": {
+        "CompanyId": "@request.Id"
+      }
+    }
+  },
+  "addPaymentLinesRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Payment Lines To PaymentsGE",
+      "processFlowParameters": {
+        "paymentsGE": "@parent.createPaymentRecord.outputGE",
+        "paymentAmount": "@request.paymentAmount",
+        "orderId": "@request.orderId"
+      }
+    }
+  },
+  "addBulkPaymentLinesRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Collection Objects To SubType GE",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "geObject": null,
+        "subTypeName": null
+      }
+    }
+  },
+  "addSaveFoFutureCollectionOnPaymentsGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add SaveForFuture Collection Objects on Payment Object",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "geObject": null,
+        "subTypeName": null
+      }
+    }
+  },
+  "validatePersonBulkOrderIds": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Person Bulk Order Ids",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "bulkObjectPropertyName": null,
+        "DataObjectName": null,
+        "personId": null
+      }
+    }
+  },
+  "validateCompanyBulkOrderIds": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Company Bulk Order Ids",
+      "processFlowParameters": {
+        "collectionDataObjects": null,
+        "bulkObjectPropertyName": null,
+        "DataObjectName": null,
+        "companyId": null
+      }
+    }
+  },
+  "retrievePaymentTypeIdByPaymentTypeName": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+      "processFlowParameters": {
+        "PaymentTypeName": null
+      }
+    }
+  },
+  "addSavedPaymentMethodInfo": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Saved Payment Method Information to Order GE",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "SavedPaymentId": null,
+        "CVV": null
+      }
+    }
+  },
+  "retrievePaymentTypeIdForACH": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+      "processFlowParameters": {
+        "PaymentTypeName": null
+      }
+    }
+  },
+  "addACHPaymentInformation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add ACH Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "addACHTokenizerPaymentInformation": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add ACH Tokenizer Payment Information",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+
+
+  "AddPaymentTypeOnOrder": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Set Payment Type",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null
+      }
+    }
+  },
+  "addPaymentTypeOnPayment": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Set Payment Type on Payment",
+      "processFlowParameters": {
+        "PaymentGE": null,
+        "PaymentTypeID": null
+      }
+    }
+  },
+
+  "addACHPaymentInformationOnPaymentsGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add ACH Payment Information on PaymentsGE",
+      "processFlowParameters": {
+        "PaymentsGE": null,
+        "PaymentTypeID": null,
+        "AccountNumber": null,
+        "AccountName": null,
+        "Bank": null,
+        "ABA": null,
+        "TransactionNumber": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "validateSaveForFutureUse": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Save For Future Use",
+      "processFlowParameters": {
+        "OrderGE": null,
+        "PaymentTypeID": null,
+        "SaveForFutureUse": null
+      }
+    }
+  },
+  "returnThePayment": {
+    "$ref": "businessLogic.json#/contextPropertyMapper",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "inputPropertyValue": "@parent.processRemotePaymentResponse.outputGE",
+        "outputPropertyName": "outputPaymentGE"
+      }
+    }
+  }
+}

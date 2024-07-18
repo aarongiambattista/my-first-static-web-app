@@ -1,0 +1,327 @@
+{
+  "AdminEventsDetailsOutput": {
+    "fields": {
+      "id": {
+        "type": "string",
+        "description": "product id of an event."
+      },
+      "name": {
+        "type": "string",
+        "description": "product name of an event."
+      },
+      "webDescription": {
+        "type": "string",
+        "description": "A short rich text description of event with html encoding."
+      },
+      "webLongDescription": {
+        "type": "string",
+        "description": "A long rich text description of event with html encoding."
+      },
+      "startDate": {
+        "type": "date",
+        "description": "Startdate of an event."
+      },
+      "venue": {
+        "type": "string",
+        "description": "The name of the location where this event is taking place'."
+      },
+      "TotalAttendees": {
+        "type": "string",
+        "description": "Total Attendees of an event."
+      },
+      "TotalWaitList": {
+        "type": "string",
+        "description": "Total WaitList of an event."
+      },
+      "TotalRegistrants": {
+        "type": "string",
+        "description": "Total Registrants of an event."
+      },
+      //"webImage": {
+      //  "type": "string",
+      //  "description": "Image url for an event"
+      //},
+      "productCategory": {
+        "type": "string",
+        "description": "The product category of product"
+      }
+
+    }
+  },
+
+  "EventRegistrationsOutput": {
+    "fields": {
+      "OrderDetailID": {
+        "type": "long",
+        "description": "OrderDetailID"
+      },
+      "OrderID": {
+        "type": "long",
+        "description": "OrderID"
+      },
+      "AttendeeID": {
+        "type": "long",
+        "description": "OrderID"
+      },
+      "Subscriber": {
+        "type": "string",
+        "description": "Person subscribed for the Event"
+      },
+      "Title": {
+        "type": "string",
+        "description": "Person Title"
+      },
+      "City": {
+        "type": "string",
+        "description": "City"
+      },
+      "Status": {
+        "type": "string",
+        "description": "Registration Status"
+      },
+      "CompanyID": {
+        "type": "long",
+        "description": "Company ID of the Registered Person"
+      }
+    }
+  },
+
+  "BadgeDetailsOutput": {
+    "fields": {
+      "ID": {
+        "type": "long",
+        "description": "ID of Order Meeting Detail Record"
+      },
+      "BadgeCompanyName": {
+        "type": "string",
+        "description": "Badge Company Name"
+      },
+      "BadgeName": {
+        "type": "string",
+        "description": "Badge Name"
+      },
+      "BadgeTitle": {
+        "type": "string",
+        "description": "Badge Title"
+      }
+    }
+  },
+
+  "SingleAdminEvent": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "product id of an event."
+      },
+      "name": {
+        "type": "string",
+        "description": "product name of an event."
+      },
+      "webDescription": {
+        "type": "string",
+        "description": "A short rich text description of event with html encoding."
+      },
+      "webLongDescription": {
+        "type": "string",
+        "description": "A long rich text description of event with html encoding."
+      },
+      "startDate": {
+        "type": "date",
+        "description": "Startdate of an event."
+      },
+      "venue": {
+        "type": "string",
+        "description": "The name of the location where this event is taking place'."
+      },
+      "addressLine1": {
+        "type": "string",
+        "description": "The address where this event is taking place'."
+      },
+      "addressLine2": {
+        "type": "string",
+        "description": "The address where this event is taking place'."
+      },
+      "addressCity": {
+        "type": "string",
+        "description": "The city where this event is taking place'."
+      },
+      "addressStateProvince": {
+        "type": "string",
+        "description": "The state where this event is taking place'."
+      },
+      "addressPostalCode": {
+        "type": "string",
+        "description": "The postal code where this event is taking place'."
+      },
+      "addressCountry": {
+        "type": "string",
+        "description": "The country where this event is taking place'."
+      },
+      "retailPrice": {
+        "type": "decimal"
+      },
+      "CurrencySymbol": {
+        "type": "string"
+      },
+      "hasSessions": {
+        "type": "boolean"
+      },
+      //"TotalAttendees": {
+      //  "type": "long",
+      //  "description": "Total Attendees of an event."
+      //},
+      "webImage": {
+        "type": "string",
+        "description": "Image url for an event"
+      },
+      "endDate": {
+        "type": "date",
+        "description": "EndDate of an event."
+      },
+      "hasComplexPricing": {
+        "type": "boolean",
+        "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+      },
+      "defaultPrice": {
+        "type": "decimal"
+      },
+      "defaultMemberPrice": {
+        "type": "decimal"
+      },
+      "nonMemberPrice": {
+        "type": "decimal"
+      },
+      "requireAvailableSpace": {
+        "type": "boolean"
+      },
+      "availableSpace": {
+        "type": "long"
+      },
+      "maxSpace": {
+        "type": "long"
+      },
+      "statusID": {
+        "type": "long"
+      },
+      "status": {
+        "type": "string"
+      }
+    }
+  },
+
+  "SingleAdminSessionEvent": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "product id of an event."
+      },
+      "parentProductId": {
+        "type": "long",
+        "description": "parent product id of an event."
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of an event."
+      },
+      "startDate": {
+        "type": "date",
+        "description": "Startdate of an event."
+      },
+      "endDate": {
+        "type": "date",
+        "description": "EndDate of an event."
+      },
+      "venue": {
+        "type": "string",
+        "description": "The name of the location where this event is taking place'."
+      },
+      "hasScheduledSpeakers": {
+        "type": "boolean",
+        "description": "true, when speakers are available for particular event."
+      },
+      "CurrencySymbol": {
+        "type": "string"
+      },
+      "webName": {
+        "type": "string",
+        "description": "WebName of an event."
+      },
+      "webDescription": {
+        "type": "string",
+        "description": "A short rich text description of event with html encoding."
+      },
+      "webLongDescription": {
+        "type": "string",
+        "description": "A long rich text description of event with html encoding."
+      },
+      "hasComplexPricing": {
+        "type": "boolean",
+        "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+      },
+      "defaultPrice": {
+        "type": "decimal"
+      },
+      "defaultMemberPrice": {
+        "type": "decimal"
+      },
+      "nonMemberPrice": {
+        "type": "decimal"
+      },
+      "retailPrice": {
+        "type": "decimal"
+      },
+      "statusID": {
+        "type": "long"
+      },
+      "status": {
+        "type": "string"
+      }
+    }
+  },
+
+  "SingleAdminEventSpeaker": {
+    "fields": {
+      "eventId": {
+        "type": "long",
+        "description": "product id of an event."
+      },
+      "name": {
+        "type": "string",
+        "description": "Speaker of an event"
+      },
+      "companyName": {
+        "type": "string",
+        "description": "companyName of Speaker"
+      },
+      "title": {
+        "type": "string",
+        "description": "Title of Speaker like Primary Speaker"
+      },
+      "type": {
+        "type": "string",
+        "description": "Type of Speaker like Regular,Panelist"
+      }
+    }
+  },
+
+  "AdminEventAttendeeDetails": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "PersonID of Event Attendee"
+      },
+      "firstName": {
+        "type": "string",
+        "description": "First Name of Attendee"
+      },
+      "lastName": {
+        "type": "string",
+        "description": "Last Name of Attendee"
+      },
+      "city": {
+        "type": "string",
+        "description": "City of Event Attendee"
+      }
+    }
+  }
+}

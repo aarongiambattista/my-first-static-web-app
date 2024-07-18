@@ -1,0 +1,63 @@
+﻿{  
+  "description": "A structure for defining what the input of an end point should look like.",
+  "properties": {
+    "name": {
+      "description": "The name of the Input Entity Definition.  Since these are typically used between multiple HTTP methods you should include the method names in the name.  For example, 'ShoppingCartGetDelete'.",
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "description":  "The client facing documentation on what this field does."
+    },
+    "fieldDefinitions": {
+      "description": "The collection of fields that make up this Input Entity Definition record",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the field.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the field.",
+            "type": "string"
+          },
+          "httpMethods": {
+            "description": "The HTTP method(s) that this field applies to.  Typically a portion of a payload for an end point will apply to multiple Http methods.  For example, GET and DELETE payloads are similar, as are POST and PATCH payloads.",
+            "type": "array",
+            "items": {
+              "$ref": "httpMethods.json#"
+            }
+          },
+          "requiredMethods": {
+            "description": "The HTTP method(s) that this field is required for.  Similar to the httpMethod property, there is usually overlap in a field's requiredness based on HTTP method.",
+            "type": "array",
+            "items": {
+              "$ref": "httpMethods.json#"
+            }
+          },
+          "source": {
+            "description": "Where the value should be obtained from on the HTTP request",
+            "enum": [
+              "path",
+              "queryString",
+              "body"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "httpMethods",
+          "requiredMethods",
+          "source"
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "fieldDefinitions"
+  ]
+}

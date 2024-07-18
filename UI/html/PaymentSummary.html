@@ -1,0 +1,115 @@
+﻿<div class="ebusiness-member-offer-apply-coupon">
+    <div id="paymentPanel" data-bind="attr:{class:fixedPanelev}">
+        <div class="ebusiness-payment-summary-total-order-panel">
+            <form class="frmCoupon" novalidate="novalidate">
+                <div class="ebusiness-viewcart-coupon-checkout-row" data-bind="visible: hidePaymentDetails">
+                    <div class="ebusiness-add-coupon" data-bind=" visible: hideCouponForAnonymous">
+                        <div class="from-group">
+                            <h4 class="capton">Add Coupon</h4>
+                           <div> <input name="txtApplyCouponInput" type="text" placeholder="Enter Coupon Code" class="form-control required" required="" data-bind="value: couponName, disable : disableTextCoupon"></div>
+                        </div>
+                        <div>
+                            <span class="ebusiness-coupon-message" data-bind="visible:couponValidation , text: couponValidationMessage, css: couponClass"></span>
+                        </div>
+                        <div class="ebusiness-add-coupon-row">
+                            <button type="submit" class="ebusiness-action-button-apply-coupon btn btn-primary btn-block" data-bind="click: applyCoupon, disable : showControl, visible: applyButton">Apply Coupon</button>
+                            <button class="ebusiness-action-button-remove-coupon btn btn-primary btn-block" data-bind="click: removeCoupon, disable : showControl, visible: removeButton">Remove Coupon</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <div class="col-md-12 total-order-details">
+                    <h4>Cart Summary</h4>
+                    <div class="row-subtotal row">
+                        <div class="col">Grand Total</div>
+                        <div class="col amount">
+                        <strong class="ebusiness-payment-sub-total ebusiness-product-view-cart-price" data-bind="text:grandTotal">$0.00</strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-subtotal row">
+                        <div class="col">Total Savings </div>
+                        <div class="col amount">
+                            <strong class="ebusiness-product-view-cart-price" data-bind="text: totalSavings">$0.00</strong>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row-subtotal row">
+                        <div class="col">Subtotal</div>
+                        <div class="col amount">
+                        <strong class="ebusiness-payment-sub-total ebusiness-product-view-cart-price" data-bind="text: subTotal"></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-subtotal hide discountRow">
+                        <div class="row">
+                            <div class="col">Discount(-)</div>
+                            <div class="col amount">
+                            <strong class="ebusiness-payment-discount ebusiness-product-view-cart-price" data-bind="text: discount"></strong>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="row-subtotal row">
+                        <div class="col">Tax</div>
+                        <div class="col amount">
+                            <strong class="vcTax ebusiness-product-view-cart-price" data-bind="text: tax"></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-subtotal row">
+                        <div class="col">Shipping</div>
+                        <div class="col amount">
+                            <strong class="vcShipping ebusiness-product-view-cart-price" data-bind="text: shipping"></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-subtotal row">
+                        <div class="col">Handling</div>
+                        <div class="col amount">
+                            <strong class="vcShipping ebusiness-product-view-cart-price" data-bind="text: handling"></strong>
+                        </div>
+                    </div>
+                    <p class="ebusiness-approx-message-shipping" data-bind="visible:showHandlingChargesNote">Note: Estimated shipping and handling charges. Charges subject to change based on the shipping address you select.</p>
+                    <hr>
+                    <div class="row-subtotal row hide" data-bind="visible: hidePaymentDetails">
+                        <div class="col">Shipping Method</div>
+                        <div class="col">
+                            <strong>
+                                <select class="ebusiness-view-cart-shipmenttype form-control"></select>
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="row-subtotal row">
+                        <div class="col">Total</div>
+                        <div class="col amount">
+                            <strong class="vcTotal ebusiness-product-view-cart-price" data-bind="text: grandTotalBeforeDiscount"></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row-subtotal hide row">
+                        <div class="col-md-12">
+                            <div class="save-cart-btn">
+                                <button class="btn btn-secondary btn-block ebusiness-viewcart-action-savecart-button save-cart-btn-color" data-bs-toggle="modal" style="display:inline-block" data-bs-target="#saveYourShoppingCart"> SAVE CART</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-subtotal row">
+                        <div class="col-md-12 update-cart-btn">
+                            <div class="proceed-checkout">
+                                <button type="button" class="btn btn-primary btn-block ebusiness-viewcart-action-proceed-checkout-button" style="display:block" data-bind="click:proceedToCheckout,disable: disableProceedToCheckout, visible: proceedToCheckout, visible: hidePaymentDetails">Proceed to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-subtotal row">
+                        <div class="col-md-12 proceed-payment">
+                            <button type="button" class="btn btn-primary btn-block ebusiness-viewcart-action-proceed-payment-button" style="display:block" data-bind="text:paymentTextName ,click:proceedToPayment, disable: disableProceedToPayment, visible: proceedToPaymentVisible">Proceed to Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

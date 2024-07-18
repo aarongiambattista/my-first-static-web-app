@@ -1,0 +1,476 @@
+﻿<div class="ebusiness-payment-address-fields">
+    <div>
+        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showError, text: errorMessage"></div>
+    </div>
+    <div class="ebClear">
+        <div class="alert alert-success" data-bind="visible: showSuccessMessage, text: successMessage"></div>
+    </div>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default" data-bind="visible: showSavedPaymentMethodPanel && (savedCardsCollection().length || savedCardForACH().length)">
+            <div class="panel-heading">
+                <h4 class="panel-title" aria-expanded="true">
+                    Saved Payment Methods
+                    <span class="pull-right" data-bind="click: toggleSavedPayment,css: { isCollapseOpen: showSavedPaymentMethods(), isCollapseClosed: !showSavedPaymentMethods()}"></span>
+                </h4>
+            </div>
+            <div id="collapseOne" aria-expanded="true" data-bind="visible: showSavedPaymentMethods">
+                <div class="panel-body">
+                    <!--This div contains the saved card data-->
+                    <div class="ebusiness-savedCards-list-ctrl k-widget k-listview" data-role="listview" role="listbox">
+
+                        <!-- Saved Card List -->
+                        <div data-bind="foreach: savedCardsCollection">
+                            <div class="row rowSavedCards">
+                                <div class="col-md-1"><label><input type="radio" name="placeorder" data-bind=" click:selectSavedCard, value:id" /></label></div>
+                                <div class="col-md-11 row">
+                                    <div class="col-md-12 card-type cardName" data-bind="text: cardName">Visa  </div>
+                                    <div class="col-md-3 col-sm-2 col"> <span class="ebusiness-text-label-field">Ending In</span> <span class="ebusiness-text-value-filed cardLastDigits" data-bind="text:endingIn"></span></div>
+                                    <div class="col-md-3 col-sm-2 col">  <span class="ebusiness-text-label-field">Expire On</span> <span class="ebusiness-text-value-filed cardExpiryDate" data-bind="text:expirationMonthYear"></span></div>
+
+                                    <div class="btnAddDelete col-7 col-md-2" data-bind="visible: $parent.parentControl.paymentControl.showEditDeleteSavedCardButtons != undefined ? $parent.parentControl.paymentControl.showEditDeleteSavedCardButtons : true">
+                                        <a class="ebusiness-payment-edit-card-info scpEditCardDialog cursor-pointer" data-bs-toggle="modal" data-bind="click: editCardDetails , attr: { 'data-bs-target': '#'+id() + 'editID' }">
+                                            <i class="ebIcon-pencil"></i>
+                                        </a>
+                                        <a class="delete-card-info scpRemoveCardDialog cursor-pointer" data-bs-toggle="modal" data-bind="attr: { 'data-bs-target': '#'+id() + 'deleteID' }">
+                                            <i class="ebIcon-trash"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12 CVV-Wrapper" data-bind="visible:selectSavedCards">
+                                        <input type="password" name="scpCCSecurityNumber" class="cvvInputField form-control col-xs-5" placeholder="CVV" maxlength="4" data-bind="value:cVV , valueUpdate: 'afterkeydown' , event: { focus: $parent.hideMessages }" />
+
+                                    </div>
+                                    <div class="col-sm-2 col-md-2 col-12" data-bind="visible:selectSavedCards">
+                                        <div class="btnSelect text-right">
+                                            <input class="btn btn-primary" type="button" data-bind="value: $parent.parentControl.paymentControl.paymentControlButtonName || 'Pay' , click: $parent.parentControl.payBySavedCard  , valueUpdate: 'afterkeydown'" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Edit card modal -->
+                            <div class="modal fade editCard" role="dialog" data-bind="attr: { id: id() + 'editID' }">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header"> <span class="heading-primary">Edit card info</span> </div>
+                                        <div class="modal-body">
+                                            <div class="new-card-details">
+                                                <div class="row-card row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="caption">Card Number</label>
+                                                            <input type="text" class="form-control scpCardNumber" placeholder="Card Number" readonly="" disabled="" data-bind="value: partialNumber">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-card row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="caption">Exp. Month</label>
+                                                            <select class="form-control scpExpirationMonth" data-bind="options: $parent.expirationMonthOptions, value: newMonth"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="caption">Exp. Year</label>
+                                                            <select class="form-control scpExpirationYear" data-bind="options: $parent.expirationYearOptions, value: newYear"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-primary scpEditCard" data-bs-dismiss="modal" data-bind="click: updateCardDetails , enable: newMonth() != 'Month' && newYear() != 'Year'">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Delete card modal -->
+                            <div class="modal fade deleteCard" role="dialog" data-bind="attr: { id: id() + 'deleteID' }">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <span class="heading-primary"> Delete card info</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this card?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <button class="btn btn-primary scpRemoveCard" data-bs-dismiss="modal" data-bind="click: deleteCardDetails">Yes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--For ACH CARD-->
+                        <div data-bind="foreach: savedCardForACH">
+                            <div class="row rowSavedCards align-items-center" data-bind="attr: { id: id}">
+
+                                <div class="col-md-7 col-sm-9 col-8 eb-ach-type cardName"><input type="radio" name="placeorder" data-bind=" click:selectSavedCard, value:id" /> Bank Account (<span data-bind="text: paymentType"></span>)<span data-bind="text:partialNumber">xxxxx9125</span></div>
+
+                                <div class="col-md-2 col-sm-3 col-4 text-right">
+                                    <div data-bind="visible: $parent.parentControl.paymentControl.showEditDeleteSavedCardButtons != undefined ? $parent.parentControl.paymentControl.showEditDeleteSavedCardButtons : true">
+                                        <a class="ebusiness-payment-edit-card-info scpEditCardDialog cursor-pointer" data-bs-toggle="modal" data-bind="click: editACHCardDetails , attr: { 'data-bs-target': '#'+id + 'editID' }">
+                                            <i class="ebIcon-pencil"></i>
+                                        </a>
+                                        <a class="delete-card-info scpRemoveCardDialog cursor-pointer" data-bs-toggle="modal" data-bind="attr: { 'data-bs-target': '#'+id + 'deleteID' }">
+                                            <i class="ebIcon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-12 col-12 text-right">
+                                    <div class="btnSelect text-right" data-bind="visible:selectSavedCards">
+                                        <input class="btn btn-primary" type="button" value="Place Order" data-bind="value: $parent.parentControl.paymentControl.paymentControlButtonName || 'Pay' , click: $parent.parentControl.payByACHSavedCard  , valueUpdate: 'afterkeydown'">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Edit ACH Card Record Model Dialog-->
+                            <div class="modal fade editACHCard" role="dialog" data-bind="attr: { id: id + 'editID' }">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header"> <span class="heading-primary">Edit card info</span> </div>
+                                        <div class="modal-body">
+                                            <div class="new-card-details">
+                                                <div class="row-card row">
+                                                    <div class="col-md-12">
+                                                        <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showEndDateError, text: errorEndDateMessage"></div>
+                                                        <div class="form-group">
+                                                            <label class="caption">Account Number</label>
+                                                            <input type="text" placeholder="Account Number" class="form-control" data-bind="value:$parent.ACHAccountNumberEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: $parent.hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="caption">Routing Number</label>
+                                                            <input type="text" placeholder="Routing Number" class="form-control" data-bind="value:$parent.ACHRoutingNumberEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: $parent.hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row-card ebClear row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="caption">Account Holder's Name</label>
+                                                            <input type="text" placeholder="Account Holder's Name" class="form-control" data-bind="value:$parent.ACHAccountNameEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: $parent.hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="caption">Bank Name</label>
+                                                            <input type="text" placeholder="Bank Name" class="form-control" data-bind="value:$parent.ACHBankNameEdit, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: $parent.hideMessages}"><span class="validationMessage" style="display: none;"></span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-primary scpEditCard" data-bs-dismiss="modal" data-bind="click: editACHCard, disable : showEndDateError">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--ACH Delete card modal -->
+                            <div class="modal fade deleteCard" role="dialog" data-bind="attr: { id: id + 'deleteID' }">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <span class="heading-primary"> Delete card info</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this card?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <button class="btn btn-primary scpRemoveCard" data-bs-dismiss="modal" data-bind="click: deleteCardDetails">Yes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credit Cards Section -->
+        <div class="panel panel-default" data-bind="visible: showCreditCards">
+            <div class="panel-heading">
+                <h4 class="panel-title" aria-expanded="true">
+                    Credit Cards
+                    <span class="pull-right" data-bind="click: toggleCreditCard,css: { isCollapseOpen: showCreditCardsSection(), isCollapseClosed: !showCreditCardsSection()}"></span>
+                </h4>
+            </div>
+
+            <div id="collapseThree" aria-expanded="true" data-bind="visible: showCreditCardsSection">
+
+                <!-- Credit Card section -->
+                <div class="panel-body">
+                    <div class="new-card-details frmCompleteOrder row">
+                        <div class="col-md-6">
+                            <div class="row ebClear">
+                                <div class="form-group col-sm-8">
+                                    <label class="caption">Card Number</label>
+                                    <input type="text" class="form-control" placeholder="Card Number" maxlength="20" data-bind="value:cardNumber , event: { focus: hideMessages}, valueUpdate: 'afterkeydown'">
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <label class="caption">CVV</label>
+                                    <input type="password" class="form-control txtCCSecurityNumber" placeholder="CVV" maxlength="4" data-bind="value:cVV, valueUpdate: 'afterkeydown', event: { focus: hideMessages}">
+                                </div>
+                            </div>
+
+                            <div class="row ebClear">
+                                <div class="col-sm-6 exp-month">
+                                    <div class="form-group">
+                                        <label class="caption">Exp. Month</label>
+                                        <select class="form-control txtCCExpireMonth" data-bind="options: expirationMonthOptions, value: selectedMonth, optionCaption:'Month', valueUpdate: 'afterkeydown', event: { focus: hideMessages}"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">Exp. Year</label>
+                                        <select class="form-control txtCCExpireYear" data-bind="options: expirationYearOptions, value: selectedYear, optionCaption:'Year', valueUpdate: 'afterkeydown', event: { focus: hideMessages}"></select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="errorExpDate error" style="display:none">Your Card is Expired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ebAcptCards col-md-6">
+                            <div class="heading-AcceptedCard">Accepted Cards</div>
+                            <div class="ebusiness-form-control-row ebusiness-card-image-resize">
+                                <ul class="ebusiness-apply-cardresize cards list-unstyled" data-bind="foreach: creditCardImageList">
+                                    <li><span class="ebusiness-savedCards-image-resize card" data-bind=" css: { visa: isVisa, master: isMaster, amex: isAmex, discover: isDiscover, inValidCreditCard: !isCardValid() }, title: cardName, text: cardName"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row saved-card-row">
+                        <div class="col-sm-6">
+                            <p data-bind="visible: parentControl.paymentControl.showSaveForFutureCheckBox != undefined ? parentControl.paymentControl.showSaveForFutureCheckBox : true">
+                                <input type="checkbox" data-bind="checked: saveForFutureUse" /><span>Save for Future Use</span>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="pull-right btn btn-primary btnCompleteOrder" type="button" data-bind="value: parentControl.paymentControl.paymentControlButtonName || 'Pay', click: parentControl.payByNewCard , enable: cardNumber().length  && cVV().length && selectedMonth() != 'Month' && selectedYear() != 'Year'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Blue Pay Section -->
+        <div class="panel panel-default" data-bind="visible: showHostedPaymentPanel">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    BluePay Checkout
+                    <span class="pull-right" data-bind="click: toggleHosted,css: { isCollapseOpen: showHostedSection(), isCollapseClosed: !showHostedSection()}"></span>
+                </h4>
+            </div>
+            <div id="collapseThree" aria-expanded="false" data-bind="visible: showHostedSection()">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3 col-lg-3ebusiness-apply-width-desktop-button">
+                            <button type="submit" name="submit" class="ebSlctbillme btn btn-primary" value="Select" data-bind="value: parentControl.paymentControl.paymentControlButtonName || 'Pay' ,click:parentControl.payByBluepayHPP">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iFrame Tokenizer Section -->
+        <div class="panel panel-default" data-bind="visible: showiFrameTokenizerPaymentPanel">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    CardPointe Tokenizer
+                    <span class="pull-right" data-bind="click: toggleHosted,css: { isCollapseOpen: showHostedSection(), isCollapseClosed: !showHostedSection()}"></span>
+                </h4>
+            </div>
+            <div id="collapseThree" aria-expanded="false" data-bind="visible: showHostedSection()">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3 col-lg-3ebusiness-apply-width-desktop-button">
+                            <button type="submit" name="submit" class="ebSlctbillme btn btn-primary" value="Select" data-bind="value: parentControl.paymentControl.paymentControlButtonName || 'Pay' ,click:parentControl.payByiFrameTokenizer">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paypal section -->
+        <div class="panel panel-default hide">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" data-bs-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
+                    Paypal
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <img class="ebusiness-paypal-express-icon" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-pill-paypal-34px.png" alt="PayPal" align="left">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" value="Proceed">            <!--Place Order and Proceed button should be disabled if cart is empty-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bill me later section -->
+        <div class="panel panel-default" data-bind="visible: (parentControl.paymentControl.showBillMeLaterPayType != false  ) && showBillMeLaterPanel ">
+
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    Bill me later
+                    <span class="pull-right" data-bind="click: toggleBillMe,css: { isCollapseOpen: billMe(), isCollapseClosed: !billMe()}"></span>
+                </h4>
+            </div>
+            <div id="collapseThree" aria-expanded="false" data-bind="visible: billMe">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-9 col-lg-9 ebusiness-apply-width-desktop-label">
+                            <div class="from-group">
+                                <label class="caption">PO Number</label>
+                                <input type="text" autocomplete="off" name="ponumber" class="form-control" placeholder="PO Number" data-bind="value:poNumber , event: {click: showError(0) }">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-lg-3ebusiness-apply-width-desktop-button">
+                            <label class="caption"> &nbsp; </label>
+                            <button type="submit" name="submit" class="ebSlctbillme btn btn-primary" value="Select" data-bind="click:parentControl.billMeLaterPlaceOrder">Place Order</button>          <!--Place Order and Proceed button should be disabled if cart is empty-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ACH payment section -->
+        <div class="panel panel-default" data-bind="visible: showACHPanel">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    Bank Account (ACH)
+                    <span class="pull-right" data-bind="click: toggleACHPayment,css: { isCollapseOpen: showACHPayments(), isCollapseClosed: !showACHPayments()}"></span>
+                </h4>
+            </div>
+            <div id="collapseThree" class="ebAchPanel" aria-expanded="false" data-bind="visible: showACHPayments">
+                <p class="eb-msg-ach">
+                    Note: Please enter numbers with no spaces or dash
+                </p>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="caption">Account Number</label>
+                            <input type="text" class="form-control" data-bind="value:ACHAccountNumber, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="caption">Routing Number</label>
+                            <input type="text" class="form-control" data-bind="value:ACHRoutingNumber, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="caption">Account Holder's Name</label>
+                            <input type="text" class="form-control" data-bind="value:ACHAccountName, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label class="caption">Bank Name</label>
+                            <input type="text" class="form-control" data-bind="value:ACHBankName, valueUpdate: 'afterkeydown', enterkey: enableACHPlaceOrderButton, event: { focus: hideMessages}">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p data-bind="visible: parentControl.paymentControl.showSaveForFutureCheckBox != undefined ? parentControl.paymentControl.showSaveForFutureCheckBox : true">
+                                <input type="checkbox" data-bind="checked: ACHsaveForFutureUse" /><span>Save for Future Use</span>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="pull-right btn btn-primary btnCompleteOrder" type="button" data-bind="value: parentControl.paymentControl.paymentControlButtonName || 'Pay', click: parentControl.payByACHCard , enable: ACHAccountNumber().length && ACHAccountName().length && ACHBankName().length && ACHRoutingNumber().length">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GPay Section -->
+        <div class="panel panel-default" data-bind="visible: showGPayPanel">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    GPay
+                    <span class="pull-right" data-bind="click: toggleGpayPayment,css: { isCollapseOpen: showGpayPayments(), isCollapseClosed: !showGpayPayments()}"></span>
+                </h4>
+            </div>
+            <div id="collapseFour" class="ebGpayPanel" aria-expanded="false" data-bind="visible: showGpayPayments">
+                <div class="panel-body" id="divGPay">
+                </div>
+            </div>
+        </div>
+
+        <!-- Apple Pay Section -->
+        <div class="panel panel-default" data-bind="visible: showApplePayPanel">
+            <div class="panel-heading">
+                <h4 class="panel-title collapsed" aria-expanded="false">
+                    Apple Pay
+                    <span class="pull-right" data-bind="click: toggleApplePayPayment,css: { isCollapseOpen: showApplePayPayments(), isCollapseClosed: !showApplePayPayments()}"></span>
+                </h4>
+            </div>
+            <div id="collapseThree" aria-expanded="false" data-bind="visible: showApplePayPayments">
+                <div class="panel-body">
+                    <div class="row">
+                        <div id="apple-pay-button" onclick="applePayButtonClicked()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Blue Pay Dialog -->
+<div id="eb-BluePay" role="dialog" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                <!--<h4>Make a Payment</h4>-->
+                <iframe class="eb-BluePay" data-bind="attr:{src:parentControl.paymentControl.bluePayURL}"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- iFrame Tokenizer Dialog -->
+<div id="eb-iFrame-Tokenizer" role="dialog" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

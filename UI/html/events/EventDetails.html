@@ -1,0 +1,104 @@
+<div class="ebClear">
+    <div class="ebEventDetails">
+        <div class="ebusiness-events-card row">
+            <div class="ebusiness-events-details-image col-md-2"><img class="ebusiness-product-list-image" src="#" data-bind="imageSrc: { src: eventImage} "></div>
+            <div class="ebusiness-events-card-details col-md-10">
+                <div class="ebusiness-events-card-details-title"><h4 data-bind="text: name"></h4></div>
+                <div class="eb-events-card-details-location"><span class="fa-icon"><img src="../images/icons/fontawesome/map-marker-alt.svg" /></span><span data-bind="text: venue"></span> </div>
+                <div class="ebusiness-events-see-details ebClear"><span class="fa-icon"><img src="../images/icons/fontawesome/calendar-alt-blue.svg" /></span>  <span data-bind="text: startDate"></span></div>
+            </div>
+        </div>
+
+        <div class="description-panel ebusiness-events-card">
+            <h4>Description</h4>
+            <!--show more and show less-->
+            <span class="ebusiness-product-details-description showHideReadMore" data-bind="text:description ,visible: showMoreDescription"></span>
+            <!-- ko if: description().length >= 450 -->
+            <span class="ebusiness-product-details-description" data-bind="visible: showEllipses">...&nbsp;</span>
+            <span class="ebusiness-product-details-description morelink" data-bind=" click : showMore, visible: showMoreHide" style="cursor:pointer;color: #12596F;">Show More</span>
+            <!-- /ko -->
+
+            <span class="ebusiness-product-details-description" data-bind="text : remainingDescription ,visible : showRemainingDescription"></span>
+            <span class="ebusiness-product-details-description morelink" data-bind="click : showLess ,visible : hideRemainingDescription" style="cursor:pointer;color: #12596F;">Show Less</span>
+            <!--End of show more and show less-->
+        </div>
+        <div class="sepaker-panel ebusiness-events-card">
+            <h4>Speaker(s) Info</h4>
+            <p data-bind="text: noSpeaker, visible: noSpeaker">
+            <p data-bind="foreach : showUniqueSpeaker">
+                <!-- ko if: $index() > 0 -->,<!-- /ko -->
+                <span data-bind="text: speakerName"></span>
+            </p>
+
+        </div>
+        <div class="schedule-panel ebusiness-events-card" data-bind="visible: doShowCollapseExpandAll">
+            <div class="ebClear">
+                <div class="pull-left"><h4>Event Schedule</h4> </div>
+                <div class="pull-right">
+                    <a class="collapseAll" data-bind="click: collapseExpandAll, text: collapseExpandAllText"></a>
+                </div>
+            </div>
+
+            <div data-bind="foreach : sessionDetails">
+                <div class="ebEvent-session-list">
+                    <div class="ebClear events-heading-panel">
+                        <div class="session-name" data-bind="text: sessionName"></div>
+                        <div class="pull-right">
+                            <span><span class="session-price ebusiness-product-view-cart-price" data-bind="text:showCurrencySymbol"></span><span class="session-price ebusiness-product-view-cart-price" data-bind="html: showPriceOrText"></span></span>
+                            <span data-bind="click: toggleSession">
+                                <span data-bs-toggle="collapse" data-bind="css: { isCollapseOpen: sessionCollapse(), isCollapseClosed: !sessionCollapse()}"> </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="panel-collapse event-details-panel" data-bind="visible: sessionCollapse">
+                        <div class="ebusiness-row-event-details ebusiness-row-event-session-details">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="label-events">Date</span><span class="value-orders" data-bind="text: sessionDate"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="label-events">Location</span><span class="value-orders" data-bind="text: sessionVenu"></span>
+                                </div>
+                                <div class="col-md-5">
+                                    <span class="label-events">Speaker</span>
+                                    <span data-bind="foreach: speakerNamesData">
+                                        <span class="value-orders" data-bind="text: sessionSpeakerName"></span>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <div class="ebdetail-description">
+                                <span class="label-events"> Description</span>
+
+                                <!--show more and show less-->
+                                <span class="ebusiness-product-details-description showHideReadMore" data-bind="text:sessionDescription ,visible: showMoreDescription"></span>
+                                <!-- ko if: sessionDescription().length >= 450 -->
+                                <span class="ebusiness-product-details-description" data-bind="visible: showEllipses">...&nbsp;</span>
+                                <span class="ebusiness-product-details-description morelink" data-bind=" click : showMore, visible: showMoreHide" style="cursor:pointer;color: #12596F;">Show More</span>
+                                <!-- /ko -->
+
+                                <span class="ebusiness-product-details-description" data-bind="text : remainingDescription ,visible : showRemainingDescription"></span>
+                                <span class="ebusiness-product-details-description morelink" data-bind="click : showLess ,visible : hideRemainingDescription" style="cursor:pointer;color: #12596F;">Show Less</span>
+                                <!--End of show more and show less-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loaderwrapper" data-bind="visible: showLoader">
+            <div class="ebloader"></div>
+        </div>
+
+        <div class="sepaker-panel ebusiness-events-card">
+            <h4>Venue Map</h4>
+            <p data-bind="visible: noLocation">No location available</p>
+            <div class="event-venue-map" data-bind="visible: showMap">
+                <!--For Map-->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Campaign_CouponEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Campaign_CouponEndpoint.v1_Campaign_CouponEndpointController.GetSingleCoupon(System.String)">
+            <summary>
+            Gets the Coupon Code based on the Coupon Name
+            </summary>
+        </member>
+    </members>
+</doc>

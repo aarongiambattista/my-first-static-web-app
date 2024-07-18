@@ -1,0 +1,33 @@
+﻿{
+  "addFundraisingProduct": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Add Fundraising Product",
+      "processFlowParameters": {
+        "ProductId": null,
+        "OrderGE": null
+      }
+    }
+  },
+  "validateAndUpdateCartToSavedStatus": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate and Update Cart To Saved Status",
+      "processFlowParameters": {
+        "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+        "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE"
+      }
+    }
+  },
+  "restoreSavedCart": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Restore Saved Cart",
+      "processFlowParameters": {
+        "FundraisingCartGE": null,
+        "CartGE": null,
+        "Status": null
+      }
+    }
+  }
+}

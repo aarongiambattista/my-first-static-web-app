@@ -1,0 +1,49 @@
+{
+    "getAllCommittees": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Gets the List of All Committees",
+        "segments": {
+          "Committees": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "name": "GetAllCommitteesOutput",
+        "fields": {
+          "Id": {
+            "type": "long"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "Goals": {
+            "type": "string"
+          },
+          "DateFounded": {
+            "type": "date"
+          }
+        }
+      },
+      "businessLogic": {
+        "allCommitteesRetrieve": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0CommitteesList",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      }
+
+    }
+}

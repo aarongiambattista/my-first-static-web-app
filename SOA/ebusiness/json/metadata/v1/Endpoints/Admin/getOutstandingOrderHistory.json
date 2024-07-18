@@ -1,0 +1,64 @@
+﻿{
+  "getCompanyOutstandingOrderHistory": {
+    "parent": {
+      "name": "getCompanyOrderHistory"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "OutstandingOrders": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "getOutstandingOrderHistoryOutput",
+      "fields": {
+        "OrderId": {
+          "type": "long",
+          "description": "The Id for this order"
+        },
+        "OrderDate": {
+          "type": "date",
+          "description": "The Date of this order"
+        },
+        "OrderTotal": {
+          "type": "decimal",
+          "description": "The Total amount for this order"
+        },
+        "OrderType": {
+          "type": "string",
+          "description": "The OrderType for this order"
+        },
+        "AmountDue": {
+          "type": "decimal",
+          "description": "The amount due for this order"
+        },
+        "currencyTypeId": {
+          "type": "long",
+          "description": "The id of the currency being used on the order."
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "The currency symbol for the order."
+        },
+        "billToName": {
+          "type": "string",
+          "description": "The Bill to Person Name"
+        },
+        "billToId": {
+          "type": "long",
+          "description": "Bill to Person Id"
+        }
+      }
+    },
+    "businessLogic": {
+      "personOutstandingOrdersRetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companyOutstandingOrdersRetrieval"
+      }
+    }
+  }
+}

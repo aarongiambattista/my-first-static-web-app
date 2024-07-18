@@ -1,0 +1,43 @@
+﻿{
+  "getAllShipmentTypes": {
+    "parent": {
+      "name": "getAdminCartCompany" //get cart information of selected company
+    },
+    "route": {
+      "description": "Gets all the shipment types available.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShipmentTypes": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "name": "adminShipmentTypeOutput",
+      "isCollection": true,
+      "fields": {
+        "id": {
+          "type": "long",
+          "description": "id of the shipment type"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the shipment type"
+        }
+      }
+    },
+    "businessLogic": {
+      "allShipmentTypesRetrieval": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Execute Data Object",
+          "processFlowParameters": {
+            "DataObjectName": "spGeteBusiness6_0ShipmentTypes"
+          }
+        }
+      }
+    }
+  }
+}

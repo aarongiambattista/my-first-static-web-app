@@ -1,0 +1,61 @@
+﻿<div class="ebusiness-all-products  ebWrapper  ebClear ebusiness-main-container offcanvas">
+    <div class="ebusiness-filter-control">
+        <div class="row">
+            <div class="col-sm-6"><h3>People - <span data-bind="text:companyName"></span></h3></div>
+            <div class="col-sm-6 ebusiness-view-switcher">
+                <div class="dropdown">
+                    <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                    <span id="companyDropdown"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="eb-pg-title">Add New People</h3>
+    <div class="eb-add-member-grid">
+        <div class="eb-add-member-grid-header d-none d-md-block">
+            <div class="row">
+                <div class="col-md-2">First Name</div>
+                <div class="col-md-2">Last Name</div>
+                <div class="col-md-3">Title</div>
+                <div class="col-md-4">Email</div>
+                <div class="col-md-1">Web User?</div>
+            </div>
+        </div>
+        <div class="eb-add-member-grid-body">
+            <div id="addMemberRow">
+                <div class="eb-add-member-grid-row" id="0">
+                    <div class="row">
+                        <div class="col-md-2"><label class="d-sm-block d-md-none">First Name</label><input type="text" id="firstName" data-bind="value:firstName" class="form-control" /></div>
+                        <div class="col-md-2"><label class="d-sm-block d-md-none">Last Name</label><input type="text" id="lastName" data-bind="value:lastName" class="form-control" /></div>
+                        <div class="col-md-3"><label class="d-sm-block d-md-none">Title Name</label><input type="text" id="title" class="form-control" /></div>
+                        <div class="col-md-4"><label class="d-sm-block d-md-none">Email</label><input type="text" id="email" data-bind="value:email" class="form-control" /></div>
+                        <div class="col-md-1 eb-act-btn"><label class="d-sm-block d-md-none">Web User?</label><input id="webUser" type="checkbox" /> <button class="non-styled-btn pull-right" data-bind="click:deleteRow"><i class="ebIcon-trash" id="0" title="Remove"></i></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="eb-action-btn">
+                <button class="btn btn-secondary" data-bind="click:deleteAll">Delete All</button>
+                <button class="btn btn-secondary" id="insertButton" data-bind="click:insertRow">Insert Row</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="eb-action-btn-submit">
+        <div class="row">
+            <div class="col-7 text-left">
+                <a href="CompanyDirectory.html">View Company Directory</a>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-primary" id="submitButton" data-bind="click:submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-danger" data-bind="visible: showError, text: errorMessage"></div>
+    <div class="alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+    <!--This div belongs to Loader-->
+    <div class="loaderwrapper" data-bind="visible: showLoader">
+        <div class="ebloader"></div>
+    </div>
+</div>

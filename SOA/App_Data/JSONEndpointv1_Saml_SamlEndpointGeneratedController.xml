@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Saml_SamlEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.SamlAuthentication(Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.GetSAMLAuthenticationInput,System.String)">
+            <summary>
+            Authenticates the User
+            </summary>
+            <param name="Issuer">Issuer</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.SamlProcessAuthNRequestGET(System.String)">
+            <summary>
+            Logs in the user using SAML
+            </summary>
+            <param name="RelayState">RelayState if on the input payload will be appended to the logout response</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.SamlProcessAuthNRequestPOST(System.String)">
+            <summary>
+            Logs in the user using SAML
+            </summary>
+            <param name="RelayState">RelayState if on the input payload will be appended to the logout response</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.SAMLProcessLogoutRequestPOST(System.String)">
+            <summary>
+            Logs out the user using SAML
+            </summary>
+            <param name="RelayState">RelayState if on the input payload will be appended to the logout response</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.SAMLProcessLogoutRequestGET(System.String)">
+            <summary>
+            Logs out the user using SAML
+            </summary>
+            <param name="RelayState">RelayState if on the input payload will be appended to the logout response</param>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.GetSAMLAuthenticationInput.UserName">
+            <summary>
+            UserName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.GetSAMLAuthenticationInput.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.GetSAMLAuthenticationInputForBusinessLogic.UserName">
+            <summary>
+            UserName
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Saml_SamlEndpoint.v1_Saml_SamlEndpointController.GetSAMLAuthenticationInputForBusinessLogic.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+    </members>
+</doc>

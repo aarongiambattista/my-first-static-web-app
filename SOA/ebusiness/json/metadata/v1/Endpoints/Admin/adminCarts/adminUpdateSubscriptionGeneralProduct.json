@@ -1,0 +1,107 @@
+﻿{
+  "adminUpdateSingleSubscriptionGeneralProductItem": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Updates the properties of a single subscription general product item in the cart.  If the item specified is not a subscription general product this call will throw an error.",
+      "httpMethod": "PATCH",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminUpdateSingleSubscriptionGeneralProductItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET",
+              "PATCH"
+            ],
+            "source": "path",
+            "requiredHttpMethods": [
+              "GET",
+              "PATCH"
+            ]
+          }
+        },
+        "autoRenew": {
+          "type": "bool",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "adminCartsEntityDefinitions.json#/subscriptionCartItemOutput",
+      "name": "adminUpdateSingleSubscriptionGeneralProductItemOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "getSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "subscriptionGeneralProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsSubscriptionProduct"
+            ]
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getSingleOrderLine.outputGE",
+            "inputFieldsToIgnore": "cartSequenceId"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnUpdatedOrderLine"
+      }
+    }
+  }
+}

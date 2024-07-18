@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Admin Dashboard</title>
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <!--Required for Bootstrap icons. -->
+    <script src="../js/configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/admin/ShoppingCart.js"></script>
+    <script src="../js/ProductCatalog.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/admin/Dashboard.js"></script>
+    <script src="../js/Footer.js"></script>
+    <style type="text/css">
+        body:after {
+            display: none;
+            content: url(../images/icons/fontawesome/building-regular-white.svg) url(../images/icons/icon_order-history-32px-white.svg) url(../images/icons/icon_make-payment-24px-white.svg) url(../images/icons/fontawesome/calendar-alt-dark-blue-white.svg) url(../images/icons/icon_order-history-32px-white.svg) url(../images/icons/fontawesome/building-regular-white.svg);
+        }
+    </style>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+
+    <div class="ebBody">
+        <div id="companyAdmin"></div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load.
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                //load footer control
+                var footerOptions = footerOptions || {};
+                footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                eb_Footer.render(footerOptions).done(function () {
+                    if (eb_UserContext.live.isUserLoggedIn()) {
+                        /*Get shopping cart items for shopping cart count and companies data.*/
+                        eBusinessJQObject.when(eb_CompanyAdmin.getCompaniesData()).done(function (companyData) {
+
+
+                            var options = {}
+                            options.domElement = eBusinessJQObject('#companyAdmin')[0];
+                            options.templatePath = eb_Config.SitePath + "html/admin/Dashboard.html";
+                            eb_Config.config(options, eb_CompanyAdmin);
+                            options.userContext = eb_UserContext.live;
+                            options.data = companyData;
+
+                            eb_CompanyAdmin.render(options).done(function () {
+                                eb_companyAdminModel = new eb_CompanyAdmin.model(options);
+                                /*Apply KO bindings, fire up the control*/
+                                ko.applyBindings(eb_companyAdminModel, eb_companyAdminModel.domElement);
+                            }).fail(function (data, msg, jhr) {
+                                console.error('Failed to render Admin Dashboard...' + data);
+                            });
+                        }).fail(function (data, msg, jhr) {
+                            console.error('Failed to get data on admin dashboard page...');
+                            eb_Config.getErrorMessageForControl(data.responseJSON, eb_CompanyAdmin);
+                        });
+                    }
+                    else {
+                        window.location.assign(eb_Config.loginPageURL);
+                    }
+                }).fail(function (data, msg, jhr) {
+                    console.error('Failed to render footer control...');
+                });
+            }).fail(function (data, msg, jhr) {
+                console.error('Failed to get user information data...');
+                eb_Config.getErrorMessageForControl(data.responseJSON, eb_CompanyAdmin);
+            });
+        });
+    </script>
+</body>
+</html>

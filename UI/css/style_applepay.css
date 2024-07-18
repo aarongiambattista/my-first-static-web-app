@@ -1,0 +1,19 @@
+﻿/*
+Copyright (C) 2016 Vantiv. All Rights Reserved.
+
+Adapted from EmporiumWeb:
+https://developer.apple.com/library/content/samplecode/EmporiumWeb/Introduction/Intro.html
+ 
+Abstract:
+Styles the example site, as well as the Apple Pay button using -webkit-named-image
+*/
+
+#apple-pay-button {
+    height: 48px;
+    width: 100%;
+    display: inline-block;
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: plain;
+    -apple-pay-button-style: black;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,272 @@
+﻿<div class="ebusiness-checkout-addresses">
+    <div class="ebusiness-ui-address">
+        <div class="ebusiness-card-details">
+            <div class="row">
+                <h3 class="ebusiness-dynamic-address-title col-md-6 ">Select Shipping and Billing options</h3>
+                <div class="ebusiness-checkout-step-wrapper col-md-6">
+                    <div class="stepsText activeSteps">
+                        <a class="stepsBg">1 </a>
+                        Address
+                    </div>
+                    <div class="stepsText">
+                        <a class="stepsBg">2</a>
+                        Review
+                    </div>
+                    <div class="stepsText">
+                        <a class="stepsBg">3</a>
+                        Payment
+                    </div>
+                    <div class="stepsText">
+                        <a class="stepsBg">4</a>
+                        Confirmation
+                    </div>
+                </div>
+            </div>
+
+            <div class="ebusiness-payment-address-fields">
+                <div class="row shippingType" data-bind="visible: shipmentTypesList().length">
+                    <div class="col-md-3 col-sm-6 shippingTypeDropDown">
+                        <div class="form-group">
+                            <label class="caption">Select Shipping Method</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <select class="ebusiness-view-cart-shipmenttype form-control" data-bind="options: shipmentTypeName, value:shipmentType, event: {change: shipmentTypeChange(shipmentType)}"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" data-bind="click: toggleBilling">
+                                <span>Billing Address</span>
+                                <span class="pull-right" data-bind="css: { isCollapseOpen: billingAddressCollapse(), isCollapseClosed: !billingAddressCollapse()}"></span>
+                            </h4>
+                        </div>
+                        <div class="panel-body" data-bind="foreach : billingAddress, visible: billingAddressCollapse">
+                            <div class="ebusiness-payment-address-listing-row row">
+                                <div class="ebusiness-payment-person-profile-link col-sm-4">
+                                    <input type="radio" name="billing" data-bind="checked: billingCheck, value:id, click:billingClick" /> <label data-bind="text:name">Billing</label>
+                                </div>
+                                <div class="ebusiness-break-long-word col-sm-6">
+                                    <span data-bind="text:line1 "></span><span data-bind="text: line2().length > 0? ', ' + line2() :''"></span>
+                                    <p data-bind="text:fullAddress"></p>
+                                </div>
+                                <div class="ebusiness-action-buttons-address col-sm-2 text-right">
+                                    <a id="1" class="ebusiness-payment-edit-card-info" data-bs-toggle="modal" title="Edit Address" data-bs-target="#editShppingAddress" data-bind="click: $parent.showEditDialog">
+                                        <i class="ebIcon-pencil"></i>
+                                    </a>
+                                    <a id="1" class="delete-card-info scpRemoveCardDialog cursor-pointer" title="Delete Address" data-bs-toggle="modal" data-bs-target="#deleteCard" data-bind="click: $parent.deleteAddressDialog">
+                                        <i class="ebIcon-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="captionShipping"> <input type="checkbox" name="sameasbilling" id="sameasbilling" data-bs-toggle="collapse" data-bs-target="#collapse2" data-parent="#accordion" checked data-bind="checked:isBillingSameAsShipping, click: sameBillingShippingAddress" /><label for="sameasbilling">Shipping address same as Billing address</label></div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title collapsed" data-bind="click: toggleShipping">
+                                <span> Shipping Address</span>
+                                <span class="pull-right" data-bind="css: { isCollapseOpen: shippingAddressCollapse(), isCollapseClosed: !shippingAddressCollapse()}"></span>
+                            </h4>
+                        </div>
+                        <div class="panel-body" data-bind="foreach : shippingAddress, visible: shippingAddressCollapse">
+                            <div class="row ebusiness-payment-address-listing-row">
+                                <div class="ebusiness-payment-person-profile-link col-sm-4">
+                                    <input type="radio" name="shipping" data-bind="checked: shippingCheck, value:id, click:shippingClick" /> <label data-bind="text:name">Shipping</label>
+                                </div>
+                                <div class="ebusiness-break-long-word col-sm-6">
+                                    <span data-bind="text:line1 "></span><span data-bind="text: line2().length > 0? ', ' + line2() :''"></span>
+                                    <p data-bind="text:fullAddress"></p>
+                                </div>
+                                <div class="ebusiness-action-buttons-address col-sm-2 text-right">
+                                    <a id="1" class="ebusiness-payment-edit-card-info" data-bs-toggle="modal" title="Edit Card" data-bs-target="#editShppingAddress" data-bs-dismiss="modal" data-bind="click: $parent.showEditDialog">
+                                        <i class="ebIcon-pencil"></i>
+                                    </a>
+                                    <a class="delete-card-info scpRemoveCardDialog cursor-pointer" title="Delete Card" data-bs-toggle="modal" data-bs-target="#deleteCard" data-bind="click: $parent.deleteAddressDialog">
+                                        <i class="ebIcon-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right actionButtonWrapper">
+                <input type="button" class="ebusiness-action-add-new-address-button btn btn-secondary" value="Add New Address" data-bs-toggle="collapse" data-bs-target="#addrNewShip" data-bind="click:addNewAddress">
+                <input type="button" class="btn btn-primary" value="Next" data-bind="click:selectNext, enable: billingCheck() != undefined && shippingCheck() != undefined">
+            </div>
+            <div class="ebClear">
+                <div class="addrNewShip collapse" id="addrNewShip">
+                    <h3>Add New Address</h3>
+                    <div class="ebusiness-add-new-address-checkout" data-bind="foreach:newAddress">
+                        <div>
+                            <div class="new-form-error"></div>
+                            <div class="ebusiness-form-control-row row address-name">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="caption">Address Name</label>
+                                        <input id="full-name" name="full-name" placeholder="Address Name" maxlength="50" type="text" class="form-control new-Name" required="" data-bind="value:name , valueUpdate: 'afterkeydown' , css:{invalid:!name().length}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ebusiness-form-control-row row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">Address Line 1</label>
+                                        <input id="full-name" name="full-name" placeholder="Address Line 1" maxlength="100" type="text" class="form-control new-AddressLine1" required="" data-bind="value:line1 , valueUpdate: 'afterkeydown' , css:{invalid:!line1().length}">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">Address Line 2</label>
+                                        <input id="full-name" name="full-name" placeholder="Address Line 2 " maxlength="100" type="text" class="form-control new-AddressLine2" data-bind="textInput:line2">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ebusiness-form-control-row row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">City</label>
+                                        <input id="full-name" name="full-name" placeholder="City" maxlength="50" type="text" class="form-control new-City" required="" data-bind="value:city , valueUpdate: 'afterkeydown' , css:{invalid:!city().length}">
+                                    </div>
+                                </div>            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">Zip</label>
+                                        <input id="full-name" name="full-name" placeholder="ZIP" maxlength="25" type="text" class="form-control new-ZipCode" required="" data-bind="textInput:postalCode">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ebusiness-form-control-row row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">Country</label>
+                                        <select id="full-name" name="full-name" type="text" class="form-control update-Country form-country" required="" data-bind="options: phoneCountryCodeOptions, value:country, optionsValue: 'country', event: { change: selectionChanged }, optionsCaption: 'Select...' , css:{invalid:country() === undefined}"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="caption">State/Province</label>
+                                        <select id="full-name" name="full-name" type="text" class="form-control update-State form-state" data-bind="options: addressStateOptions, value:stateProvince,optionsValue: 'state', optionsCaption:'State/Province'"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <button class="btn btn-primary collapsed" data-bs-toggle="collapse" data-bs-target="#addrNewShip" data-bind="disable:errors().length , click:addAddress">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <div class="alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+                    <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showError, text: errorMessage"></div>
+                </div>
+            </div>
+        </div>
+        <!--Edit address dialog-->
+        <!-- Modal -->
+
+        <div id="editShppingAddress" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="heading-primary"> Edit Address</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ebusiness-update-address-checkout" data-bind="foreach: addressDialog">
+                            <div>
+                                <form id="updateAddressForm">
+                                    <div class="update-form-error"></div>
+                                    <div class="ebusiness-form-control-row row address-name"></div><!--Form control row-->
+                                    <!--Form control row starts-->
+                                    <div class="ebusiness-form-control-row row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">Address Line 1</label>
+                                                <input id="full-name" name="full-name" placeholder="Address" maxlength="100" type="text" class="form-control update-AddressLine1" required="" data-bind="value:line1 , valueUpdate: 'afterkeydown' , css:{invalid:!line1().length}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">Address Line 2</label>
+                                                <input id="full-name" name="full-name" placeholder="Address Line 2 / Apt" maxlength="100" type="text" class="form-control update-AddressLine2" data-bind="textInput:line2">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ebusiness-form-control-row row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">City</label>
+                                                <input id="full-name" name="full-name" placeholder="City" maxlength="50" type="text" class="form-control update-City" required="" data-bind="value:city , valueUpdate: 'afterkeydown' , css:{invalid:!city().length}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">Country</label>
+                                                <select id="full-name" name="full-name" type="text" class="form-control update-Country form-country" required="" data-bind="options: phoneCountryCodeOptions, value:country, optionsValue: 'country', event: { change: selectionChanged }, optionsCaption: 'Select...'"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ebusiness-form-control-row row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">Zip</label>
+                                                <input id="full-name" name="full-name" placeholder="ZIP" maxlength="25" type="text" class="form-control update-ZipCode" required="" data-bind="textInput:postalCode">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="caption">State</label>
+                                                <select id="full-name" name="full-name" type="text" class="form-control update-State form-state" data-bind="options: addressStateOptions, value:stateProvince,optionsValue: 'state', optionsCaption:'State/Province'"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ebusiness-action-buttons-footer row ebusiness-action-update-address-button">
+                                        <div class="col-md-12 amount">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal"> Cancel </button>
+                                            <button type="button" class="btn btn-primary ebusiness-action-button-save-changes" data-bs-dismiss="modal" data-bind=" disable:errors().length ,click:updateAddress">Save Changes</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="deleteCard" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="heading-primary"> Delete Address info</span>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this address?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <button class="btn btn-primary scpRemoveCard" data-bs-dismiss="modal" data-bind="click: removeAddress">Yes</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--edit end-->
+    </div>
+</div>

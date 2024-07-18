@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>My Downloads</title>
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="../js/3rdParty/knockout.validation.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <!--Required for Bootstrap icons. -->
+    <script src="../js/configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/ShoppingCart.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/3rdParty/moment.min.js"></script>
+    <script src="../js/Footer.js"></script>
+    <script src="../js/3rdParty/react.production.min.js"></script>
+    <script src="../js/3rdParty/react-dom.production.min.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div class="ebusiness-main-container ebClear">
+            <div class="ebusinesss-orderhistory-bottom ebusiness-tabs-my-border-bottom ">
+                <ul class="ebusiness-tabs-my-profile-page">
+                    <li class="ebusiness-user-profile-profile-icon ebusiness-profile-tab-style"><a href="../PersonProfile.html" title="Profile"><img src="../images/icons/icon_profile-32px.svg"><span class="eb-menu-label"> Profile</span></a></li>
+                    <!--<li class="ebusiness-user-profile-company-icon ebusiness-profile-tab-style"><a href="#"><img src="../images/icon_company-32px.svg"></a></li>-->
+                    <li class="ebusiness-user-profile-orders-icon ebusiness-profile-tab-style"><a href="../my/OrderHistory.html" title="Order History"><img src="../images/icons/icon_order-history-32px.svg" title="Order History"><span class="eb-menu-label"> Order History</span></a></li>
+                    <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="../my/MakeMyPayment.html" title=" Pay Off Orders"> <img src="../images/icons/icon_make-payment-24px.svg" title=" Pay Off Orders"><span class="eb-menu-label">  Pay Off Orders</span></a></li>
+                    <li class="ebusiness-user-profile-payment-icon ebusiness-profile-tab-style"><a href="../my/SavedPaymentMethods.html" title="Saved Payments"> <img src="../images/icons/icon_saved_cards_32px.png"><span class="eb-menu-label"> Saved Payments</span></a></li>
+                    <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style"><a href="../my/TopicOfInterest.html" title="Topics of Interest"> <img src="../images/icons/icon_topic-of-interest-32px.png"> <span class="eb-menu-label">Topics Of Interest</span></a></li>
+                    <li class="ebusiness-user-profile-download-icon ebusiness-profile-tab-style active-maintab"><a href="../my/MyDownloads.html" title="My Downloads"> <img src="../images/icons/icon-download-32px.svg"> <span class="eb-menu-label">My Downloads</span></a></li>
+                </ul>
+            </div>
+            <!--<div class="row">-->
+                <!--This div belongs to My Downloads-->
+                <div id="myDownloads"></div>
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <!-- Load our React component. -->
+    <script src="../js/my/MyDownloads.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+﻿<div class="ebusiness-all-products  ebWrapper  ebClear ebusiness-main-container offcanvas">
+        <div class="ebusiness-filter-control">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Order History - <span data-bind="text: companyName"></span></h3>
+                </div>
+                <div class="col-sm-6 ebusiness-view-switcher">
+                    <div class="dropdown">
+                        <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                        <span id="companyDropdown"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <!--This div belongs to Sorting-->
+                <div class="col-lg-2 eb-order-history">
+                    <div class="text-right"><span class="d-inline d-sm-inline d-lg-none" data-bind="click:togglefiltercontrol"><a class="fa-icon" title="sort/filter"><img src="../images/icons/fontawesome/filter.svg"></a></span></div>
+                    <div class="ebusiness-filter-details-panel" data-bind="css: { isFilterOpen: filtercollapse(), isFilterClosed: !filtercollapse()}">
+                        <div class="ebusiness-sorting">
+                            <div class="ebusiness-filter-section-title">Sorting</div>
+                            <ul role="menu">
+                                <li>
+                                    <label>
+                                        <input type="radio" name="radioGroupSort" value="OrderDate" data-bind="checked:radioSelectedOptionValue, click: sortByOrderDate">
+                                        Order Date
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="radioGroupSort" value="ShipToPerson" data-bind="checked:radioSelectedOptionValue, click: sortByShipToPerson">
+                                        Ship to Person
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="radio" name="radioGroupSort" value="Balance" data-bind="checked:radioSelectedOptionValue, click: sortByBalance">
+                                        Balance
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--This div belongs to Order History-->
+                <div class="col-lg-10">
+                    <div class="alert alert-warning" data-bind="visible: noOrderHistory" style="display: none;">You don't have any orders.</div>
+                    <div data-bind="visible: OrderHistoryAvailable">
+                        <div class="d-sm-none d-xs-none d-none d-md-block">
+                            <div class="ebMyOrderHeader row">
+                                <div class="col-md-2"> <span class="heading-labels-orders"> OrderID</span></div>
+                                <div class="col-md-2"> <span class="heading-labels-orders"> Order Date</span></div>
+                                <div class="col-md-2"> <span class="heading-labels-orders"> Order Status</span></div>
+                                <div class="col-md-2"> <span class="heading-labels-orders">Bill to Person</span></div>
+                                <div class="col-md-3"> <span class="heading-labels-orders">Ship to Person</span></div>
+                            </div>
+                        </div>
+                        <div class="ebusiness-my-orderlist" data-bind="foreach: orderDetails" role="tablist">
+                            <div class="ebusiness-my-orders-list">
+                                <div class="row order-heading-panel">
+                                    <div class="col-md-2 col-sm-4 ebusiness-order-id-dwnld eb-ellipsis"> <span class="label-orders orders-order-id"> Order #</span><span class="value-orders" data-bind="text: $root.checkIfValid(orderID())"></span></div>
+                                    <div class="col-md-2 col-sm-4  eb-ellipsis"> <span class="label-orders"> Order Date</span><span class="value-orders" data-bind="text: $root.checkIfValid(orderDate())"></span></div>
+                                    <div class="col-md-2 col-sm-4 eb-ellipsis"><span class="label-orders eb-ellipsis"> Ship Status</span><span class="value-orders orders-order-status clsShipStatus" data-bind="text: $root.checkIfValid(orderStatus())"></span></div>
+                                    <div class="col-md-2 col-sm-4 eb-ellipsis"><span class="label-orders eb-ellipsis"> Bill To Person</span><span class="value-orders" data-bind="text: $root.checkIfValid(billToPerson())"></span></div>
+                                    <div class="col-md-2 col-sm-4"><span class="label-orders eb-ellipsis"> Ship To Person</span><span class="value-orders" data-bind="text: $root.checkIfValid(shipToPerson())"></span></div>
+                                    <span data-bs-toggle="collapse" data-bind="attr: {'data-bs-target': '#collapse'+ orderID()}" class="arrow-collapse" aria-expanded="true">
+                                        <a data-bind="click: showOrderDetails, text: toogleName">Show Details</a>
+                                    </span>
+                                </div>
+
+                                <div data-bind="attr: {id: 'collapse'+ orderID()}" class="panel-collapse order-details-panel collapse">
+                                    <div role="tabpanel" class="eb-content-row">
+                                        <div class="panel-collapse ebClear" data-bind="foreach: allOrderLines">
+                                            <div class="row grid-row-cart-list">
+
+                                                <div class="col-sm-2">
+                                                    <span class="label-order-detail eb-ellipsis">Product Name</span>
+                                                    <span class="value-orders"> <a data-bind="text: $root.checkIfValid(name()), click : productNameDetails"></a></span>
+                                                </div>
+                                                <div class="col-sm-2" data-bind="visible: productCategory() == 'Memberships'">
+                                                    <span class="label-order-detail eb-ellipsis">Recipient Name</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(shipToPerson())"></span>
+                                                </div>
+                                                <div class="col-sm-2" data-bind="visible: productCategory() != 'Memberships'">
+                                                    <span class="label-order-detail eb-ellipsis">Ship To Person</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(shipToPerson())"></span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span class="label-order-detail orders-ship-to eb-ellipsis">    Quantity</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(quantity())"></span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span class="label-order-detail eb-ellipsis">Price</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(price())"></span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span class="label-order-detail eb-ellipsis">Discount</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(discount())"></span>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <span class="label-order-detail eb-ellipsis">Subtotal</span>
+                                                    <span class="value-orders" data-bind="text: $root.checkIfValid(finalPrice())"></span>
+                                                </div>
+                                            </div>
+                                                <!-- Kit Product HTML Starts here -->
+                                                <div class="row kit-orderhistory" data-bind="visible:isParentProduct()" style="display: none;">
+                                                    <div class="col-sm-2">
+
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <div class="ebusiness-kit-product-wrapper" data-bind="visible:isParentProduct()" style="display: none;">
+                                                            <div class="ebusiness-collapse-header ebClear">
+                                                                <span class="pull-left heading-Included"> Products Included in Kit (<span data-bind="text:subProductsList().length">0</span>)</span>
+                                                                <span class="pull-right">
+                                                                    <a data-bs-toggle="collapse" data-bind="click: kitproduct, text: displayDetails">Show Details</a>
+                                                                </span>
+                                                            </div>
+                                                            <div data-bind="visible: kitShow" class="ebClear panel-collapse a-collapse-body ebusiness-kit-product-collapsible ebusiness-kit-product" style="display: none;">
+                                                                <div class="ebClear" data-bind="foreach : subProductsList">
+                                                                    <div class="ebusiness-row-kit-product row" data-bind="value:id">
+                                                                        <div class="col-sm-2 eb-kit-product-image-wrapper">
+                                                                            <p class="ebusiness-kit-product-image">
+                                                                                <img class="ebusiness-kit-productImage text-ellipsis" data-bind="imageSrc:{src: webImage}">
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-sm-10">
+                                                                            <p><strong data-bind="text: name"></strong></p>
+                                                                            <p data-bind="text: description"></p>
+                                                                            <p><strong data-bind="text:'Quantity: ' + quantity()"></strong></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Kit Product HTMLEnds here -->
+                                           
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Order Summary(Total) Section -->
+                                    <div class="row">
+                                        <div class="col-sm-2 col-6 eb-ellipsis">
+                                            <span class="label-order-detail"> Order Type </span>
+                                            <span class="value-orders" data-bind="text: $root.checkIfValid(orderType())"></span>
+                                        </div>
+                                        <div class="col-sm-2 col-6 eb-ellipsis"> <span class="label-order-detail orders-ship-to eb-ellipsis">Total</span><span class="value-orders" data-bind="text: subTotal"></span></div>
+                                        <div class="col-sm-2 col-6">
+                                            <span class="label-order-detail">Balance</span>
+                                            <span class="value-orders" data-bind="text: $root.checkIfValid(balance())"></span>
+                                        </div>
+                                        <div class="col-sm-2 col-6 eb-ellipsis">
+                                            <span class="label-order-detail eb-ellipsis">Order Party</span>
+                                            <span class="value-orders tracking-number" data-bind="text: $root.checkIfValid(orderParty())"></span>
+                                        </div>
+                                        <div class="col-sm-2 col-6">
+                                            <span class="label-order-detail">Payment Party </span>
+                                            <span class="value-orders" data-bind="text: $root.checkIfValid(paymentParty())"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--This div belongs to Loader-->
+            <div class="loaderwrapper" data-bind="visible: showLoader">
+                <div class="ebloader"></div>
+            </div>
+        </div>
+</div>
+
+            

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Review Order</title>
+    <script src="js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="js/3rdParty/knockout-3.4.2.js"></script>    
+    <script src="js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <!--Solved icons issue-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/eb6.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/3rdParty/knockout.validation.min.js"></script>
+    <script src="js/configuration/ebConfig.js"></script>
+    <script src="js/UserContext.js"></script>
+    <script src="js/ShoppingCart.js"></script>
+    <script src="js/PaymentSummary.js"></script>
+    <script src="js/ViewCart.js"></script>
+    <script src="js/ReviewOrder.js"></script>
+    <script src="js/HeaderMenu.js"></script>
+    <script src="js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div class="ebusiness-main-container row">
+            <div class="col-lg-8">
+                <div id="ReviewOrder">
+                </div>
+                <h5>Purchased Items</h5>
+                <hr />
+                <div id="viewCart">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div id="paymentSummary">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load. 
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    eBusinessJQObject.when(eb_shoppingCart.getShoppingCart(),
+                        eb_shoppingCart.viewCartItems()).done(function (result, cartItems) {
+                            eBusinessJQObject.when(eb_shoppingCart.viewSubscriptionCartItems(cartItems),
+                                eb_shoppingCart.getEventProductItems(cartItems)).done(function (subscriptionAllItems, eventAllItems) {
+
+                                    var cartOptions = {};
+                                    cartOptions.shoppingCartData = result;
+                                    cartOptions.cartItems = cartItems;
+                                    eb_shoppingCart.live = new eb_shoppingCart.shoppingCartModel(cartOptions);
+
+                                    var options = {};
+                                    options.domElement = eBusinessJQObject('#ReviewOrder')[0];
+                                    options.templatePath = eb_Config.SitePath + "html/ReviewOrder.html";
+                                    eb_Config.config(options, eb_reviewOrder);
+
+
+                                    var viewOptions = {};
+                                    viewOptions.domElement = eBusinessJQObject('#viewCart')[0];
+                                    viewOptions.templatePath = eb_Config.SitePath + "html/ViewCart.html";
+                                    viewOptions.shoppingCart = eb_shoppingCart.live;
+                                    viewOptions.subscriptionAllItems = subscriptionAllItems;
+                                    viewOptions.eventAllItems = eventAllItems;
+
+                                    //load footer control
+                                    var footerOptions = footerOptions || {};
+                                    footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                                    footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                                    eb_Footer.render(footerOptions).done(function () {
+                                        //load header control
+                                        var headerOptions = headerOptions || {};
+                                        headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                        headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                        headerOptions.userContext = eb_UserContext.live;
+                                        headerOptions.shoppingCart = eb_shoppingCart.live;
+                                        eb_HeaderMenu.render(headerOptions).done(function () {
+                                            eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                            ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+
+                                            eb_Config.config(viewOptions, eb_productViewCart);
+                                            eb_productViewCart.render(viewOptions).done(function () {
+                                                /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                eb_productViewCart.live = new eb_productViewCart.model(viewOptions);
+                                                eb_productViewCart.live.cartTitleMessageVisible(0);
+                                                /*Apply KO bindings, fire up the control*/
+                                                ko.applyBindings(eb_productViewCart.live, eb_productViewCart.live.domElement);
+
+                                                /*Load PaymentSummary after done of ViewCart as ViewCart object is passed to Payment Summary, which maybe undefined in case ViewCart done hasn't completed*/
+                                                var paymentSummaryDetails = {}
+                                                paymentSummaryDetails.domElement = eBusinessJQObject('#paymentSummary')[0];
+                                                paymentSummaryDetails.templatePath = eb_Config.SitePath + "html/PaymentSummary.html";
+
+                                                paymentSummaryDetails.shoppingCart = eb_shoppingCart.live;
+                                                paymentSummaryDetails.data = undefined;
+
+                                                eb_Config.config(paymentSummaryDetails, eb_paymentSummaryDetails);
+                                                eb_paymentSummaryDetails.render(paymentSummaryDetails).done(function () {
+                                                    /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                    eb_paymentSummaryDetails.live = new eb_paymentSummaryDetails.model(paymentSummaryDetails);
+                                                    eb_paymentSummaryDetails.live.hidePaymentDetails(0);
+                                                    eb_paymentSummaryDetails.live.proceedToPaymentVisible(1);
+                                                    eb_paymentSummaryDetails.viewCartObject(eb_productViewCart.live);
+                                                    /*Apply KO bindings, fire up the control*/
+                                                    ko.applyBindings(eb_paymentSummaryDetails.live, eb_paymentSummaryDetails.live.domElement);
+
+
+                                                    options.shoppingCart = eb_shoppingCart.live;
+                                                    options.showPaymentError = eb_paymentSummaryDetails.live.showError;
+                                                    options.paymentErrorMessage = eb_paymentSummaryDetails.live.errorMessage;
+                                                    eb_reviewOrder.render(options).done(function () {
+                                                        eb_reviewOrder.live = new eb_reviewOrder.model(options);
+                                                        ko.applyBindings(eb_reviewOrder.live, eb_reviewOrder.live.domElement);
+                                                    }).fail(function (data, msg, jhr) {
+                                                        console.error("Failed to get render review Order.");
+                                                    });
+
+                                                }).fail(function (data, msg, jhr) {
+                                                    console.error("Failed to get render payment summary.");
+                                                });
+                                            }).fail(function (data, msg, jhr) {
+                                                console.error("Failed to  render header control.");
+                                            });
+                                        }).fail(function (data, msg, jhr) {
+                                            console.error("Failed to  render view cart.");
+                                        });
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render footer control...');
+                                    });
+
+                                }).fail(function (data, msg, jhr) {
+                                    console.error("Failed to get viewSubscriptionCartItems.");
+                                    eb_Config.getErrorMessageForControl(data.responseJSON, eb_reviewOrder);
+                                });
+                        }).fail(function (data, msg, jhr) {
+                            console.error("Failed to get getShoppingCart.");
+                        });
+                } else {
+                    window.location.assign(eb_Config.loginPageURL);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

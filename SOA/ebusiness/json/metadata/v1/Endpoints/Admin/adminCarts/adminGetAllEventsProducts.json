@@ -1,0 +1,43 @@
+﻿{
+  "getAllEventsProducts": {
+    "parent": {
+      "name": "getAdminCartCompany" //gets cart information of selected company
+    },
+    "route": {
+      "description": "Gets the common properties of all event items in the cart.",
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "adminGetAllEventsProductsOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/eventCartItemOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getEventOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/getAllEventsRecords",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

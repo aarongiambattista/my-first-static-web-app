@@ -1,0 +1,31 @@
+﻿{
+  "SamlAuthentication": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "SAML Login",
+      "processFlowParameters": {
+        "AuthenticationMethod": "eBusinessWebUser",
+        "Issuer": "@request.Issuer"
+      }
+    }
+  },
+  "SAMLProcessAuthNRequest": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "SAML Process AuthN Request",
+      "processFlowParameters": {
+        "AuthenticationMethod": "eBusinessWebUser"
+      }
+    }
+  },
+  //"SamlLogout": {
+  "SAMLProcessLogoutRequest": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "SAML Process Logout",//"SAML Process Logout Request",
+      "processFlowParameters": {
+        "AuthenticationMethod": "eBusinessWebUser"
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <title>Events Add Attendee</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/eb6.css">
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+    <script src="../js/3rdParty/jquery-3.6.4.min.js"></script>
+    <script src="../js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="../js/3rdParty/knockout.validation.min.js"></script>
+    <script src="../js/3rdParty/moment.min.js"></script>    <!--Moment.js for date format-->
+    
+    <script src="../js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="../js/Configuration/ebConfig.js"></script>
+    <script src="../js/UserContext.js"></script>
+    <script src="../js/ShoppingCart.js"></script>
+    <script src="../js/events/EventSummary.js"></script>
+    <script src="../js/events/EventRegistration.js"></script>
+    <script src="../js/HeaderMenu.js"></script>
+    <script src="../js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody">
+        <div class="ebusiness-main-container ebWrapper ebEventRegistration">
+            <h3>Add Attendees</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="eventRegistration"></div>
+                </div>
+                <div class="col-md-4">
+                    <div id="eventSummary"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+
+    <script type="text/javascript">
+        /*Page level scripts here*/
+        eBusinessJQObject(document).ready(function () {
+            //Page level configuration settings.
+            var options = {}
+            options.domElement = eBusinessJQObject('#eventRegistration')[0];
+            options.templatePath = eb_Config.SitePath + "html/events/EventRegistration.html";
+            eb_Config.config(options, eb_eventRegistration);
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load. 
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                /*Pass user context object.*/
+                options.personId = eb_UserContext.live.LinkId();
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    /*1. Get shopping cart items for shopping cart count.*/
+                    eBusinessJQObject.when(eb_shoppingCart.getShoppingCart(),
+                        eb_eventRegistration.getSpeakerInfo(eb_eventRegistration.eventId, eb_eventRegistration.hasSessions),
+                        eb_eventRegistration.getSessionDetails(eb_eventRegistration.eventId, eb_eventRegistration.hasSessions),
+                        eb_eventSummary.getEventDetails(eb_eventRegistration.eventId)).done(function (cartData, speakerData, sessionDetails, eventSummaryData) {
+                            var cartOptions = {};
+                            cartOptions.shoppingCartData = cartData;
+                            eb_shoppingCart.live = new eb_shoppingCart.shoppingCartModel(cartOptions);
+
+                            //load footer control
+                            var footerOptions = footerOptions || {};
+                            footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                            footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                            eb_Footer.render(footerOptions).done(function () {
+                                //load header control
+                                var headerOptions = headerOptions || {};
+                                headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                headerOptions.userContext = eb_UserContext.live;
+                                headerOptions.shoppingCart = eb_shoppingCart.live;
+                                headerOptions.sitePath = "../";
+
+                                eb_HeaderMenu.render(headerOptions).done(function () {
+                                    eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                    ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+                                    eb_eventRegistration.render(options).done(function () {
+                                        options.shoppingCart = eb_shoppingCart.live;
+                                        options.speakerData = speakerData;
+                                        options.sessionDetails = sessionDetails;
+                                        options.nameOfUser = eb_UserContext.live.FirstName() + " " + eb_UserContext.live.LastName();
+                                        eb_eventRegistration.live = new eb_eventRegistration.model(options);
+                                        /*Apply KO bindings, fire up the control*/
+                                        ko.applyBindings(eb_eventRegistration.live, eb_eventRegistration.live.domElement);
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render Event Details page...');
+                                    });
+
+                                    var eventSummaryWidget = {};
+                                    eventSummaryWidget.domElement = eBusinessJQObject('#eventSummary')[0];
+                                    eventSummaryWidget.templatePath = eb_Config.SitePath + "html/events/EventSummary.html";
+                                    eventSummaryWidget.eventID = eb_eventRegistration.eventId; /*Parent Product ID*/
+                                    eventSummaryWidget.shoppingCart = eb_shoppingCart.live;
+                                    eventSummaryWidget.userContext = eb_UserContext.live;
+                                    eventSummaryWidget.data = eventSummaryData;
+
+                                    eb_Config.config(eventSummaryWidget, eb_eventSummary);
+                                    eb_eventSummary.render(eventSummaryWidget).done(function () {
+                                        /*Page's live instance of the model. Handy for troubleshooting.*/
+                                        eb_eventSummary.live = new eb_eventSummary.model(eventSummaryWidget);
+                                        eb_eventSummary.live.showRegisterButton(0);/*Hide the register button*/
+                                        /*Don't show price on registration page*/
+                                        eb_eventSummary.live.showPriceOrText('');
+                                        eb_eventSummary.live.showCurrencySymbol('');
+                                        /*Apply KO bindings, fire up the control*/
+                                        ko.applyBindings(eb_eventSummary.live, eb_eventSummary.live.domElement);
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render event Summary Details..');
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error('Failed to render header control..');
+                                });
+                            }).fail(function (data, msg, jhr) {
+                                console.error('Failed to render footer control...');
+                            });
+                        }).fail(function (data, msg, jhr) {
+                            console.error('Failed to get ShoppingCart data...');
+                            eb_Config.getErrorMessageForControl(data.responseJSON, eb_eventRegistration);
+                        });
+                } else {
+                    window.location.assign(eb_Config.loginPageURL)
+                }
+            }).fail(function (data, msg, jhr) {
+                console.error('Failed to get user context data.');
+            });
+        });
+    </script>
+</body>
+</html>

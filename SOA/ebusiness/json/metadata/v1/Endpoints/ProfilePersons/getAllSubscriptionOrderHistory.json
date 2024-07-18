@@ -1,0 +1,36 @@
+﻿{
+  "getPersonOrderHistorySingleOrderAllItemsAsSubscriptionItems": {
+    "parent": {
+      "name": "getPersonOrderHistorySingleOrderAllItems"
+    },
+    "route": {
+      "description": "Gets the common properties of all subscription orderlines from the person's orders.",
+      "httpMethod": "GET",
+      "segments": {
+        "SubscriptionGeneralProduct": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput",
+      "$ref": "../ShoppingCarts/entityDefinitions.json#/subscriptionCartItemOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "orderHistoryBusinessLogic.json#/singleOrderGERetrieval"
+      },
+      "getSubscriptionOrderLines": {
+        "$ref": "orderHistoryBusinessLogic.json#/getAllSubscriptionRecords",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleGERetrieval.outputGE"
+          }
+        }
+      }
+    }
+  }
+}

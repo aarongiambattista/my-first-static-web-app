@@ -1,0 +1,90 @@
+﻿{
+  "adminDeleteEventCartItem": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Removes the specified event item from the cart. This may result in multiple session items being removed, if removed the parent event product from cart",
+      "httpMethod": "DELETE",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "DeleteAdminEventCartItemOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/eventCartItemOutput"
+    },
+    "inputEntityDefinition": {
+      "name": "deleteAdminEventCartItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "DELETE"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getSingleOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderLine.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "meetingProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/meetingProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsMeetingProduct"
+            ]
+          }
+        }
+      },
+      "deleteEventOrderLine": {
+        "$ref": "adminShoppingBusinessLogic.json#/deleteEventOrderLine"
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnRemovedOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnRemovedEventOrderLines"
+      }
+    }
+  }
+}

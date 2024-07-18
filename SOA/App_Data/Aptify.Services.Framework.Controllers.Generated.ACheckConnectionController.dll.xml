@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aptify.Services.Framework.Controllers.Generated.ACheckConnectionController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Framework.Controllers.Generated.ACheckConnectionController.AptifyGeneratedEntryMethod_CheckConnection_Default">
+            <summary>
+            Tests if the connection to the service layer is still active.
+            </summary>
+            <returns>The current server time in UTC in text/plain format</returns>
+        </member>
+    </members>
+</doc>

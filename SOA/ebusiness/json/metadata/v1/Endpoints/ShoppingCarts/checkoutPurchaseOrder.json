@@ -1,0 +1,69 @@
+﻿{
+  "checkoutByPurchaseOrder": {
+    "route": {
+      "description": "Completes the shopping experience using a purchase order for payment.  The shopper must have the required credit approval limits.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "PurchaseOrder": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "purchaseOrderCheckoutInput",
+      "fields": {
+        "purchaseOrderNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForPurchaseOrder": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Payment Type ID By Payment Type Name",
+          "processFlowParameters": {
+            "PaymentTypeName": "Purchase Order",
+            "IsWebEnabled":  false
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "addPurchaseOrderPaymentInformation": {
+        "$ref": "checkoutBusinessLogic.json#/addPurchaseOrderPaymentInformation"
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      "sendOrderConfirmationEmailCheckout": {
+        "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

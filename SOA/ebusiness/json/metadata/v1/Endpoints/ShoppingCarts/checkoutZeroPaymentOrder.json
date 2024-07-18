@@ -1,0 +1,47 @@
+﻿{
+  "checkoutZeroPaymentOrder": {
+    "route": {
+      "description": "Completes the payment process of zero payment orders",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ZeroPaymentOrder": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "CartCheckoutOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateOrderBalance": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrderBalance"
+      },
+      "validateOrder": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder"
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder"
+      },
+      //"sendOrderConfirmationEmailCheckout": {
+      //  "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      //},
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

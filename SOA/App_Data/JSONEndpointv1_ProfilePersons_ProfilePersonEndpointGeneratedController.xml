@@ -1,0 +1,1433 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_ProfilePersons_ProfilePersonEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllProfilePerson(System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSingleSavedPaymentMethod(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSavedPaymentInput,System.Int64)">
+            <summary>
+            Create new Credit Card Type Saved Payment Method for the Person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSavedPaymentMethod(System.Int64,System.Int64)">
+            <summary>
+            Get a Credit Card Type Saved Payment Method of the person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSingleSavedPaymentMethod(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSavedPaymentMethodInput,System.Int64,System.Int64)">
+            <summary>
+            Update Credit Card Type Saved Payment Method of the person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteSingleSavedPaymentMethod(System.Int64,System.Int64)">
+            <summary>
+            Delete a Saved Payment Method of the Person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllSavedPaymentMethods(System.Int64,System.String)">
+            <summary>
+            Get all Credit Card Type Saved Payment Methods of the person
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSingleACHSavedPaymentMethod(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateACHSavedPaymentInput,System.Int64)">
+            <summary>
+            Create new ACH Type Saved Payment Method for the Person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSingeACHTokenizerSavedPaymentMethod(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateACHTokenizerSavedPaymentInput,System.Int64)">
+            <summary>
+            Create new ACH Tokenizer Type Saved Payment Method for the Person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleACHSavedPaymentMethod(System.Int64,System.Int64)">
+            <summary>
+            Get a ACH Type Saved Payment Method of the person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllACHSavedPaymentMethods(System.Int64,System.String)">
+            <summary>
+            Get all ACH Type Saved Payment Methods of the person
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSingleSavedPaymentMethodACH(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSavedPaymentMethodInputACH,System.Int64,System.Int64)">
+            <summary>
+            Update ACH Saved Payment Method of the person
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPersonOrderHistory(System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPersonOrderHistorySingleOrderAllItems(System.Int64,System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPersonOutstandingOrderHistory(System.Int64,System.String)">
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPersonOrderHistorySingleOrderSingleItemAsSubscriptionItem(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Gets the common properties of single subscription orderline from the person's orders.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPersonOrderHistorySingleOrderAllItemsAsSubscriptionItems(System.Int64,System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all subscription orderlines from the person's orders.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderHistory(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Gets the common properties of single event orderline from the person's orders.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistory(System.Int64,System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all event orderlines from the person's orders.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonSingleAddress(System.Int64,System.String)">
+            <summary>
+            Get Profile Person address by address Name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddresses(System.Int64,System.String)">
+            <summary>
+            Get Profile Person All Addresses
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllPhones(System.Int64,System.String)">
+            <summary>
+            Get Profile Person All Phones
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonSinglePhone(System.Int64,System.String)">
+            <summary>
+            Get Profile Person phone by phone Name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateProfilePersonAddress(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PatchAddressInput,System.Int64,System.String)">
+            <summary>
+            Update Profile Person Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateProfilePersonPhone(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PatchPhoneInput,System.Int64,System.String)">
+            <summary>
+            Update Profile Person Phone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePreferredBillingAddress(System.Int64,System.String)">
+            <summary>
+            Update Profile Person Billing Preferred Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePreferredShipping(System.Int64,System.String)">
+            <summary>
+            Update Profile Person Shipping Preferred Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePreferredMailing(System.Int64,System.String)">
+            <summary>
+            Update Profile Person Mailing Preferred Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePreferredPhone(System.Int64,System.String)">
+            <summary>
+            Update Profile Person Phone To Preferred Phone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteProfilePersonAddress(System.Int64,System.String)">
+            <summary>
+            Delete Profile Person Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteProfilePersonPhone(System.Int64,System.String)">
+            <summary>
+            Delete Profile Person Phone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddresses(System.Int64,System.String)">
+            <summary>
+            Get PersonAddress All Addresses
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhones(System.Int64,System.String)">
+            <summary>
+            Get PersonPhones All Phones
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSinglePersonAddress(System.Int64,System.String)">
+            <summary>
+            Get PersonAddress single address by name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSinglePersonPhones(System.Int64,System.String)">
+            <summary>
+            Get PersonPhones single phone by name
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSinglePersonAddress(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonAddressInputPOST,System.Int64)">
+            <summary>
+            Create New PersonAddress
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreateSinglePersonPhone(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonPhoneInputPOST,System.Int64)">
+            <summary>
+            Create New PersonPhone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSinglePersonAddress(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdatePersonAddressInput,System.Int64,System.String)">
+            <summary>
+            Update a PersonAddress
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateSinglePersonPhone(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdatePersonPhoneInput,System.Int64,System.String)">
+            <summary>
+            Update a PersonPhone
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteSinglePersonAddress(System.Int64,System.String)">
+            <summary>
+            Delete a Person Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteSinglePersonPhone(System.Int64,System.String)">
+            <summary>
+            Delete a Person Address
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetTopicCodesForRecord(System.Int64,System.String)">
+            <summary>
+            Gets set of active topic codes for a record.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeactivateTopicCodesForRecord(System.Int64,System.Int64)">
+            <summary>
+            Deactivates an active topic code on a record.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ActivateTopicCodesForRecord(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.addTopicCodeInput,System.Int64)">
+            <summary>
+            Activates a topic code on a record.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateTopicCodesForRecord(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.updateTopicCodeInput,System.Int64)">
+            <summary>
+            Updates the set of active topic codes for a record. The supplied list of topic codes are activated and the other topic codes are deactivated.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakepaymentBySavedPaymentMethod(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentSavedPaymentMethodInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using a saved payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakepaymentByCreditCard(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentCreditCardInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using a credit card.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakepaymentByACH(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentACHInput,System.Int64,System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using ACH.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePaymentByACHTokenizerForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByACHTokenizerInput},System.Int64)">
+            <summary>
+            Make Bulk Payment using ACH Tokenizer
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakepaymentByGPay(System.Collections.Generic.List{Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByGPayInput},System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using GPay
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakepaymentByApplePay(System.Collections.Generic.List{Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByApplePayInput},System.Int64)">
+            <summary>
+            Make payment of the unpaid orders using Apple Pay
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetValidPayments(System.Int64,System.String)">
+            <summary>
+            Get valid payment types for a person
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetRemoteRequestDataForMakePayment(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentRemoteInput,System.Int64,System.Int64)">
+            <summary>
+            Get remote payment request data for make payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetRemoteRequestDataForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentRemoteInput},System.Int64)">
+            <summary>
+            Get remote payment request data for bulk  payments.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PostRemoteRequestDataForMakePayment(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePaymentProcessRemotePaymentResponseInput,System.Int64,System.Int64)">
+            <summary>
+            Processes the remote hosted payment response for make payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ProcessRemotePaymentResponseForBulkPayments(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkRemotePaymentResponseInput,System.Int64)">
+            <summary>
+            Process the remote hosted payment response for bulk payments.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonSPMByRemoteHostedPayment(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonRemoteSavedPaymentInput,System.Int64)">
+            <summary>
+            Create SPM by remote hosted payment method. Returns remote URL to add payment details.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ProcessPersonSPMResponse(Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonSPMProcessRemotePaymentResponseInput,System.Int64)">
+            <summary>
+            Processes the remote hosted SPM response.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePaymentByCreditCardForBulkPayments(System.Collections.Generic.List{Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByCreditCardInput},System.Int64)">
+            <summary>
+            Make Bulk Payment using Credit Card
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetDownloadableProducts(System.Int64,System.String)">
+            <summary>
+            Gets the downloadable items for products purchased by the user.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProductSpecificDownloadableProduct(System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            Gets the information of all downloadable items for a single product purchased by the user.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DownloadSingleAttachment(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Downloads a single Attachment of a record, given the Entity Name of the record, Download Item Record ID, and ID of the Attachment.
+            </summary>
+            <param name="downloadItemId"></param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdateProductDownloadsRecord(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Update the NumberOfDownloads in ProductDownloads and ProductDownloadHistory Subtype after every successful download.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.Id">
+            <summary>
+            Id of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.paymentType">
+            <summary>
+            payment type of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.partialNumber">
+            <summary>
+            Partial account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.accountNumber">
+            <summary>
+            Full account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.accountName">
+            <summary>
+            AccountName of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.ABA">
+            <summary>
+            ABA/Routing  of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.ACHSavedPaymentOutput.bank">
+            <summary>
+            Bank of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.Id">
+            <summary>
+            Id of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.paymentType">
+            <summary>
+            payment type of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.partialNumber">
+            <summary>
+            Partial account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.accountNumber">
+            <summary>
+            Full account number of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.accountName">
+            <summary>
+            AccountName of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.ABA">
+            <summary>
+            ABA/Routing  of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getAllACHSavedPaymentMethodsOutput.bank">
+            <summary>
+            Bank of ACH saved payment method
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetOrderHistoryItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getPersonOrderHistorySingleOrderAllItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.OrderId">
+            <summary>
+            The Id for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.OrderDate">
+            <summary>
+            The Date of this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.OrderTotal">
+            <summary>
+            The Total amount for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.OrderType">
+            <summary>
+            The OrderType for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.AmountDue">
+            <summary>
+            The amount due for this order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.currencyTypeId">
+            <summary>
+            The id of the currency being used on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getOutstandingOrderHistoryOutput.currencySymbol">
+            <summary>
+            The currency symbol for the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleSubscriptionOrderItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonOrderHistorySingleOrderAllItemsAsSubscriptionItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetSingleEventOrderItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllEventOrderHistoryOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.isPreferredBillingAddress">
+            <summary>
+            The value indicate if profile address is preferred billing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.isPreferredShippingAddress">
+            <summary>
+            The value indicate if profile address is preferred shipping address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfileAddress.isPreferredMailingAddress">
+            <summary>
+            The value indicate if profile address is preferred mailing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.isPreferredBillingAddress">
+            <summary>
+            The value indicate if profile address is preferred billing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.isPreferredShippingAddress">
+            <summary>
+            The value indicate if profile address is preferred shipping address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonAllAddressesOutput.isPreferredMailingAddress">
+            <summary>
+            The value indicate if profile address is preferred mailing address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetProfilePersonPhones.isPreferredPhone">
+            <summary>
+            The value indicate if profile phone is preferred phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonProfilePhone.isPreferredPhone">
+            <summary>
+            The value indicate if profile phone is preferred phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PatchAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PatchPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.preferredAddressInputforBillingForBusinessLogic.addressName">
+            <summary>
+            The address name of profile address used to GET address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.preferredAddressInputforShippingForBusinessLogic.addressName">
+            <summary>
+            The address name of profile address used to GET address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.preferredAddressInputforMailingForBusinessLogic.addressName">
+            <summary>
+            The address name of profile address used to GET address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.preferredPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of profile phone used to GET phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeletePhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonAddressesOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.GetAllPersonPhonesOutput.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.id">
+            <summary>
+            The id of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.name">
+            <summary>
+            The name of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.line1">
+            <summary>
+            The addressLine1 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.line2">
+            <summary>
+            The addressLine2 of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.city">
+            <summary>
+            The city of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.stateProvince">
+            <summary>
+            The state province of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.postalCode">
+            <summary>
+            The postal code of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonAddressOutput.country">
+            <summary>
+            The country of this address
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getSinglePersonAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.id">
+            <summary>
+            The id of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.name">
+            <summary>
+            The name of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.countryCode">
+            <summary>
+            The country code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.areaCode">
+            <summary>
+            The area code of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.phone">
+            <summary>
+            The phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.formattedPhone">
+            <summary>
+            The formatted value of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.PersonPhoneOutput.phoneExtension">
+            <summary>
+            The extension of this phone
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.getSinglePersonPhonesInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonAddressInputPOST.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonAddressInputPOSTForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonPhoneInputPOST.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.CreatePersonPhoneInputPOSTForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdatePersonAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.UpdatePersonPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteSinglePersonAddressInputForBusinessLogic.addressName">
+            <summary>
+            The address name of person address used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.DeleteSinglePersonPhoneInputForBusinessLogic.name">
+            <summary>
+            The phone name of person phone used to GET,PATCH and DELETE
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByACHTokenizerInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByACHTokenizerInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByGPayInput.orderId">
+            <summary>
+            order id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByGPayInput.paymentAmount">
+            <summary>
+            Amount to be paid
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByApplePayInput.orderId">
+            <summary>
+            order id
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makePaymentByApplePayInput.paymentAmount">
+            <summary>
+            Amount to be paid
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentRemoteOutput.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentRemoteInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.makepaymentRemoteInputForBusinessLogic.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentRemoteOutput.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentRemoteInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentRemoteInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.MakePaymentProcessRemotePaymentResponseOutput.OrderId">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkRemotePaymentResponseOutput.id">
+            <summary>
+            The ID of created payment
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.personSPMRemoteOutput.outputPaymentURL">
+            <summary>
+            The generated request data for adding remote SPM.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByCreditCardInput.orderId">
+            <summary>
+            order id.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_ProfilePersons_ProfilePersonEndpoint.v1_ProfilePersons_ProfilePersonEndpointController.bulkMakepaymentByCreditCardInput.paymentAmount">
+            <summary>
+            Amount to be paid.
+            </summary>
+        </member>
+    </members>
+</doc>

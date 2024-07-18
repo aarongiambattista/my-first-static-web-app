@@ -1,0 +1,24 @@
+﻿{
+  "properties": {
+    "route": {
+      "description": "The filename for the route definition",
+      "type": "string"
+    },
+    "outputEntityDefinition": {
+      "description": "The filename for the output definition",
+      "type": "string"
+    },
+    "businessLogic": {
+      "description": "An object that describes the type of business logic this end point executes.",
+      "$ref": "endpointBusinessLogicDefinition.json#"
+    },
+    "options": {
+      "description": "An object that describes additional common options for this end point that should be enabled, like sort or filtering",
+      "$ref": "endpointOptionsDefinition.json#"
+    },
+    "httpMethod": {
+      "$ref": "httpMethods.json#"
+    }
+  },
+  "required": [ "outputEntityDefinition", "route", "businessLogic", "options", "httpMethod" ]
+}

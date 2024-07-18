@@ -1,0 +1,46 @@
+﻿{
+  "topicCodesLinksForRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get All Topic Codes For Record",
+      "processFlowParameters": {
+        "lookupName": "ProfilePersons",
+        "recordId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId"
+      }
+    }
+  },
+  "deactivateTopicCodesLinkForRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Deactivate Topic Code",
+      "processFlowParameters": {
+        "lookupName": "ProfilePersons",
+        "recordId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "topicCodeId": "@request.topicCodeId"
+      }
+    }
+  },
+
+  "activateTopicCodesLinkForRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Activate Topic Code",
+      "processFlowParameters": {
+        "lookupName": "ProfilePersons",
+        "recordId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "topicCodeId": "@request.topicCodeId"
+      }
+    }
+  },
+  "updateTopicCodesLinkForRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Update Topic Codes",
+      "processFlowParameters": {
+        "lookupName": "ProfilePersons",
+        "recordId": "@AuthenticatedAttributes.AuthenticatedPrincipalRecordId",
+        "topicCodeIds": "@request.topicCodeIds"
+      }
+    }
+  }
+}

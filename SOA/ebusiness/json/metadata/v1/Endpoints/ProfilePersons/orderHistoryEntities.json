@@ -1,0 +1,111 @@
+﻿{
+  "personSingleOrderInput": {
+    "fields": {
+      "orderId": {
+        "type": "long",
+        "input": {
+          "httpMethods": [ "GET", "POST" ],
+          "source": "path"
+        }
+      }
+    }
+  },
+  "personOrderOutput": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "sourceField": "sequence"
+      },
+      "orderDate": {
+        "type": "date"
+      },
+      "orderStatus": {
+        "type": "string"
+      },
+      "orderType": {
+        "type": "string"
+      },
+      "paymentType": {
+        "type": "string"
+      },
+      "totalSavings": {
+        "type": "decimal"
+      },
+      "subTotal": {
+        "type": "decimal"
+      },
+      "shipping": {
+        "type": "decimal"
+      },
+      "handling": {
+        "type": "decimal"
+      },
+      "tax": {
+        "type": "decimal"
+      },
+      "grandTotalBeforeDiscount": {
+        "type": "decimal"
+      },
+      "currencyTypeID": {
+        "type": "long"
+      },
+      "currencySymbol": {
+        "type": "string"
+      },
+      "trackingNumber": {
+        "type": "string"
+      },
+      "shipDate": {
+        "type": "date"
+      },
+      "shipmentMethod": {
+        "type": "string"
+      },
+      "shipToName": {
+        "type": "string"
+      },
+      "shipToAddressID": {
+        "type": "long"
+      },
+      "shipToLine1": {
+        "type": "string"
+      },
+      "shipToLine2": {
+        "type": "string"
+      },
+      "shipToCity": {
+        "type": "string"
+      },
+      "shipToState": {
+        "type": "string"
+      },
+      "shipToZipCode": {
+        "type": "string"
+      },
+      "shipToCountry": {
+        "type": "string"
+      },
+      "billToName": {
+        "type": "string"
+      },
+      "billToLine1": {
+        "type": "string"
+      },
+      "billToLine2": {
+        "type": "string"
+      },
+      "billToCity": {
+        "type": "string"
+      },
+      "billToState": {
+        "type": "string"
+      },
+      "billToZipCode": {
+        "type": "string"
+      },
+      "billToCountry": {
+        "type": "string"
+      }
+    }
+  }
+}

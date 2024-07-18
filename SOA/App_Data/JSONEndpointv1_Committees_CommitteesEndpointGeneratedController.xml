@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Committees_CommitteesEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Committees_CommitteesEndpoint.v1_Committees_CommitteesEndpointController.GetAllCommittees(System.String)">
+            <summary>
+            Gets the List of All Committees
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Committees_CommitteesEndpoint.v1_Committees_CommitteesEndpointController.GetMyCommittee(System.Int64,System.String,System.String)">
+            <summary>
+            Gets the List of All Committees associated with a Person
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Committees_CommitteesEndpoint.v1_Committees_CommitteesEndpointController.GetCommitteeTermGeneralInfo(System.Int64)">
+            <summary>
+            Gets the Details of a Committee Term
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Committees_CommitteesEndpoint.v1_Committees_CommitteesEndpointController.GetCommitteeTermMemberList(System.Int64,System.String)">
+            <summary>
+            Gets the Details of a Committee Term Members
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Committees_CommitteesEndpoint.v1_Committees_CommitteesEndpointController.GetMyCommitteeInputForBusinessLogic.Term">
+            <summary>
+            Current tab selected on My Committee Page, this can only be one of the following values : [All, Current, Past, Future]
+            </summary>
+        </member>
+    </members>
+</doc>

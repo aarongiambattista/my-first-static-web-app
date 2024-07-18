@@ -1,0 +1,79 @@
+﻿{
+  "endpoints": {
+    "getAllowedTopicCodes": {
+      "route": {
+        "description": "Gets the allowed set of topic codes for a Lookup.",
+        "httpMethod": "GET",
+        "segments": {
+          "ProfilePersons": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "TopicCodes": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetTopicCodesConfigInput",
+        "$ref": "#/entityDefinitions/topicCodesInput"
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/topicCodesOutput",
+        "name": "AllowedTopicCodes"
+      },
+      "businessLogic": {
+        "allCountriesRetrieval": {
+          "$ref": "#/businessLogic/allowedTopicCodesRetrieval"
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "topicCodesInput": {
+      "fields": {
+        "ProfilePersons": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "topicCodesOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "long"
+        }
+      }
+    }
+  },
+  "businessLogic": {
+    "allowedTopicCodesRetrieval": {
+      "executionType": "processFlow",
+      "processFlowProperties": {
+        "processFlowName": "Get Allowed Topic Codes For Config",
+        "processFlowParameters": {
+          "lookupName": "ProfilePersons"
+        }
+      }
+    }
+  }
+}

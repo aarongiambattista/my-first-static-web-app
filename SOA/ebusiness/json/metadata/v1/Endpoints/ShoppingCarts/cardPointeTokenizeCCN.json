@@ -1,0 +1,188 @@
+{
+  "ccnTokenize": {
+    "route": {
+      "httpMethod": "POST",
+      "description": "Tokenizes Google Pay data.",
+      "segments": {
+        "CardPointe": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ccn": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "tokenize": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "ccnTokenizeInput",
+      "fields": {
+        "encryptionhandler": {
+          "type": "string",
+          "description": "Encryption Handler eg. EC_GOOGLE_PAY",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "devicedata": {
+          "type": "string",
+          "description": "token data recevied from Digital Payment API",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "CurrencyTypeId": {
+          "type": "string",
+          "description": "Currency Type ID",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "tokenizeCCNOutput",
+      "fields": {
+        "outputToken": {
+          "type": "string",
+          "description": "The CardPointe token"
+        }
+      }
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForGPay": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Google Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "RetrieveCardPointeToken": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve CardPointe Token CCN",
+          "processFlowParameters": {
+            "Encryptionhandler": "@request.Encryptionhandler",
+            "DeviceData": "@request.DeviceData",
+            "PayTypeId": "@parent.retrievePaymentTypeIdForGPay.outputPaymentTypeID",
+            "CurrencyTypeId": "@request.CurrencyTypeId"
+          }
+        }
+      }
+    },
+    //"options": {
+    //  "customOutput": true
+    //},
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+
+  },
+  "ccnTokenizeApplePay": {
+    "route": {
+      "httpMethod": "POST",
+      "description": "Tokenizes Apple Pay data",
+      "segments": {
+        "CardPointe": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ccn": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "tokenizeApplePay": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "ccnTokenizeApplePayInput",
+      "fields": {
+        "encryptionhandler": {
+          "type": "string",
+          "description": "Encryption Handler eg. EC_APPLE_PAY",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "devicedata": {
+          "type": "string",
+          "description": "token data recevied from Digital Payment API",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "CurrencyTypeId": {
+          "type": "string",
+          "description": "Currency Type ID",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "tokenizeCCNApplePayOutput",
+      "fields": {
+        "outputToken": {
+          "type": "string",
+          "description": "The CardPointe token"
+        }
+      }
+    },
+    "businessLogic": {
+      "retrievePaymentTypeIdForApplePay": {
+        "$ref": "../ShoppingCarts/checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Apple Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "RetrieveCardPointeToken": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve CardPointe Token CCN",
+          "processFlowParameters": {
+            "Encryptionhandler": "@request.Encryptionhandler",
+            "DeviceData": "@request.DeviceData",
+            "PayTypeId": "@parent.retrievePaymentTypeIdForApplePay.outputPaymentTypeID",
+            "CurrencyTypeId": "@request.CurrencyTypeId"
+          }
+        }
+      }
+    },
+    //"options": {
+    //  "customOutput": true
+    //},
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+
+  }
+}

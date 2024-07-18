@@ -1,0 +1,523 @@
+{
+  "ProductsOutput": {
+    "fields": {
+      "id": {
+        "type": "long"
+      },
+      "parentProductId": {
+        "type": "long",
+        "description": "If a product is part of a group this will be the id of the top level group product."
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string",
+        "description": "A plain text description of the product."
+      },
+      "webDescription": {
+        "type": "string",
+        "description": "A short rich text description of the product with html encoding."
+      },
+      "webLongDescription": {
+        "type": "string",
+        "description": "A long rich text description of the product with html encoding."
+      },
+      "availableUntil": {
+        "type": "date"
+      },
+      "productCategory": {
+        "type": "string"
+      },
+      "productType": {
+        "type": "string",
+        "description": "A type of product this is.  This informs the client which end point should be used when adding the product to the cart."
+      },
+      "allowBackorders": {
+        "type": "boolean"
+      },
+      "quantityAvailable": {
+        "type": "decimal",
+        "description": "How many of the current product are available."
+      },
+      "requireInventory": {
+        "type": "boolean"
+      },
+      "dateAvailable": {
+        "type": "date"
+      },
+      "hasComplexPricing": {
+        "type": "boolean",
+        "sourceField": "ComplexPricing",
+        "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+      },
+      "defaultPrice": {
+        "type": "decimal"
+      },
+      "defaultMemberPrice": {
+        "type": "decimal"
+      },
+      "nonMemberPrice": {
+        "type": "decimal"
+      },
+      "retailPrice": {
+        "type": "decimal"
+      },
+      "currencyId": {
+        "type": "int",
+        "description": "The currency the prices are in."
+      },
+      "currencySymbol": {
+        "type": "string"
+      },
+      "isSubscription": {
+        "type": "boolean",
+        "description": "Indicates if the product is subscription product. When adding subscription product to the cart, the quantity must be 1"
+      },
+      "ISBN": {
+        "type": "string",
+        "description": "If a product is type of publication then this field represent unique number for that product."
+      },
+      "datepublished": {
+        "type": "date",
+        "description": "If a product is type of publication then this field represent the date when the product is being published."
+      },
+      "assemblyType": {
+        "type": "string",
+        "description": "This field represents the AssemblyType/KitType of the product. Products that have a value here include sub products that are automatically added to the order.  An assemblyType of 'Group' means the sub products are added as individual line items to the cart, and those line items can be removed independently of one another.  Group products do not have a top level line item added to the cart that represents the product groupings.  An assemblyType of 'Kit' means a line item is added to the cart for the top level product, and the sub product line items are tied directly to that top level product.  Sub products in a kit can only be removed by removing that top level line item."
+      }
+    }
+  },
+  "shoppingCartOutput": {
+    "fields": {
+      "numberOfItems": {
+        "type": "long",
+        "sourceField": "CALC_RoundedQuantityTotal",
+        "description": "The number of items in the cart."
+      },
+      "couponId": {
+        "type": "long",
+        "sourceField": "CampaignCodeID",
+        "description": "The id of the coupon applied to the order."
+      },
+      "couponName": {
+        "type": "string",
+        "sourceField": "CampaignCodeName",
+        "description": "The display name of the coupon code."
+      },
+      "totalSavings": {
+        "sourceField": "CALC_Discount",
+        "type": "decimal",
+        "description": "The total discount applied for all items in the cart"
+      },
+      "subTotal": {
+        "sourceField": "CALC_SubTotal",
+        "type": "decimal",
+        "description": "The sum of all items in the cart, after discounts, but prior to tax and shipping charges."
+      },
+      "shipping": {
+        "type": "decimal",
+        "sourceField": "CALC_ShippingCharge",
+        "description": "The cost of shipping on the order."
+      },
+      "handling": {
+        "type": "decimal",
+        "sourceField": "CALC_HandlingCharge",
+        "description": "The cost of handling on the order."
+      },
+      "tax": {
+        "type": "decimal",
+        "sourceField": "CALC_SalesTax",
+        "description": "The cost of tax on the order."
+      },
+      "grandTotalBeforeDiscount": {
+        "type": "decimal",
+        "sourceField": "grandTotal",
+        "description": "The final price the user should expect to pay,before discounts."
+      },
+      "currencyTypeId": {
+        "type": "long",
+        "description": "The id of the currency being used on the order."
+      },
+      "currencySymbol": {
+        "type": "string",
+        "description": "The currency symbol for the order."
+      },
+      "shippingAddressId": {
+        "type": "long",
+        "description": "The address id where the order will be shipped.",
+        "sourceField": "ShipToAddressID"
+      },
+      "shipToLine1": {
+        "type": "string",
+        "description": "The address details where the order will be shipped.",
+        "sourceField": "ShipToAddrLine1"
+      },
+      "shipToLine2": {
+        "type": "string",
+        "description": "The address details where the order will be shipped.",
+        "sourceField": "ShipToAddrLine2"
+      },
+      "shipToCity": {
+        "type": "string",
+        "description": "City details where the order will be shipped.",
+        "sourceField": "ShipToCity"
+      },
+      "shipToState": {
+        "type": "string",
+        "description": "State details where the order will be shipped.",
+        "sourceField": "ShipToState"
+      },
+      "shipToZipCode": {
+        "type": "string",
+        "description": "Zip Code details where the order will be shipped.",
+        "sourceField": "ShipToZipCode"
+      },
+      "shipToCountry": {
+        "type": "string",
+        "description": "Country name where the order will be shipped.",
+        "sourceField": "ShipToCountry"
+      },
+      "billingAddressId": {
+        "type": "long",
+        "description": "The address id to charge the order to.",
+        "sourceField": "BillToAddressID"
+      },
+      "billToLine1": {
+        "type": "string",
+        "description": "The address details to charge the order to.",
+        "sourceField": "BillToAddrLine1"
+      },
+      "billToLine2": {
+        "type": "string",
+        "description": "The address details to charge the order to.",
+        "sourceField": "BillToAddrLine2"
+      },
+      "billToCity": {
+        "type": "string",
+        "description": "City details to charge the order to.",
+        "sourceField": "BillToCity"
+      },
+      "billToState": {
+        "type": "string",
+        "description": "State details to charge the order to.",
+        "sourceField": "BillToState"
+      },
+      "billToZipCode": {
+        "type": "string",
+        "description": "Zip Code details to charge the order to.",
+        "sourceField": "BillToZipCode"
+      },
+      "billToCountry": {
+        "type": "string",
+        "description": "Country details to charge the order to.",
+        "sourceField": "BillToCountry"
+      },
+      "shipmentTypeId": {
+        "type": "long",
+        "description": "Shipment type ID to charge the order to.",
+        "sourceField": "ShipTypeID"
+      },
+      "shipmentTypeName": {
+        "type": "string",
+        "description": "Shipment type Name to charge the order to.",
+        "sourceField": "ShipType"
+      },
+      "companyId": {
+        "type": "long",
+        "description": "The id of the company linked to the admin cart."
+      }
+    }
+  },
+  "shoppingCartInput": {
+    "name": "updateShoppingCartInput",
+    "fields": {
+      "shippingAddressId": {
+        "type": "long",
+        "description": "The address id where the order will be shipped.",
+        "sourceField": "ShipToAddressID",
+        "input": {
+          "source": "body",
+          "httpMethods": [
+            "POST",
+            "PATCH"
+          ]
+        },
+        "security": {
+          "canShipToAddress": {
+            "$ref": "../../../Common/AdminSecurity.json#/adminCanShipToAddress"
+          }
+        }
+      },
+      "billingAddressId": {
+        "type": "long",
+        "description": "The address id to charge the order to.",
+        "sourceField": "BillToAddressID",
+        "input": {
+          "source": "body",
+          "httpMethods": [
+            "POST",
+            "PATCH"
+          ]
+        },
+        "security": {
+          "canBillToAddress": {
+            "$ref": "../../../Common/AdminSecurity.json#/adminCanBillToAddress"
+          }
+        }
+      },
+      "couponId": {
+        "type": "long",
+        "description": "The id of the coupon applied to the order.",
+        "sourceField": "CampaignCodeID",
+        "input": {
+          "source": "body",
+          "httpMethods": [
+            "POST",
+            "PATCH"
+          ]
+        }
+      },
+      "shipmentTypeId": {
+        "type": "long",
+        "description": "The shipment type id which is used to charge the order.",
+        "sourceField": "ShipTypeId",
+        "input": {
+          "source": "body",
+          "httpMethods": [
+            "PATCH"
+          ]
+        }
+      }
+    }
+  },
+  "cartItemsOutput": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "sourceField": "sequence",
+        "description": "The ID for this item in the cart."
+      },
+      "parentproductId": {
+        "type": "long",
+        "sourceField": "ParentProductId",
+        "description": "The ParentID of the product for this item in the cart."
+      },
+      "parentId": {
+        "type": "long",
+        "sourceField": "parentSequence",
+        "description": "If this item is part of a kit or a group, this is the parent item it belongs to."
+      },
+      "productId": {
+        "type": "long",
+        "description": "The ID of the product for this item in the cart."
+      },
+      "isSubscription": {
+        "type": "boolean",
+        "sourceField": "IsSubscriptionProduct",
+        "description": "Indicates if the product is a subscription product."
+      },
+      "productCategory": {
+        "type": "string",
+        "description": "The category of the product for this item in the cart."
+      },
+      "quantity": {
+        "type": "decimal",
+        "description": "Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero."
+      },
+      "price": {
+        "type": "decimal",
+        "description": "The unit price for this line item in the cart.",
+        "sourceField": "Price"
+      },
+      "discount": {
+        "type": "decimal",
+        "description": "The percentage discount that should be taken off the order line price for each item."
+      },
+      "productName": {
+        "type": "string",
+        "description": "The name of the product.",
+        "sourceField": "product"
+      },
+      "webName": {
+        "type": "string",
+        "description": "The web name of the product."
+      },
+      "description": {
+        "type": "string",
+        "description": "The product description."
+      },
+      "productType": {
+        "type": "string",
+        "description": "The type of product this is."
+      },
+      //"productImage": {
+      //  "type": "uri"
+      //},
+      "additionalDetails": {
+        "type": "uri",
+        "description": "The URL to retrieve or update additional details about this product in the cart."
+      },
+      "totalDiscount": {
+        "type": "decimal",
+        "description": "The total discount applied for this product in the cart.",
+        "sourceField": "DiscountAmount"
+      },
+      "totalFinalPrice": {
+        "type": "decimal",
+        "description": "The final price user pays for this product in the cart.",
+        "sourceField": "Extended"
+      }
+
+    }
+  },
+  "cartCheckoutOutput": {
+    "fields": {
+      "id": {
+        "type": "long",
+        "description": "The ID of created order"
+      }
+    }
+  },
+  "subscriptionCartItemOutput": {
+    //"$ref": "adminCartsEntityDefinitions.json#/cartItemsOutput",
+    "fields": {
+      "id": {
+        "type": "long",
+        "sourceField": "sequence",
+        "description": "The ID for this item in the cart."
+      },
+      "parentproductId": {
+        "type": "long",
+        "sourceField": "ParentProductId",
+        "description": "The ParentID of the product for this item in the cart."
+      },
+      "parentId": {
+        "type": "long",
+        "sourceField": "parentSequence",
+        "description": "If this item is part of a kit or a group, this is the parent item it belongs to."
+      },
+      "productId": {
+        "type": "long",
+        "description": "The ID of the product for this item in the cart."
+      },
+      "isSubscription": {
+        "type": "boolean",
+        "sourceField": "IsSubscriptionProduct",
+        "description": "Indicates if the product is a subscription product."
+      },
+      //"productCategory": {
+      //  "type": "string",
+      //  "description": "The category of the product for this item in the cart."
+      //},
+      "quantity": {
+        "type": "decimal",
+        "description": "Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero."
+      },
+      "price": {
+        "type": "decimal",
+        "description": "The unit price for this line item in the cart.",
+        "sourceField": "Price"
+      },
+      "discount": {
+        "type": "decimal",
+        "description": "The percentage discount that should be taken off the order line price for each item."
+      },
+      "productName": {
+        "type": "string",
+        "description": "The name of the product.",
+        "sourceField": "product"
+      },
+      "webName": {
+        "type": "string",
+        "description": "The web name of the product."
+      },
+      "description": {
+        "type": "string",
+        "description": "The product description."
+      },
+      "productType": {
+        "type": "string",
+        "description": "The type of product this is."
+      },
+      //"productImage": {
+      //  "type": "uri"
+      //},
+      "additionalDetails": {
+        "type": "uri",
+        "description": "The URL to retrieve or update additional details about this product in the cart."
+      },
+      "totalDiscount": {
+        "type": "decimal",
+        "description": "The total discount applied for this product in the cart.",
+        "sourceField": "DiscountAmount"
+      },
+      "totalFinalPrice": {
+        "type": "decimal",
+        "description": "The final price user pays for this product in the cart.",
+        "sourceField": "Extended"
+      },
+      "autoRenew": {
+        "type": "boolean"
+      }
+    }
+  },
+  "eventCartItemOutput": {
+    "$ref": "adminCartsEntityDefinitions.json#/cartItemsOutput",
+    "fields": {
+      "attendeeId": {
+        "type": "long",
+        "sourceField": "AttendeeID"
+      }
+    }
+  },
+  "getRemotePaymentRequestOutput": {
+    "fields": {
+      "outputPaymentURL": {
+        "type": "string",
+        "description": "The generated request data for remote payment."
+      }
+    }
+  },
+  "processRemotePaymentResponseInput": {
+    "fields": {
+      "responseData": {
+        "type": "string",
+        "input": {
+          "httpMethods": [
+            "POST"
+          ],
+          "source": "body",
+          "requiredHttpMethods": [
+            "POST"
+          ]
+        }
+      }
+    }
+  },
+  "processRemotePaymentResponseOutput": {
+    "fields": {
+      "OrderId": {
+        "type": "long",
+        "description": "The ID of created order"
+      }
+    }
+  },
+  "processMakePaymentRemotePaymentResponseOutput": {
+    "fields": {
+      "OrderId": {
+        "type": "long",
+        "sourceField": "sequence",
+        "description": "The ID of created order"
+      }
+    }
+  },
+  "getRemotePaymentRequestForSPMOutput": {
+    "fields": {
+      "outputPaymentURL": {
+        "type": "string",
+        "description": "The generated request data for adding remote SPM."
+      }
+    }
+  }
+}

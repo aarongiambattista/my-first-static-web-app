@@ -1,0 +1,50 @@
+﻿{
+  "personSingleOrderRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonOrders",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "personOrderHistoryItemsRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0OrderDetails"
+      }
+    }
+  },
+  "personOutstandingOrdersRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonOutstandingOrders",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "getAllSubscriptionRecords": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Subscription OrderLines",
+      "processFlowParameters": {
+        "GEObject": null
+      }
+    }
+  },
+  "singleOrderGERetrieval": {
+    "$ref": "../../Common/businessLogic.json#/singleGERetrieval",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "entityName": "Orders",
+        "action": "get",
+        "clientPocoFieldName": "orderId"
+      }
+    }
+  }
+}

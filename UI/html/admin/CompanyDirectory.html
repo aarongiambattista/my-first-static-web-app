@@ -1,0 +1,249 @@
+﻿<div class="ebusiness-all-products  ebWrapper  ebClear ebusiness-main-container offcanvas">
+    <div class="ebusiness-filter-control">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Directory - <span data-bind="text: companyName"></span></h3>
+            </div>
+            <div class="col-sm-6 ebusiness-view-switcher ebRight-none">
+                <div class="dropdown">
+                    <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                    <span id="companyDropdown"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--This div belongs to Sorting options-->
+        <div class="col-lg-2">
+            <div id="filterSortCompany">
+                <div class="text-right"><span class="d-inline d-sm-inline d-lg-none" data-bind="click:togglefiltercontrol"><a class="fa-icon" title="sort/filter"><img src="../images/icons/fontawesome/filter.svg"></a></span></div>
+                <div class="ebusiness-filter-details-panel isFilterClosed" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+                    <div class="ebusiness-filter-section-title">Sorting</div>
+                    <ul role="menu">
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="Name" data-bind="checked: radioSelectedOptionValue, click: sortByName">
+                                Name
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="MembershipType" data-bind="checked: radioSelectedOptionValue, click: sortByMembershipType">
+                                Membership Type
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="Status" data-bind="checked: radioSelectedOptionValue, click: sortByStatus">
+                                Status
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="EndDate" data-bind="checked: radioSelectedOptionValue, click: sortByEndDate">
+                                End Date
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--This div belongs to Company Directory-->
+        <div class="col-lg-10">
+            <div class="alert alert-warning" data-bind="visible: noCompanyDirectoryAvailable" style="display: none;">No members available in the Directory.</div>
+            <div id="companyDirectory">
+                <div class="eb-filter-company row">
+                    <div class="col-sm-7">
+                        <span>
+                            <label>Search  </label> <input type="text" data-bind="textInput :search" placeholder="Name, Email, Membership Type, Status" class="form-control required ebusiness-clientside-generic-search-animated">
+                        </span>
+                    </div>
+                    <div class="col-sm-5 eb-add-member-link"><a href="AddMember.html" class="pull-right">Add New Member</a> </div>
+                </div>
+                <div class="membersAvailable" data-bind="visible: companyDirectoryAvailable">
+                    <div class="d-sm-none d-xs-none d-none d-md-block">
+                        <div class="ebMyOrderHeader row">
+                            <div class="col-md-2"> <span class="heading-labels-orders"> Name</span></div>
+                            <div class="col-md-2"> <span class="heading-labels-orders"> Email ID</span></div>
+                            <div class="col-md-2"> <span class="heading-labels-orders"> Phone No</span></div>
+                            <div class="col-md-2"> <span class="heading-labels-orders"> Membership Type</span></div>
+                            <div class="col-md-2"> <span class="heading-labels-orders"> 	Start/End Date</span></div>
+                            <div class="col-md-2"> <span class="heading-labels-orders"> 	Status</span> <input type="checkbox" class="pull-right" data-bind="checked:mainSelect, click: selectAll" /></div>
+                        </div>
+                    </div>
+                    <div data-bind="foreach: companyDirectory">
+                        <div class="eb-comp-directory row">
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders orders-order-id"> Name/Title </span> <span class="value-orders">
+                                    <span class="eb-cmp-name" data-bind="text: name"></span>
+                                    <span class="eb-cmp-designation" data-bind="text: title"></span>
+                                </span>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders"> Email ID</span>
+                                <span class="value-orders eb-comp-user-email" data-bind="text: emailId"></span>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders"> Phone No</span>
+                                <span class="value-orders orders-order-status" data-bind="text: phone"></span>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders"> Membership Type</span>
+                                <span class="value-orders" data-bind="text: membershipType"></span>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders"> Start/End Date</span>
+                                <div class="value-orders" data-bind="text: startDate"></div>
+                                <div class="value-orders" data-bind="text: endDate"></div>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                                <span class="label-orders"> Status</span>
+                                <div class="ebFlex-jcsb">
+                                    <span class="value-orders" data-bind="text: status"></span>
+                                    <span class="fa-icon ebIcon-edit" data-bs-toggle="modal" data-bs-target="#editCompanyMember" title="Edit Member" data-bind="click: fetchMemberInformation"></span>
+                                    <input type="checkbox" data-bind="checked: isSelected, click: memberClicked" class="pull-right" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remove Selected Button -->
+                <div class="row" data-bind="visible: companyDirectoryAvailable">
+
+                    <div class="col-sm-8">
+
+                    </div>
+                    <div class="col-sm-4 Pager text-right">
+                        <!--<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#RemoveSelectedMembers" data-bind="click: RemoveSelectedMembers">Remove Selected from Company</button>-->
+                        <button id="removeButton" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#RemoveSelectedMembers">Remove Selected from Company</button>
+                    </div>
+                </div>
+
+                <!-- success/error message div -->
+                <div class="alert alert-success eb-payment-success" data-bind="visible: showSuccess, text: successMessage">
+                </div>
+                <div class="alert alert-danger" data-bind="visible: showError, text: errorMessage">
+                </div>
+
+                <!--Modal for Removing the Persons from Company -->
+                <div class="modal fade" role="dialog" id="RemoveSelectedMembers">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <p>Are you sure you want to remove the selected person from Company ?</p>
+
+                                <div class="ebusiness-action-buttons-footer text-right">
+                                    <div>
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        <button class="btn btn-primary ebusiness-action-button-remove-all-items-button" data-bs-dismiss="modal" data-bind="click: $root.RemoveSelectedMembers">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal For Editing Company Directory List-->
+
+                <div id="editCompanyMember" class="modal" role="dialog" data-bind="clickOutside:clickOutside.bind($data)">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="heading-primary"> Edit Person</span>
+                            </div>
+                            <div class="modal-body">
+                                <div class="ebusiness-update-address-checkout">
+                                    <div>
+                                        <form id="updateAddressForm">
+                                            <div class="update-form-error"></div>
+                                            <div class="ebusiness-form-control-row row address-name"></div><!--Form control row-->
+                                            <!--Form control row starts-->
+                                            <div class="ebusiness-form-control-row row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="caption">First Name</label>
+                                                        <input id="first-name" name="first-name" placeholder="First Name" maxlength="100" type="text" class="form-control update-firstname" data-bind="value:memberFirstName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="caption">Last Name</label>
+                                                        <input id="last-name" name="last-name" placeholder="Last Name" maxlength="100" type="text" class="form-control update-lastname" data-bind="value:memberLastName">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="ebusiness-form-control-row row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="caption">Title</label>
+                                                        <input id="title" name="title" placeholder="Title" maxlength="50" type="text" class="form-control title" data-bind="value:memberTitle">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="caption">Email ID</label>
+                                                        <input id="email" name="email" placeholder="Email ID" maxlength="100" type="text" class="form-control update-email" data-bind="value:memberEmailId">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ebusiness-form-control-row row">
+                                                <div class="col-md-12">
+                                                    <label><label class="caption">Phone No</label></label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="caption">Country Code</label>
+                                                                <input type="text" class="form-control ebCountryCode" placeholder="Country Code" data-bind="numeric: memberCountryCode, textInput: memberCountryCode" maxlength="3" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="caption">Area Code</label>
+                                                                <input type="text" class="form-control ebAreaCode" placeholder="Area Code" data-bind="numeric: memberAreaCode, textInput: memberAreaCode" maxlength="3" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="caption">Phone</label>
+                                                                <input type="text" class="form-control" placeholder="Phone" data-bind="numeric: memberPhone, value: memberPhone, event:{focus: hideErrorMessage}" maxlength="15" />
+                                                                <span class="validationMessage" data-bind="visible:memberPhoneRequired" style="display: none;">Phone is required.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="caption">Extension</label>
+                                                                <input class="form-control" type="text" placeholder="Extension" data-bind="numeric: memberPhoneExtension, textInput: memberPhoneExtension" maxlength="10" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 alert alert-danger" data-bind="visible: showEditError, text: editErrorMessage"></div>
+                                            <div class="col-md-8 alert alert-success" data-bind="visible: showEditSuccess, text: editSuccessMessage"></div>
+                                            <div class="ebusiness-action-buttons-footer row ebusiness-action-update-address-button">
+                                                <div class="col-md-12 amount">
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal" data-bind="click: getAndLoadCompanyDirectoryDataFromServer"> Cancel </button>
+                                                    <button type="button" class="btn btn-primary ebusiness-action-button-save-changes" data-bind=" disable:errors().length ,click:updateMember">Save Changes</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+            <!--Loader-->
+            <div class="loaderwrapper" data-bind="visible: allowLoader" style="display: none;">
+                <div class="ebloader"></div>
+            </div>
+        </div>
+</div>

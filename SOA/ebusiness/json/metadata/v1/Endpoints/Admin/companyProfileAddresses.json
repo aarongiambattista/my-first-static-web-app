@@ -1,0 +1,476 @@
+﻿{
+  "getProfileCompanyAllAddresses": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get Profile Company All Addresses",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyAddressesEntities.json#/companyProfileAddressOutput",
+      "name": "GetProfileCompanyAllAddressesOutput"
+    },
+    "businessLogic": {
+      "companiesAllAddressRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/profileCompaniesAddressRetrieval"
+      }
+    }
+  },
+  "getProfileCompanySingleAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get Profile Company address by address Name",
+      "httpMethod": "GET",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetAddressInput",
+      "$ref": "companyAddressesEntities.json#/companyProfileAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyProfileAddressOutput",
+      "name": "CompanyProfileAddress"
+    },
+    "businessLogic": {
+      "companySingleAddressRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/profileCompaniesAddressRetrieval"
+      }
+    }
+  },
+
+  "updateProfileCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update Profile Company Address",
+      "httpMethod": "PATCH",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "CompanyPatchAddressInput",
+      "$ref": "companyAddressesEntities.json#/companyProfileAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyProfileAddressOutput",
+      "name": "CompanyProfileAddress"
+    },
+    "businessLogic": {
+      "getProfileCompanyGE": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "id"
+          }
+        }
+      },
+      "companyEmbeddedAddressFieldNameRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/companyEmbeddedAddressFieldNameRetrieval"
+      },
+      "getProfileCompanyAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfileCompanyGE.outputGE",
+            "embeddedObjectIDFieldName": "@parent.companyEmbeddedAddressFieldNameRetrieval.outputEmbeddedAddressIDFieldName"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getProfileCompanyAddressGE.outputGE",
+            "inputFieldsToIgnore": "addressName"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfileCompanyAddressGE.outputGE"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfileCompanyGE.outputGE",
+            "action": "save"
+          }
+        }
+      },
+      "companySingleAddressRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/profileCompaniesAddressRetrieval"
+      }
+    }
+  },
+  "deleteProfileCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Delete a Company Profile Address",
+      "httpMethod": "DELETE",
+      "segments": {
+        "ProfileAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteProfileCompanyAddressInput",
+      "$ref": "companyAddressesEntities.json#/companyAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "getProfileCompanyGE": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "clientPocoFieldName": "id"
+          }
+        }
+      },
+      "companyEmbeddedAddressFieldNameRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/companyEmbeddedAddressFieldNameRetrieval"
+      },
+      "removeInTableCompanyAddress": {
+        "$ref": "companyAddressesBusinessLogic.json#/removeInTableCompanyAddress",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getProfileCompanyGE.outputGE",
+            "FieldName": "@parent.companyEmbeddedAddressFieldNameRetrieval.outputEmbeddedAddressIDFieldName"
+          }
+        }
+      },
+      "updateRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeGEAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getProfileCompanyGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  },
+
+  // Company Address Subtype related
+
+  "getAllCompanyAddresses": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get CompanyAddress All Addresses",
+      "httpMethod": "GET",
+      "segments": {
+        "CompanyAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyAddressesEntities.json#/companyAddressOutput",
+      "name": "GetAllCompanyAddressesOutput"
+    },
+    "businessLogic": {
+      "companiesAddressRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/companiesAddressRetrieval"
+      }
+    }
+  },
+  "getSingleCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Get CompanyAddress single address by name",
+      "httpMethod": "GET",
+      "segments": {
+        "CompanyAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "getSingleCompanyAddressInput",
+      "$ref": "companyAddressesEntities.json#/companyAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyAddressOutput",
+      "name": "CompanyAddressOutput"
+    },
+    "businessLogic": {
+      "companiesAddressRetrieval": {
+        "$ref": "companyAddressesBusinessLogic.json#/companiesAddressRetrieval"
+      }
+    }
+  }, //,
+  "createSingleCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Create New Company Address for Admin",
+      "httpMethod": "POST",
+      "segments": {
+        "CompanyAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyAddressPostInput",
+      "name": "CreateAdminCompanyAddressInputPOST"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyAddressOutput",
+      "name": "AdminCompanyAddressOutput"
+    },
+    "businessLogic": {
+      "validateDuplicateAddressName": {
+        "$ref": "companyAddressesBusinessLogic.json#/validateDuplicateAddressName", // need to check duplicate address for company
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "AddressName": "@request.addressName",
+            "CompanyId": "@request.id"
+          }
+        }
+      },
+      "singleRecordRetrieval": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getNewCompanyAddressSubtypeGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/companyAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "companyAddress",
+            "fieldName": "id",
+            "fieldValue": "-1"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getNewCompanyAddressSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getCompanyAddressSubtypeEmbeddedAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getNewCompanyAddressSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "AddressID"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getCompanyAddressSubtypeEmbeddedAddressGE.outputGE"
+          }
+        }
+      },
+      "createNewCompanyAddressSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getNewCompanyAddressSubtypeGE.outputGE",
+            "action": "create"
+          }
+        }
+      }
+    }
+  },
+  "deleteSingleCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Delete a Company Address",
+      "httpMethod": "DELETE",
+      "segments": {
+        "CompanyAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "addressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "DeleteSingleCompanyAddressInput",
+      "$ref": "companyAddressesEntities.json#/companyAddressInput"
+    },
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "singleRecordRetrieval": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getAddressRequestNameFieldValue": {
+        "$ref": "companyAddressesBusinessLogic.json#/getAddressRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@Request",
+            "PropertyName": "AddressName"
+          }
+        }
+      },
+      "getCompanyAddressSubtypeGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/companyAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "CompanyAddress",
+            "fieldName": "name",
+            "fieldValue": "@parent.getAddressRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "deleteSingleSubTypeRecord": {
+        "$ref": "companyBusinessLogic.json#/singleSubTypeDelete"
+      }
+    }
+  },
+
+  "updateSingleCompanyAddress": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "description": "Update a CompanyAddress",
+      "httpMethod": "PATCH",
+      "segments": {
+        "CompanyAddresses": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "AddressName": {
+          "isLiteral": false,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyAddressInput",
+      "name": "UpdateCompanyAddressInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyAddressesEntities.json#/companyAddressOutput",
+      "name": "CompanyAddressOutput"
+    },
+    "businessLogic": {
+      "singleRecordRetrieval": {
+        "$ref": "companyBusinessLogic.json#/singleRecordRetrieval"
+      },
+      "getCompanyAddressRequestNameFieldValue": {
+        "$ref": "companyAddressesBusinessLogic.json#/getAddressRequestNameFieldValue",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "InputContextObject": "@Request",
+            "PropertyName": "AddressName"
+          }
+        }
+      },
+      "getCompanyAddressSubtypeGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/companyAddressSubTypeRetriever",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.singleRecordRetrieval.outputGE",
+            "subTypeName": "CompanyAddress",
+            "fieldName": "name",
+            "fieldValue": "@parent.getCompanyAddressRequestNameFieldValue.outputPropertyValue"
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getCompanyAddressSubtypeGE.outputGE"
+          }
+        }
+      },
+      "getCompanyAddressSubtypeEmbeddedAddressGE": {
+        "$ref": "../../Common/businessLogic.json#/embeddedRecordRetrieval",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GE": "@parent.getCompanyAddressSubtypeGE.outputGE",
+            "embeddedObjectIDFieldName": "AddressID"
+          }
+        }
+      },
+      "validateAndSetAddressGE": {
+        "$ref": "companyAddressesBusinessLogic.json#/validateAndSetAddressGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getCompanyAddressSubtypeEmbeddedAddressGE.outputGE"
+          }
+        }
+      },
+      "updateCompanyAddressSubtypeRecord": {
+        "$ref": "../../Common/businessLogic.json#/executeSubTypeAction",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getCompanyAddressSubtypeGE.outputGE",
+            "action": "save"
+          }
+        }
+      }
+    }
+  }
+}

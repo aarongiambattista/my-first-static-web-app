@@ -1,0 +1,120 @@
+﻿<div class="ebusiness-product-details-wrapper">
+    <h3 class="ebusiness-page-title">Product Information</h3>
+    <div class="eBusiness-productDetails-wrapper row">
+        <div class="col-lg-3 col-sm-3">
+            <div class="ebusiness-carousel-product-images">
+                <img class="ebusiness-product-image" data-bind="imageSrc:{src: imagePath}" />
+
+                <!--<div class="item">
+                    <div class="ebusiness-clearfix ebusiness-product-list-image-wrapper">
+                        Once we get the service for product carousle for multiple image we used it
+                        <ul class="image-gallery gallery list-unstyled cS-hidden ebusiness-product-list-image " data-bind="foreach: singleProductCarousel">
+                            <li data-bind='attr: { "data-thumb" : imagePath}'>
+                                <img data-bind="attr:{src: imagePath}" />
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>-->
+            </div>
+        </div>
+
+        <div class="ebusiness-product-more-details-section col-lg-9 col-sm-9">
+            <div class="alert alert-success" data-bind="visible: showSuccess, text: successMessage"></div>
+            <div class="ebClear">
+                <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: showError, text: errorMessage"></div>
+            </div>
+            <div class="ebusiness-product-more-details-product-name" data-bind="text: name"></div>
+            <div class="ebusiness-product-price-member pro-price-details">
+                <span data-bind="visible : !hasComplexPricing()">Price:</span>
+                <span class="ebusiness-product-view-cart-price" data-bind="html: showPriceOrText"></span>
+            </div>
+            <div class="ebusiness-product-price-offer ebusiness-clearfix pro-price-new-details" style="display: none;">
+                <div class="col-lg-3ebusiness-remove-all-side-gutter"><span data-bind="text: personalPrice"></span></div>
+                <div class="col-md-9">
+                    <button class="btn btn-primary ebusiness-became-a-member-btn" data-trigger="focus" data-bs-toggle="popover" data-placement="top" data-content="This feature will be available in the upcoming release" data-original-title="" title="">Become a Member</button>
+                </div>
+            </div>
+            <div>
+                <div class="eb-product-details-section" data-bind="html:pDescription,style:{height: descriptionMaxHeight(), overflow: overflowStyle(),display: displayStyle()}"></div>
+                <a data-bind="click:toggleShowMore, text:toggleShowMoreText, visible:visibleDescription">Show more</a>
+                <!--show more abd show less-->
+            </div>
+
+            <div class="ebusiness-product-code">
+                <div class="ebusiness-quntity-text-pd-details">
+                    <span>
+                        <span>Quantity:</span>
+                        <input type="number" class="grid-product-quantity product-details-vcProductQuantity" value="1" min="1" data-bind="numeric: productQty, value : productQty ,valueUpdate: 'afterkeydown', disable:isSubscription , hasFocus:showError(0) && showSuccess(0)">
+                        <button class="btn btn-primary btn-buy-add-cart" data-bind="disable: disableAddToCartButton, click: addProductToCart">Add to Cart</button>
+                    </span>
+                </div>
+                <span class="validationMessage" data-bind="visible: showQtyError, text: qtyErrorMsg">This field is required.</span>
+                <h4><span class="ebusiness-out-of-stock-text" data-bind="visible: outOfStock">Out Of Stock</span></h4>
+                <h5> <span class="ebusiness-heading-sku-categories-tag">SKU:</span> <span data-bind="text: id"></span></h5>
+
+                <!-- Ordering a Publication Product and wiring up the same.-->
+                <h5>
+                    <span class="ebusiness-heading-sku-categories-tag" data-bind="if: hasISBN">
+                        ISBN / ISSN:
+                    </span><span data-bind="text: ISBN()"></span>
+
+                </h5>
+                <h5>
+                    <span class="ebusiness-heading-sku-categories-tag" data-bind="if: hasDatepublished">
+                        Date Published:
+                    </span><span data-bind="text: datepublished()"></span>
+
+                </h5>
+                <h5> <span class="ebusiness-heading-sku-categories-tag">Category:</span> <span data-bind="text: productCategory"></span></h5>
+            </div>
+
+            <div class="ebusiness-kit-product-wrapper" data-bind="visible: showSubProducts">
+                <div class="ebusiness-collapse-header ebClear">
+                    <span class="pull-left heading-Included"> Products Included in <span data-bind=" text: assemblyType"></span> (<span data-bind="text: subProductCount"></span>)</span>
+                    <span class="pull-right">
+                        <a data-bs-toggle="collapse" href="#a-collapse-body" class="showDetails collapsed"></a>
+                    </span>
+                </div>
+                <div id="a-collapse-body" class="ebClear panel-collapse a-collapse-body collapse in ebusiness-kit-product-collapsible">
+                    <div data-bind="foreach: subProducts">
+                        <div class="ebusiness-row-kit-product row">
+                            <div class="col-sm-2 eb-kit-product-image-wrapper">
+                                <p class="ebusiness-kit-product-image">
+                                    <img class="ebusiness-kit-productImage text-ellipsis" data-bind="imageSrc:{src: subProductImage}">
+                                </p>
+                            </div>
+                            <div class="col-sm-10">
+                                <p><strong data-bind="text: productName"></strong></p>
+                                <p data-bind="html: productDescription"></p>
+                                <p>
+                                    <span data-bind="visible: isGroupProduct"> <strong class="ebusiness-product-view-cart-price" data-bind="text:showCurrencySymbol"></strong><span class="ebusiness-product-view-cart-price" data-bind="html: showPriceOrText"></span></span>
+                                </p>
+                                <p><strong>Quantity: <strong data-bind="text: productQuantity"></strong> </strong></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="eBusiness-tabs-reviews-description eBusiness-productDetails-wrapper">
+        <div>
+            <h4 class="eb-additional-detail">Additional Product Details </h4>
+        </div>
+        <div class="eBusiness-tabs-pane-details">
+            <div class="tab-content">
+                <div class="tab-pane ebusiness-product-description-tab ebusiness-product-long-description active" id="description">
+                    <p data-bind="html:longDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ebusiness-multiple-products"></div> <!--This div is for sorted product control-->
+    <div id="CartUpdateMsg">Cart Updated..</div>
+</div>
+
+
+

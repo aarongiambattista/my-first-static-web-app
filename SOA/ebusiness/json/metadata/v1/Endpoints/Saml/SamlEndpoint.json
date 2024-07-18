@@ -1,0 +1,229 @@
+﻿{
+  "endpoints": {
+    "samlAuthentication": {
+      "route": {
+        "httpMethod": "POST",
+        "description": "Authenticates the User",
+        "segments": {
+          "SAMLAuthentication": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSAMLAuthenticationInput",
+        "fields": {
+          "UserName": {
+            "type": "string",
+            "description": "UserName",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "requiredHttpMethods": [ "POST" ],
+              "source": "body"
+            }
+          },
+          "Password": {
+            "type": "string",
+            "description": "Password",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "body"
+            }
+          },
+          "Issuer": {
+            "type": "string",
+            "description": "Issuer",
+            "input": {
+              "httpMethods": [ "POST" ],
+              "source": "queryString"
+            }
+          }
+
+
+        }
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "SamlAuthenticationPost": {
+          "$ref": "SamlBusinessLogic.json#/SamlAuthentication"
+        }
+      },
+      "options": {
+        "customOutput": true
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+
+    },
+
+    "samlProcessAuthNRequestGET": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Logs in the user using SAML",
+        "segments": {
+          "SAML": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "login": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSAMLRequestInputGetLogin",
+        "$ref": "SamlEntities.json#/SamlInput",
+        "SAMLRequest": {
+          "type": "string",
+          "description": "Incoming SAML XML request",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "requiredHttpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "SamlLoginPost": {
+          "$ref": "SamlBusinessLogic.json#/SAMLProcessAuthNRequest"
+        }
+      },
+      "options": {
+        "customOutput": true
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+
+    },
+
+    "samlProcessAuthNRequestPOST": {
+      "route": {
+        "httpMethod": "POST",
+        "description": "Logs in the user using SAML",
+        "segments": {
+          "SAML": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "login": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSAMLRequestInputPostLogin",
+        "$ref": "SamlEntities.json#/SamlInput",
+        "SAMLRequest": {
+          "type": "string",
+          "description": "Incoming SAML XML request",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        }
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "SamlLoginPost": {
+          "$ref": "SamlBusinessLogic.json#/SAMLProcessAuthNRequest"
+        }
+      },
+      "options": {
+        "customOutput": true
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+
+    },
+
+    "SAMLProcessLogoutRequestPOST": {
+      "route": {
+        "httpMethod": "POST",
+        "description": "Logs out the user using SAML",
+        "segments": {
+          "SAML": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "logout": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSAMLRequestInputPostLogout",
+        "$ref": "SamlEntities.json#/SamlInput",
+        "source": "body"
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "SamlLogoutPost": {
+          "$ref": "SamlBusinessLogic.json#/SAMLProcessLogoutRequest"
+        }
+      },
+      "options": {
+        "customOutput": true
+      }
+
+    },
+
+    "SAMLProcessLogoutRequestGET": {
+      "route": {
+        "httpMethod": "GET",
+        "description": "Logs out the user using SAML",
+        "segments": {
+          "SAML": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "logout": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSAMLRequestInputGetLogout",
+        "$ref": "SamlEntities.json#/SamlInput",
+        "SAMLRequest": {
+          "type": "string",
+          "description": "Incoming SAML XML request",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "requiredHttpMethods": [ "GET" ],
+            "source": "queryString"
+          }
+        }
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "SamlLogoutPost": {
+          "$ref": "SamlBusinessLogic.json#/SAMLProcessLogoutRequest"
+        }
+      },
+      "options": {
+        "customOutput": true
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  }
+}

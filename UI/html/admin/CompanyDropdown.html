@@ -1,0 +1,8 @@
+﻿<span class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+            Switch Company
+        </button>
+        <span class="dropdown-menu dropdown-menu-end eb-company-dropdown" data-bind="foreach: companies">
+            <a class="dropdown-item" href="#" data-bind="text:$data.name, click:$parent.setCompany"></a>
+        </span>
+</span>

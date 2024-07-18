@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_MembershipProducts_MembershipProductEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.GetCurrentMembershipApplicationDefinition">
+            <summary>
+            Retrieves current membership application definition.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.GetCurrentMembershipApplicationDefinitionProducts(System.String)">
+            <summary>
+            Retrieves current membership application products.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.GetCurrentMembershipApplication(System.String)">
+            <summary>
+            Retrieves current membership application.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.UpdateCurrentMembershipApplication(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.updateSingleMembershipProductItemInput)">
+            <summary>
+            Retrieves current membership application.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutByCreditCard(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipCreditCardInput)">
+            <summary>
+            Completes membership product checkout using a credit card.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutBySavedPaymentMethod(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipSavedPaymentInput)">
+            <summary>
+            Completes membership product checkout using saved payment method.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutByACH(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipACHInput)">
+            <summary>
+            Completes membership product checkout using ACH.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutByACHTokenizer(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipACHTokenizerInput)">
+            <summary>
+            Completes membership product checkout using ACH Tokenizer.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutByGPay(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipGPayInput)">
+            <summary>
+            Completes membership product checkout using GPay.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.MembershipCheckoutByApplePay(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipApplePayInput)">
+            <summary>
+            Completes membership product checkout using Apple Pay.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.GetRemotePaymentRequestForMembershipCheckout">
+            <summary>
+            Retrieves the remote payment request data for membership.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.ProcessRemotePaymentResponseForMembershipCheckout(Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.ProcessRemotePaymentResponseInputForMembership)">
+            <summary>
+            Processes the remote payment response data for membership.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipCreditCardOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipSavedPaymentOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipACHOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipACHTokenizerOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipGPayOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.membershipApplePayOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.GetRemotePaymentRequestOutputForMembership.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_MembershipProducts_MembershipProductEndpoint.v1_MembershipProducts_MembershipProductEndpointController.ProcessRemotePaymentResponseOutputForMembership.OrderId">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+    </members>
+</doc>

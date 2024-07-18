@@ -1,0 +1,66 @@
+﻿<div class="ebusiness-main-container">
+    <div class="ebusiness-review-submit-success-message ebClear">
+        <div class="col-md-3  ebClear">
+            <div class="product-images-ratings col-md-12 col-xs-3">
+                <img class="imgReviewProduct" data-bind="attr:{src: productImage}">
+            </div>
+            <div class="col-md-12 col-xs-9">
+                <div class="ebusiness-product-more-details-section">
+                    <div class="ebusiness-product-more-details-product-name ebusiness-product-viewcart-pro-name" data-bind="text:name"> </div>
+                </div>
+                <div>
+                    <!--show more and show less-->
+                    <span class="ebusiness-product-details-description showHideReadMore" data-bind="html:description ,visible: showMoreDescription"></span>
+
+                    <!-- ko if: description().length >= 450 -->
+                    <span class="ebusiness-product-details-description" data-bind="visible: showEllipses">...&nbsp;</span>
+                    <span class="ebusiness-product-details-description morelink" data-bind=" click : showMore, visible: showMoreHide" style="cursor:pointer;color: #12596F;">show more</span>
+                    <!-- /ko -->
+
+                    <span class="ebusiness-product-details-description" data-bind="html : remainingDescription ,visible : showRemainingDescription"></span>
+                    <span class="ebusiness-product-details-description morelink" data-bind="click : showLess ,visible : hideRemainingDescription" style="cursor:pointer;color: #12596F;">show less</span>
+                    <!--End of show more and show less-->
+                </div>
+                <div class="overall-ratings" style="display:none;">
+                    <!--For Star Rating we are using this-->
+                    <p>Overall Ratings</p>
+                    <input type="number" class="rating inputReviewerAvgRating" min=0 max=5 step=0.1 data-size="ms" data-disabled="true">
+                </div>
+            </div>
+        </div>
+        <form id="writeReviewForm">
+            <div class="col-md-8 your-review">
+                <fieldset>
+                    <h4 class="reviewHeader" data-bind="text: productReviewMessage"></h4>
+                       <div class="form-group" style="display:none;"><!--For Star Rating we are using this-->
+                        <label>Your Rating</label>
+                        <p>
+                            <input type="text" name="reviewerRating" class="rating reviewerRating" min=0 max=5 step=1 data-size="ms">
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="caption">Review Title</label>
+                            <input type="text" name="reviewTitle" class="form-control a-form-control txtReviewTitle" data-bind="value: reviewTitle , disable : visible" required  placeholder="Review Title" >
+                            <span data-bind="visible: showSuccessReview, text: successReviewTitle"></span>
+                        </div>
+                    <div class="form-group">
+                        <p>
+                            <label class="caption">Review</label>
+                                <textarea name="reviewDesc" rows="10" class="form-control a-form-control txtReviewDesc" data-bind="value: productReviewInfo , disable: visible , valueUpdate: 'afterkeydown'"  required placeholder="Review"></textarea>
+                                <span data-bind="visible: showSuccessMessage, text: successReviewDescription"></span>
+                            <span>
+                                Note:
+                                <span class="terms-conditions italic-font">(Minimum required characters: 50)</span><span data-bind="text: charCount"></span><span> character(s)</span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="form-group text-right">
+                        <input class="btn btn-primary btnReviewSubmit" type="submit" value="Submit" data-bind="click: submitReview, disable : visible">               
+                         <button class="btn btn-link" data-bind="reviewCancel, disable : visible">Cancel</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+     </div>
+</div>
+

@@ -1,0 +1,45 @@
+{
+  "getAllCartItems": {
+    "route": {
+      "description": "Gets the common properties of all items in the cart.  A cart item may have additional detail depending on its product type.  Those details can be retrieved through the URL specified by the additionalDetails output field.",
+      "httpMethod": "GET",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "GetAllCartItemsOutput",
+      "$ref": "entityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getAllOrderLines": {
+        "$ref": "shoppingBusinessLogic.json#/getAllOrderLines",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

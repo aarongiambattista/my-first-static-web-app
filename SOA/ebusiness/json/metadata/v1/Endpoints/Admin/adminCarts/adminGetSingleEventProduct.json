@@ -1,0 +1,88 @@
+﻿{
+  "getSingleEventProduct": {
+    "parent": {
+      "name":  "getAdminCartCompany"   //gets cart information of selected company
+    },
+    "route": {
+      "description": "Gets all properties of a single event product item in the cart.",
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminGetSingleEventProductItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "GET"
+            ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "adminGetSingleEventProductItemOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/eventCartItemOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+        },
+        "returnTheOrder": {
+          "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+        },
+        "getSingleOrderLine": {
+          "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.returnTheOrder.outputOrderGE"
+            }
+          }
+        },
+        "getPropertyValueFromGE": {
+          "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.getSingleOrderLine.outputGE",
+              "FieldName": "productId"
+            }
+          }
+        },
+        "meetingProductValidation": {
+          "$ref": "adminShoppingBusinessLogic.json#/meetingProductValidation",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+              "quantity": "1",
+              "verifiers": [
+                "IsMeetingProduct"
+              ]
+            }
+          }
+        },
+        "getSingleOrderLineOutput": {
+          "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "GEObject": "@parent.returnTheOrder.outputOrderGE"
+            }
+          }
+        }
+      }
+    }
+  }

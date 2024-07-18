@@ -1,0 +1,1367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JSONEndpointv1_Admin_adminCarts_adminShoppingCartEndpointGeneratedController</name>
+    </assembly>
+    <members>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetAdminCartCompany(System.Int64)">
+            <summary>
+            Gets the company details of the passed in company Id, secured by a security Fn
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AddEventProduct(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddEventProductInput,System.Int64)">
+            <summary>
+            Adds a event product to the company cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminCart(System.Int64)">
+            <summary>
+            Completely deletes the current admin shopping cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteEventCartItem(System.Int64,System.Int64)">
+            <summary>
+            Removes the specified event item from the cart. This may result in multiple session items being removed, if removed the parent event product from cart
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminEmptyCart(System.Int64)">
+            <summary>
+            Removes all items from the admin cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetAllCartItems(System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all items in the cart.  A cart item may have additional detail depending on its product type.  Those details can be retrieved through the URL specified by the additionalDetails output field.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetAllEventsProducts(System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all event items in the cart.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetSingleEventProduct(System.Int64,System.Int64)">
+            <summary>
+            Gets all properties of a single event product item in the cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.UpdateCart(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInput,System.Int64)">
+            <summary>
+            Sets top level fields on the cart such as the shipping and billing address or the coupon code.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.UpdateSingleEventProductItem(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemInput,System.Int64,System.Int64)">
+            <summary>
+            Updates the properties of a single event product item in the cart.  If the item specified is not an event product, this call would cause an error.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.CheckoutPurchaseOrder(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminPurchaseOrderCheckoutInput,System.Int64)">
+            <summary>
+            Completes the shopping experience using a purchase order for payment.  The shopper must have the required credit approval limits.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.CheckoutByCreditCard(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminCreditCardCheckoutInput,System.Int64)">
+            <summary>
+            Completes the shopping experience using a credit card for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutBySavedPaymentMethod(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminSavedPaymentMethodCheckoutInput,System.Int64)">
+            <summary>
+            Completes the shopping experience using a saved payment for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutbyACH(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminACHCheckoutInput,System.Int64)">
+            <summary>
+            Completes the admin shopping experience using a ACH for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutbyACHTokenizer(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminACHTokenizerCheckoutInput,System.Int64)">
+            <summary>
+            Completes the admin shopping experience using a ACH for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutbyGPay(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGPayCheckoutInput,System.Int64)">
+            <summary>
+            Completes the shopping experience using GPay for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutbyApplePay(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminApplePayCheckoutInput,System.Int64)">
+            <summary>
+            Completes the shopping experience using Apple Pay for admin payment.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCheckoutZeroPaymentOrder(System.Int64)">
+            <summary>
+            Completes the admin payment process of zero payment orders
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetAllShipmentTypes(System.Int64,System.String)">
+            <summary>
+            Gets all the shipment types available.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetRemotePaymentRequestDataForCheckout(System.Int64)">
+            <summary>
+            Retrieves the remote payment request data for checkout.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ProcessRemotePaymentResponseDataForCheckout(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminProcessRemotePaymentResponseInput,System.Int64)">
+            <summary>
+            Processes the remote payment response data for checkout.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminAddSubscriptionGeneralProduct(System.Collections.Generic.List{Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductInput},System.Int64)">
+            <summary>
+            Adds a subscription general product to the cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminUpdateSubscriptionGeneralProduct(Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemInput,System.Int64,System.Int64)">
+            <summary>
+            Updates the properties of a single subscription general product item in the cart.  If the item specified is not a subscription general product this call will throw an error.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllSubscriptionProducts(System.Int64,System.String)">
+            <summary>
+            Gets the common properties of all subscription items in the cart.
+            </summary>
+            <param name="sort">A comma delimited list of columns to sort by.  Field are sorted in ascending order by default.  To have a field sort in descending order, preface it with the minus (-) sign.</param>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetSingleSubscriptionProduct(System.Int64,System.Int64)">
+            <summary>
+            Gets all properties of a single subscription product item in the cart.
+            </summary>
+        </member>
+        <member name="M:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminDeleteCartItem(System.Int64,System.Int64)">
+            <summary>
+            Removes the specified item from the admin's company cart.  This may result in multiple items being removed if items are part of a group.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.numberOfItems">
+            <summary>
+            The number of items in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.couponId">
+            <summary>
+            The id of the coupon applied to the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.couponName">
+            <summary>
+            The display name of the coupon code.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.totalSavings">
+            <summary>
+            The total discount applied for all items in the cart
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.subTotal">
+            <summary>
+            The sum of all items in the cart, after discounts, but prior to tax and shipping charges.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipping">
+            <summary>
+            The cost of shipping on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.handling">
+            <summary>
+            The cost of handling on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.tax">
+            <summary>
+            The cost of tax on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.grandTotalBeforeDiscount">
+            <summary>
+            The final price the user should expect to pay,before discounts.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.currencyTypeId">
+            <summary>
+            The id of the currency being used on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.currencySymbol">
+            <summary>
+            The currency symbol for the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shippingAddressId">
+            <summary>
+            The address id where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToLine1">
+            <summary>
+            The address details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToLine2">
+            <summary>
+            The address details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToCity">
+            <summary>
+            City details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToState">
+            <summary>
+            State details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToZipCode">
+            <summary>
+            Zip Code details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipToCountry">
+            <summary>
+            Country name where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billingAddressId">
+            <summary>
+            The address id to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToLine1">
+            <summary>
+            The address details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToLine2">
+            <summary>
+            The address details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToCity">
+            <summary>
+            City details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToState">
+            <summary>
+            State details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToZipCode">
+            <summary>
+            Zip Code details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.billToCountry">
+            <summary>
+            Country details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipmentTypeId">
+            <summary>
+            Shipment type ID to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.shipmentTypeName">
+            <summary>
+            Shipment type Name to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.ShoppingCartOutput.companyId">
+            <summary>
+            The id of the company linked to the admin cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.getAdminCompanyInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.GetEventCartItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddEventProductInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.DeleteAdminEventCartItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.deleteAdminEventCartItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminGetAllCartItemsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllEventsProductsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleEventProductItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.numberOfItems">
+            <summary>
+            The number of items in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.couponId">
+            <summary>
+            The id of the coupon applied to the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.couponName">
+            <summary>
+            The display name of the coupon code.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.totalSavings">
+            <summary>
+            The total discount applied for all items in the cart
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.subTotal">
+            <summary>
+            The sum of all items in the cart, after discounts, but prior to tax and shipping charges.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipping">
+            <summary>
+            The cost of shipping on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.handling">
+            <summary>
+            The cost of handling on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.tax">
+            <summary>
+            The cost of tax on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.grandTotalBeforeDiscount">
+            <summary>
+            The final price the user should expect to pay,before discounts.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.currencyTypeId">
+            <summary>
+            The id of the currency being used on the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.currencySymbol">
+            <summary>
+            The currency symbol for the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shippingAddressId">
+            <summary>
+            The address id where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToLine1">
+            <summary>
+            The address details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToLine2">
+            <summary>
+            The address details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToCity">
+            <summary>
+            City details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToState">
+            <summary>
+            State details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToZipCode">
+            <summary>
+            Zip Code details where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipToCountry">
+            <summary>
+            Country name where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billingAddressId">
+            <summary>
+            The address id to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToLine1">
+            <summary>
+            The address details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToLine2">
+            <summary>
+            The address details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToCity">
+            <summary>
+            City details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToState">
+            <summary>
+            State details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToZipCode">
+            <summary>
+            Zip Code details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.billToCountry">
+            <summary>
+            Country details to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipmentTypeId">
+            <summary>
+            Shipment type ID to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.shipmentTypeName">
+            <summary>
+            Shipment type Name to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartOutput.companyId">
+            <summary>
+            The id of the company linked to the admin cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInput.shippingAddressId">
+            <summary>
+            The address id where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInput.billingAddressId">
+            <summary>
+            The address id to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInput.couponId">
+            <summary>
+            The id of the coupon applied to the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInput.shipmentTypeId">
+            <summary>
+            The shipment type id which is used to charge the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInputForBusinessLogic.shippingAddressId">
+            <summary>
+            The address id where the order will be shipped.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInputForBusinessLogic.billingAddressId">
+            <summary>
+            The address id to charge the order to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInputForBusinessLogic.couponId">
+            <summary>
+            The id of the coupon applied to the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShoppingCartUpdateInputForBusinessLogic.shipmentTypeId">
+            <summary>
+            The shipment type id which is used to charge the order.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.productCategory">
+            <summary>
+            The category of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleEventProductItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminCartPurchaseOrderCheckoutOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminPurchaseOrderCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminCartCheckoutOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminCreditCardCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.AdminCartCheckoutOutput.id">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminSavedPaymentMethodCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminACHCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminACHTokenizerCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGPayCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminApplePayCheckoutInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShipmentTypeOutput.id">
+            <summary>
+            id of the shipment type
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminShipmentTypeOutput.name">
+            <summary>
+            name of the shipment type
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminRemotePaymentOutput.outputPaymentURL">
+            <summary>
+            The generated request data for remote payment.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminProcessRemotePaymentResponseOutput.OrderId">
+            <summary>
+            The ID of created order
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminProcessRemotePaymentResponseInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminAddSubscriptionGeneralProductInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminUpdateSingleSubscriptionGeneralProductItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetAllSingleSubscriptionProductsOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.id">
+            <summary>
+            The ID for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.parentproductId">
+            <summary>
+            The ParentID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.parentId">
+            <summary>
+            If this item is part of a kit or a group, this is the parent item it belongs to.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.productId">
+            <summary>
+            The ID of the product for this item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.isSubscription">
+            <summary>
+            Indicates if the product is a subscription product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.quantity">
+            <summary>
+            Quantity will be only have a non-zero fractional part for subscription items. This depends on how the subscription product is processed. In most circumstances the fractional part will be zero.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.price">
+            <summary>
+            The unit price for this line item in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.discount">
+            <summary>
+            The percentage discount that should be taken off the order line price for each item.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.productName">
+            <summary>
+            The name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.webName">
+            <summary>
+            The web name of the product.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.description">
+            <summary>
+            The product description.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.productType">
+            <summary>
+            The type of product this is.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.additionalDetails">
+            <summary>
+            The URL to retrieve or update additional details about this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.totalDiscount">
+            <summary>
+            The total discount applied for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemOutput.totalFinalPrice">
+            <summary>
+            The final price user pays for this product in the cart.
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminGetSingleSubscriptionProductItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+        <member name="P:Aptify.Services.Generated.v1_Admin_adminCarts_adminShoppingCartEndpoint.v1_Admin_adminCarts_adminShoppingCartEndpointController.adminDeleteCartItemInputForBusinessLogic.id">
+            <summary>
+            The id of the company to admin
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,132 @@
+﻿{
+  "endpoints": {
+    "getAllCountries": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "Countries": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/countryOutput",
+        "name": "Country"
+      },
+      "businessLogic": {
+        "allCountriesRetrieval": {
+          "$ref": "#/businessLogic/allCountriesRetrieval"
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getCountryStates": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "Country": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "countryId": {
+            "isLiteral": false,
+            "type": "long"
+          },
+          "States": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetStatesInput",
+        "$ref": "#/entityDefinitions/statesInput"
+      },
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/statesOutput",
+        "name": "State"
+      },
+      "businessLogic": {
+        "StatesRetrieval": {
+          "$ref": "#/businessLogic/allStatesRetrieval"
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    // Just a Place holder to showcase we can put entity definitions
+    // in the same file and reference it.
+    "statesInput": {
+      "fields": {
+        "countryId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "countryOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "country": {
+          "type": "string"
+        },
+        "ISOCode": {
+          "type": "string"
+        }
+      }
+    },
+    "statesOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateName": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "businessLogic": {
+    // Just a Place holder to showcase we can put Businesslogic
+    // in the same file and reference it.
+    "allCountriesRetrieval": {
+      "executionType": "processFlow",
+      "processFlowProperties": {
+        "processFlowName": "Execute Data Object",
+        "processFlowParameters": {
+          "DataObjectName": "spGeteBusiness6_0CountryList"
+        }
+      }
+    },
+    "allStatesRetrieval": {
+      "executionType": "processFlow",
+      "processFlowProperties": {
+        "processFlowName": "Execute Data Object",
+        "processFlowParameters": {
+          "DataObjectName": "spGeteBusiness6_0CountryStateList"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,252 @@
+﻿<div class="ebusiness-main-container">
+
+    <div class="row">
+        <div class="eventContent">
+            <div class="ebEventDetails">
+                <!--Start Search Functionality-->
+                <div class="attendee-search" data-bind="visible: showSearchBox">Search for Additional Registrants <input type="text" placeholder="Search by Email, First or Last Name..." class="form-control" data-bind="textInput: search" /></div>
+                <hr />
+                <div class="ebusiness-eventsearch-result-block">
+                    <h4 class="ebusiness-heading-search" data-bind="visible: result">Search Results</h4>
+                    <div class="ebusiness-search-attendee-results" data-bind="foreach: allSearchData, visible: recordFound">
+                        <div class="ebusiness-row-search-results ebClear">
+                            <div class="row row-name-company">
+                                <div class="col-6 col-md-3"> <span class="label-events">First Name</span><span class="value-orders" data-bind="text: firstName"></span></div>
+                                <div class="col-6 col-md-3"> <span class="label-events">Last Name</span><span class="value-orders" data-bind="text: lastName"></span></div>
+                                <div class="col-6 col-md-3"> <span class="label-events">City</span><span class="value-orders" data-bind="text: city"></span></div>
+                                <div class="col-6 col-md-3">
+                                    <button type="button" class="btn btn-primary" data-bind="click : $parent.selectAttendee">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="NoRecords text-center" data-bind="visible: noRecord">
+                        <span>No records found.</span>
+                    </div>
+                    <div class="ebusiness-search-no-attendee text-right" data-bind="visible: result"><span> Couldn't find who you were looking for?</span><a class="ebusiness-search-createnewperson" data-bind="click: createNewPerson">Create New Person</a> </div>
+                </div>
+                <!--End Search Functionality-->
+                <!--Create New Person-->
+                <div class="alert alert-danger ebusiness-service-failure-message" data-bind="visible: errorCreateAttendee, text: errorCreateAttendeeMessage"></div>
+                <div class="createNewPerson" data-bind="visible: newPersonDetails">
+                    <h4>Create New Person</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">First Name</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="textInput : newFirstName">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Last Name</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="textInput: newLastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">City</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="textInput: newCity">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Email</label>
+                                <input class="form-control" placeholder="" type="email" data-bind="textInput: newEmail">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Create New Person-->
+                <!--Person Details-->
+                <div class="personDetails" data-bind="visible: showPersonDetails">
+                    <h4>Person Details</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">First Name</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="value: personFirstName" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">Last Name</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="value: personLastName" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="caption">City</label>
+                                <input class="form-control" placeholder="" type="text" data-bind="value: personCity" readonly>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <!--Person Details End-->
+                <div class="sessions-wrapper">
+
+                    <div data-bind="visible: showSelectExpandBar"><h3 class="select-sessions">Select Sessions <a data-bind="click: selectUnselectAll, text: selectAllText"> Select All</a> <a class="pull-right" data-bind="click: collapseExpandAll, text: collapseExpandAllText">Expand All</a></h3></div>
+
+                    <div data-bind="foreach : sessionDetails">
+                        <div class="ebEvent-session-list">
+                            <div class="ebClear events-heading-panel">
+                                <div class="session-name"><input type="checkbox" data-bind="value: sessionId, checked: selectTheSession, click: sessionClicked"><span data-bind="text: sessionName"></span></div>
+                                <div class="pull-right">
+                                    <span><span class="session-price ebusiness-product-view-cart-price" data-bind="text:showCurrencySymbol"></span><span class="session-price ebusiness-product-view-cart-price" data-bind="text: sessionPrice, visible: showPrice()"></span><span class='clsShipStatus' data-bind="visible: !showPrice()"> Add to Cart to see Price</span></span>
+                                    <span data-bind="click: toggleSession">
+                                        <span data-bs-toggle="collapse" data-bind="css: { isCollapseOpen: sessionCollapse(), isCollapseClosed: !sessionCollapse()}"> </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-collapse event-details-panel" data-bind="visible: sessionCollapse">
+                                <div class="ebusiness-row-event-details ebusiness-row-event-session-details">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <span class="label-events">Date</span><span class="value-orders" data-bind="text: sessionDate"></span>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="label-events">Location</span><span class="value-orders" data-bind="text: sessionVenue"></span>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="label-events">Speaker</span>
+                                            <span class="value-orders" data-bind="text: sessionSpeakerName"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="ebdetail-description">
+                                        <span class="label-events"> Description</span>
+
+                                        <!--show more and show less-->
+                                        <span class="ebusiness-product-details-description showHideReadMore" data-bind="text:sessionDescription ,visible: showMoreDescription"></span>
+                                        <!-- ko if: sessionDescription().length >= eb_EventRegistrationAdmin.charLength -->
+                                        <span class="ebusiness-product-details-description" data-bind="visible: showEllipses">...&nbsp;</span>
+                                        <span class="ebusiness-product-details-description morelink" data-bind=" click : showMore, visible: showMoreHide" style="cursor:pointer;color: #12596F;">Show More</span>
+                                        <!-- /ko -->
+
+                                        <span class="ebusiness-product-details-description" data-bind="text : remainingDescription ,visible : showRemainingDescription"></span>
+                                        <span class="ebusiness-product-details-description morelink" data-bind="click : showLess ,visible : hideRemainingDescription" style="cursor:pointer;color: #12596F;">Show Less</span>
+                                        <!--End of show more and show less-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--To Show the Session Conflict Message when individual session click-->
+                        <div id="eb-modal-conflict-meeting" class="modal fade" role="dialog" data-bind="attr: {id: 'collapse'+sessionId()}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="eb-modal-conflict-meeting">
+                                            <h3>Session(s) Already Registered</h3>
+                                            <p class="error-message" data-bind="visible: sessionErrorShow ,text: sessionErrorMessage"></p>
+                                            <div class="text-right"><input type="button" value="OK" class="btn btn-primary" data-bs-dismiss="modal" data-bind="click: $root.unCheckedSession"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Add Attendee-->
+                <div class="add-new-attendee ebClear"> <button class="btn btn-primary  pull-right" data-bind="click: addAttendee , visible: showAddAttendee">Add Attendee</button></div>
+                <!--Create Attendee-->
+                <div class="create-new-attendee ebClear"> <button class="btn btn-primary  pull-right" data-bind="click: createAttendee, visible: newAttendee">Add Attendee</button></div>
+
+                <!-- Registration Summary section -->
+                <div class="registration-summary ebClear" data-bind="visible: hideRegistrationSummary">
+                    <h3 class="select-sessions">Registration Summary </h3>
+                    <div data-bind="foreach: registerMeeting">
+                        <div class="row-registration-summary">
+                            <div class="panel-added-attendee row">
+                                <div class="col">
+                                    <span class="person-name" data-bind="text: meetingAttendeeName"></span>-
+                                    <span class="session-name-reg" data-bind="text: meetingName"></span>
+                                </div>
+                                <div class="col text-right">
+                                    <span class="price-of-event ebusiness-product-view-cart-price" data-bind="text: meetingPrice"></span>
+                                    <a class="delete-registration meeting" data-bs-toggle="modal" data-bind="attr: {'href': '#collapse'+ id()}">
+                                        <i class="ebIcon-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--For Removing the cart item yes or no field-->
+                            <div class="modal fade" role="dialog" data-bind="attr: {id: 'collapse'+ id()}">
+                                <div class="modal-dialog ebusiness-modal-vertical-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="ebusiness-modal-content">
+                                                <h2>Remove Attendee</h2>
+                                                <div class="ebClear">
+                                                    <p>Are you sure you want to remove the associated attendee ?</p>
+                                                </div>
+                                                <div class="ebusiness-action-buttons-footer ebClear text-right">
+                                                    <div class="col-lg-12">
+                                                        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                        <button class="btn btn-primary ebusiness-action-button-remove-all-items-button" data-bs-dismiss="modal" data-bind="click: $root.removeMeeting ">Yes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-details-panel" data-bind="foreach: registerSession">
+                                <div class="selected-attendees row">
+                                    <div class="col">
+                                        <span class="session-name-reg" data-bind="text: sessionName"></span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <span class="price-of-event ebusiness-product-view-cart-price" data-bind="text: sessionPrice"></span>
+                                        <a class="delete-registration session" data-bind="click: $root.removeMeeting">
+                                            <i class="ebIcon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Total Price-->
+                    <div class="col-md-12 text-right">
+                        <strong>Total </strong> <span class="price-of-event ebusiness-product-view-cart-price" data-bind="text: totalFinalPrice"></span>
+                    </div>
+                </div>
+                <div class="proceed-attendee ebClear"> <button class="btn btn-primary  pull-right" data-bind="click: proceedClick,  visible : disableProceedButton">Proceed</button></div>
+
+                <!-- Loader section -->
+                <div class="loaderwrapper" data-bind="visible: showLoader">
+                    <div class="ebloader"></div>
+                </div>
+            </div>
+            <!--To Show the Session Conflict Message when SelectAll is clicked-->
+            <div id="eb-conflict-meeting-for-selectAll" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="eb-modal-conflict-meeting">
+                                <h3>Session(s) Already Registered</h3>
+                                <p class="error-message" data-bind="visible: selectError, text: selectAllErrorMessage"></p>
+                                <div class="text-right"><input type="button" value="OK" class="btn btn-primary" data-bs-dismiss="modal" data-bind="click: $root.unSelectExitsingAttendee"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+

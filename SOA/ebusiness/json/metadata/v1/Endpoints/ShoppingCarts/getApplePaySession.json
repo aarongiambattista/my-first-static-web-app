@@ -1,0 +1,48 @@
+{
+  "getApplePaySession": {
+    "route": {
+      "description": "Retrieves Session Information for Apple Pay.",
+      "httpMethod": "POST",
+      "segments": {
+        "GetApplePaySession": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "ApplePaySessionInput",
+      "fields": {
+        "sessionUrl": {
+          "type": "string",
+          "description": "Payment Session Url",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ],
+            "source": "body"
+          }
+        }
+      }
+    }, 
+    "outputEntityDefinition": {
+      "name": "ApplePaySessionOutput",
+      "fields": {
+        "outputToken": {
+          "type": "string",
+          "description": "The Apple Pay Session"
+        }
+      }
+    },
+    "businessLogic": {
+      "RetrieveApplePaySession": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Get Apple Pay Session",
+          "processFlowParameters": {
+            "sessionUrl": "@request.sessionUrl"
+          }
+        }
+      }
+    } 
+  }
+}

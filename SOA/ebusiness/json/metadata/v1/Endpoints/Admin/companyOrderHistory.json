@@ -1,0 +1,133 @@
+﻿{
+  "getCompanyOrderHistorySingleOrder": {
+    "parent": {
+      "name": "getCompanyOrderHistory"
+    },
+    "route": {
+      "description": "Retrieves the Order Details of the company order in question",
+      "httpMethod": "GET",
+      "segments": {
+        "orderId": {
+          "isLiteral": false,
+          "type": "long",
+          "security": {
+            "isYourCompanyOrder": {
+              "$ref": "../../Common/AdminSecurity.json#/isYourCompanyOrder"
+            }
+          }
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "companyOrderHistoryEntities.json#/companySingleOrderInput",
+      "name": "GetCompanySingleOrderInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "companyOrderHistoryEntities.json#/companyOrderOutput",
+      "name": "GetCompanyOrderOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companySingleOrderRetrieval"
+      }
+    }
+  },
+  "getCompanyOrderHistory": {
+    "parent": {
+      "name": "getAdminCompany"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "OrderHistory": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "$ref": "companyOrderHistoryEntities.json#/companyOrderOutput",
+      "name": "getCompanyOrderHistoryOutput"
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companySingleOrderRetrieval"
+      }
+    }
+  },
+
+  "getCompanyOrderHistorySingleOrderSingleItem": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrderAllItems"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "itemId": {
+          "isLiteral": false,
+          "type": "long"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "GetOrderHistoryItemInput",
+      "fields": {
+        "itemId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET" ],
+            "source": "path"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetOrderHistoryItemOutput",
+      "$ref": "companyOrderHistoryEntities.json#/companyCartItemsOutput",
+      "orderParty": {
+        "type": "string"
+      },
+      "paymentParty": {
+        "type": "string"
+      }
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companyOrderHistoryItemsRetrieval"
+      }
+    }
+  },
+  "getCompanyOrderHistorySingleOrderAllItems": {
+    "parent": {
+      "name": "getCompanyOrderHistorySingleOrder"
+    },
+    "route": {
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": " string "
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "getCompanyOrderHistorySingleOrderAllItemsOutput",
+      "$ref": "companyOrderHistoryEntities.json#/companyCartItemsOutput",
+      "orderParty": {
+        "type": "string"
+      },
+      "paymentParty": {
+        "type": "string"
+      }
+    },
+    "businessLogic": {
+      "singleGERetrieval": {
+        "$ref": "companyOrderHistoryBusinessLogic.json#/companyOrderHistoryItemsRetrieval"
+      }
+    }
+  }
+}

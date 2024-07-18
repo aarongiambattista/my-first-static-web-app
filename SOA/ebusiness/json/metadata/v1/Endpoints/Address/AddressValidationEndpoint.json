@@ -1,0 +1,150 @@
+﻿{
+  "endpoints": {
+    "addressValidation": {
+      "route": {
+        "description": "Validate provided address and suggest new address.",
+        "httpMethod": "POST",
+        "segments": {
+          "AddressValidation": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "#/entityDefinitions/addressValidationInput",
+        "name": "addressValidationInput"
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/addressValidationOutput",
+        "name": "addressValidationOutput"
+      },
+      "businessLogic": {
+        "addressValidation": {
+          "$ref": "#/businessLogic/addressValidation"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "addressValidationInput": {
+      "fields": {
+        "line1": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "line2": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "line3": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "city": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "stateProvince": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "postalCode": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "county": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        },
+        "country": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "addressValidationOutput": {
+      "fields": {
+        "status": {
+          "type": "string",
+          "sourceField": "VerificationStatus",
+          "description": "The validation status of address"
+        },
+        "line1": {
+          "type": "string",
+          "description": "The line1 of this address"
+        },
+        "line2": {
+          "type": "string",
+          "description": "The line2 of this address"
+        },
+        "line3": {
+          "type": "string",
+          "description": "The line3 of this address"
+        },
+        "city": {
+          "type": "string",
+          "description": "The city of this address"
+        },
+        "stateProvince": {
+          "type": "string",
+          "description": "The state province of this address"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "The postal code of this address"
+        },
+        "county": {
+          "type": "string",
+          "description": "The county of this address"
+        },
+        "country": {
+          "type": "string",
+          "description": "The country of this address"
+        }
+      }
+    }
+  },
+  "businessLogic": {
+    "addressValidation": {
+      "executionType": "processFlow",
+      "processFlowProperties": {
+        "processFlowName": "Validate Address",
+        "processFlowParameters": {
+          "Line1": "@request.line1",
+          "Line2": "@request.line2",
+          "Line3": "@request.line3",
+          "City": "@request.city",
+          "StateProvince": "@request.stateProvince",
+          "PostalCode": "@request.postalCode",
+          "County": "@request.county",
+          "Country": "@request.country"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+﻿{
+  "savedPaymentInput": {
+    "fields": {
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "PATCH", "DELETE" ],
+          "source": "path"
+        }
+      },
+      "creditCardNumber": {
+        "type": "string",
+        "input": {
+          "httpMethods": [ "POST" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "expirationMonth": {
+        "type": "integer",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "expirationYear": {
+        "type": "integer",
+        "input": {
+          "httpMethods": [ "POST", "PATCH" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "cvv": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "savedPaymentOutput": {
+    "fields": {
+      "Id": {
+        "type": "long",
+        "sourceField": "Id"
+      },
+      "paymentType": {
+        "type": "string"
+      },
+      "partialNumber": {
+        "type": "string",
+        "sourceField": "CCPartial"
+      },
+      "expirationMonth": {
+        "type": "integer"
+      },
+      "expirationYear": {
+        "type": "integer"
+      },
+      "requireCVV": {
+        "type": "boolean"
+      }
+    }
+  },
+  "personRemoteSavedPaymentInput": {
+    "fields": {
+      "expirationMonth": {
+        "type": "integer",
+        "input": {
+          "httpMethods": [ "POST" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "expirationYear": {
+        "type": "integer",
+        "input": {
+          "httpMethods": [ "POST" ],
+          "source": "body",
+          "requiredHttpMethods": [ "POST" ]
+        }
+      }
+    }
+  }
+}

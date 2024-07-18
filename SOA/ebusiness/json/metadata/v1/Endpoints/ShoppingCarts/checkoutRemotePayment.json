@@ -1,0 +1,178 @@
+﻿{
+  "getRemotePaymentRequestDataForCheckout": {
+    "route": {
+      "description": "Retrieves the remote payment request data for checkout.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GetRemotePaymentRequest": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/getRemotePaymentRequestOutput",
+      "name": "RemotePaymentOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "../ShoppingCarts/ShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateEmptyShoppingCart": {
+        "$ref": "../ShoppingCarts/ShoppingBusinessLogic.json#/validateEmptyShoppingCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "addPaymentTypeOnOrderObject": {
+        "$ref": "checkoutBusinessLogic.json#/AddPaymentTypeOnOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+          }
+        }
+      },
+      "retrieveRemotePaymentURL": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Retrieve Remote Payment RequestData",
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentCartGE"
+          }
+        }
+      }
+    }
+  },
+  "processRemotePaymentResponseDataForCheckout": {
+    "route": {
+      "description": "Processes the remote payment response data for checkout.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "ProcessRemotePaymentResponse": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/processRemotePaymentResponseInput",
+      "name": "ProcessRemotePaymentResponseInput"
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/processRemotePaymentResponseOutput",
+      "name": "ProcessRemotePaymentResponseOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "../ShoppingCarts/ShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateEmptyShoppingCart": {
+        "$ref": "../ShoppingCarts/ShoppingBusinessLogic.json#/validateEmptyShoppingCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "retrievePaymentTypeIdForRemotePayment": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Credit Card Hosted Payment Reference Transaction",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "addPaymentTypeOnOrderObject": {
+        "$ref": "checkoutBusinessLogic.json#/AddPaymentTypeOnOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCart.outputCurrentOrderGE",
+            "PaymentTypeID": "@parent.retrievePaymentTypeIdForRemotePayment.outputPaymentTypeId"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "shoppingBusinessLogic.json#/saveCart"
+      },
+      "processRemotePaymentResponse": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Process Remote Payment Response Data",
+          "processFlowParameters": {
+            "ResponseData": "@request.responseData"
+          }
+        }
+      },
+      //EB-1633: Porting of HDEB-39 - Send Confirmation Emails for Orders Paid for by the Hosted Payment Page
+      "getOrderIdFromCartGE": {
+        "$ref": "../../Endpoints/ShoppingCarts/shoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.processRemotePaymentResponse.outputGE",
+            "FieldName": "OrderId"
+          }
+        }
+      },
+      "getSingleOrderGERetrievalRemote": {
+        "$ref": "../../Common/businessLogic.json#/singleGERetrievalUsingRecordId",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "entityName": "Orders",
+            "action": "get",
+            "recordId": "@parent.getOrderIdFromCartGE.outputFieldValue"
+          }
+        }
+      },
+      "sendOrderConfirmationEmailAfterCheckoutRemote": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "e-Business Order Confirmation Mail After Checkout",
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderGERetrievalRemote.outputMembershipApplicationGE",
+            "FieldNameForMailRecipient": "BillToId",
+            "MessageTemplateName": "e-Business Order Confirmation Email Template"
+          }
+        }
+      },
+      "returnTheOrder": {
+        "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.processRemotePaymentResponse.outputGE",
+            "outputPropertyName": "outputGE"
+          }
+        }
+      }
+    }
+   }
+}

@@ -1,0 +1,22 @@
+{
+  "deleteAdminShoppingCart": {
+    "parent": {
+      "name": "getAdminCartCompany" //getAdminCompany
+    },
+    "route": {
+      "description": "Completely deletes the current admin shopping cart.",
+      "httpMethod": "DELETE",
+      "segments": null
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": null,
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "deleteCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/deleteCart"
+      }
+    }
+  }
+}

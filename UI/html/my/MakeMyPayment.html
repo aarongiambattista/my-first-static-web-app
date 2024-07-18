@@ -1,0 +1,100 @@
+﻿<div class="eb-For-UpDown">
+    <div class="ebusiness-main-container">
+        <h3>Unpaid Orders</h3>
+        <hr>
+        <div class="ebEmptyUnpaid alert alert-warning" data-bind="visible: showNoOrders">No Unpaid Orders</div>
+        <div class="row" data-bind="visible: showAllOrders">
+            <div class="col-lg-9 ebusiness-make-paymentList-details">
+                <div id="makeaPayment">
+                    <!-- No Unpaid Orders Start -->
+                    <!-- No Unpaid Orders Ends -->
+                    <!-- Make Payment Grid Header which will only available on Tablet and Desktop hidden on Mobile -->
+                    <div class="d-sm-none d-xs-none d-none d-md-block">
+                        <div class="ebMakePayment row">
+                            <div class="col-sm-2"><input type="checkbox" data-bind="checked:mainSelect, click: selectAll" /> <span class="heading-labels-orders"> Order ID</span></div>
+                            <div class="col-sm-2"> <span class="heading-labels-orders"> Order Type</span></div>
+                            <div class="col-sm-2"> <span class="heading-labels-orders"> Order Date</span></div>
+                            <div class="col-sm-2 text-center"> <span class="heading-labels-orders"> Total Amount</span></div>
+                            <div class="col-sm-2 eb-balance-amt-label"> <span class="heading-labels-orders"> Balance Amount</span></div>
+                            <div class="col-sm-2"> <span class="heading-labels-orders"> Pay Amount</span></div>
+                        </div>
+                        </div>
+                        <div class="col d-sm-block d-md-none d-xs-block"><input type="checkbox" data-bind="checked:mainSelect, click: selectAll" /> <span class="heading-labels-orders"> Select All</span></div>
+                        <div class="ebMakePaymentList">
+                            <div data-bind="foreach: outstandingOrders">
+                                <div class="row makePaymentHeadingPanel">
+                                    <div class="col-md-2 col-6 ebusiness-order-id-dwnld eb-ellipsis">
+                                        <input type="checkbox" data-bind="checked: isSelected, click: orderClicked" />
+                                        <span class="label-orders"> Order ID</span> <span class="value-orders" data-bind="text: orderId">10126</span>
+                                    </div>
+                                    <div class="col-md-2 col-6 col eb-ellipsis">
+                                        <span class="visible-xs label-orders"> Order Type</span>
+                                        <span class="value-orders" data-bind="text: orderType">Regular</span>
+                                    </div>
+                                    <div class="col-md-2 col-6 eb-ellipsis">
+                                        <span class="visible-xs label-orders"> Order Date</span>
+                                        <span class="value-orders" data-bind="text: orderDate">01/11/2019 </span>
+                                    </div>
+                                    <div class="col-md-2 col-6 eb-ellipsis">
+                                        <span class="visible-xs label-orders">Total Amount</span>
+                                        <span class="value-orders eb-amount-clm" data-bind="text: orderTotal">69.00</span>
+                                    </div>
+                                    <div class="col-md-2 col-6 eb-ellipsis">
+                                        <span class="visible-xs label-orders"> Balance Amount</span>
+                                        <span class="value-orders eb-amount-Balance" data-bind="text: orderAmountDue">65.00</span>
+                                    </div>
+                                    <div class="col-md-2 col-12 eb-Payamount">
+                                        <span class="label-orders visible-xs">Pay Amount</span>
+                                        <input type="text" class="form-control eb-PaymentAmountControl" data-bind="numeric:payableAmount, value: payableAmount, valueUpdate: 'afterkeydown' , disable: !(amountVisible()), hasfocus: payableAmount.focused">
+                                    </div>
+                                    <strong class="ebClear "></strong>
+                                    <div class="alert alert-danger ebusiness-service-failure-message eb-makePaymentErrormsg" data-bind="visible: showError">
+                                        Payment amount should not be higher than balance amount
+                                    </div>
+                                </div>
+                            </div>
+                            <p id="eb-take-to-payment-control" class="cursor-pointer" data-bind="visible: payMe, click: gotToPayment" title="Redirect to payment section">
+                                <a><span>$</span></a>
+                            </p>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class=" eb-Account-summary">
+                    <p class="eb-heading-payment">Account and Payment Summary</p>
+                    <div class="row">
+                        <div class="col">Total Outstanding</div>
+                        <div class="col eb-amount-clm-summ" data-bind="text: totalOutstandingBalance"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">Total Payment</div>
+                        <div class="col eb-amount-clm-summ" data-bind="text: totalPayment"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Make Payment Loading-->
+        <div class="row">
+            <div class="paymentMethodsCheckData col-lg-9">
+            </div>
+        </div>
+        <!---->
+        <div class="alert alert-success eb-payment-success" data-bind="visible: successPayment">
+            <span>Thank you, your payment of <span data-bind="text: totalPaymentForSuccessMessage"></span>  is applied succesfully</span>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: showError, text: errorMessage">
+            Payment operation failed
+        </div>
+
+    </div>
+</div>
+
+<!--Loader For Payment Processing-->
+<div class="loaderwrapper" data-bind="visible: allowLoader">
+    <div class="ebloader"></div>
+</div>
+
+
+

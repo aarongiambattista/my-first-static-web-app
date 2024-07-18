@@ -1,0 +1,286 @@
+﻿{
+  "endpoints": {
+    "getAllProducts": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "Products": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves the entire product catalog."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/ProductsOutput",
+        "name": "AllProducts"
+      },
+      "businessLogic": {
+        "allProductsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0ProductCatalog",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getSingleProduct": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "Products": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "productId": {
+            "isLiteral": false,
+            "type": "long"
+          }
+        },
+        "description": "Retrieves the details for a single item in the product catalog."
+      },
+      "inputEntityDefinition": {
+        "name": "GetSingleProductInput",
+        "fields": {
+          "productId": {
+            "type": "long",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "path"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "../ShoppingCarts/entityDefinitions.json#/ProductsOutput",
+        "name": "SingleProduct"
+      },
+      "businessLogic": {
+        "singleProductRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0ProductCatalog",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getAllAssemblyProducts": {
+      "parent": {
+        "name": "getSingleProduct"
+      },
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "AssemblyParts": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves the list of sub products underneath the current product. Typically, it is used to get the sub products of a Kit or a Group product."
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/SubProductsOutput",
+        "name": "SubProductsOutput"
+      },
+      "businessLogic": {
+        "allProductsRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_0AssemblyPartsForKitWithPrice",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    },
+    "getRelatedProducts": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "Products": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "productIds": {
+            "isLiteral": false,
+            "type": "string"
+          },
+          "RelatedProducts": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        },
+        "description": "Retrieves the details for a single item in the product catalog."
+      },
+      "inputEntityDefinition": {
+        "name": "GetRelatedProductsInput",
+        "fields": {
+          "productIds": {
+            "type": "string",
+            "input": {
+              "httpMethods": [ "GET" ],
+              "source": "path"
+            }
+          }
+        }
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/RelatedProductsOutput", 
+        "name": "RelatedProducts",
+        "isCollection": true
+      },
+      "businessLogic": {
+        "singleProductRetrieval": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute Data Object",
+            "processFlowParameters": {
+              "DataObjectName": "spGeteBusiness6_RelatedProducts",
+              "authenticatedAttributes": "@AuthenticatedAttributes"
+            }
+          }
+        }
+      },
+      "security": {
+        "AllowAnonymous": {
+          "$ref": "../../Common/security.json#/allowAnonymous"
+        }
+      }
+    }
+  },
+  "entityDefinitions": {
+    "SubProductsOutput": {
+      "fields": {
+        "id": {
+          "type": "long"
+        },
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "decimal",
+          "description": "Quantity of this product."
+        },
+        "description": {
+          "type": "string",
+          "description": "A plain text description of the product."
+        },
+        "webDescription": {
+          "type": "string",
+          "description": "A short rich text description of the product with html encoding."
+        },
+        "webLongDescription": {
+          "type": "string",
+          "description": "A long rich text description of the product with html encoding."
+        },
+        "productCategory": {
+          "type": "string"
+        },
+        "productType": {
+          "type": "string",
+          "description": "A type of product this is.  This informs the client which end point should be used when adding the product to the cart."
+        },
+        "hasComplexPricing": {
+          "type": "boolean",
+          "sourceField": "ComplexPricing",
+          "description": "If true, this indicates you must add the product to the cart in order to get an accurate price."
+        },
+        "defaultPrice": {
+          "type": "decimal"
+        },
+        "defaultMemberPrice": {
+          "type": "decimal"
+        },
+        "nonMemberPrice": {
+          "type": "decimal"
+        },
+        "retailPrice": {
+          "type": "decimal"
+        },
+        //"webImage": {
+        //  "type": "string"
+        //},
+        "currencyId": {
+          "type": "int",
+          "description": "The currency the prices are in."
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "ISBN": {
+          "type": "string",
+          "description": "If a product is type of publication then this field represent unique number for that product."
+        },
+        "datepublished": {
+          "type": "date",
+          "description": "If a product is type of publication then this field represent the date when the product is being published."
+        },
+        "assemblyType": {
+          "type": "string",
+          "description": "This field represents the AssemblyType/KitType of the product. Products that have a value here include sub products that are automatically added to the order.  An assemblyType of 'Group' means the sub products are added as individual line items to the cart, and those line items can be removed independently of one another.  Group products do not have a top level line item added to the cart that represents the product groupings.  An assemblyType of 'Kit' means a line item is added to the cart for the top level product, and the sub product line items are tied directly to that top level product.  Sub products in a kit can only be removed by removing that top level line item."
+        }
+      }
+    },
+    "RelatedProductsOutput": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "sourceField": "ProductID"
+        },
+        "name": {
+          "type": "string",
+          "sourceField": "Name"
+        },
+        "description": {
+          "type": "string",
+          "sourceField": "GridDescription"
+        },
+        "imageURL": {
+          "type": "string",
+          "sourceField": "ProdImageURL"
+        },
+        "promptText": {
+          "type": "string",
+          "sourceField": "PromptText"
+        },
+        "relationship": {
+          "type": "string",
+          "sourceField": "Relationship"
+        },
+        "productType": {
+          "type": "string",
+          "sourceField": "ProductType"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+﻿<div class="ebusiness-all-products  ebWrapper  ebClear ebusiness-main-container offcanvas">
+    <div class="ebusiness-filter-control row">
+        <div class="col-sm-8"><h3>Dashboard - <span data-bind="text:companyName"></span></h3></div>
+        <div class="col-sm-4 ebusiness-view-switcher">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Switch Company
+                </button>
+                <div class="dropdown-menu dropdown-menu-end eb-company-dropdown" data-bind="foreach: companies">
+                    <a class="dropdown-item" href="#" data-bind="text:$data.name, click:$parent.setCompany"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="eb-companyInfo">
+                <h4>Welcome Admin, <span data-bind="text:adminName"></span></h4>
+                <hr />
+
+                <div>
+                    <!--show more and show less-->
+                    <span class="ebusiness-product-details-description showHideReadMore" data-bind="html:description ,visible: showMoreDescription"></span>
+
+                    <!-- ko if: description().length >= eb_CompanyAdmin.charLength -->
+                    <span class="ebusiness-product-details-description" data-bind="visible: showEllipses">...&nbsp;</span>
+                    <span class="ebusiness-product-details-description morelink" data-bind=" click : showMore, visible: showMoreHide" style="cursor:pointer;color: #12596F;">show more</span>
+                    <!-- /ko -->
+
+                    <span class="ebusiness-product-details-description" data-bind="html : remainingDescription ,visible : showRemainingDescription"></span>
+                    <span class="ebusiness-product-details-description morelink" data-bind="click : showLess ,visible : hideRemainingDescription" style="cursor:pointer;color: #12596F;">show less</span>
+                    <!--End of show more and show less-->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class=" eb-dashboard-btns row">
+                <div class="col-lg-6">
+                    <a href="AddMember.html" class="btn eb-button-add btn-block">
+                        <span class="eb-add-member"></span>
+                        <span>Add Member</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="CompanyDirectory.html" class="btn eb-button-add btn-block">
+                        <span class="eb-company-directory"></span>
+                        <span>Company Directory</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="PayOffOrders.html" class="btn eb-button-add btn-block">
+                        <span class="eb-payoff-orders"></span>
+                        <span>Pay Off Orders</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="EventCatalog.html" class="btn eb-button-add btn-block">
+                        <span class="eb-event-registration"></span>
+                        <span>Event Registration</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="CompanyInfo.html" class="btn eb-button-add btn-block">
+                        <span class="eb-company-info"></span>
+                        <span>Company Info</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="OrderHistory.html" class="btn eb-button-add btn-block">
+                        <span class="eb-company-order-hisotry"></span>
+                        <span>Order History</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="PurchaseMembership.html" class="btn eb-button-add btn-block">
+                        <span class="eb-company-purchase-membership"></span>
+                        <span>Purchase Membership</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

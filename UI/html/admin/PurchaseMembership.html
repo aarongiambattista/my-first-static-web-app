@@ -1,0 +1,143 @@
+﻿<div class="ebusiness-all-products  ebWrapper  ebClear ebusiness-main-container offcanvas">
+    <div class="ebusiness-filter-control">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3> Enroll New Members - <span data-bind="text: companyName"></span></h3>
+            </div>
+            <div class="col-sm-6 ebusiness-view-switcher">
+                <div class="dropdown">
+                    <a href="Dashboard.html" class="eb-back-link">Back to Dashboard</a>
+                    <span id="companyDropdown"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--This div belongs to Sorting options-->
+        <div class="col-lg-2">
+            <div id="filterSortCompany">
+                <div class="text-right"><span class="d-inline d-sm-inline d-lg-none" data-bind="click:togglefiltercontrol"><a class="fa-icon" title="sort/filter"><img src="../images/icons/fontawesome/filter.svg"></a></span></div>
+                <div class="ebusiness-filter-details-panel isFilterClosed" data-bind="css: { isFilterOpen: filterCollapse(), isFilterClosed: !filterCollapse()}">
+                    <div class="ebusiness-filter-section-title">Sorting</div>
+                    <ul role="menu">
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="Name" data-bind="checked: radioSelectedOptionValue, click: sortByName"> Member
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="EndDate" data-bind="checked: radioSelectedOptionValue, click: sortById"> Person ID
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="radioGroupSort" value="Expiration Date" data-bind="checked: radioSelectedOptionValue, click: sortByEmailId"> Email
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--This div belongs to Purchase Membership-->
+        <div class="col-lg-10">
+            <div id="purchaseMembershipDiv">
+                <p class="alert alert-info">
+                    From this page, you can enroll people from your company as members of the organization. This grid only shows non-members. Select the individuals from the grid and select the type of membership you want to purchase on their behalf.
+                </p>
+                <div class="alert alert-warning" data-bind="visible: !nonMembersAvailable()" style="display: none;">No Non-Members available for this company.</div>
+                <div data-bind="visible: nonMembersAvailable">
+                    <div class="eb-filter-company row">
+                        <div class="col-sm-7">
+                            <span>
+                                <label>Search  </label> <input type="text" data-bind="textInput :search" placeholder="Person ID, Member Name, Email" class="form-control required ebusiness-clientside-generic-search-animated">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="NoRecords text-center">
+                        <span data-bind="visible: !nonMembers().length">No records found.</span>
+                    </div>
+                    <div data-bind="visible: nonMembers().length">
+                        <div class="membersAvailable">
+                            <div class="d-sm-none d-xs-none d-none d-md-block">
+                                <div class="ebMyOrderHeader row">
+                                    <div class="col-md-1">
+                                        <input type="checkbox" data-bind="checked:mainSelect, click: selectAll">
+                                        <span class="heading-labels-orders">ID</span>
+                                    </div>
+                                    <div class="col-md-3"> <span class="heading-labels-orders">Member</span></div>
+                                    <div class="col-md-2"> <span class="heading-labels-orders">Email</span></div>
+                                    <div class="col-md-3">
+                                        <span class="heading-labels-orders">
+                                            <select class="form-control" data-bind="options: membershipProducts, optionsText:'name', optionsCaption: 'Select Product', value: mainSelectedMembershipProduct, event:{ change: mainSelectedMembershipProductChanged}"></select>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1 text-right"> <span class="heading-labels-orders">Price</span></div>
+                                    <div class="col-md-2" style="
+                                        text-align: center;
+                                        "> <span class="heading-labels-orders">Auto Renew</span> </div>
+                                </div>
+                            </div>
+                            <div>
+
+                                <div data-bind="foreach: nonMembers">
+                                    <div class="eb-comp-directory row">
+                                        <div class="col-md-1 col-sm-4" style="
+                                            /* max-width: 10%; */
+                                            padding-right: 0;
+                                            ">
+                                            <input type="checkbox" data-bind="checked: isSelected, click: nonMemberClicked"><span class="label-orders"> ID</span>
+                                            <span class="value-orders orders-order-status" data-bind="text: id"></span>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4">
+                                            <span class="label-orders orders-order-id"> Member </span> <span class="value-orders">
+                                                <span class="eb-cmp-name" data-bind="text: name"></span>
+                                                <span class="eb-cmp-designation" data-bind="text: title"></span>
+                                                <span class="eb-cmp-designation"><span data-bind="text: city"></span><span data-bind="visible: city() && state()">, </span><span data-bind="text: state"></span></span>
+                                            </span>
+                                        </div>
+                                        <div class="col-md-2 col-sm-4">
+                                            <span class="label-orders"> Email ID</span>
+                                            <div class="value-orders eb-comp-user-email" data-bind="text: emailId"></div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4">
+                                            <span class="label-orders"> Subscribed For</span>
+                                            <select class="form-control" data-bind="options: membershipProducts, optionsText:'name', value: selectedMembershipProduct"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-4 text-right">
+                                            <span class="label-orders">Price</span>
+                                            <span><span data-bind="text:showCurrencySymbol"></span><span class="ebusiness-product-view-cart-price" data-bind="text: price, visible: showPrice()"></span><span class="clsShipStatus" data-bind="visible: !showPrice()">  Add to Cart to see Price</span></span>
+                                        </div>
+                                        <div class="col-md-2 col-sm-4" style="
+                                            /* line-height: 50px; */
+                                            text-align: center;
+                                            ">
+                                            <span class="label-orders"> Auto Renew</span>
+                                            <label class="switch">
+                                                <input type="checkbox" data-bind="checked:autoRenew">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                            </div>
+                            <div class="col-sm-4 Pager text-right">
+                                <button id="proceedToCheckoutButton" class="btn btn-primary" data-bs-toggle="modal" data-bind="click: proceedToCheckout">Proceed to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- error message div -->
+                    <div class="alert alert-danger" style="display: none;" data-bind="visible: showError, text: errorMessage"></div>
+                </div>
+            </div>
+        </div>
+        <!--Loader-->
+        <div class="loaderwrapper" data-bind="visible: allowLoader" style="display: none;">
+            <div class="ebloader"></div>
+        </div>
+    </div>
+</div>

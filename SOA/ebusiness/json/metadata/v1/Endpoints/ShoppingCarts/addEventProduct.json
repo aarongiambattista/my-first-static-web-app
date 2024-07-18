@@ -1,0 +1,83 @@
+﻿{
+  "addEventProduct": {
+    "route": {
+      "description": "Adds a event product to the cart.",
+      "httpMethod": "POST",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "long"
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "GetEventCartItemsOutput",
+      "isCollection": true,
+      "$ref": "entityDefinitions.json#/eventCartItemOutput"
+    },
+    "inputEntityDefinition": {
+      "name": "AddEventProductInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "isCollection": true,
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST"
+            ]
+          }
+        },
+        "attendeeId": {
+          "type": "long",
+          "input": {
+            "httpMethods": [
+              "POST"
+            ],
+            "source": "body",
+            "requiredHttpMethods": [
+              "POST",
+              "PATCH"
+            ]
+          }
+        }
+      }
+    },
+    "businessLogic": {
+      "eventProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/bulkEventProductValidation"
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "addEventProduct": {
+        "$ref": "shoppingBusinessLogic.json#/addEventProduct"
+      },
+      //"applyClientInput": {
+      //  "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+      //  "processFlowProperties": {
+      //    "processFlowParameters": {
+      //      "geObjectToMap": "@parent.addEventProduct.outputEventOrderLine"
+      //    }
+      //  }
+      //},
+      "saveCart": {
+        "$ref": "shoppingBusinessLogic.json#/saveCart"
+      },
+      "returnNewOrderLines": {
+        "$ref": "shoppingBusinessLogic.json#/returnEventOrderLines"
+      }
+    }
+  }
+}

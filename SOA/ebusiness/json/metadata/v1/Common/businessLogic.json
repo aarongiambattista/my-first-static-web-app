@@ -1,0 +1,150 @@
+{
+  "contextPropertyMapper": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Map Context Property",
+      "processFlowParameters": {
+        "inputPropertyValue": null,
+        "outputPropertyName": null
+      }
+    }
+  },
+  "executeGEAction": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute GE Action",
+      "processFlowParameters": {
+        "action": null,
+        "GE": null
+      }
+    }
+  },
+  "mapClientInputToGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Map Input POCO to GE",
+      "processFlowParameters": {
+        "requestPoco": "@request.objectValue",
+        "geObjectToMap": null
+      }
+    }
+  },
+  "getAllSubtypeRecords": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get All SubType Records",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null
+      }
+    }
+  },
+  "inputContextValueRetriever": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Input Context Property Value",
+      "processFlowParameters": {
+        "InputContextObject": null,
+        "PropertyName": null
+      }
+    }
+  },
+  "getSingleSubtypeRecord": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get SubType GE Object",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null,
+        "action": "get",
+        "clientPocoFieldName": "id",
+        "subTypeFieldName": "sequence"
+      }
+    }
+  },
+  "executeSubTypeAction": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute SubType Action",
+      "processFlowParameters": {
+        "GEObject": null,
+        "action": null
+      }
+    }
+  },
+  "singleGERetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object",
+      "processFlowParameters": {
+        "entityName": null,
+        "action": null
+      }
+    }
+  },
+  "singleGERetrievalUsingRecordId": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get GE Object Using RecordId",
+      "processFlowParameters": {
+        "entityName": null,
+        "action": null,
+        "recordId" : null
+      }
+    }
+  },
+  "embeddedRecordRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Embedded GE Object",
+      "processFlowParameters": {
+        "GE": null,
+        "embeddedObjectIDFieldName": null
+      }
+    }
+  },
+  "getActiveMembershipApplicationDefinition": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Active Membership Application Definition",
+      "processFlowParameters": {
+      }
+    }
+  },
+  "completeOrder": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Complete Order",
+      "processFlowParameters": {
+        "CartGE": null
+      }
+    }
+  },
+  "validateOrder": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Order GE",
+      "processFlowParameters": {
+        "OrderGE": null
+      }
+    }
+  },
+  "validateOrderLine": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Order Line GE",
+      "processFlowParameters": {
+        "OrderLineGE": null
+      }
+    }
+  },
+  "validateOrderBalance": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate Order Balance On OrderGE",
+      "processFlowParameters": {
+        "OrderGE": null
+      }
+    }
+  }
+}

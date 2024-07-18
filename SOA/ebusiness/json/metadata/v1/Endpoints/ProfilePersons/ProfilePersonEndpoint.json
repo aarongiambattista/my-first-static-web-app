@@ -1,0 +1,578 @@
+﻿{
+  "endpoints": {
+    "getSingleProfilePerson": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "ProfilePersons": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "id": {
+            "isLiteral": false,
+            "type": "long",
+            "security": {
+              "IsYourRecord": {
+                "$ref": "../../Common/security.json#/isYourRecord"
+              }
+            }
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "GetSinglePersonInput",
+        "$ref": "#/entityDefinitions/profilePersonsInput"
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/profilePersonsOutput",
+        "name": "ProfilePersonOutput"
+      },
+      "businessLogic": {
+        "singleGERetrieval": {
+          "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+        }
+      }
+    },
+    "updateSingleProfilePerson": {
+      "route": {
+        "httpMethod": "PATCH",
+        "segments": {
+          "ProfilePersons": {
+            "isLiteral": true,
+            "type": "string"
+          },
+          "id": {
+            "isLiteral": false,
+            "type": "long"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "$ref": "#/entityDefinitions/profilePersonsInput",
+        "name": "UpdateProfilePersonInput"
+      },
+      "outputEntityDefinition": {
+        "$ref": "#/entityDefinitions/profilePersonsOutput",
+        "name": "ProfilePersonOutput"
+      },
+      "businessLogic": {
+        "singleGERetrieval": {
+          "$ref": "personBusinessLogic.json#/singleRecordRetrieval"
+        },
+        "applyClientInput": {
+          "$ref": "../../Common/businessLogic.json#/mapClientInputToGE",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "geObjectToMap": "@parent.singleGERetrieval.outputGE"
+            }
+          }
+        },
+        "updateRecord": {
+          "executionType": "processFlow",
+          "processFlowProperties": {
+            "processFlowName": "Execute GE Action",
+            "processFlowParameters": {
+              "GE": "@parent.singleGERetrieval.outputGE",
+              "action": "save"
+            }
+          }
+        },
+        "returnThePerson": {
+          "$ref": "../../Common/businessLogic.json#/contextPropertyMapper",
+          "processFlowProperties": {
+            "processFlowParameters": {
+              "inputPropertyValue": "@parent.singleGERetrieval.outputGE",
+              "outputPropertyName": "outputGE"
+            }
+          }
+        }
+      }
+    },
+    "getAllProfilePerson": {
+      "route": {
+        "httpMethod": "GET",
+        "segments": {
+          "ProfilePersons": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": null,
+      "outputEntityDefinition": {
+        "isCollection": true,
+        "$ref": "#/entityDefinitions/profilePersonsOutput",
+        "name": "GetAllProfilePersonOutput"
+      },
+      "businessLogic": {
+        "recordListRetrieval": {
+          "$ref": "personBusinessLogic.json#/recordListRetrieval"
+        }
+      }
+    },
+    "createSingleSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/createSingleSavedPaymentMethod"
+    },
+    "getSingleSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/getSingleSavedPaymentMethod"
+    },
+    "updateSingleSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/updateSingleSavedPaymentMethod"
+    },
+    "deleteSingleSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/deleteSingleSavedPaymentMethod"
+    },
+    "getAllSavedPaymentMethods": {
+      "$ref": "savedPayments.json#/getAllSavedPaymentMethods"
+    },
+    "createSingleACHSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/createSingleACHSavedPaymentMethod"
+    },
+    "createSingeACHTokenizerSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/createSingeACHTokenizerSavedPaymentMethod"
+    },
+    "getSingleACHSavedPaymentMethod": {
+      "$ref": "savedPayments.json#/getSingleACHSavedPaymentMethod"
+    },
+    "getAllACHSavedPaymentMethods": {
+      "$ref": "savedPayments.json#/getAllACHSavedPaymentMethods"
+    },
+    "updateSingleSavedPaymentMethodACH": {
+      "$ref": "savedPayments.json#/updateSingleSavedPaymentMethodACH"
+    },
+    "getPersonOrderHistorySingleOrder": {
+      "$ref": "orderHistory.json#/getPersonOrderHistorySingleOrder"
+    },
+    "getPersonOrderHistory": {
+      "$ref": "orderHistory.json#/getPersonOrderHistory"
+    },
+    "getPersonOrderHistorySingleOrderSingleItem": {
+      "$ref": "orderHistory.json#/getPersonOrderHistorySingleOrderSingleItem"
+    },
+    "getPersonOrderHistorySingleOrderAllItems": {
+      "$ref": "orderHistory.json#/getPersonOrderHistorySingleOrderAllItems"
+    },
+    "getPersonOutstandingOrderHistory": {
+      "$ref": "getOutstandingOrderHistory.json#/getPersonOutstandingOrderHistory"
+    },
+    "getPersonOrderHistorySingleOrderSingleItemAsSubscriptionItem": {
+      "$ref": "getSingleSubscriptionOrderHistory.json#/getPersonOrderHistorySingleOrderSingleItemAsSubscriptionItem"
+    },
+    "getPersonOrderHistorySingleOrderAllItemsAsSubscriptionItems": {
+      "$ref": "getAllSubscriptionOrderHistory.json#/getPersonOrderHistorySingleOrderAllItemsAsSubscriptionItems"
+    },
+    "getSingleEventOrderHistory": {
+      "$ref": "getSingleEventOrderHistory.json#/getSingleEventOrderHistory"
+    },
+    "getAllEventOrderHistory": {
+      "$ref": "getAllEventOrderHistory.json#/getAllEventOrderHistory"
+    },
+    "getProfilePersonSingleAddress": {
+      "$ref": "personProfileAddresses.json#/getProfilePersonSingleAddress"
+    },
+    "getProfilePersonAllAddresses": {
+      "$ref": "personProfileAddresses.json#/getProfilePersonAllAddresses"
+    },
+    "getProfilePersonAllPhones": {
+      "$ref": "personProfilePhones.json#/getProfilePersonPhones"
+    },
+    "getProfilePersonSinglePhone": {
+      "$ref": "personProfilePhones.json#/getProfilePersonSinglePhone"
+    },
+    "updateProfilePersonAddress": {
+      "$ref": "personProfileAddresses.json#/updateProfilePersonAddress"
+    },
+    "updateProfilePersonPhone": {
+      "$ref": "personProfilePhones.json#/updateProfilePersonPhone"
+    },
+    "makePreferredBillingAddress": {
+      "$ref": "personProfileAddresses.json#/makePreferredBillingAddress"
+    },
+    "makePreferredShipping": {
+      "$ref": "personProfileAddresses.json#/makePreferredShippingAddress"
+    },
+    "makePreferredMailing": {
+      "$ref": "personProfileAddresses.json#/makePreferredMailingAddress"
+    },
+    "makePreferredPhone": {
+      "$ref": "personProfilePhones.json#/makePreferredPhone"
+    },
+    "deleteProfilePersonAddress": {
+      "$ref": "personProfileAddresses.json#/deleteProfilePersonAddress"
+    },
+    "deleteProfilePersonPhone": {
+      "$ref": "personProfilePhones.json#/deleteProfilePersonPhone"
+    },
+    "getAllPersonAddresses": {
+      "$ref": "personProfileAddresses.json#/getAllPersonAddresses"
+    },
+    "getAllPersonPhones": {
+      "$ref": "personProfilePhones.json#/getAllPersonPhones"
+    },
+    "getSinglePersonAddress": {
+      "$ref": "personProfileAddresses.json#/getSinglePersonAddress"
+    },
+    "getSinglePersonPhones": {
+      "$ref": "personProfilePhones.json#/getSinglePersonPhones"
+    },
+    "createSinglePersonAddress": {
+      "$ref": "personProfileAddresses.json#/createSinglePersonAddress"
+    },
+    "createSinglePersonPhone": {
+      "$ref": "personProfilePhones.json#/createSinglePersonPhone"
+    },
+    "updateSinglePersonAddress": {
+      "$ref": "personProfileAddresses.json#/updateSinglePersonAddress"
+    },
+    "updateSinglePersonPhone": {
+      "$ref": "personProfilePhones.json#/updateSinglePersonPhone"
+    },
+    "deleteSinglePersonAddress": {
+      "$ref": "personProfileAddresses.json#/deleteSinglePersonAddress"
+    },
+    "deleteSinglePersonPhone": {
+      "$ref": "personProfilePhones.json#/deleteSinglePersonPhone"
+    },
+    "sendEmailConfirmation": {
+      "parent": {
+        "name": "getPersonOrderHistorySingleOrder"
+      },
+      "route": {
+        "httpMethod": "POST",
+        "segments": {
+          "SendConfirmationEmail": {
+            "isLiteral": true,
+            "type": "string"
+          }
+        }
+      },
+      "inputEntityDefinition": {
+        "name": "SendEmailConfirmationInput",
+        "$ref": "#/entityDefinitions/sendOrderConfirmationInput"
+      },
+      "outputEntityDefinition": null,
+      "businessLogic": {
+        "sendOrderConfirmationEmail": {
+          "$ref": "personBusinessLogic.json#/sendOrderConfirmationEmail"
+        }
+      }
+    },
+    "getTopicCodesForRecord": {
+      "$ref": "topicCodes.json#/getTopicCodesForRecord"
+    },
+    "deactivateTopicCodesForRecord": {
+      "$ref": "topicCodes.json#/deactivateTopicCodesForRecord"
+    },
+    "activateTopicCodesForRecord": {
+      "$ref": "topicCodes.json#/activateTopicCodesForRecord"
+    },
+    "updateTopicCodesForRecord": {
+      "$ref": "topicCodes.json#/updateTopicCodesForRecord"
+    },
+    "makepaymentBySavedPaymentMethod": {
+      "$ref": "makepaymentBySavedPaymentMethod.json#/makepaymentBySavedPaymentMethod"
+    },
+    "makepaymentByCreditCard": {
+      "$ref": "makepaymentByCreditCard.json#/makepaymentByCreditCard"
+    },
+    "makepaymentByACH": {
+      "$ref": "makepaymentByACH.json#/makepaymentByACH"
+    },
+    "makePaymentByACHTokenizerForBulkPayments": {
+      "$ref": "makepaymentByACH.json#/makePaymentByACHTokenizerForBulkPayments"
+    },
+    "makepaymentByGPay": {
+      "$ref": "makePaymentByGPay.json#/makePaymentByGPay"
+    },
+    "makepaymentByApplePay": {
+      "$ref": "makePaymentByApplePay.json#/makePaymentByApplePay"
+    },
+    "getValidPayments": {
+      "$ref": "getValidPayments.json#/getValidPayments"
+    },
+    "getRemoteRequestDataForMakePayment": {
+      "$ref": "makepaymentByRemote.json#/getRemoteRequestDataForMakePayment"
+    },
+    "getRemoteRequestDataForBulkPayments": {
+      "$ref": "makepaymentByRemote.json#/getRemoteRequestDataForBulkPayments"
+    },
+    "postRemoteRequestDataForMakePayment": {
+      "$ref": "makepaymentByRemote.json#/processRemotePaymentResponseForMakePayment"
+    },
+    "processRemotePaymentResponseForBulkPayments": {
+      "$ref": "makepaymentByRemote.json#/processRemotePaymentResponseForBulkPayments"
+    },
+    "createPersonSPMByRemoteHostedPayment": {
+      "$ref": "savedPaymentsRemote.json#/createPersonSPMByRemoteHostedPayment"
+    },
+    "processPersonSPMResponse": {
+      "$ref": "savedPaymentsRemote.json#/processPersonSPMResponse"
+    },
+    "makePaymentByCreditCardForBulkPayments": {
+      "$ref": "makePaymentByCreditCard.json#/makePaymentByCreditCardForBulkPayments"
+    },
+    "getDownloadableProducts": {
+      "$ref": "downloadableProducts.json#/getDownloadableProducts"
+    },
+    "getProductSpecificDownloadableProduct": {
+      "$ref": "downloadableProducts.json#/getProductSpecificDownloadableProduct"
+    },
+    "downloadSingleAttachment": {
+      "$ref": "downloadableProducts.json#/downloadSingleAttachment"
+    },
+    "updateProductDownloadsRecord ": {
+      "$ref": "downloadableProducts.json#/updateProductDownloadsRecord"
+    }
+  },
+  "entityDefinitions": {
+    "profilePersonsOutput": {
+      "$ref": "#/entityDefinitions/profilePersonsInput",
+      "fields": {
+        "companyName": {
+          "type": "string"
+        },
+        "memberType": {
+          "type": "string"
+        },
+        "memberStatus": {
+          "type": "string",
+          "sourceField": "StatusName"
+        },
+        "joinDate": {
+          "type": "date"
+        },
+        "duesPaidThrough": {
+          "type": "date",
+          "sourceField": "DuesPaidThru"
+        },
+        "primaryFunctionId": {
+          "type": "long"
+        },
+        "primaryFunction": {
+          "type": "string"
+        } //,
+        //"photo": {
+        //  "type": "uri",
+        //  "internalType": "photo"
+        //}
+      }
+    },
+    "profilePersonsInput": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "input": {
+            "httpMethods": [ "GET", "PATCH" ],
+            "source": "path"
+          }
+        },
+        "firstName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "lastName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "prefix": {
+          "type": "string",
+          "values": {
+            "providerType": "storedProcedure",
+            "providerAttributes": {
+              "databaseObjectName": "spGetPrefixes"
+            }
+          },
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "suffix": {
+          "type": "string",
+          "values": {
+            "providerType": "storedProcedure",
+            "providerAttributes": {
+              "databaseObjectName": "spGetSuffixes"
+            }
+          },
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "title": {
+          "type": "string",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "primaryEmail": {
+          "type": "string",
+          "sourceField": "email1",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "secondaryEmail": {
+          "type": "string",
+          "sourceField": "email2",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "tertiaryEmail": {
+          "type": "string",
+          "sourceField": "email3",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "birthday": {
+          "type": "date",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "gender": {
+          "type": "string",
+          "values": {
+            "providerType": "static",
+            "providerAttributes": {
+              "values": [
+                "Male",
+                "Female",
+                "Unknown"
+              ]
+            }
+          },
+          "conversion": {
+            "type": "static",
+            "mapping": {
+              "Male": 0,
+              "Female": 1,
+              "Unknown": 2
+            }
+          },
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "optsOutOfMailCommunication": {
+          "type": "bool",
+          "sourceField": "mailExclude",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "optsOutOfFaxCommunication": {
+          "type": "bool",
+          "sourceField": "faxExclude",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "optsOutOfEmailCommunication": {
+          "type": "bool",
+          "sourceField": "emailExclude",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "excludeFromMembershipDirectory": {
+          "type": "bool",
+          "sourceField": "DirExclude",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        },
+        "congressionalInfo": {
+          "type": "string",
+          "sourceField": "USCongress",
+          "input": {
+            "httpMethods": [ "POST", "PATCH" ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "sendOrderConfirmationInput": {
+      "fields": {
+        "addresses": {
+          "type": "string",
+          "input": {
+            "isCollection": true,
+            "httpMethods": [ "POST" ],
+            "source": "body",
+            "requiredHttpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "DownloadableProductsOutput": {
+      "fields": {
+        "id": {
+          "type": "long",
+          "sourceField": "AttachmentID"
+        },
+        "productId": {
+          "type": "long",
+          "sourceField": "ProductID"
+        },
+        "productName": {
+          "type": "string",
+          "sourceField": "ProductName"
+        },
+        "orderId": {
+          "type": "long",
+          "sourceField": "OrderID"
+        },
+        "orderDate": {
+          "type": "date",
+          "sourceField": "OrderDate"
+        },
+        "fileName": {
+          "type": "string",
+          "sourceField": "FileName"
+        },
+        "downloadItemId": {
+          "type": "long",
+          "sourceField": "DownloadItemID"
+        },
+        "DownloadExpirationDays": {
+          "type": "long",
+          "sourceField": "DownloadExpirationDays"
+        },
+        "DownloadExpirationDate": {
+          "type": "date",
+          "sourceField": "DownloadExpirationDate"
+        },
+        "MaximumNumberOfDownloads": {
+          "type": "long",
+          "sourceField": "MaximumNumberOfDownloads"
+        },
+        "NumberOfDownloads": {
+          "type": "long",
+          "sourceField": "NumberOfDownloads"
+        }
+      }
+    }
+  }
+}

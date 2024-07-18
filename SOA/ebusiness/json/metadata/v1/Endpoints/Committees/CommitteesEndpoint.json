@@ -1,0 +1,16 @@
+{
+  "endpoints": {
+    "getAllCommittees": {
+      "$ref": "getAllCommittees.json#/getAllCommittees"
+    },
+    "getMyCommittee": {
+      "$ref": "getMyCommittees.json#/getMyCommittee"
+    },
+    "getCommitteeTermGeneralInfo": {
+      "$ref": "getCommitteeTermGeneralInfo.json#/getCommitteeTermGeneralInfo"
+    },
+    "getCommitteeTermMemberList": {
+      "$ref": "getCommitteeTermMembers.json#/getCommitteeTermMemberList"
+    }
+  }
+}

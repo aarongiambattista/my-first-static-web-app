@@ -1,0 +1,132 @@
+﻿{
+  "paymentItemInput": {
+    "fields": {
+      "cvv": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "paymentACHItemInput": {
+    "fields": {
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "DELETE", "PATCH" ],
+          "source": "path"
+        }
+      },
+      "accountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "accountName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "bank": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "aba": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      }
+    }
+  },
+  "paymentACHTokenizerItemInput": {
+    "fields": {
+      "savedPaymentId": {
+        "type": "long",
+        "sourceField": "Id",
+        "input": {
+          "httpMethods": [ "GET", "DELETE", "PATCH" ],
+          "source": "path"
+        }
+      },
+      "accountNumber": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST" ]
+        }
+      },
+      "accountName": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "bank": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ],
+          "requiredHttpMethods": [ "POST", "PATCH" ]
+        }
+      },
+      "aba": {
+        "type": "string",
+        "input": {
+          "source": "body",
+          "httpMethods": [ "POST", "PATCH" ]
+        }
+      }
+    }
+  },
+  "paymentACHItemOutput": {
+    "fields": {
+      "Id": {
+        "type": "long",
+        "description": "Id of ACH saved payment method"
+      },
+      "paymentType": {
+        "type": "string",
+        "description": "payment type of ACH saved payment method"
+      },
+      "partialNumber": {
+        "type": "string",
+        "description": "Partial account number of ACH saved payment method"
+      },
+      "accountNumber": {
+        "type": "string",
+        "description": "Full account number of ACH saved payment method"
+      },
+      "accountName": {
+        "type": "string",
+        "description": "AccountName of ACH saved payment method"
+      },
+      "ABA": {
+        "type": "string",
+        "description": "ABA/Routing  of ACH saved payment method"
+      },
+      "bank": {
+        "type": "string",
+        "description": "Bank of ACH saved payment method"
+      }
+    }
+  }
+}

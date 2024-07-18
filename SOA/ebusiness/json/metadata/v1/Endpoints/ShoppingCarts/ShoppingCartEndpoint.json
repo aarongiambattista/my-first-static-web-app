@@ -1,0 +1,130 @@
+﻿{
+  "endpoints": {
+    "addGeneralProduct": {
+      "$ref": "addGeneralProduct.json#/addGeneralProduct"
+    },
+    "addSubscriptionGeneralProduct": {
+      "$ref": "addSubscriptionGeneralProduct.json#/addSubscriptionGeneralProduct"
+    },
+    "addEventProduct": {
+      "$ref": "addEventProduct.json#/addEventProduct"
+    },
+    "deleteCart": {
+      "$ref": "deleteCart.json#/deleteShoppingCart"
+    },
+    "deleteCartItem": {
+      "$ref": "deleteCartItem.json#/deleteCartItem"
+    },
+    "deleteEventCartItem": {
+      "$ref": "deleteEventCartItem.json#/deleteEventCartItem"
+    },
+    "emptyCart": {
+      "$ref": "emptyCart.json#/emptyCart"
+    },
+    "getAllCartItems": {
+      "$ref": "getAllCartItems.json#/getAllCartItems"
+    },
+    "getCart": {
+      "$ref": "getCart.json#/getShoppingCart"
+    },
+    "getSingleCartItem": {
+      "$ref": "getSingleCartItem.json#/getSingleCartItem"
+    },
+    "getSingleGeneralProduct": {
+      "$ref": "getSingleGeneralProduct.json#/getSingleGeneralProductItem"
+    },
+    "getSingleSubscriptionProduct": {
+      "$ref": "getSingleSubscriptionProduct.json#/getSingleSubscriptionProduct"
+    },
+    "getAllSubscriptionProducts": {
+      "$ref": "getAllSubscriptionProducts.json#/getAllSubscriptionProducts"
+    },
+    "getAllEventsProducts": {
+      "$ref": "getAllEventsProducts.json#/getAllEventsProducts"
+    },
+    "getSingleEventProduct": {
+      "$ref": "getSingleEventProduct.json#/getSingleEventProduct"
+    },
+    "updateCart": {
+      "$ref": "updateCart.json#/updateShoppingCart"
+    },
+    "updateGeneralProduct": {
+      "$ref": "updateGeneralProduct.json#/updateSingleGeneralProductItem"
+    },
+    "updateSubscriptionGeneralProduct": {
+      "$ref": "updateSubscriptionGeneralProduct.json#/updateSingleSubscriptionGeneralProductItem"
+    },
+    "updateSingleEventProductItem": {
+      "$ref": "updateEventProduct.json#/updateSingleEventProductItem"
+    },
+    "checkoutPurchaseOrder": {
+      "$ref": "checkoutPurchaseOrder.json#/checkoutByPurchaseOrder"
+    },
+    "checkoutCreditCart": {
+      "$ref": "checkoutCreditCard.json#/checkoutByCreditCard"
+    },
+    "checkoutBySavedPaymentMethod": {
+      "$ref": "checkoutSavedPaymentMethod.json#/checkoutBySavedPaymentMethod"
+    },
+    "fundraisingCheckoutCreditCard": {
+      "$ref": "fundraisingCheckoutCreditCard.json#/fundraisingCheckoutByCreditCard"
+    },
+    "fundraisingCheckoutSavedPaymentMethod": {
+      "$ref": "fundraisingCheckoutSavedPaymentMethod.json#/fundraisingCheckoutBySavedPaymentMethod"
+    },
+    "checkoutbyACH": {
+      "$ref": "checkoutACH.json#/checkoutbyACH"
+    },
+    "checkoutbyACHTokeizer": {
+      "$ref": "checkoutACH.json#/checkoutbyACHTokeizer"
+    },
+    "checkoutGPay": {
+      "$ref": "checkoutGPay.json#/checkoutByGPay"
+    },
+    "checkoutApplePay": {
+      "$ref": "checkoutApplePay.json#/checkoutByApplePay"
+    },
+    "ccnTokenize": {
+      "$ref": "CardPointeTokenizeCCN.json#/ccnTokenize"
+    },
+    "getApplePaySession": {
+      "$ref": "getApplePaySession.json#/getApplePaySession"
+    },
+    "ccnTokenizeApplePay": {
+      "$ref": "CardPointeTokenizeCCN.json#/ccnTokenizeApplePay"
+    },
+    "fundraisingCheckoutACH": {
+      "$ref": "fundraisingCheckoutACH.json#/fundraisingCheckoutByACH"
+    },
+    "fundraisingCheckoutACHToken": {
+      "$ref": "fundraisingCheckoutACH.json#/fundraisingCheckoutByACHTokenizer"
+    },
+    "fundraisingCheckoutGPay": {
+      "$ref": "fundraisingCheckoutGPay.json#/fundraisingCheckoutByGPay"
+    },
+    "fundraisingCheckoutApplePay": {
+      "$ref": "fundraisingCheckoutApplePay.json#/fundraisingCheckoutByApplePay"
+    },
+    "checkoutZeroPaymentOrder": {
+      "$ref": "checkoutZeroPaymentOrder.json#/checkoutZeroPaymentOrder"
+    },
+    "getAllShipmentTypes": {
+      "$ref": "GetAllShipmentTypes.json#/getAllShipmentTypes"
+    },
+    "getRemotePaymentRequestDataForCheckout": {
+      "$ref": "checkoutRemotePayment.json#/getRemotePaymentRequestDataForCheckout"
+    },
+    "processRemotePaymentResponseDataForCheckout": {
+      "$ref": "checkoutRemotePayment.json#/processRemotePaymentResponseDataForCheckout"
+    },
+    "getRemotePaymentRequestDataForFundraisingCheckout": {
+      "$ref": "fundraisingCheckoutByRemotePayment.json#/getRemotePaymentRequestDataForFundraisingCheckout"
+    },
+    "processRemotePaymentResponseForFundraisingCheckout": {
+      "$ref": "fundraisingCheckoutByRemotePayment.json#/processRemotePaymentResponseForFundraisingCheckout"
+    },
+    "getCartRelatedProducts": {
+      "$ref": "getCartRelatedProducts.json#/getCartRelatedProducts"
+    }
+  }
+}

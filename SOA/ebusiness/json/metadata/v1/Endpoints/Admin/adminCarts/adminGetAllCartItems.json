@@ -1,0 +1,39 @@
+{
+  "getAllCartItems": {
+    "parent": {
+      "name": "getAdminCartCompany" //gets cart information of selected company
+    },
+    "route": {
+      "description": "Gets the common properties of all items in the cart.  A cart item may have additional detail depending on its product type.  Those details can be retrieved through the URL specified by the additionalDetails output field.",
+      "httpMethod": "GET",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": null,
+    "outputEntityDefinition": {
+      "isCollection": true,
+      "name": "AdminGetAllCartItemsOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/cartItemsOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "getAllOrderLines": {
+        "$ref": "adminShoppingBusinessLogic.json#/getAllOrderLines",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

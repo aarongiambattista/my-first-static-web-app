@@ -1,0 +1,89 @@
+{
+  "endpoints": {
+    "getAllCompanies": {
+      "$ref": "getCompaniesDirectory.json#/getAllCompanies"
+    },
+    "getCompanyInfo": {
+      "$ref": "getCompanyInfo.json#/getCompanyInfo"
+    }
+  },
+
+  "entityDefinitions": {
+    "companiesDirectoryOutput": {
+      "fields": {
+        "Id": {
+          "type": "long",
+          "description": "Company id"
+        },
+        "Name": {
+          "type": "string",
+          "description": "Company Name"
+        },
+        "AddressLine1": {
+          "type": "string",
+          "description": "Company Address Line 1"
+        },
+        "AddressLine2": {
+          "type": "string",
+          "description": "Company Address Line 2"
+        },
+        "City": {
+          "type": "string",
+          "description": "Company City"
+        },
+        "State": {
+          "type": "string",
+          "description": "Company State"
+        },
+        "ZipCode": {
+          "type": "string",
+          "description": "Company Zip code"
+        },
+        "Country": {
+          "type": "string",
+          "description": "Company Country"
+        },
+        "StreetAddress": {
+          "type": "string",
+          "description": "Company complete Street Address"
+        },
+        "MainPhone": {
+          "type": "string",
+          "description": "Company Phone Number"
+        },
+        "MainFaxNumber": {
+          "type": "string",
+          "description": "Company Fax Number"
+        },
+        "CompanyType": {
+          "type": "string",
+          "description": "Company Type"
+        },
+        "MemberSince": {
+          "type": "string",
+          "description": "Company Joining date"
+        },
+        "Description": {
+          "type": "string",
+          "description": "Company Comments"
+        },
+        "PhoneAreaCode": {
+          "type": "string",
+          "description": "Company Phone Area code"
+        },
+        "FaxAreaCode": {
+          "type": "string",
+          "description": "Company Fax Area code"
+        },
+        "WebSite": {
+          "type": "string",
+          "description": "Company Website link"
+        },
+        "TopicCode": {
+          "type": "string",
+          "description": "Topic Code"
+        }
+      }
+    }
+  }
+  }

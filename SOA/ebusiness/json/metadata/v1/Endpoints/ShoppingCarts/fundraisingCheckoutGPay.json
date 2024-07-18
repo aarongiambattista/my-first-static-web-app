@@ -1,0 +1,156 @@
+{
+  "fundraisingCheckoutByGPay": {
+    "route": {
+      "description": "Completes fundraising checkout using GPay.",
+      "httpMethod": "POST",
+      "segments": {
+        "Fundraising": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Checkout": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "GPay": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "fundraisingGPayInput",
+      "fields": {
+        "productId": {
+          "type": "long",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "amount": {
+          "type": "decimal",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "cardNumber": {
+          "type": "string",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ],
+            "requiredHttpMethods": [ "POST" ]
+          }
+        },
+        "saveForFutureUse": {
+          "type": "boolean",
+          "input": {
+            "source": "body",
+            "httpMethods": [ "POST" ]
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "$ref": "entityDefinitions.json#/cartCheckoutOutput",
+      "name": "fundraisingGPayOutput"
+    },
+    "businessLogic": {
+      "sharedProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/sharedProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1"
+          }
+        }
+      },
+      "fundraisingProductValidation": {
+        "$ref": "shoppingBusinessLogic.json#/generalProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "quantity": "1",
+            "verifiers": [
+              "IsFundraisingProduct"
+            ]
+          }
+        }
+      },
+      "retrievePaymentTypeIdForDigitalWallet": {
+        "$ref": "checkoutBusinessLogic.json#/retrievePaymentTypeIdByPaymentTypeName",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "PaymentTypeName": "Google Pay",
+            "IsWebEnabled": true
+          }
+        }
+      },
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "validateAndUpdateCartForFundRaising": {
+        "$ref": "fundraisingBusinessLogic.json#/validateAndUpdateCartToSavedStatus"
+      },
+      "ensureActiveCartForFundraising": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "updateFundraisingCart": {
+        "$ref": "fundraisingBusinessLogic.json#/restoreSavedCart",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "FundraisingCartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE",
+            "CartGE": "@parent.ensureActiveCart.outputCurrentCartGE",
+            "Status": "Fundraising_Temporary"
+          }
+        }
+      },
+      "addFundraisingProduct": {
+        "$ref": "fundraisingBusinessLogic.json#/addFundraisingProduct",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "ProductId": "@request.productId",
+            "Amount": "@request.amount",
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "validateOrderForCoupon": {
+        "$ref": "checkoutBusinessLogic.json#/validateOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "addGPayPaymentInfo": {
+        "$ref": "checkoutBusinessLogic.json#/addDigitalWalletPaymentInfo",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "OrderGE": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      },
+      "completeOrder": {
+        "$ref": "checkoutBusinessLogic.json#/completeOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "CartGE": "@parent.ensureActiveCartForFundraising.outputCurrentCartGE"
+          }
+        }
+      },
+      //"sendOrderConfirmationEmailCheckout": {
+      //  "$ref": "checkoutBusinessLogic.json#/sendOrderConfirmationEmailAfterCheckout"
+      //},
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.ensureActiveCartForFundraising.outputCurrentOrderGE"
+          }
+        }
+      }
+    }
+  }
+}

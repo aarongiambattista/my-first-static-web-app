@@ -1,0 +1,46 @@
+{
+  "emptyCart": {
+    "route": {
+      "description": "Removes all items from the cart.",
+      "httpMethod": "DELETE",
+      "segments": {
+        "ShoppingCarts": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "outputEntityDefinition": null,
+    "inputEntityDefinition": null,
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "shoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "shoppingBusinessLogic.json#/returnTheOrder"
+      },
+      "emptyTheCart": {
+        "executionType": "processFlow",
+        "processFlowProperties": {
+          "processFlowName": "Clear Subtype",
+          "processFlowParameters": {
+            "GEObject": "@parent.returnTheOrder.outputOrderGE",
+            "subTypeName": "OrderLines"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "shoppingBusinessLogic.json#/saveCart"
+      }
+    },
+    "security": {
+      "AllowAnonymous": {
+        "$ref": "../../Common/security.json#/allowAnonymous"
+      }
+    }
+  }
+}

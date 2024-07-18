@@ -1,0 +1,145 @@
+﻿{
+  "updateSingleEventProductItem": {
+    "parent": {
+      "name": "getAdminCartCompany" //get cart information of selected company
+    },
+    "route": {
+      "description": "Updates the properties of a single event product item in the cart.  If the item specified is not an event product, this call would cause an error.",
+      "httpMethod": "PATCH",
+      "segments": {
+        "Items": {
+          "isLiteral": true,
+          "type": "string"
+        },
+        "cartSequenceId": {
+          "isLiteral": false,
+          "type": "long"
+        },
+        "EventProduct": {
+          "isLiteral": true,
+          "type": "string"
+        }
+      }
+    },
+    "inputEntityDefinition": {
+      "name": "adminUpdateSingleEventProductItemInput",
+      "fields": {
+        "cartSequenceId": {
+          "type": "long",
+          "sourceField": "Sequence",
+          "input": {
+            "httpMethods": [
+              "GET",
+              "PATCH"
+            ],
+            "source": "path",
+            "requiredHttpMethods": [
+              "GET",
+              "PATCH"
+            ]
+          }
+        },
+        "badgeName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        },
+        "badgeCompanyName": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        },
+        "badgeTitle": {
+          "type": "string",
+          "input": {
+            "httpMethods": [
+              "PATCH"
+            ],
+            "source": "body"
+          }
+        }
+      }
+    },
+    "outputEntityDefinition": {
+      "name": "adminUpdateSingleEventProductItemOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/cartItemsOutput",
+      "fields": {
+        "attendeeId": {
+          "type": "long",
+          "sourceField": "AttendeeID"
+        },
+        "badgeName": {
+          "type": "string"
+        },
+        "badgeCompanyName": {
+          "type": "string"
+        },
+        "badgeTitle": {
+          "type": "string"
+        }
+      }
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "getSingleOrderGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getSingleOrderLine",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "getPropertyValueFromGE": {
+        "$ref": "adminShoppingBusinessLogic.json#/getPropertyValueFromGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "GEObject": "@parent.getSingleOrderGE.outputGE",
+            "FieldName": "productId"
+          }
+        }
+      },
+      "MeetingProductValidation": {
+        "$ref": "adminShoppingBusinessLogic.json#/meetingProductValidation",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "productId": "@parent.getPropertyValueFromGE.outputFieldValue",
+            "quantity": "1",
+            "verifiers": [
+              "IsMeetingProduct"
+            ]
+          }
+        }
+      },
+      "applyClientInput": {
+        "$ref": "../../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.getSingleOrderGE.outputGE"
+          }
+        }
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "../../../Common/businessLogic.json#/contextPropertyMapper",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "inputPropertyValue": "@parent.getSingleOrderGE.outputGE",
+            "outputPropertyName": "outputUpdatedOrderLine"
+          }
+        }
+      }
+    }
+  }
+}

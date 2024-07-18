@@ -1,0 +1,106 @@
+﻿{
+  "profilePersonsAddressRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0ProfilePersonsAddresses",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "personEmbeddedAddressFieldNameRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Get Embedded Address ID Field Name",
+      "processFlowParameters": {
+        "embeddedAddressFieldName": "@Request.AddressName"
+      }
+    }
+  },
+  
+  "singlePersonAddressRetrival": {
+    "$ref": "../../Common/businessLogic.json#/getSingleSubtypeRecord",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "GEObject": "@parent.output",
+        "subTypeName": "PersonAddress",
+        "action": "get",
+        "clientPocoFieldName": "addressName",
+        "subTypeFieldName": "name"
+      }
+    }
+  },
+  "removeInTableAddress": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "removeInTableAddress",
+      "processFlowParameters": {
+        "GEObject": null,
+        "FieldName": null
+      }
+    }
+  },
+  "setPreferredAddress": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Set Preferred Address",
+      "processFlowParameters": {
+        "GEObject": null,
+        "PreferredAddressName": null,
+        "PreferredAddressOption": null
+      }
+    }
+  },
+  "personsAddressRetrieval": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Execute Data Object",
+      "processFlowParameters": {
+        "DataObjectName": "spGeteBusiness6_0PersonsAddresses",
+        "authenticatedAttributes": "@AuthenticatedAttributes"
+      }
+    }
+  },
+  "getAddressRequestNameFieldValue": {
+    "$ref": "../../Common/businessLogic.json#/inputContextValueRetriever",
+    "processFlowProperties": {
+      "processFlowParameters": {
+        "InputContextObject": "@Request",
+        "PropertyName": "AddressName"
+      }
+    }
+  },
+  "personAddressSubTypeRetriever": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Retrieve Subtype GE Object",
+      "processFlowParameters": {
+        "GEObject": null,
+        "subTypeName": null,
+        "fieldName": null,
+        "fieldValue": null
+      }
+    }
+  },
+  "validateAndSetAddressGE": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Validate and Set Address GE",
+      "processFlowParameters": {
+        "GEObject": null
+      }
+    }
+  },
+  "validateDuplicateAddressName": {
+    "executionType": "processFlow",
+    "processFlowProperties": {
+      "processFlowName": "Check For Duplicate Person Address Name",
+      "processFlowParameters": {
+        "AddressName": "",
+        "PersonId": -1,
+        "DataObjectName": "speBusiness6_0IsAddressNameUniqueForPerson"
+      }
+    }
+  }
+}

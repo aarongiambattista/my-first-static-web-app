@@ -1,0 +1,42 @@
+{
+  "updateShoppingCart": {
+    "parent": {
+      "name": "getAdminCartCompany" //get cart information of selected company
+    },
+    "route": {
+      "description": "Sets top level fields on the cart such as the shipping and billing address or the coupon code.",
+      "httpMethod": "PATCH",
+      "segments": null
+    },
+    "inputEntityDefinition": {
+      "name": "adminShoppingCartUpdateInput",
+      "$ref": "adminCartsEntityDefinitions.json#/shoppingCartInput"
+    },
+    "outputEntityDefinition": {
+      "name": "adminShoppingCartOutput",
+      "$ref": "adminCartsEntityDefinitions.json#/shoppingCartOutput"
+    },
+    "businessLogic": {
+      "ensureActiveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/ensureActiveCart"
+      },
+      "applyClientInput": {
+        "$ref": "../../../Common/businessLogic.json#/mapClientInputToGE",
+        "processFlowProperties": {
+          "processFlowParameters": {
+            "geObjectToMap": "@parent.ensureActiveCart.outputCurrentOrderGE"
+          }
+        }
+      },
+      "validateOrder": {
+        "$ref": "adminCheckoutBusinessLogic.json#/CompanyValidateOrder"
+      },
+      "saveCart": {
+        "$ref": "adminShoppingBusinessLogic.json#/saveCart"
+      },
+      "returnTheOrder": {
+        "$ref": "adminShoppingBusinessLogic.json#/returnTheOrder"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+﻿{
+  "properties": {
+    "fieldDefinitions": {
+      "description": "The collection of fields that make up this Input Entity Definition record",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the field.",
+            "type": "string"
+          },
+          "description": {
+            "description": "Descriptive text that further tells us how this field can be used.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the field.",
+            "type": "string"
+          }
+        },
+        "required": ["name", "description", "type"]
+      }
+    }
+  }
+}

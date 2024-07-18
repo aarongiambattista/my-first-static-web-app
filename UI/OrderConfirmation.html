@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+    <script src="js/3rdParty/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/eb6.css" />
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <script src="js/3rdParty/knockout-3.4.2.js"></script>
+    <script src="js/3rdParty/knockout.validation.min.js"></script>
+    <script src="js/3rdParty/moment.min.js"></script> <!--Moment.js for date format-->    
+    <script src="js/3rdParty/bootstrapv5.3.min.js"></script>
+    <script type="text/javascript">
+        var eBusinessJQObject = $.noConflict(true);
+    </script>
+    <script src="js/Configuration/ebConfig.js"></script>
+    <script src="js/UserContext.js"></script>
+    <script src="js/ShoppingCart.js"></script>
+    <script src="js/OrderConfirmation.js"></script>
+    <script src="js/ViewCart.js"></script>
+    <script src="js/PaymentSummary.js"></script>
+    <script src="js/HeaderMenu.js"></script>
+    <script src="js/Footer.js"></script>
+</head>
+<body>
+    <div class="ebHeader">
+        <div id="ebHeaderMenu"></div>
+    </div>
+    <div class="ebBody ebWrapper">
+        <div class="row ebusiness-main-container">
+            <div class="col-lg-8">
+                <div id="orderConfirmation">
+                </div>
+                <div id="viewCart">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div id="paymentSummary">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ebFooter">
+        <div id="ebFooter"></div>
+    </div>
+    <script type="text/javascript">
+        eBusinessJQObject(document).ready(function () {
+            /*Page level configurations*/
+            var options = {}
+            options.domElement = eBusinessJQObject('#orderConfirmation')[0];
+            options.templatePath = eb_Config.SitePath + "html/OrderConfirmation.html";
+            eb_Config.config(options, eb_orderConfirmation);
+
+            //Retrive CSRF Tokens call to get tokens values from user information. It will trigger on the page load. 
+            eb_Config.retrieveCSRFTokens();
+            eb_UserContext.getContextData(true).done(function (userData) {
+                eb_UserContext.live = new eb_UserContext.model(userData);
+
+                if (eb_UserContext.live.isUserLoggedIn()) {
+                    eBusinessJQObject.when(eb_shoppingCart.getShoppingCart(),
+                        eb_orderConfirmation.getOrderConfirmationData(eb_orderConfirmation.orderId, eb_UserContext.live.LinkId()),
+                        eb_orderConfirmation.getOrderItems(eb_orderConfirmation.orderId, eb_UserContext.live.LinkId())).done(function (shoppingData, result, orderlines) {
+                            eBusinessJQObject.when(eb_orderConfirmation.getSubscriptionCartItemsFromServer(orderlines, eb_orderConfirmation.orderId, eb_UserContext.live.LinkId()),
+                                eb_orderConfirmation.getEventCartItemsFromServer(orderlines, eb_orderConfirmation.orderId, eb_UserContext.live.LinkId())).done(function (subscriptionAllItems, eventAllItems) {
+
+                                    var cartOptions = {};
+                                    cartOptions.shoppingCartData = shoppingData;
+                                    cartOptions.cartItems = orderlines;
+                                    eb_shoppingCart.live = new eb_shoppingCart.shoppingCartModel(cartOptions);
+
+                                    //load footer control
+                                    var footerOptions = footerOptions || {};
+                                    footerOptions.domElement = eBusinessJQObject('#ebFooter')[0];
+                                    footerOptions.templatePath = eb_Config.SitePath + "html/Footer.html";
+                                    eb_Footer.render(footerOptions).done(function () {
+                                        //load header control
+                                        var headerOptions = headerOptions || {};
+                                        headerOptions.domElement = eBusinessJQObject('#ebHeaderMenu')[0];
+                                        headerOptions.templatePath = eb_Config.SitePath + "html/HeaderMenu.html";
+                                        headerOptions.userContext = eb_UserContext.live;
+                                        headerOptions.shoppingCart = eb_shoppingCart.live;
+                                        eb_HeaderMenu.render(headerOptions).done(function () {
+                                            eb_HeaderMenu.live = new eb_HeaderMenu.model(headerOptions);
+                                            ko.applyBindings(eb_HeaderMenu.live, headerOptions.domElement);/*Apply KO bindings, fire up the control*/
+
+
+                                            /*Update shopping cart data since in control shopping cart fields are used to bind data.*/
+                                            eb_shoppingCart.live.subTotal(result.subTotal);
+                                            eb_shoppingCart.live.grandTotalBeforeDiscount(result.grandTotalBeforeDiscount);
+                                            eb_shoppingCart.live.shipping(result.shipping);
+                                            eb_shoppingCart.live.handling(result.handling);
+                                            eb_shoppingCart.live.tax(result.tax);
+                                            eb_shoppingCart.live.totalSavings(result.totalSavings);
+
+                                            /*Pass user context object.*/
+                                            options.userContext = eb_UserContext.live;
+                                            eb_orderConfirmation.render(options).done(function () {
+                                                eb_orderConfirmation.live = new eb_orderConfirmation.model(result, options); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                ko.applyBindings(eb_orderConfirmation.live, eb_orderConfirmation.live.domElement);/*Apply KO bindings, fire up the control.*/
+
+                                                /*Pass view options.*/
+                                                var viewOptions = {};
+                                                viewOptions.domElement = eBusinessJQObject('#viewCart')[0];
+                                                viewOptions.templatePath = eb_Config.SitePath + "html/ViewCart.html";
+                                                viewOptions.shoppingCart = eb_shoppingCart.live;
+                                                viewOptions.subscriptionAllItems = subscriptionAllItems;
+                                                viewOptions.eventAllItems = eventAllItems;
+
+                                                eb_productViewCart.isOrderHistory = true;/*this value determines if viewcart is loaded in order history. if yes, then it behaves differently, like in striking out price*/
+
+                                                eb_Config.config(viewOptions, eb_productViewCart);
+                                                eb_productViewCart.render(viewOptions).done(function () {
+                                                    eb_productViewCart.live = new eb_productViewCart.model(viewOptions); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                    eb_productViewCart.live.cartTitleMessageVisible(0);
+                                                    eb_productViewCart.live.cartEmptyMessageVisible(0);
+                                                    eb_productViewCart.live.visible(true);
+                                                    eb_productViewCart.live.removeButtonVisible(false);
+                                                    eb_productViewCart.live.updateButtonVisible(false);
+                                                    eb_productViewCart.live.totalSavings(parseFloat(result.totalSavings).toFixed(eb_Config.roundOffDigitsAfterDecimal)); /* To get total savings on order confirmation page*/
+                                                    ko.applyBindings(eb_productViewCart.live, eb_productViewCart.live.domElement);/*Apply KO bindings, fire up the control*/
+                                                });
+
+                                                /*pass payment summary details*/
+                                                var paymentSummaryDetails = {}
+                                                paymentSummaryDetails.domElement = eBusinessJQObject('#paymentSummary')[0];
+                                                paymentSummaryDetails.templatePath = eb_Config.SitePath + "html/PaymentSummary.html";
+                                                paymentSummaryDetails.shoppingCart = eb_shoppingCart.live;
+                                                paymentSummaryDetails.data = undefined;
+
+                                                eb_Config.config(paymentSummaryDetails, eb_paymentSummaryDetails);
+                                                eb_paymentSummaryDetails.render(paymentSummaryDetails).done(function () {
+                                                    eb_paymentSummaryDetails.live = new eb_paymentSummaryDetails.model(paymentSummaryDetails); /*Page's live instance of the model. Handy for troubleshooting.*/
+                                                    eb_paymentSummaryDetails.live.hidePaymentDetails(0);
+                                                    eb_paymentSummaryDetails.live.showHandlingChargesNote(0);               /*Remove the note of handling charges from checkout and confirmation page.*/
+                                                    ko.applyBindings(eb_paymentSummaryDetails.live, eb_paymentSummaryDetails.live.domElement);/*Apply KO bindings, fire up the control*/
+                                                });
+                                            }).fail(function (data, msg, jhr) {
+                                                console.error("Failed to render OrderConfirmation.");
+                                            });
+                                        }).fail(function (data, msg, jhr) {
+                                            console.error("Failed to render header control.");
+                                        });
+                                    }).fail(function (data, msg, jhr) {
+                                        console.error('Failed to render footer control...');
+                                    });
+                                }).fail(function (data, msg, jhr) {
+                                    console.error("Failed to get subscription Cart Items From Server items.");
+                                });
+                        }).fail(function (data, msg, jhr) {
+                            console.error('Failed to getShoppingCart...');
+                            eb_Config.getErrorMessageForControl(data.responseJSON, eb_orderConfirmation);
+                        });
+                } else {
+                    window.location.assign(eb_Config.loginPageURL);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
