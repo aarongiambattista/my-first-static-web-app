@@ -9,7 +9,7 @@ var eb_Config = eb_Config || {};
  * @property eb_Config.SitePath
  * @type {String}
  */
-eb_Config.SitePath = 'https://ebiz7.giambattista.io/UI/';
+eb_Config.SitePath = 'https://aptify72.azurewebsites.net/UI/';
 eb_Config.adminSitePath = eb_Config.SitePath + "admin/";
 
 /**
@@ -17,7 +17,7 @@ eb_Config.adminSitePath = eb_Config.SitePath + "admin/";
  * @property eb_Config.ServicePath
  * @type {String}
  */
-eb_Config.ServicePath = 'https://ebiz7.giambattista.io/SOA/';
+eb_Config.ServicePath = 'https://aptify72.azurewebsites.net/SOA/';
 eb_Config.ServicePathV1 = eb_Config.ServicePath + "v1/";
 
 /**
